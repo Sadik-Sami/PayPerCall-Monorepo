@@ -7,6 +7,7 @@ import { usersTable } from '@/db/schema/users.schema';
 import { eq } from 'drizzle-orm';
 import { AppError } from './errorHandler';
 import { UnauthorizedError, ForbiddenError } from '@/utils/error.util';
+import { isValidUUID } from '@/utils/validation.util';
 
 export async function authenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
 	try {
@@ -20,12 +21,15 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
 			try {
 				const payload = verifyAccessToken(token);
-				if (!payload.id) throw new UnauthorizedError('Invalid token payload');
+				if (!isValidUUID(payload.id)) {
+					throw new UnauthorizedError('Invalid token payload');
+				}
 
 				req.user = { id: payload.id, role: payload.role };
 				return next();
 			} catch (err) {
 				// token invalid or expired — fallback to cookies
+				console.warn('[Auth] Bearer token validation failed');
 			}
 		}
 
@@ -33,6 +37,10 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 		const sessionId = req.cookies?.sessionId;
 		const refresh = req.cookies?.refresh_token;
 		if (sessionId && refresh) {
+			if (!isValidUUID(sessionId)) {
+				throw new UnauthorizedError('Invalid session format');
+			}
+
 			const rows = await db.select().from(sessionsTable).where(eq(sessionsTable.id, sessionId)).limit(1);
 			const session = rows[0];
 			if (!session) throw new UnauthorizedError('Invalid session');
@@ -49,6 +57,10 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 				// revoke session
 				await db.delete(sessionsTable).where(eq(sessionsTable.id, sessionId));
 				throw new UnauthorizedError('Invalid authentication');
+			}
+
+			if (!isValidUUID(session.user_id)) {
+				throw new UnauthorizedError('Invalid session data');
 			}
 
 			// Get the user

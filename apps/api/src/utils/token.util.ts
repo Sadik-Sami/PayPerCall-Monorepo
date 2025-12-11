@@ -1,6 +1,7 @@
 import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 import crypto from 'crypto';
 import { JwtPayload } from '../types/auth';
+import { jwtPayloadSchema } from './validation.util';
 
 export const ACCESS_TOKEN_EXPIRES_IN = process.env.ACCESS_TOKEN_EXPIRES_IN ?? '15m';
 export const REFRESH_TOKEN_DAYS = Number(process.env.REFRESH_TOKEN_DAYS ?? '30');
@@ -16,7 +17,16 @@ export function signAccessToken(payload: object) {
 
 export function verifyAccessToken(token: string): JwtPayload {
 	if (!process.env.JWT_ACCESS_SECRET) throw new Error('Missing JWT_ACCESS_SECRET');
-	return jwt.verify(token, process.env.JWT_ACCESS_SECRET) as JwtPayload;
+
+	const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+	const result = jwtPayloadSchema.safeParse(decoded);
+
+	if (!result.success) {
+		console.error('[JWT Validation Error]', result.error.issues);
+		throw new Error('Invalid token payload structure');
+	}
+
+	return result.data;
 }
 
 export function generateRefreshToken() {
