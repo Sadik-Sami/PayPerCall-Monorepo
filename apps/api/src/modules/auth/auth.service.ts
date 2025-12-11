@@ -6,6 +6,7 @@ import { eq } from 'drizzle-orm';
 import { signAccessToken, generateRefreshToken, refreshExpiresAt } from '@/utils/token.util';
 import { LoginRequest } from '@/db/validator/auth.validator';
 import { AppError } from '@/middlewares/errorHandler';
+import { UnauthorizedError } from '@/utils/error.util';
 
 export const authService = {
 	async login(
@@ -15,10 +16,10 @@ export const authService = {
 	): Promise<{ user: User; accessToken: string; refreshToken: string; session: Session }> {
 		const rows = await db.select().from(usersTable).where(eq(usersTable.email, data.email)).limit(1);
 		const user = rows[0];
-		if (!user) throw new AppError('Invalid email or password', 401);
+		if (!user) throw new UnauthorizedError('Invalid email or password');
 
 		const ok = await bcrypt.compare(data.password, user.password);
-		if (!ok) throw new AppError('Invalid email or password', 401);
+		if (!ok) throw new UnauthorizedError('Invalid email or password');
 
 		const accessToken = signAccessToken({ id: user.id, role: user.role });
 
@@ -40,6 +41,7 @@ export const authService = {
 
 		return { user, accessToken, refreshToken: refreshTokenPlain, session };
 	},
+
 	async refresh(
 		sessionId: string,
 		refreshTokenPlain: string
@@ -48,19 +50,19 @@ export const authService = {
 			// fetching session inside tx
 			const rows = await tx.select().from(sessionsTable).where(eq(sessionsTable.id, sessionId)).limit(1);
 			const session = rows[0];
-			if (!session) throw new AppError('Invalid session', 401);
+			if (!session) throw new UnauthorizedError('Invalid session');
 
 			// verifying refresh token
 			const valid = await bcrypt.compare(refreshTokenPlain, session.refresh_token ?? '');
 			if (!valid) {
 				await tx.delete(sessionsTable).where(eq(sessionsTable.id, sessionId));
-				throw new AppError('Invalid refresh token', 401);
+				throw new UnauthorizedError('Invalid refresh token');
 			}
 
 			// checking expiry
 			if (new Date(session.expires_at) < new Date()) {
 				await tx.delete(sessionsTable).where(eq(sessionsTable.id, sessionId));
-				throw new AppError('Refresh token expired', 401);
+				throw new UnauthorizedError('Refresh token expired');
 			}
 
 			// rotating refresh token
