@@ -3,6 +3,7 @@ import { db } from '@/db';
 import { usersTable, User, NewUser } from '@/db/schema/users.schema';
 import { eq } from 'drizzle-orm';
 import { AppError } from '@/middlewares/errorHandler';
+import { sessionsTable } from '@/db/schema';
 
 export const userServices = {
 	async getByEmail(email: string): Promise<User | undefined> {
@@ -28,15 +29,33 @@ export const userServices = {
 		return updated;
 	},
 	async changePassword(id: string, currentPassword: string, newPassword: string): Promise<void> {
-		const rows = await db.select().from(usersTable).where(eq(usersTable.id, id)).limit(1);
-		const user = rows[0];
-		if (!user) throw new AppError('User not found', 404);
+		await db.transaction(async (tx) => {
+			const rows = await tx.select().from(usersTable).where(eq(usersTable.id, id)).limit(1);
+			const user = rows[0];
+			if (!user) throw new AppError('User not found', 404);
 
-		const ok = await bcrypt.compare(currentPassword, user.password);
-		if (!ok) throw new AppError('Current password is incorrect', 400);
+			// Verify current password
+			const isValid = await bcrypt.compare(currentPassword, user.password);
+			if (!isValid) throw new AppError('Current password is incorrect', 400);
 
-		const hashed = await bcrypt.hash(newPassword, 10);
-		await db.update(usersTable).set({ password: hashed, updated_at: new Date() }).where(eq(usersTable.id, id));
+			// Hash new password
+			const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+			// Update password
+			await tx
+				.update(usersTable)
+				.set({
+					password: hashedNewPassword,
+					updated_at: new Date(),
+				})
+				.where(eq(usersTable.id, id));
+
+			// Revoking all sessions
+			const deletedSessions = await tx.delete(sessionsTable).where(eq(sessionsTable.user_id, id)).returning();
+
+			// Log for security audit
+			console.log(`[Security] Password changed for user ${id}. Revoked ${deletedSessions.length} sessions.`);
+		});
 	},
 	async listAll(): Promise<User[]> {
 		return db.select().from(usersTable);
