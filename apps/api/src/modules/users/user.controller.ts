@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { userServices } from './user.service';
 import { changePasswordSchema, publicUserSelectSchema } from '@/db/validator/user.validator';
 import { AppError } from '@/middlewares/errorHandler';
-import { ForbiddenError } from "@/utils/error.util"
+import { ForbiddenError } from '@/utils/error.util';
 
 export const userController = {
 	// GET /api/users/me
@@ -47,7 +47,15 @@ export const userController = {
 			const data = changePasswordSchema.parse(req.body);
 			await userServices.changePassword(userId, data.currentPassword, data.newPassword);
 
-			res.json({ success: true, statusCode: 200, message: 'Password changed successfully' });
+			// Clear the user's current session cookies
+			res.clearCookie('refresh_token', { path: '/api/auth' });
+			res.clearCookie('sessionId', { path: '/api/auth' });
+
+			res.json({
+				success: true,
+				statusCode: 200,
+				message: 'Password changed successfully. All sessions have been logged out for security. Please login again.',
+			});
 		} catch (error) {
 			next(error);
 		}
