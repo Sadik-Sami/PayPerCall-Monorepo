@@ -2,6 +2,11 @@ import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'driz
 import { usersTable } from '../schema/users.schema';
 import { z } from 'zod';
 
+export const userImageSchema = z.object({
+	url: z.url('Please provide a valid image URL'),
+	publicId: z.string().min(1, 'Public ID is required'),
+});
+
 export const userInsertSchema = createInsertSchema(usersTable, {
 	name: (schema) => schema.min(1, 'Name is required'),
 	email: (schema) => schema.email('Please enter a valid email'),
@@ -14,8 +19,8 @@ export const userInsertSchema = createInsertSchema(usersTable, {
 			.regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
 	phone: (schema) => schema.optional(),
 	role: (schema) => schema.optional(),
-	image: (schema) => schema.optional(),
-  isVerified: (schema) => schema.optional(),
+	image: () => userImageSchema.optional(),
+	isVerified: (schema) => schema.optional(),
 	address_street: (schema) => schema.optional(),
 	address_city: (schema) => schema.optional(),
 	address_state: (schema) => schema.optional(),

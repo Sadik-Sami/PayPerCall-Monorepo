@@ -1,4 +1,4 @@
-import { pgTable, varchar, uuid, timestamp, pgEnum, boolean } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, uuid, timestamp, pgEnum, boolean, jsonb } from 'drizzle-orm/pg-core';
 import { sessionsTable } from './session.schema';
 import { relations } from 'drizzle-orm';
 
@@ -8,7 +8,10 @@ export const usersTable = pgTable('users', {
 	name: varchar('name', { length: 255 }).notNull(),
 	email: varchar('email', { length: 255 }).notNull().unique(),
 	password: varchar('password', { length: 255 }).notNull(),
-	image: varchar('image', { length: 255 }),
+	image: jsonb('image').$type<{
+		url: string;
+		publicId: string;
+	}>(),
 	role: userRoleEnum('role').default('user').notNull(),
 	isVerified: boolean().default(false).notNull(),
 

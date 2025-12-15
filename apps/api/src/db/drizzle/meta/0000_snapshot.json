@@ -1,5 +1,5 @@
 {
-  "id": "39062318-eb3a-46e1-b377-6ef7bfd3f19c",
+  "id": "26743c11-f1e9-4737-9de6-5e46e693c491",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -12,7 +12,8 @@
           "name": "id",
           "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
         "name": {
           "name": "name",
@@ -34,7 +35,7 @@
         },
         "image": {
           "name": "image",
-          "type": "varchar(255)",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },

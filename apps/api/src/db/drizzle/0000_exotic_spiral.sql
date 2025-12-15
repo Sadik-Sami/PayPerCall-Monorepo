@@ -1,10 +1,10 @@
 CREATE TYPE "public"."role" AS ENUM('admin', 'user');--> statement-breakpoint
 CREATE TABLE "users" (
-	"id" uuid PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"email" varchar(255) NOT NULL,
 	"password" varchar(255) NOT NULL,
-	"image" varchar(255),
+	"image" jsonb,
 	"role" "role" DEFAULT 'user' NOT NULL,
 	"isVerified" boolean DEFAULT false NOT NULL,
 	"phone" varchar(50),
