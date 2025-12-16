@@ -1,6 +1,7 @@
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 import { usersTable } from '../schema/users.schema';
 import { z } from 'zod';
+import { roleSchema } from '@/utils/validation.util';
 
 export const userImageSchema = z.object({
 	url: z.url('Please provide a valid image URL'),
@@ -52,3 +53,9 @@ export const changePasswordSchema = z.object({
 		.regex(/[0-9]/, 'Password must contain at least one number')
 		.regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
 });
+
+export const changeRoleSchema = z.object({
+	role: roleSchema,
+});
+
+export type ChangeRoleRequest = z.infer<typeof changeRoleSchema>;

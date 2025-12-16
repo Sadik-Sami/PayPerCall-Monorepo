@@ -13,7 +13,7 @@ export const uuidSchema = z.uuid({
  * Role validation schema
  * Ensures role values match our database enum
  */
-enum Role {
+export enum Role {
 	ADMIN = 'admin',
 	USER = 'user',
 }

@@ -1,9 +1,10 @@
 import bcrypt from 'bcryptjs';
 import { db } from '@/db';
 import { usersTable, User, NewUser } from '@/db/schema/users.schema';
+import { sessionsTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { AppError } from '@/middlewares/errorHandler';
-import { sessionsTable } from '@/db/schema';
+import { Role } from '@/utils/validation.util';
 
 export const userServices = {
 	async getByEmail(email: string): Promise<User | undefined> {
@@ -59,5 +60,59 @@ export const userServices = {
 	},
 	async listAll(): Promise<User[]> {
 		return db.select().from(usersTable);
+	},
+	async changeRole(targetUserId: string, newRole: Role, adminUserId: string): Promise<User> {
+		return await db.transaction(async (tx) => {
+			// Check if target user exists
+			const rows = await tx.select().from(usersTable).where(eq(usersTable.id, targetUserId)).limit(1);
+			const targetUser = rows[0];
+
+			if (!targetUser) {
+				throw new AppError('User not found', 404);
+			}
+
+			// Prevent admin from demoting themselves (safety check)
+			if (targetUserId === adminUserId && newRole === Role.USER) {
+				throw new AppError('You cannot demote yourself. Please ask another admin to change your role.', 403);
+			}
+
+			// Check if role is actually changing
+			if (targetUser.role === newRole) {
+				throw new AppError(`User already has the role: ${newRole}`, 400);
+			}
+
+			// Update the role
+			const [updated] = await tx
+				.update(usersTable)
+				.set({
+					role: newRole,
+					updated_at: new Date(),
+				})
+				.where(eq(usersTable.id, targetUserId))
+				.returning();
+
+			if (!updated) {
+				throw new AppError('Failed to update user role', 500);
+			}
+
+			// Security audit log
+			console.log(
+				`[Security] Role changed by admin ${adminUserId}: User ${targetUserId} role changed from "${targetUser.role}" to "${newRole}"`
+			);
+
+			// Revoke sessions when promoting to admin (force re-login with new permissions)
+			if (newRole === Role.ADMIN) {
+				const deletedSessions = await tx
+					.delete(sessionsTable)
+					.where(eq(sessionsTable.user_id, targetUserId))
+					.returning();
+
+				console.log(
+					`[Security] Promoted user ${targetUserId} to admin. Revoked ${deletedSessions.length} sessions for security.`
+				);
+			}
+
+			return updated;
+		});
 	},
 };

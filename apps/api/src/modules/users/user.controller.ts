@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { userServices } from './user.service';
-import { changePasswordSchema, publicUserSelectSchema } from '@/db/validator/user.validator';
+import { changePasswordSchema, changeRoleSchema, publicUserSelectSchema } from '@/db/validator/user.validator';
 import { AppError } from '@/middlewares/errorHandler';
 import { ForbiddenError } from '@/utils/error.util';
+import { isValidUUID } from '@/utils/validation.util';
 
 export const userController = {
 	// GET /api/users/me
@@ -77,6 +78,35 @@ export const userController = {
 				message: 'Users retrieved',
 				data: publicUsers,
 				count: publicUsers.length,
+			});
+		} catch (error) {
+			next(error);
+		}
+	},
+
+	async changeUserRole(req: Request, res: Response, next: NextFunction) {
+		try {
+			const adminId = req.user?.id;
+			if (!adminId || req.user?.role !== 'admin') {
+				throw new ForbiddenError('Only admins can change user roles');
+			}
+
+			const targetUserId = req.params.userId;
+			if (!isValidUUID(targetUserId)) {
+				throw new AppError('Invalid user ID format', 400);
+			}
+
+			const data = changeRoleSchema.parse(req.body);
+
+			const updatedUser = await userServices.changeRole(targetUserId, data.role, adminId);
+
+			const publicUser = publicUserSelectSchema.parse(updatedUser);
+
+			res.json({
+				success: true,
+				statusCode: 200,
+				message: `User role successfully changed to "${data.role}"`,
+				data: publicUser,
 			});
 		} catch (error) {
 			next(error);
