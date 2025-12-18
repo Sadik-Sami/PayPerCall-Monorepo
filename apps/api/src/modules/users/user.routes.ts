@@ -8,8 +8,8 @@ export const userRouter: Router = Router();
 
 userRouter.get('/me', authenticate, userController.me);
 userRouter.put('/me', authenticate, validateData(userUpdateSchema), userController.updateMe);
+userRouter.get('/role', authenticate, userController.getRole);
 userRouter.post('/change-password', authenticate, validateData(changePasswordSchema), userController.changePassword);
-
 userRouter.get('/', authenticate, authorize('admin'), userController.listAll);
 userRouter.patch(
 	'/:userId/role',

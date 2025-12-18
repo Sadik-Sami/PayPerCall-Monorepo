@@ -112,4 +112,23 @@ export const userController = {
 			next(error);
 		}
 	},
+
+	// GET /api/users/role
+	async getRole(req: Request, res: Response, next: NextFunction) {
+		try {
+			if (!req.user) throw new AppError('Unauthorized', 401);
+
+			res.json({
+				success: true,
+				statusCode: 200,
+				message: 'User role retrieved',
+				data: {
+					id: req.user.id,
+					role: req.user.role,
+				},
+			});
+		} catch (error) {
+			next(error);
+		}
+	},
 };
