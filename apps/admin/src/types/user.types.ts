@@ -22,3 +22,18 @@ export interface User {
 	created_at: string;
 	updated_at: string;
 }
+export interface UpdateProfileRequest {
+	name?: string;
+	email?: string;
+	phone?: string | null;
+	image?: UserImage | null;
+	address_street?: string | null;
+	address_city?: string | null;
+	address_state?: string | null;
+	address_postal_code?: string | null;
+}
+
+export interface ChangePasswordRequest {
+	currentPassword: string;
+	newPassword: string;
+}

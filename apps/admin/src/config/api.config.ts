@@ -9,7 +9,9 @@ export const API_CONFIG = {
 		},
 		USER: {
 			ME: '/api/users/me',
+			UPDATE_ME: '/api/users/me',
 			ROLE: '/api/users/role',
+			CHANGE_PASSWORD: '/api/users/change-password',
 		},
 	},
 	TIMEOUT: 30000,

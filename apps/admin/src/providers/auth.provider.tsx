@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { authApi } from '@/services/auth.api';
 import { tokenUtil } from '@/utils/token.util';
 import { AuthContext } from '@/contexts/auth.context';
-import type { LoginRequest } from '@/types/auth.types';
+import type { LoginRequest, SignupRequest } from '@/types/auth.types';
 import type { User } from '@/types/user.types';
 import { ROUTES } from '@/utils/constants';
 import { toast } from 'sonner';
@@ -30,6 +30,17 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 		},
 		onError: (error: Error) => {
 			toast.error(error.message || 'Login failed');
+		},
+	});
+
+	const signupMutation = useMutation({
+		mutationFn: authApi.signup,
+		onSuccess: () => {
+			toast.success('Account created successfully! Please login.');
+			navigate(ROUTES.LOGIN, { replace: true });
+		},
+		onError: (error: Error) => {
+			toast.error(error.message || 'Signup failed');
 		},
 	});
 
@@ -96,6 +107,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 		await loginMutation.mutateAsync(credentials);
 	};
 
+	const signup = async (data: SignupRequest) => {
+		await signupMutation.mutateAsync(data);
+	};
+
 	const logout = async () => {
 		await logoutMutation.mutateAsync();
 	};
@@ -111,6 +126,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 				isAuthenticated: !!user,
 				isLoading: isLoading || loginMutation.isPending || logoutMutation.isPending,
 				login,
+				signup,
 				logout,
 				refreshUser,
 			}}>

@@ -1,14 +1,14 @@
 import { axiosInstance } from './axios';
 import { API_CONFIG } from '@/config/api.config';
 import type { ApiResponse } from '@/types/api.types';
-import type { LoginRequest, LoginResponse, RefreshResponse } from '@/types/auth.types';
+import type { LoginRequest, LoginResponse, RefreshResponse, SignupRequest } from '@/types/auth.types';
 import type { User, UserRole } from '@/types/user.types';
 
 export const authApi = {
 	/**
 	 * Login user
 	 * Returns user data and accessToken
-	 * Sets refresh_token and sessionId cookies automatically
+	 * Sets refresh_token and sessionId cookies
 	 */
 	login: async (credentials: LoginRequest): Promise<LoginResponse> => {
 		const { data } = await axiosInstance.post<ApiResponse<User>>(API_CONFIG.ENDPOINTS.AUTH.LOGIN, credentials);
@@ -25,8 +25,22 @@ export const authApi = {
 	},
 
 	/**
+	 * Signup new user
+	 * Returns created user data
+	 */
+	signup: async (signupData: SignupRequest): Promise<{ user: User }> => {
+		const { data } = await axiosInstance.post<ApiResponse<User>>(API_CONFIG.ENDPOINTS.AUTH.SIGNUP, signupData);
+
+		if (!data.success || !data.data) {
+			throw new Error(data.message || 'Signup failed');
+		}
+
+		return { user: data.data };
+	},
+
+	/**
 	 * Refresh access token
-	 * Uses refresh_token cookie automatically
+	 * Uses refresh_token cookie
 	 */
 	refresh: async (): Promise<RefreshResponse> => {
 		const { data } = await axiosInstance.post<ApiResponse<User>>(API_CONFIG.ENDPOINTS.AUTH.REFRESH);
