@@ -2,7 +2,7 @@ import { Providers } from '@/components/providers';
 import '@workspace/ui/globals.css';
 import { Navbar } from '@/components/navbar/navbar';
 import { Footer } from '@/components/footer/footer';
-import { alfaSlabOne, arialFont, googleSansFlex } from './fonts';
+import { googleSansFlex } from './fonts';
 
 export default function RootLayout({
 	children,
