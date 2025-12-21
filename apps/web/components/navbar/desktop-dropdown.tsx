@@ -1,0 +1,41 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import type { NavItem } from './types';
+import { columnVariants, linkVariants } from './animations';
+
+interface DesktopDropdownProps {
+	navItem: NavItem;
+	onMouseEnter: () => void;
+}
+
+export function DesktopDropdown({ navItem, onMouseEnter }: DesktopDropdownProps) {
+	if (!navItem.columns) return null;
+
+	return (
+		<div className='overflow-hidden bg-muted border-b border-border' onMouseEnter={onMouseEnter}>
+			<div className='max-w-7xl mx-auto px-6 py-12'>
+				<div className='grid gap-12' style={{ gridTemplateColumns: `repeat(${navItem.columns.length}, 1fr)` }}>
+					{navItem.columns.map((column, colIndex) => (
+						<motion.div key={colIndex} variants={columnVariants} className='space-y-4'>
+							<h3 className='font-utility text-xs font-semibold text-muted-foreground uppercase tracking-wider'>
+								{column.title}
+							</h3>
+							<ul className='space-y-3'>
+								{column.links.map((link, linkIndex) => (
+									<motion.li key={linkIndex} variants={linkVariants}>
+										<a
+											href={link.href}
+											className='font-utility text-sm text-muted-foreground hover:text-foreground transition-colors block'>
+											{link.label}
+										</a>
+									</motion.li>
+								))}
+							</ul>
+						</motion.div>
+					))}
+				</div>
+			</div>
+		</div>
+	);
+}
