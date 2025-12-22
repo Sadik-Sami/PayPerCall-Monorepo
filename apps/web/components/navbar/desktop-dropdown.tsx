@@ -18,7 +18,7 @@ export function DesktopDropdown({ navItem, onMouseEnter }: DesktopDropdownProps)
 				<div className='grid gap-12' style={{ gridTemplateColumns: `repeat(${navItem.columns.length}, 1fr)` }}>
 					{navItem.columns.map((column, colIndex) => (
 						<motion.div key={colIndex} variants={columnVariants} className='space-y-4'>
-							<h3 className='font-utility text-xs font-semibold text-muted-foreground uppercase tracking-wider'>
+							<h3 className='font-utility text-xl font-extralight text-muted-foreground uppercase tracking-tight'>
 								{column.title}
 							</h3>
 							<ul className='space-y-3'>
@@ -26,7 +26,7 @@ export function DesktopDropdown({ navItem, onMouseEnter }: DesktopDropdownProps)
 									<motion.li key={linkIndex} variants={linkVariants}>
 										<a
 											href={link.href}
-											className='font-utility text-sm text-muted-foreground hover:text-foreground transition-colors block'>
+											className='font-utility text-sm text-muted-foreground hover:text-blue-400 transition-colors block'>
 											{link.label}
 										</a>
 									</motion.li>
