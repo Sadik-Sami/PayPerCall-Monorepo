@@ -128,3 +128,29 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+@theme {
+	--marquee-duration: 20s;
+	--marquee-gap: 1rem;
+
+	--animate-marquee: marquee var(--marquee-duration) linear infinite;
+	--animate-marquee-vertical: marquee-vertical var(--marquee-duration) linear infinite;
+
+	@keyframes marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-100% - var(--marquee-gap)));
+		}
+	}
+
+	@keyframes marquee-vertical {
+		from {
+			transform: translateY(0);
+		}
+		to {
+			transform: translateY(calc(-100% - var(--marquee-gap)));
+		}
+	}
+}
