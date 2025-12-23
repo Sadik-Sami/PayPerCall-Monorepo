@@ -1,3 +1,4 @@
+import CTA from '@/components/landing/cta';
 import { Hero } from '@/components/landing/hero';
 import FeatureSteps from '@/components/landing/steps';
 import Testimonials from '@/components/landing/testimonials';
@@ -13,6 +14,7 @@ export default function Page() {
 					<Testimonials />
 				</div>
 				<FeatureSteps />
+				<CTA />
 			</main>
 		</>
 	);
