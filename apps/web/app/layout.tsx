@@ -3,6 +3,7 @@ import '@workspace/ui/globals.css';
 import { Navbar } from '@/components/navbar/navbar';
 import { Footer } from '@/components/footer/footer';
 import { googleSansFlex } from './fonts';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export default function RootLayout({
 	children,
@@ -15,6 +16,7 @@ export default function RootLayout({
 				<Providers>
 					<Navbar />
 					{children}
+					<SpeedInsights />
 					<Footer />
 				</Providers>
 			</body>
