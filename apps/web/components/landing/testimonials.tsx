@@ -190,7 +190,7 @@ const testimonials = [
 
 export default function Testimonials() {
 	return (
-		<section className='relative container py-10'>
+		<section className='relative max-w-7xl mx-auto py-10'>
 			{/* Decorative elements */}
 			<div className='absolute top-20 md:-left-20 z-10 h-64 w-64 rounded-full bg-blue-500/5 blur-3xl' />
 			<div className='absolute md:-right-20 bottom-20 z-10 h-64 w-64 rounded-full bg-blue-500/5 blur-3xl' />

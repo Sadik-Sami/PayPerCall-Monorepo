@@ -1,4 +1,5 @@
 import { Hero } from '@/components/landing/hero';
+import FeatureSteps from '@/components/landing/steps';
 import Testimonials from '@/components/landing/testimonials';
 
 export default function Page() {
@@ -11,6 +12,7 @@ export default function Page() {
 				<div className='container px-6 mx-auto'>
 					<Testimonials />
 				</div>
+				<FeatureSteps />
 			</main>
 		</>
 	);
