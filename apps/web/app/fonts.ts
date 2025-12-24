@@ -1,5 +1,5 @@
 import localFont from 'next/font/local';
-import { Alfa_Slab_One } from 'next/font/google';
+import { Geist } from 'next/font/google';
 
 export const googleSansFlex = localFont({
 	src: [
@@ -53,8 +53,7 @@ export const googleSansFlex = localFont({
 	display: 'swap',
 });
 
-export const alfaSlabOne = Alfa_Slab_One({
-	weight: '400',
+export const gesistSans = Geist({
 	subsets: ['latin'],
 	variable: '--font-heading',
 	display: 'swap',

@@ -78,7 +78,7 @@
 }
 
 @theme inline {
-	--font-heading: 'Alfa Slab One', 'Arial Black', sans-serif;
+	--font-heading: var(--font-heading), 'Arial Black', sans-serif;
 	--font-body: var(--font-body), 'Segoe UI', system-ui, sans-serif;
 	--font-utility: 'Arial', 'Helvetica Neue', sans-serif;
 	--color-background: var(--background);
