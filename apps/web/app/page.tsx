@@ -2,6 +2,7 @@ import CTA from '@/components/landing/cta';
 import { Hero } from '@/components/landing/hero';
 import Services from '@/components/landing/services';
 import FeatureSteps from '@/components/landing/steps';
+import { TechCloud } from '@/components/landing/TechCloud';
 import Testimonials from '@/components/landing/testimonials';
 
 export default function Page() {
@@ -11,6 +12,7 @@ export default function Page() {
 				<div className='px-0 sm:px-6 mx-auto '>
 					<Hero />
 				</div>
+				<TechCloud />
 				<Services />
 				<FeatureSteps />
 				<div className='container px-6 mx-auto'>
