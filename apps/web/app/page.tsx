@@ -6,6 +6,7 @@ import ImpactStats from '@/components/landing/ImpactStats';
 import Services from '@/components/landing/services';
 import FeatureSteps from '@/components/landing/steps';
 import { TechCloud } from '@/components/landing/TechCloud';
+import TechSpotlight from '@/components/landing/techSpotlight';
 import Testimonials from '@/components/landing/testimonials';
 
 export default function Page() {
@@ -15,15 +16,16 @@ export default function Page() {
 				<div className='px-0 sm:px-6 mx-auto '>
 					<Hero />
 				</div>
+				<TechSpotlight />
+				<ImpactStats />
 				<TechCloud />
 				<Services />
-				<ImpactStats />
 				<FeatureSteps />
 				<FounderInsight />
 				<div className='container px-6 mx-auto'>
 					<Testimonials />
 				</div>
-				<FAQ/>
+				<FAQ />
 				<CTA />
 			</main>
 		</>

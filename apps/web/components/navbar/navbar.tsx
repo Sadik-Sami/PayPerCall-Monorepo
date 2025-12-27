@@ -27,13 +27,14 @@ export function Navbar() {
 		}
 	}, [activeDropdown]);
 
-	const handleMouseEnter = (id: string) => {
+	const handleMouseEnter = (id: string | null) => {
 		if (hoverTimeoutRef.current) {
 			clearTimeout(hoverTimeoutRef.current);
 		}
+		// Reduced timeout for snappier response
 		hoverTimeoutRef.current = setTimeout(() => {
 			setActiveDropdown(id);
-		}, 100);
+		}, 50);
 	};
 
 	const handleMouseLeave = () => {
@@ -63,7 +64,8 @@ export function Navbar() {
 							{/* Logo */}
 							<Link
 								href='/'
-								className='font-utility text-xl font-semibold tracking-tight text-foreground hover:text-muted-foreground transition-colors'>
+								className='font-utility text-xl font-semibold tracking-tight text-foreground hover:text-muted-foreground transition-colors'
+								onMouseEnter={() => handleMouseEnter(null)}>
 								Premium
 							</Link>
 
@@ -74,6 +76,7 @@ export function Navbar() {
 										{item.href ?
 											<a
 												href={item.href}
+												onMouseEnter={() => handleMouseEnter(null)}
 												className='font-utility text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'>
 												{item.label}
 											</a>
@@ -100,15 +103,17 @@ export function Navbar() {
 					</div>
 
 					{/* Dropdown Panel */}
-					<AnimatePresence mode='wait'>
-						{activeDropdown && activeNavItem && (
+					<AnimatePresence>
+						{activeDropdown && activeNavItem && activeNavItem.columns && (
 							<motion.div
+								key={activeNavItem.id}
 								id={`dropdown-${activeDropdown}`}
 								ref={dropdownRef}
 								variants={dropdownContainerVariants}
 								initial='hidden'
 								animate='visible'
-								exit='hidden'>
+								exit='hidden'
+								className='absolute left-0 right-0 z-40'>
 								<DesktopDropdown
 									navItem={activeNavItem}
 									onMouseEnter={() => {
@@ -150,7 +155,7 @@ export function Navbar() {
 					</div>
 				</nav>
 
-				{/* Mobile Menu Backdrop - Fixed to take full screen height */}
+				{/* Mobile Menu Backdrop */}
 				<AnimatePresence>
 					{mobileMenuOpen && (
 						<motion.div
@@ -164,7 +169,7 @@ export function Navbar() {
 					)}
 				</AnimatePresence>
 
-				{/* Mobile Menu - Fixed height constraints */}
+				{/* Mobile Menu Content */}
 				<AnimatePresence>
 					{mobileMenuOpen && (
 						<motion.div
@@ -193,8 +198,6 @@ export function Navbar() {
 						</motion.div>
 					)}
 				</AnimatePresence>
-
-				<div className='h-14' />
 			</div>
 		</>
 	);
