@@ -19,13 +19,13 @@ export function DesktopDropdown({ navItem, onMouseEnter }: DesktopDropdownProps)
 					key={navItem.id}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
-					className='grid gap-12'
+					className='grid gap-4'
 					style={{
 						gridTemplateColumns: `repeat(${navItem.columns.length}, minmax(0, 1fr))`,
 					}}>
 					{navItem.columns.map((column, colIndex) => (
 						<motion.div key={colIndex} variants={columnVariants} className='space-y-4'>
-							<h3 className='font-utility text-xl font-extralight text-muted-foreground uppercase tracking-tighter'>
+							<h3 className='font-utility text-xl font-extrabold dark:text-gray-200 text-gray-900 uppercase tracking-tighter whitespace-nowrap'>
 								{column.title}
 							</h3>
 							<ul className='space-y-3'>
@@ -33,10 +33,10 @@ export function DesktopDropdown({ navItem, onMouseEnter }: DesktopDropdownProps)
 									<motion.li key={linkIndex} variants={linkVariants}>
 										<a
 											href={link.href}
-											className='font-utility text-sm text-muted-foreground hover:text-blue-400 transition-colors block'>
+											className='font-utility text-sm dark:text-gray-400 text-gray-700 hover:text-blue-400 dark:hover:text-blue-400 transition-colors block'>
 											{link.label}
 										</a>
-										<div className='h-0.5 w-full bg-border mt-3' />
+										<div className='h-px w-full bg-border mt-3' />
 									</motion.li>
 								))}
 							</ul>

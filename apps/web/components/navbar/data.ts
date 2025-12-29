@@ -29,8 +29,8 @@ export const navigationData: NavItem[] = [
 			{
 				title: 'Digital Marketing',
 				links: [
-					{ label: 'Search Engine Optimization (SEO)', href: '/services/digital-marketing/seo' },
-					{ label: 'Paid Advertising (PPC)', href: '/services/digital-marketing/ppc' },
+					{ label: 'Search Engine Optimization', href: '/services/digital-marketing/seo' },
+					{ label: 'Paid Advertising', href: '/services/digital-marketing/ppc' },
 					{ label: 'Email Marketing', href: '/services/digital-marketing/email' },
 					{ label: 'Social Media Marketing', href: '/services/digital-marketing/social' },
 				],
@@ -45,42 +45,20 @@ export const navigationData: NavItem[] = [
 				],
 			},
 			{
+				title: 'CMS Development',
+				links: [
+					{ label: 'Wordpress', href: '/services/cms/wordpress' },
+					{ label: 'Drupal', href: '/services/cms/drupal' },
+					{ label: 'Content Hub', href: '/services/cms/content-hub' },
+					{ label: 'Wix Studio', href: '/services/cms/wix-studio' },
+				],
+			},
+			{
 				title: 'App Development',
 				links: [
 					{ label: 'iOS App Development', href: '/services/app-dev/ios' },
 					{ label: 'Android App Development', href: '/services/app-dev/android' },
 					{ label: 'Cross-Platform Apps', href: '/services/app-dev/cross-platform' },
-				],
-			},
-		],
-	},
-	{
-		id: 'industries',
-		label: 'Industries',
-		columns: [
-			{
-				title: 'Financial & Legal',
-				links: [
-					{ label: 'Insurance', href: '/industries/insurance' },
-					{ label: 'Legal Services', href: '/industries/legal' },
-					{ label: 'Financial Services', href: '/industries/financial' },
-				],
-			},
-			{
-				title: 'Service & Health',
-				links: [
-					{ label: 'Home Services', href: '/industries/home-services' },
-					{ label: 'Healthcare & Medical', href: '/industries/healthcare' },
-					{ label: 'Automotive', href: '/industries/automotive' },
-				],
-			},
-			{
-				title: 'Other Sectors',
-				links: [
-					{ label: 'Travel & Hospitality', href: '/industries/travel' },
-					{ label: 'Telecom & Utilities', href: '/industries/telecom' },
-					{ label: 'Education & Career', href: '/industries/education' },
-					{ label: 'B2B Services', href: '/industries/b2b' },
 				],
 			},
 		],
@@ -130,6 +108,37 @@ export const navigationData: NavItem[] = [
 		id: 'hire',
 		label: 'Hire a Call Center',
 		href: '/hire-call-center',
+	},
+	{
+		id: 'industries',
+		label: 'Industries',
+		columns: [
+			{
+				title: 'Financial & Legal',
+				links: [
+					{ label: 'Insurance', href: '/industries/insurance' },
+					{ label: 'Legal Services', href: '/industries/legal' },
+					{ label: 'Financial Services', href: '/industries/financial' },
+				],
+			},
+			{
+				title: 'Service & Health',
+				links: [
+					{ label: 'Home Services', href: '/industries/home-services' },
+					{ label: 'Healthcare & Medical', href: '/industries/healthcare' },
+					{ label: 'Automotive', href: '/industries/automotive' },
+				],
+			},
+			{
+				title: 'Other Sectors',
+				links: [
+					{ label: 'Travel & Hospitality', href: '/industries/travel' },
+					{ label: 'Telecom & Utilities', href: '/industries/telecom' },
+					{ label: 'Education & Career', href: '/industries/education' },
+					{ label: 'B2B Services', href: '/industries/b2b' },
+				],
+			},
+		],
 	},
 	{
 		id: 'signup',

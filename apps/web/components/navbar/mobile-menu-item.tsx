@@ -43,7 +43,7 @@ export function MobileMenuItem({ item, isActive, onToggle, onClose }: MobileMenu
 						initial='hidden'
 						animate='visible'
 						exit='hidden'
-						className='overflow-hidden bg-muted'>
+						className='overflow-hidden pt-4 bg-muted'>
 						<div className='pb-4'>
 							{item.columns.map((column, colIndex) => (
 								<motion.div key={colIndex} variants={mobileSubItemVariants} className='mb-4 last:mb-0'>
