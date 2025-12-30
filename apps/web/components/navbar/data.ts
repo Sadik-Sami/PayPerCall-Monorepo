@@ -88,13 +88,15 @@ export const navigationData: NavItem[] = [
 					{ label: 'Team Members', href: '/about/team' },
 					{ label: 'Why Us', href: '/about/why-us' },
 					{ label: 'Portfolio', href: '/about/portfolio' },
+					{ label: 'Testimonials', href: '/about/testimonials' },
 				],
 			},
 			{
 				title: 'Resources',
 				links: [
-					{ label: 'Testimonials', href: '/about/testimonials' },
 					{ label: 'FAQs', href: '/about/faq' },
+					{ label: 'Articles', href: '/about/articles' },
+					{ label: 'Blogs', href: '/about/blogs' },
 				],
 			},
 		],
