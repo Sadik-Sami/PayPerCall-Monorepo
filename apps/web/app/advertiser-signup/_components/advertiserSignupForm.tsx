@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -11,6 +12,18 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@workspace/ui/components/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card';
 import { toast } from 'sonner';
+import {
+	User,
+	Building2,
+	Mail,
+	Phone,
+	MessageSquare,
+	Link as LinkIcon,
+	Target,
+	Loader2,
+	ArrowRight,
+} from 'lucide-react';
+import { cn } from '@workspace/ui/lib/utils';
 
 const campaigns = [
 	'ACA Obamacare',
@@ -45,39 +58,25 @@ const leadGenerationMethods = [
 const messengerTypes = ['Skype', 'WhatsApp', 'Telegram', 'Slack', 'Discord', 'Microsoft Teams', 'Other'] as const;
 
 const formSchema = z.object({
-	primaryContactName: z
-		.string()
-		.trim()
-		.min(2, 'Name must be at least 2 characters')
-		.max(100, 'Name must be less than 100 characters'),
-	companyName: z
-		.string()
-		.trim()
-		.min(2, 'Company name must be at least 2 characters')
-		.max(100, 'Company name must be less than 100 characters'),
-	email: z
-		.string()
-		.trim()
-		.email('Please enter a valid email address')
-		.max(255, 'Email must be less than 255 characters'),
-	phoneNumber: z
-		.string()
-		.trim()
-		.min(10, 'Please enter a valid phone number')
-		.max(20, 'Phone number must be less than 20 characters'),
+	primaryContactName: z.string().trim().min(2, 'Name is required'),
+	companyName: z.string().trim().min(2, 'Company name is required'),
+	email: z.string().trim().email('Invalid email address'),
+	phoneNumber: z.string().trim().min(10, 'Valid phone number required'),
 	messengerType: z.string().optional(),
-	messengerScreenName: z.string().trim().max(100, 'Screen name must be less than 100 characters').optional(),
-	campaigns: z.array(z.string()).min(1, 'Please select at least one campaign'),
-	otherCampaigns: z.string().trim().max(500, 'Other campaigns must be less than 500 characters').optional(),
-	leadGenerationMethods: z.array(z.string()).min(1, 'Please select at least one lead generation method'),
-	otherLeadGeneration: z.string().trim().max(500, 'Other lead generation must be less than 500 characters').optional(),
-	leadsPerWeek: z.string().trim().min(1, 'Please specify leads per week').max(500, 'Must be less than 500 characters'),
-	additionalInfo: z.string().trim().max(2000, 'Additional info must be less than 2000 characters').optional(),
+	messengerScreenName: z.string().trim().max(100).optional(),
+	campaigns: z.array(z.string()).min(1, 'Select at least one campaign'),
+	otherCampaigns: z.string().trim().max(500).optional(),
+	leadGenerationMethods: z.array(z.string()).min(1, 'Select at least one method'),
+	otherLeadGeneration: z.string().trim().max(500).optional(),
+	leadsPerWeek: z.string().trim().min(1, 'Estimated volume is required'),
+	additionalInfo: z.string().trim().max(2000).optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
 export function AdvertiserSignupForm() {
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
 	const form = useForm<FormData>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -96,34 +95,54 @@ export function AdvertiserSignupForm() {
 		},
 	});
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = async (data: FormData) => {
+		setIsSubmitting(true);
 		console.log('Form submitted:', data);
-		toast.success('Application Submitted');
+		// Simulate network request
+		await new Promise((resolve) => setTimeout(resolve, 1500));
+		toast.success('Application Submitted Successfully!');
+		setIsSubmitting(false);
 	};
 
 	return (
-		<Card className='w-full border-border/50 shadow-lg'>
-			<CardHeader className='space-y-1 pb-8'>
-				<CardTitle className='text-2xl font-semibold tracking-tight'>Affiliate Application</CardTitle>
-				<CardDescription className='text-muted-foreground'>
-					Fill out the form below to apply for our affiliate program. Fields marked with * are required.
-				</CardDescription>
+		<Card className='w-full border-border shadow-xl bg-card/50 backdrop-blur-sm'>
+			<CardHeader className='space-y-1 border-b bg-muted/20 pb-8'>
+				<CardTitle className='text-2xl font-bold'>Affiliate Application</CardTitle>
+				<CardDescription>Complete the details below. Our team reviews applications daily.</CardDescription>
 			</CardHeader>
-			<CardContent>
+			<CardContent className='pt-8'>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-10'>
 						{/* Contact Information Section */}
 						<section className='space-y-6'>
-							<h3 className='text-lg font-medium text-foreground border-b border-border pb-2'>Contact Information</h3>
+							<div className='flex items-center gap-2 text-foreground mb-4'>
+								<div className='p-2 bg-primary/10 rounded-md text-primary'>
+									<User className='w-5 h-5' />
+								</div>
+								<h3 className='text-lg font-semibold'>Details & Contact</h3>
+							</div>
+
 							<div className='grid gap-6 sm:grid-cols-2'>
 								<FormField
 									control={form.control}
 									name='primaryContactName'
-									render={({ field }) => (
+									render={({ field, fieldState }) => (
 										<FormItem>
-											<FormLabel>Primary Contact Name *</FormLabel>
+											<FormLabel>
+												Primary Contact Name <span className='text-destructive'>*</span>
+											</FormLabel>
 											<FormControl>
-												<Input placeholder='John Doe' {...field} className='bg-background' />
+												<div className='relative'>
+													<User className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
+													<Input
+														placeholder='John Doe'
+														{...field}
+														className={cn(
+															'pl-9 bg-background',
+															fieldState.error && 'border-destructive focus-visible:ring-destructive'
+														)}
+													/>
+												</div>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -132,11 +151,23 @@ export function AdvertiserSignupForm() {
 								<FormField
 									control={form.control}
 									name='companyName'
-									render={({ field }) => (
+									render={({ field, fieldState }) => (
 										<FormItem>
-											<FormLabel>Company Name *</FormLabel>
+											<FormLabel>
+												Company Name <span className='text-destructive'>*</span>
+											</FormLabel>
 											<FormControl>
-												<Input placeholder='Acme Inc.' {...field} className='bg-background' />
+												<div className='relative'>
+													<Building2 className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
+													<Input
+														placeholder='Acme Inc.'
+														{...field}
+														className={cn(
+															'pl-9 bg-background',
+															fieldState.error && 'border-destructive focus-visible:ring-destructive'
+														)}
+													/>
+												</div>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -145,11 +176,24 @@ export function AdvertiserSignupForm() {
 								<FormField
 									control={form.control}
 									name='email'
-									render={({ field }) => (
+									render={({ field, fieldState }) => (
 										<FormItem>
-											<FormLabel>Email Address *</FormLabel>
+											<FormLabel>
+												Email Address <span className='text-destructive'>*</span>
+											</FormLabel>
 											<FormControl>
-												<Input type='email' placeholder='john@example.com' {...field} className='bg-background' />
+												<div className='relative'>
+													<Mail className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
+													<Input
+														type='email'
+														placeholder='john@example.com'
+														{...field}
+														className={cn(
+															'pl-9 bg-background',
+															fieldState.error && 'border-destructive focus-visible:ring-destructive'
+														)}
+													/>
+												</div>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -158,11 +202,24 @@ export function AdvertiserSignupForm() {
 								<FormField
 									control={form.control}
 									name='phoneNumber'
-									render={({ field }) => (
+									render={({ field, fieldState }) => (
 										<FormItem>
-											<FormLabel>Phone Number *</FormLabel>
+											<FormLabel>
+												Phone Number <span className='text-destructive'>*</span>
+											</FormLabel>
 											<FormControl>
-												<Input type='tel' placeholder='+1 (555) 000-0000' {...field} className='bg-background' />
+												<div className='relative'>
+													<Phone className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
+													<Input
+														type='tel'
+														placeholder='+1 (555) 000-0000'
+														{...field}
+														className={cn(
+															'pl-9 bg-background',
+															fieldState.error && 'border-destructive focus-visible:ring-destructive'
+														)}
+													/>
+												</div>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -177,11 +234,14 @@ export function AdvertiserSignupForm() {
 									name='messengerType'
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Instant Messenger Type</FormLabel>
+											<FormLabel>IM Type (Optional)</FormLabel>
 											<Select onValueChange={field.onChange} defaultValue={field.value}>
 												<FormControl>
 													<SelectTrigger className='bg-background'>
-														<SelectValue placeholder='Select messenger type' />
+														<div className='flex items-center gap-2'>
+															<MessageSquare className='h-4 w-4 text-muted-foreground' />
+															<SelectValue placeholder='Select type' />
+														</div>
 													</SelectTrigger>
 												</FormControl>
 												<SelectContent>
@@ -201,9 +261,9 @@ export function AdvertiserSignupForm() {
 									name='messengerScreenName'
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Screen Name</FormLabel>
+											<FormLabel>Screen Name (Optional)</FormLabel>
 											<FormControl>
-												<Input placeholder='Your screen name' {...field} className='bg-background' />
+												<Input placeholder='@username' {...field} className='bg-background' />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -213,15 +273,28 @@ export function AdvertiserSignupForm() {
 						</section>
 
 						{/* Campaigns Section */}
-						<section className='space-y-6'>
-							<h3 className='text-lg font-medium text-foreground border-b border-border pb-2'>Campaigns</h3>
+						<section className='space-y-6 pt-6 border-t'>
+							<div className='flex items-center gap-2 text-foreground mb-4'>
+								<div className='p-2 bg-primary/10 rounded-md text-primary'>
+									<Target className='w-5 h-5' />
+								</div>
+								<h3 className='text-lg font-semibold'>Experience</h3>
+							</div>
+
 							<FormField
 								control={form.control}
 								name='campaigns'
-								render={() => (
-									<FormItem>
-										<FormLabel>What campaigns are you working on now? * (select all that apply)</FormLabel>
-										<div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mt-3'>
+								render={({ fieldState }) => (
+									<FormItem
+										className={cn(
+											'rounded-lg border p-4',
+											fieldState.error && 'border-destructive/50 bg-destructive/5'
+										)}>
+										<FormLabel className='text-base'>
+											Current Campaigns <span className='text-destructive'>*</span>
+										</FormLabel>
+										<CardDescription className='mb-4'>Select the verticals you are currently running.</CardDescription>
+										<div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-2 mt-3'>
 											{campaigns.map((campaign) => (
 												<FormField
 													key={campaign}
@@ -239,7 +312,9 @@ export function AdvertiserSignupForm() {
 																	}}
 																/>
 															</FormControl>
-															<FormLabel className='text-sm font-normal cursor-pointer'>{campaign}</FormLabel>
+															<FormLabel className='text-sm font-normal cursor-pointer hover:text-primary transition-colors'>
+																{campaign}
+															</FormLabel>
 														</FormItem>
 													)}
 												/>
@@ -254,12 +329,12 @@ export function AdvertiserSignupForm() {
 								name='otherCampaigns'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Other campaigns (optional)</FormLabel>
+										<FormLabel>Other campaigns</FormLabel>
 										<FormControl>
 											<Textarea
-												placeholder="Please describe any other campaigns you're working on..."
+												placeholder='Describe any niche verticals...'
 												className='resize-none bg-background'
-												rows={3}
+												rows={2}
 												{...field}
 											/>
 										</FormControl>
@@ -270,15 +345,28 @@ export function AdvertiserSignupForm() {
 						</section>
 
 						{/* Lead Generation Section */}
-						<section className='space-y-6'>
-							<h3 className='text-lg font-medium text-foreground border-b border-border pb-2'>Lead Generation</h3>
+						<section className='space-y-6 pt-6 border-t'>
+							<div className='flex items-center gap-2 text-foreground mb-4'>
+								<div className='p-2 bg-primary/10 rounded-md text-primary'>
+									<LinkIcon className='w-5 h-5' />
+								</div>
+								<h3 className='text-lg font-semibold'>Traffic Sources</h3>
+							</div>
+
 							<FormField
 								control={form.control}
 								name='leadGenerationMethods'
-								render={() => (
-									<FormItem>
-										<FormLabel>Please tell us how you&apos;re generating leads. * (select all that apply)</FormLabel>
-										<div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mt-3'>
+								render={({ fieldState }) => (
+									<FormItem
+										className={cn(
+											'rounded-lg border p-4',
+											fieldState.error && 'border-destructive/50 bg-destructive/5'
+										)}>
+										<FormLabel className='text-base'>
+											Traffic Methods <span className='text-destructive'>*</span>
+										</FormLabel>
+										<CardDescription className='mb-4'>How do you generate your traffic?</CardDescription>
+										<div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-2 mt-3'>
 											{leadGenerationMethods.map((method) => (
 												<FormField
 													key={method}
@@ -296,7 +384,9 @@ export function AdvertiserSignupForm() {
 																	}}
 																/>
 															</FormControl>
-															<FormLabel className='text-sm font-normal cursor-pointer'>{method}</FormLabel>
+															<FormLabel className='text-sm font-normal cursor-pointer hover:text-primary transition-colors'>
+																{method}
+															</FormLabel>
 														</FormItem>
 													)}
 												/>
@@ -306,41 +396,25 @@ export function AdvertiserSignupForm() {
 									</FormItem>
 								)}
 							/>
-							<FormField
-								control={form.control}
-								name='otherLeadGeneration'
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Other lead generation methods (optional)</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder='Please describe any other lead generation methods...'
-												className='resize-none bg-background'
-												rows={3}
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
 						</section>
 
 						{/* Additional Information Section */}
-						<section className='space-y-6'>
-							<h3 className='text-lg font-medium text-foreground border-b border-border pb-2'>
-								Additional Information
-							</h3>
+						<section className='space-y-6 pt-6 border-t'>
 							<FormField
 								control={form.control}
 								name='leadsPerWeek'
-								render={({ field }) => (
+								render={({ field, fieldState }) => (
 									<FormItem>
-										<FormLabel>How many leads are you generating for each vertical you selected per week? *</FormLabel>
+										<FormLabel>
+											Estimated Weekly Lead Volume <span className='text-destructive'>*</span>
+										</FormLabel>
 										<FormControl>
 											<Textarea
-												placeholder='e.g., Medicare: 500, Solar: 200, etc.'
-												className='resize-none bg-background'
+												placeholder='e.g., Medicare: 500/week, Solar: 200/week'
+												className={cn(
+													'resize-none bg-background',
+													fieldState.error && 'border-destructive focus-visible:ring-destructive'
+												)}
 												rows={3}
 												{...field}
 											/>
@@ -354,14 +428,12 @@ export function AdvertiserSignupForm() {
 								name='additionalInfo'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>
-											Is there anything else you&apos;d like to share before submitting your application?
-										</FormLabel>
+										<FormLabel>Additional Comments</FormLabel>
 										<FormControl>
 											<Textarea
-												placeholder='Any additional information, questions, or comments...'
+												placeholder='Anything else we should know about your application?'
 												className='resize-none bg-background'
-												rows={4}
+												rows={3}
 												{...field}
 											/>
 										</FormControl>
@@ -371,8 +443,19 @@ export function AdvertiserSignupForm() {
 							/>
 						</section>
 
-						<Button type='submit' className='w-full sm:w-auto px-8 py-3 text-base font-medium' size='lg'>
-							Submit Application
+						<Button
+							type='submit'
+							className='w-full py-6 text-lg font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all'
+							size='lg'
+							disabled={isSubmitting}>
+							{isSubmitting ?
+								<>
+									<Loader2 className='mr-2 h-5 w-5 animate-spin' /> Submitting...
+								</>
+							:	<>
+									Submit Application <ArrowRight className='ml-2 h-5 w-5' />
+								</>
+							}
 						</Button>
 					</form>
 				</Form>
