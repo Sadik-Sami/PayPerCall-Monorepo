@@ -51,7 +51,7 @@ export default function TechSpotlight() {
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						className='text-3xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tighter text-foreground mb-6 leading-tight'>
+						className='text-3xl md:text-6xl lg:text-6xl font-heading font-bold tracking-wide text-foreground mb-6 leading-tight'>
 						Unlocking <span className='text-primary'>Peak Performance</span> <br />
 						For Digital Leaders
 					</motion.h2>
@@ -97,7 +97,7 @@ export default function TechSpotlight() {
 					className='mt-16 flex flex-col items-center gap-6'>
 					<Button
 						size='lg'
-						className='bg-primary hover:bg-primary/90 text-primary-foreground px-10 h-14 rounded-full group font-bold tracking-tight shadow-lg shadow-primary/20'>
+						className='bg-primary hover:bg-primary/90 text-primary-foreground hover:text-gray-200 px-10 h-14 rounded-full group font-bold tracking-tight shadow-lg shadow-primary/20 transition-colors duration-300'>
 						Launch Your Success
 						<ArrowRight className='ml-2 size-5 transition-transform group-hover:translate-x-1' />
 					</Button>

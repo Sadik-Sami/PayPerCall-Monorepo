@@ -33,7 +33,7 @@ const stats = [
 		suffix: 'M+',
 		description: 'Optimized across PPC campaigns',
 		icon: <TrendingUp className='text-accent' />,
-		color: 'oklch(0.82 0.15 160)', // Cyber Mint
+		color: 'oklch(0.82 0.15 160)',
 	},
 	{
 		label: 'System Uptime',
@@ -42,7 +42,7 @@ const stats = [
 		isDecimal: true,
 		description: 'For mission-critical DevOps',
 		icon: <Cpu className='text-blue-500' />,
-		color: 'oklch(0.55 0.24 262)', // Primary Blue
+		color: 'oklch(0.55 0.24 262)',
 	},
 	{
 		label: 'Apps Deployed',
@@ -50,7 +50,7 @@ const stats = [
 		suffix: '+',
 		description: 'High-performance MERN/Next.js',
 		icon: <Globe className='text-sky-400' />,
-		color: 'oklch(0.746 0.16 232.66)', // Sky Blue
+		color: 'oklch(0.746 0.16 232.66)',
 	},
 	{
 		label: 'Leads Generated',
@@ -58,15 +58,15 @@ const stats = [
 		suffix: 'K',
 		description: 'Qualified Pay-Per-Call leads',
 		icon: <Users className='text-accent' />,
-		color: 'oklch(0.82 0.15 160)', // Cyber Mint
+		color: 'oklch(0.82 0.15 160)',
 	},
 ];
 
 export default function ImpactStats() {
 	return (
 		<section className='relative py-24 px-6 overflow-hidden'>
-			{/* Background depth glow */}
-			<div className='absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-blue-500/5 blur-[120px] pointer-events-none' />
+			{/* Background depth */}
+			<div className='absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-blue-500/5 blur-[240px] pointer-events-none' />
 
 			<div className='max-w-7xl mx-auto'>
 				{/* Header Section */}
@@ -75,7 +75,7 @@ export default function ImpactStats() {
 						initial={{ opacity: 0, y: 10 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-[0.2em]'>
+						className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-wider'>
 						Performance Metrics
 					</motion.div>
 
@@ -83,7 +83,7 @@ export default function ImpactStats() {
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						className='text-3xl md:text-5xl font-heading font-bold tracking-tight text-foreground'>
+						className='text-3xl md:text-5xl lg:text-6xl tracking-wide text-foreground'>
 						Measured by <span className='text-primary'>Reliability.</span> <br />
 						Driven by <span className='text-accent text-glow'>Results.</span>
 					</motion.h2>
@@ -119,7 +119,7 @@ export default function ImpactStats() {
 
 							{/* Animated Number */}
 							<h3
-								className='text-4xl lg:text-5xl font-heading font-bold tracking-tighter mb-2 tabular-nums'
+								className='text-4xl lg:text-5xl font-heading font-bold tracking-wide mb-2 tabular-nums'
 								style={{ color: stat.color }}>
 								{stat.prefix}
 								<Counter value={stat.value} />

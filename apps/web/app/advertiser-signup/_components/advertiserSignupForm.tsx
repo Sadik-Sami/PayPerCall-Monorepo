@@ -1,31 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { advertiserSignupSchema, type AdvertiserSignupValues } from '@/lib/validations/advertiser-signup';
 import { Button } from '@workspace/ui/components/button';
-import { Input } from '@workspace/ui/components/input';
-import { Textarea } from '@workspace/ui/components/textarea';
-import { Checkbox } from '@workspace/ui/components/checkbox';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@workspace/ui/components/form';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@workspace/ui/components/select';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card';
-import { toast } from 'sonner';
 import {
-	User,
-	Building2,
-	Mail,
-	Phone,
-	MessageSquare,
-	Link as LinkIcon,
-	Target,
-	Loader2,
-	ArrowRight,
-} from 'lucide-react';
-import { cn } from '@workspace/ui/lib/utils';
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+	FormDescription,
+} from '@workspace/ui/components/form';
+import { Input } from '@workspace/ui/components/input';
+import { Checkbox } from '@workspace/ui/components/checkbox';
+import { Textarea } from '@workspace/ui/components/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@workspace/ui/components/select';
+import { Card, CardContent } from '@workspace/ui/components/card';
+import { toast } from 'sonner';
+import { CheckCircle2 } from 'lucide-react';
 
-const campaigns = [
+const CAMPAIGNS = [
 	'ACA Obamacare',
 	'Medicare',
 	'Motor Vehicle Accidents',
@@ -37,10 +34,9 @@ const campaigns = [
 	'Solar',
 	'Debt Settlement',
 	'Mortgage',
-	'Other',
-] as const;
+];
 
-const leadGenerationMethods = [
+const LEAD_GEN_METHODS = [
 	'Email',
 	'SMS',
 	'Voice Broadcasting',
@@ -52,411 +48,434 @@ const leadGenerationMethods = [
 	'YouTube',
 	'TV/Radio',
 	'Print Ads',
-	'Other',
-] as const;
-
-const messengerTypes = ['Skype', 'WhatsApp', 'Telegram', 'Slack', 'Discord', 'Microsoft Teams', 'Other'] as const;
-
-const formSchema = z.object({
-	primaryContactName: z.string().trim().min(2, 'Name is required'),
-	companyName: z.string().trim().min(2, 'Company name is required'),
-	email: z.string().trim().email('Invalid email address'),
-	phoneNumber: z.string().trim().min(10, 'Valid phone number required'),
-	messengerType: z.string().optional(),
-	messengerScreenName: z.string().trim().max(100).optional(),
-	campaigns: z.array(z.string()).min(1, 'Select at least one campaign'),
-	otherCampaigns: z.string().trim().max(500).optional(),
-	leadGenerationMethods: z.array(z.string()).min(1, 'Select at least one method'),
-	otherLeadGeneration: z.string().trim().max(500).optional(),
-	leadsPerWeek: z.string().trim().min(1, 'Estimated volume is required'),
-	additionalInfo: z.string().trim().max(2000).optional(),
-});
-
-type FormData = z.infer<typeof formSchema>;
+];
 
 export function AdvertiserSignupForm() {
-	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [step, setStep] = React.useState(1);
+	const [isSuccess, setIsSuccess] = React.useState(false);
+	const totalSteps = 4;
 
-	const form = useForm<FormData>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<AdvertiserSignupValues>({
+		resolver: zodResolver(advertiserSignupSchema),
+		mode: 'onBlur',
 		defaultValues: {
-			primaryContactName: '',
-			companyName: '',
-			email: '',
-			phoneNumber: '',
-			messengerType: '',
-			messengerScreenName: '',
 			campaigns: [],
+			leadGenMethods: [],
+			fullName: '',
+			companyName: '',
+			companyWebsite: '',
+			email: '',
+			phone: '',
+			imType: '',
+			imScreenName: '',
 			otherCampaigns: '',
-			leadGenerationMethods: [],
-			otherLeadGeneration: '',
+			otherLeadGen: '',
 			leadsPerWeek: '',
 			additionalInfo: '',
+			country: '',
+			city: '',
+			address: '',
+			zipCode: '',
 		},
 	});
 
-	const onSubmit = async (data: FormData) => {
-		setIsSubmitting(true);
+	async function onSubmit(data: AdvertiserSignupValues) {
 		console.log('Form submitted:', data);
-		// Simulate network request
-		await new Promise((resolve) => setTimeout(resolve, 1500));
-		toast.success('Application Submitted Successfully!');
-		setIsSubmitting(false);
+		setIsSuccess(true);
+
+		toast.success("Application Submitted Successfully!")
+	}
+
+	const nextStep = async () => {
+		const fields = getFieldsForStep(step);
+		const isValid = await form.trigger(fields as (keyof AdvertiserSignupValues)[]);
+		if (isValid) setStep((s) => Math.min(s + 1, totalSteps));
 	};
 
+	const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+
+	function getFieldsForStep(step: number) {
+		switch (step) {
+			case 1:
+				return ['fullName', 'companyName', 'companyWebsite', 'email', 'phone', 'imType', 'imScreenName'];
+			case 2:
+				return ['campaigns'];
+			case 3:
+				return ['leadGenMethods', 'leadsPerWeek'];
+			case 4:
+				return ['country', 'city', 'address', 'zipCode'];
+			default:
+				return [];
+		}
+	}
+
+	if (isSuccess) {
+		return (
+			<Card className='border-none shadow-none bg-transparent'>
+				<CardContent className='p-0 flex flex-col items-center justify-center text-center py-12'>
+					<div className='w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6'>
+						<CheckCircle2 className='w-10 h-10 text-primary' />
+					</div>
+					<h2 className='text-3xl font-heading mb-4'>Application Received</h2>
+					<p className='text-muted-foreground max-w-sm mb-8'>
+						Thank you for applying to join our network. Our team will review your application and get back to you within
+						24-48 hours.
+					</p>
+					<Button
+						onClick={() => {
+							setIsSuccess(false);
+							setStep(1);
+							form.reset();
+						}}
+						variant='outline'
+						className='font-utility'>
+						Submit Another Application
+					</Button>
+				</CardContent>
+			</Card>
+		);
+	}
+
 	return (
-		<Card className='w-full border-border shadow-xl bg-card/50 backdrop-blur-sm'>
-			<CardHeader className='space-y-1 border-b bg-muted/20 pb-8'>
-				<CardTitle className='text-2xl font-bold'>Affiliate Application</CardTitle>
-				<CardDescription>Complete the details below. Our team reviews applications daily.</CardDescription>
-			</CardHeader>
-			<CardContent className='pt-8'>
+		<Card className='border-none shadow-none bg-transparent'>
+			<CardContent className='p-0'>
+				<div className='mb-8'>
+					<div className='flex justify-between items-center mb-4'>
+						<span className='text-sm font-medium text-muted-foreground'>
+							Step {step} of {totalSteps}
+						</span>
+						<span className='text-sm font-medium text-primary'>{Math.round((step / totalSteps) * 100)}% Complete</span>
+					</div>
+					<div className='w-full bg-muted h-2 rounded-full overflow-hidden'>
+						<div
+							className='bg-primary h-full transition-all duration-300 ease-in-out'
+							style={{ width: `${(step / totalSteps) * 100}%` }}
+						/>
+					</div>
+				</div>
+
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-10'>
-						{/* Contact Information Section */}
-						<section className='space-y-6'>
-							<div className='flex items-center gap-2 text-foreground mb-4'>
-								<div className='p-2 bg-primary/10 rounded-md text-primary'>
-									<User className='w-5 h-5' />
-								</div>
-								<h3 className='text-lg font-semibold'>Details & Contact</h3>
-							</div>
-
-							<div className='grid gap-6 sm:grid-cols-2'>
-								<FormField
-									control={form.control}
-									name='primaryContactName'
-									render={({ field, fieldState }) => (
-										<FormItem>
-											<FormLabel>
-												Primary Contact Name <span className='text-destructive'>*</span>
-											</FormLabel>
-											<FormControl>
-												<div className='relative'>
-													<User className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
-													<Input
-														placeholder='John Doe'
-														{...field}
-														className={cn(
-															'pl-9 bg-background',
-															fieldState.error && 'border-destructive focus-visible:ring-destructive'
-														)}
-													/>
-												</div>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='companyName'
-									render={({ field, fieldState }) => (
-										<FormItem>
-											<FormLabel>
-												Company Name <span className='text-destructive'>*</span>
-											</FormLabel>
-											<FormControl>
-												<div className='relative'>
-													<Building2 className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
-													<Input
-														placeholder='Acme Inc.'
-														{...field}
-														className={cn(
-															'pl-9 bg-background',
-															fieldState.error && 'border-destructive focus-visible:ring-destructive'
-														)}
-													/>
-												</div>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='email'
-									render={({ field, fieldState }) => (
-										<FormItem>
-											<FormLabel>
-												Email Address <span className='text-destructive'>*</span>
-											</FormLabel>
-											<FormControl>
-												<div className='relative'>
-													<Mail className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
-													<Input
-														type='email'
-														placeholder='john@example.com'
-														{...field}
-														className={cn(
-															'pl-9 bg-background',
-															fieldState.error && 'border-destructive focus-visible:ring-destructive'
-														)}
-													/>
-												</div>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='phoneNumber'
-									render={({ field, fieldState }) => (
-										<FormItem>
-											<FormLabel>
-												Phone Number <span className='text-destructive'>*</span>
-											</FormLabel>
-											<FormControl>
-												<div className='relative'>
-													<Phone className='absolute left-3 top-2.5 h-4 w-4 text-muted-foreground' />
-													<Input
-														type='tel'
-														placeholder='+1 (555) 000-0000'
-														{...field}
-														className={cn(
-															'pl-9 bg-background',
-															fieldState.error && 'border-destructive focus-visible:ring-destructive'
-														)}
-													/>
-												</div>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</div>
-
-							{/* Instant Messenger */}
-							<div className='grid gap-6 sm:grid-cols-2'>
-								<FormField
-									control={form.control}
-									name='messengerType'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>IM Type (Optional)</FormLabel>
-											<Select onValueChange={field.onChange} defaultValue={field.value}>
+					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+						{step === 1 && (
+							<div className='space-y-4'>
+								<h2 className='text-2xl font-heading mb-6'>Contact Information</h2>
+								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+									<FormField
+										control={form.control}
+										name='fullName'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Primary Contact Name</FormLabel>
 												<FormControl>
-													<SelectTrigger className='bg-background'>
-														<div className='flex items-center gap-2'>
-															<MessageSquare className='h-4 w-4 text-muted-foreground' />
-															<SelectValue placeholder='Select type' />
-														</div>
-													</SelectTrigger>
+													<Input placeholder='John Doe' {...field} />
 												</FormControl>
-												<SelectContent>
-													{messengerTypes.map((type) => (
-														<SelectItem key={type} value={type}>
-															{type}
-														</SelectItem>
-													))}
-												</SelectContent>
-											</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name='companyName'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Company Name</FormLabel>
+												<FormControl>
+													<Input placeholder='Acme Corp' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+								<FormField
+									control={form.control}
+									name='companyWebsite'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Company Website</FormLabel>
+											<FormControl>
+												<Input placeholder='https://example.com' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+									<FormField
+										control={form.control}
+										name='email'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email Address</FormLabel>
+												<FormControl>
+													<Input type='email' placeholder='john@company.com' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name='phone'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Phone Number</FormLabel>
+												<FormControl>
+													<Input placeholder='+1 (555) 000-0000' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+									<FormField
+										control={form.control}
+										name='imType'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>IM Type</FormLabel>
+												<Select onValueChange={field.onChange} defaultValue={field.value}>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue placeholder='Select type' />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														<SelectItem value='skype'>Skype</SelectItem>
+														<SelectItem value='telegram'>Telegram</SelectItem>
+														<SelectItem value='slack'>Slack</SelectItem>
+														<SelectItem value='whatsapp'>WhatsApp</SelectItem>
+													</SelectContent>
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name='imScreenName'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Screen Name</FormLabel>
+												<FormControl>
+													<Input placeholder='username' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+							</div>
+						)}
+
+						{step === 2 && (
+							<div className='space-y-4'>
+								<h2 className='text-2xl font-heading mb-6'>Campaign Selection</h2>
+								<FormField
+									control={form.control}
+									name='campaigns'
+									render={() => (
+										<FormItem>
+											<div className='mb-4'>
+												<FormLabel className='text-base'>What campaigns are you working on now? *</FormLabel>
+												<FormDescription>Select all that apply.</FormDescription>
+											</div>
+											<div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+												{CAMPAIGNS.map((item) => (
+													<FormField
+														key={item}
+														control={form.control}
+														name='campaigns'
+														render={({ field }) => (
+															<FormItem className='flex flex-row items-start space-x-3 space-y-0 p-2 rounded-md hover:bg-muted/50 transition-colors'>
+																<FormControl>
+																	<Checkbox
+																		checked={field.value?.includes(item)}
+																		onCheckedChange={(checked) => {
+																			return checked ?
+																					field.onChange([...field.value, item])
+																				:	field.onChange(field.value?.filter((value) => value !== item));
+																		}}
+																	/>
+																</FormControl>
+																<FormLabel className='font-normal cursor-pointer'>{item}</FormLabel>
+															</FormItem>
+														)}
+													/>
+												))}
+											</div>
 											<FormMessage />
 										</FormItem>
 									)}
 								/>
 								<FormField
 									control={form.control}
-									name='messengerScreenName'
+									name='otherCampaigns'
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Screen Name (Optional)</FormLabel>
+											<FormLabel>Other campaigns (optional)</FormLabel>
 											<FormControl>
-												<Input placeholder='@username' {...field} className='bg-background' />
+												<Input placeholder='Specify other verticals' {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
 									)}
 								/>
 							</div>
-						</section>
+						)}
 
-						{/* Campaigns Section */}
-						<section className='space-y-6 pt-6 border-t'>
-							<div className='flex items-center gap-2 text-foreground mb-4'>
-								<div className='p-2 bg-primary/10 rounded-md text-primary'>
-									<Target className='w-5 h-5' />
-								</div>
-								<h3 className='text-lg font-semibold'>Experience</h3>
-							</div>
-
-							<FormField
-								control={form.control}
-								name='campaigns'
-								render={({ fieldState }) => (
-									<FormItem
-										className={cn(
-											'rounded-lg border p-4',
-											fieldState.error && 'border-destructive/50 bg-destructive/5'
-										)}>
-										<FormLabel className='text-base'>
-											Current Campaigns <span className='text-destructive'>*</span>
-										</FormLabel>
-										<CardDescription className='mb-4'>Select the verticals you are currently running.</CardDescription>
-										<div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-2 mt-3'>
-											{campaigns.map((campaign) => (
-												<FormField
-													key={campaign}
-													control={form.control}
-													name='campaigns'
-													render={({ field }) => (
-														<FormItem className='flex items-center space-x-3 space-y-0'>
-															<FormControl>
-																<Checkbox
-																	checked={field.value?.includes(campaign)}
-																	onCheckedChange={(checked) => {
-																		return checked ?
-																				field.onChange([...field.value, campaign])
-																			:	field.onChange(field.value?.filter((value) => value !== campaign));
-																	}}
-																/>
-															</FormControl>
-															<FormLabel className='text-sm font-normal cursor-pointer hover:text-primary transition-colors'>
-																{campaign}
-															</FormLabel>
-														</FormItem>
-													)}
+						{step === 3 && (
+							<div className='space-y-4'>
+								<h2 className='text-2xl font-heading mb-6'>Lead Generation</h2>
+								<FormField
+									control={form.control}
+									name='leadGenMethods'
+									render={() => (
+										<FormItem>
+											<div className='mb-4'>
+												<FormLabel className='text-base'>How are you generating leads? *</FormLabel>
+												<FormDescription>Select all that apply.</FormDescription>
+											</div>
+											<div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+												{LEAD_GEN_METHODS.map((item) => (
+													<FormField
+														key={item}
+														control={form.control}
+														name='leadGenMethods'
+														render={({ field }) => (
+															<FormItem className='flex flex-row items-start space-x-3 space-y-0 p-2 rounded-md hover:bg-muted/50 transition-colors'>
+																<FormControl>
+																	<Checkbox
+																		checked={field.value?.includes(item)}
+																		onCheckedChange={(checked) => {
+																			return checked ?
+																					field.onChange([...field.value, item])
+																				:	field.onChange(field.value?.filter((value) => value !== item));
+																		}}
+																	/>
+																</FormControl>
+																<FormLabel className='font-normal cursor-pointer'>{item}</FormLabel>
+															</FormItem>
+														)}
+													/>
+												))}
+											</div>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name='leadsPerWeek'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Leads per vertical per week? *</FormLabel>
+											<FormControl>
+												<Input placeholder='e.g. 500-1000' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name='additionalInfo'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Anything else to share?</FormLabel>
+											<FormControl>
+												<Textarea
+													placeholder='Tell us more about your business or specific needs...'
+													className='resize-none'
+													{...field}
 												/>
-											))}
-										</div>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name='otherCampaigns'
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Other campaigns</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder='Describe any niche verticals...'
-												className='resize-none bg-background'
-												rows={2}
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</section>
-
-						{/* Lead Generation Section */}
-						<section className='space-y-6 pt-6 border-t'>
-							<div className='flex items-center gap-2 text-foreground mb-4'>
-								<div className='p-2 bg-primary/10 rounded-md text-primary'>
-									<LinkIcon className='w-5 h-5' />
-								</div>
-								<h3 className='text-lg font-semibold'>Traffic Sources</h3>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 							</div>
+						)}
 
-							<FormField
-								control={form.control}
-								name='leadGenerationMethods'
-								render={({ fieldState }) => (
-									<FormItem
-										className={cn(
-											'rounded-lg border p-4',
-											fieldState.error && 'border-destructive/50 bg-destructive/5'
-										)}>
-										<FormLabel className='text-base'>
-											Traffic Methods <span className='text-destructive'>*</span>
-										</FormLabel>
-										<CardDescription className='mb-4'>How do you generate your traffic?</CardDescription>
-										<div className='grid gap-3 sm:grid-cols-2 lg:grid-cols-2 mt-3'>
-											{leadGenerationMethods.map((method) => (
-												<FormField
-													key={method}
-													control={form.control}
-													name='leadGenerationMethods'
-													render={({ field }) => (
-														<FormItem className='flex items-center space-x-3 space-y-0'>
-															<FormControl>
-																<Checkbox
-																	checked={field.value?.includes(method)}
-																	onCheckedChange={(checked) => {
-																		return checked ?
-																				field.onChange([...field.value, method])
-																			:	field.onChange(field.value?.filter((value) => value !== method));
-																	}}
-																/>
-															</FormControl>
-															<FormLabel className='text-sm font-normal cursor-pointer hover:text-primary transition-colors'>
-																{method}
-															</FormLabel>
-														</FormItem>
-													)}
-												/>
-											))}
-										</div>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</section>
+						{step === 4 && (
+							<div className='space-y-4'>
+								<h2 className='text-2xl font-heading mb-6'>Business Location</h2>
+								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+									<FormField
+										control={form.control}
+										name='country'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Country</FormLabel>
+												<FormControl>
+													<Input placeholder='United States' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name='city'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>City</FormLabel>
+												<FormControl>
+													<Input placeholder='New York' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+								<FormField
+									control={form.control}
+									name='address'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Street Address</FormLabel>
+											<FormControl>
+												<Input placeholder='123 Business Way' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name='zipCode'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Zip/Postal Code</FormLabel>
+											<FormControl>
+												<Input placeholder='10001' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</div>
+						)}
 
-						{/* Additional Information Section */}
-						<section className='space-y-6 pt-6 border-t'>
-							<FormField
-								control={form.control}
-								name='leadsPerWeek'
-								render={({ field, fieldState }) => (
-									<FormItem>
-										<FormLabel>
-											Estimated Weekly Lead Volume <span className='text-destructive'>*</span>
-										</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder='e.g., Medicare: 500/week, Solar: 200/week'
-												className={cn(
-													'resize-none bg-background',
-													fieldState.error && 'border-destructive focus-visible:ring-destructive'
-												)}
-												rows={3}
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name='additionalInfo'
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Additional Comments</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder='Anything else we should know about your application?'
-												className='resize-none bg-background'
-												rows={3}
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</section>
-
-						<Button
-							type='submit'
-							className='w-full py-6 text-lg font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all'
-							size='lg'
-							disabled={isSubmitting}>
-							{isSubmitting ?
-								<>
-									<Loader2 className='mr-2 h-5 w-5 animate-spin' /> Submitting...
-								</>
-							:	<>
-									Submit Application <ArrowRight className='ml-2 h-5 w-5' />
-								</>
+						<div className='flex justify-between pt-6 border-t border-border'>
+							<Button
+								type='button'
+								variant='outline'
+								onClick={prevStep}
+								disabled={step === 1}
+								className='font-utility bg-transparent'>
+								Previous
+							</Button>
+							{step < totalSteps ?
+								<Button type='button' onClick={nextStep} className='font-utility px-8'>
+									Next Step
+								</Button>
+							:	<Button type='submit' className='font-utility px-8'>
+									Submit Application
+								</Button>
 							}
-						</Button>
+						</div>
 					</form>
 				</Form>
 			</CardContent>

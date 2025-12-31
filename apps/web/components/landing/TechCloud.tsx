@@ -4,23 +4,25 @@ import { Marquee } from '@workspace/ui/components/ui/marquee';
 import {
 	SiNextdotjs,
 	SiReact,
-	SiAmazonwebservices,
 	SiDocker,
 	SiMongodb,
 	SiPostgresql,
 	SiShopify,
 	SiTailwindcss,
+	SiWordpress,
+	SiDrupal,
 } from 'react-icons/si';
 
 const tech = [
 	{ icon: <SiNextdotjs />, name: 'Next.js' },
 	{ icon: <SiReact />, name: 'React' },
-	{ icon: <SiAmazonwebservices />, name: 'AWS' },
 	{ icon: <SiDocker />, name: 'Docker' },
 	{ icon: <SiMongodb />, name: 'MongoDB' },
 	{ icon: <SiPostgresql />, name: 'PostgreSQL' },
 	{ icon: <SiShopify />, name: 'Shopify' },
 	{ icon: <SiTailwindcss />, name: 'Tailwind' },
+	{ icon: <SiWordpress />, name: 'Wordpress' },
+	{ icon: <SiDrupal />, name: 'Drupal' },
 ];
 
 export function TechCloud() {
@@ -28,7 +30,7 @@ export function TechCloud() {
 		<section className='py-20 border-y border-border/50 bg-card/20 overflow-hidden'>
 			<div className='container mx-auto px-6 mb-10 text-center'>
 				<p className='text-sm font-bold uppercase tracking-widest text-primary mb-2'>Our Arsenal</p>
-				<h2 className='text-2xl font-bold text-foreground'>Powering World-Class Infrastructure</h2>
+				<h2 className='text-2xl font-bold tracking-wide text-foreground'>Powering World-Class Infrastructure</h2>
 			</div>
 
 			<Marquee className='[--duration:40s] select-none'>

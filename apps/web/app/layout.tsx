@@ -2,7 +2,7 @@ import { Providers } from '@/components/providers';
 import '@workspace/ui/globals.css';
 import { Navbar } from '@/components/navbar/navbar';
 import { Footer } from '@/components/footer/footer';
-import { googleSansFlex } from './fonts';
+import { gesistSans, googleSansFlex } from './fonts';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from '@workspace/ui/components/sonner';
 
@@ -13,11 +13,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' suppressHydrationWarning>
-			<body className={`${googleSansFlex.className} antialiased`}>
+			<body className={`${googleSansFlex.variable} ${gesistSans.variable} antialiased`}>
 				<Providers>
 					<Navbar />
 					{children}
-					<Toaster richColors />
+					<Toaster richColors position='top-right' />
 					<SpeedInsights />
 					<Footer />
 				</Providers>

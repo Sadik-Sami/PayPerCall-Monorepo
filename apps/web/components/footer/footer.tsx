@@ -1,37 +1,7 @@
 import Link from 'next/link';
 import { FooterColumn } from './footer-column';
 import { SocialLinks } from './social-links';
-
-const servicesLinks = [
-	{ label: 'Web Development', href: '/services/web-development' },
-	{ label: 'DevOps Solutions', href: '/services/devops' },
-	{ label: 'Pay-Per-Call', href: '/services/ppc' },
-	{ label: 'CMS & Platforms', href: '/services/cms' },
-	{ label: 'Enterprise Solutions', href: '/services/enterprise' },
-];
-
-const companyLinks = [
-	{ label: 'About Us', href: '/about' },
-	{ label: 'Our Team', href: '/team' },
-	{ label: 'Careers', href: '/careers' },
-	{ label: 'Blog', href: '/blog' },
-	{ label: 'Press Kit', href: '/press' },
-];
-
-const resourcesLinks = [
-	{ label: 'Case Studies', href: '/case-studies' },
-	{ label: 'Documentation', href: '/docs' },
-	{ label: 'FAQs', href: '/faq' },
-	{ label: 'Support Center', href: '/support' },
-	{ label: 'API Reference', href: '/api' },
-];
-
-const legalLinks = [
-	{ label: 'Privacy Policy', href: '/privacy' },
-	{ label: 'Terms of Service', href: '/terms' },
-	{ label: 'Cookie Policy', href: '/cookies' },
-	{ label: 'GDPR Compliance', href: '/gdpr' },
-];
+import { footerData } from '../navbar/data';
 
 export function Footer() {
 	return (
@@ -43,7 +13,7 @@ export function Footer() {
 					<div className='col-span-2 space-y-6'>
 						<div>
 							<Link href='/' className='font-utility text-2xl font-bold text-foreground'>
-								Premium
+								Core Closer
 							</Link>
 							<p className='font-body mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs'>
 								Excellence in digital services. We deliver cutting-edge solutions that drive business growth and
@@ -57,16 +27,16 @@ export function Footer() {
 					</div>
 
 					{/* Services */}
-					<FooterColumn title='Services' links={servicesLinks} />
+					<FooterColumn title='Services' links={footerData.services} />
 
 					{/* Company */}
-					<FooterColumn title='Company' links={companyLinks} />
+					<FooterColumn title='Company' links={footerData.company} />
 
-					{/* Resources */}
-					<FooterColumn title='Resources' links={resourcesLinks} />
+					{/* Industries (Replaced Resources with Industries as it's more relevant to data.ts) */}
+					<FooterColumn title='Industries' links={footerData.industries} />
 
 					{/* Legal */}
-					<FooterColumn title='Legal' links={legalLinks} />
+					<FooterColumn title='Legal' links={footerData.legal} />
 				</div>
 
 				{/* Newsletter Section */}

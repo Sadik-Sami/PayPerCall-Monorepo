@@ -1,88 +1,59 @@
-import { Metadata } from 'next';
 import { AdvertiserSignupForm } from './_components/advertiserSignupForm';
-import { CheckCircle2, Trophy, Zap, BarChart3 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
-export const metadata: Metadata = {
-	title: 'Affiliate Sign Up | Join Our Partner Program',
+export const metadata = {
+	title: 'Advertiser Sign Up | Performance Marketing Solutions',
 	description:
-		'Apply to become an affiliate partner. Join our network to earn commissions on lead generation for insurance, solar, mortgage, and more.',
-	robots: {
-		index: true,
-		follow: true,
-	},
-	alternates: {
-		canonical: '/advertiser-signup',
-	},
+		'Join our network of elite advertisers and maximize your ROAS with tailored performance marketing strategies.',
 };
 
-const benefits = [
-	{
-		icon: Trophy,
-		title: 'Top-Tier Commissions',
-		description: 'Access exclusive offers with the highest payouts in the industry.',
-	},
-	{
-		icon: Zap,
-		title: 'Weekly Payouts',
-		description: 'Reliable, on-time payments so you can reinvest and scale faster.',
-	},
-	{
-		icon: BarChart3,
-		title: 'Real-Time Tracking',
-		description: 'Advanced dashboard to track your clicks, leads, and revenue live.',
-	},
-];
+export default function AdvertiserSignupPage() {
+	const benefits = [
+		'Highest quality leads vetted 24/7.',
+		'Robust compliance and anti-fraud technology (FraudBlock™).',
+		'Proprietary tracking and reporting software.',
+		'Dedicated Account Management Team.',
+	];
 
-export default function advertiserSignup() {
 	return (
-		<main className='min-h-screen bg-linear-to-br from-background via-muted/30 to-background'>
-			<div className='container mx-auto px-4 py-8 sm:py-12 lg:py-16'>
-				<div className='grid lg:grid-cols-12 gap-12 items-start'>
-					{/* Left Column: Sticky Content */}
-					<div className='lg:col-span-5 lg:sticky lg:top-24 space-y-8'>
+		<main className='min-h-screen bg-background font-body'>
+			<div className='max-w-7xl mx-auto px-4 py-16 md:py-24'>
+				<div className='grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start'>
+					{/* Left Column: Content */}
+					<div className='lg:sticky lg:top-24 space-y-8'>
 						<div className='space-y-4'>
-							<div className='inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-primary/10 text-primary mb-2'>
-								<span className='flex h-2 w-2 rounded-full bg-primary mr-2'></span>
-								Accepting New Partners
-							</div>
-							<h1 className='text-4xl sm:text-5xl font-bold tracking-tight text-foreground'>
-								Scale Your Traffic With Us
+							<h1 className='text-4xl md:text-5xl lg:text-6xl font-heading tracking-tight leading-tighter'>
+								Advertiser Signup
 							</h1>
-							<p className='text-lg text-muted-foreground leading-relaxed'>
-								Join a network designed for performance marketers. We connect you with high-converting offers across
-								insurance, solar, and finance verticals.
+							<p className='text-xl text-muted-foreground leading-relaxed'>
+								Our team is passionate about creating tailored solutions that achieve your brand’s unique goals and
+								maximize your ROAS.
 							</p>
 						</div>
 
-						<div className='space-y-6 pt-4'>
-							{benefits.map((item, idx) => (
-								<div
-									key={idx}
-									className='flex gap-4 items-start p-4 rounded-lg bg-card border border-border/50 shadow-sm'>
-									<div className='bg-primary/10 p-2.5 rounded-md text-primary shrink-0'>
-										<item.icon className='w-6 h-6' />
-									</div>
-									<div>
-										<h3 className='font-semibold text-foreground'>{item.title}</h3>
-										<p className='text-sm text-muted-foreground mt-1'>{item.description}</p>
-									</div>
-								</div>
-							))}
+						<div className='space-y-6 text-lg text-foreground/80 leading-relaxed'>
+							<p>
+								We’ll utilize our vast network of vetted, expert affiliates to put your product or service in front of
+								new, targeted audiences. You’ll only pay for the actions that matter to your business, whether that’s
+								sales, sign-ups, installs or anything else you deem essential to its growth.
+							</p>
+							<p className='font-medium text-foreground'>
+								Let us design the one of one performance marketing strategy that your brand deserves.
+							</p>
 						</div>
 
-						<div className='pt-6 border-t border-border'>
-							<div className='flex items-center gap-2 text-sm text-muted-foreground'>
-								<CheckCircle2 className='w-4 h-4 text-green-500' />
-								<span>Simple application process</span>
-								<span className='mx-2'>•</span>
-								<CheckCircle2 className='w-4 h-4 text-green-500' />
-								<span>Approval within 24 hours</span>
-							</div>
-						</div>
+						<ul className='space-y-4'>
+							{benefits.map((benefit, index) => (
+								<li key={index} className='flex items-start gap-3'>
+									<CheckCircle2 className='w-6 h-6 text-primary mt-0.5 shrink-0' />
+									<span className='text-lg font-medium'>{benefit}</span>
+								</li>
+							))}
+						</ul>
 					</div>
 
-					{/* Right Column: Form */}
-					<div className='lg:col-span-7'>
+					{/* Right Column: Multi-step Form */}
+					<div className='bg-card border border-border rounded-xl p-6 md:p-8 lg:p-10 shadow-sm'>
 						<AdvertiserSignupForm />
 					</div>
 				</div>

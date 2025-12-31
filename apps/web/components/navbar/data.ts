@@ -95,8 +95,8 @@ export const navigationData: NavItem[] = [
 				title: 'Resources',
 				links: [
 					{ label: 'FAQs', href: '/about/faq' },
-					{ label: 'Articles', href: '/about/articles' },
-					{ label: 'Blogs', href: '/about/blogs' },
+					{ label: 'Article', href: '/about/articles' },
+					{ label: 'Blog', href: '/about/blogs' },
 				],
 			},
 		],
@@ -148,3 +148,33 @@ export const navigationData: NavItem[] = [
 		href: '/advertiser-signup',
 	},
 ];
+
+export const footerData = {
+	services: [
+		{ label: 'Pay Per Call', href: '/services/pay-per-call/consumer-initiated' },
+		{ label: 'Pay Per Lead', href: '/services/pay-per-lead/exclusive' },
+		{ label: 'Digital Marketing', href: '/services/digital-marketing/seo' },
+		{ label: 'Web Development', href: '/services/web-dev/full-stack' },
+		{ label: 'App Development', href: '/services/app-dev/cross-platform' },
+	],
+	company: [
+		{ label: 'About Us', href: '/about/why-us' },
+		{ label: 'Team', href: '/about/team' },
+		{ label: 'Careers', href: '/about/careers' }, // Explicitly included
+		{ label: 'Contact', href: '/contact' },
+		{ label: 'Hire Call Center', href: '/hire-call-center' },
+	],
+	industries: [
+		{ label: 'Insurance', href: '/industries/insurance' },
+		{ label: 'Legal', href: '/industries/legal' },
+		{ label: 'Home Services', href: '/industries/home-services' },
+		{ label: 'Healthcare', href: '/industries/healthcare' },
+		{ label: 'Financial', href: '/industries/financial' },
+	],
+	legal: [
+		{ label: 'Privacy Policy', href: '/privacy' },
+		{ label: 'Terms of Service', href: '/terms' },
+		{ label: 'Cookie Policy', href: '/cookies' },
+		{ label: 'GDPR Compliance', href: '/gdpr' },
+	],
+};

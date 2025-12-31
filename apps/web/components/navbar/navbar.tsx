@@ -66,7 +66,7 @@ export function Navbar() {
 								href='/'
 								className='font-utility text-xl font-semibold tracking-tight text-foreground hover:text-muted-foreground transition-colors'
 								onMouseEnter={() => handleMouseEnter(null)}>
-								Premium
+								Core Closer
 							</Link>
 
 							{/* Navigation Items */}

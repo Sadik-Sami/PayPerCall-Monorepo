@@ -23,7 +23,7 @@ export function Hero() {
 					duration: 0.6,
 				}}
 				className='z-50 flex flex-col justify-center items-center font-body'>
-				<motion.p className='font-semibold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-linear-to-b from-sky-50 to-sky-400 py-4'>
+				<motion.p className='font-heading font-semibold tracking-wider text-xl md:text-6xl text-center bg-clip-text text-transparent bg-linear-to-b from-sky-50 to-sky-400 py-4'>
 					Almost the hero section slideshow <br /> We Hoped for
 				</motion.p>
 				<button className='px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white mx-auto text-center rounded-full relative mt-4'>
