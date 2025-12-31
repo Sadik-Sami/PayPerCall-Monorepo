@@ -3,7 +3,12 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { advertiserSignupSchema, type AdvertiserSignupValues } from '@/lib/validations/advertiser-signup';
+import { z } from 'zod';
+import {
+	accountInformationSchema,
+	promotionalPreferencesSchema,
+	type AdvertiserSignupValues,
+} from '@/lib/validations/advertiser-signup';
 import { Button } from '@workspace/ui/components/button';
 import {
 	Form,
@@ -18,243 +23,309 @@ import { Input } from '@workspace/ui/components/input';
 import { Checkbox } from '@workspace/ui/components/checkbox';
 import { Textarea } from '@workspace/ui/components/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@workspace/ui/components/select';
-import { Card, CardContent } from '@workspace/ui/components/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/components/tabs';
+import { Country, CountryDropdown } from '@workspace/ui/components/country-dropdown';
+import { PhoneInput } from '@workspace/ui/components/phone-input';
 import { toast } from 'sonner';
 import { CheckCircle2 } from 'lucide-react';
+import { getVerticalsForNiches } from './vertical-dropdown';
+import { MultiSelectDropdown } from './multi-select-dropdown';
+import { VerticalMultiSelectDropdown } from './vertical-multi-select-dropdown';
 
-const CAMPAIGNS = [
-	'ACA Obamacare',
-	'Medicare',
-	'Motor Vehicle Accidents',
-	'U65 Health Insurance',
-	'Tax Debt Settlement',
-	'Mass Tort',
-	'Home Security',
-	'Auto Warranty',
-	'Solar',
-	'Debt Settlement',
-	'Mortgage',
+// IM Type options
+const IM_TYPES = ['Discord', 'Slack', 'Teams', 'Telegram', 'WhatsApp', 'Other'];
+
+// Market Niche options
+const MARKET_NICHES = [
+	'Binary/bizopp',
+	'Mobile content',
+	'Education',
+	'Download',
+	'Financial',
+	'Other',
+	'Mobile apps',
+	'Social Networking',
+	'Ecommerce',
+	'Travel',
+	'Gaming',
+	'iGaming',
+	'Smartlink',
+	'Vouchers/Leadgen',
+	'Nutra',
+	'Financial-',
+	'Forex',
+	'Health',
+	'Legal',
+	'Survey',
+	'WH Leadgen',
+	'Pay-Per-Call',
+	'Insurance',
+	'Home improvement',
 ];
 
-const LEAD_GEN_METHODS = [
-	'Email',
-	'SMS',
-	'Voice Broadcasting',
-	'Ring-less Voicemail',
-	'Call Center/Telemarketing',
-	'Social Media Ads',
-	'SEO',
-	'Search Ads (Google, Bing)',
-	'YouTube',
-	'TV/Radio',
-	'Print Ads',
+// Traffic Type options
+const TRAFFIC_TYPES = [
+	'Display Advertising',
+	'Email Marketing',
+	'Mobile Advertising',
+	'Video Advertising',
+	'Social Advertising',
+	'Offline Advertising (TV/radio)',
+	'Search Advertising',
+	'Retargeting',
+	'Native Advertising',
+	'Other',
+];
+
+// Budget options
+const BUDGET_OPTIONS = [
+	'$25,000 a month',
+	'$25,000 - $50,000 a month',
+	'$50,000 - $100,000 a month',
+	'$100,000 - $500,000 a month',
+	'$500,000+ a month',
 ];
 
 export function AdvertiserSignupForm() {
-	const [step, setStep] = React.useState(1);
+	const [activeTab, setActiveTab] = React.useState('account');
 	const [isSuccess, setIsSuccess] = React.useState(false);
-	const totalSteps = 4;
+	const [selectedCountry, setSelectedCountry] = React.useState<Country | null>(null);
+	const [selectedMarketNiches, setSelectedMarketNiches] = React.useState<string[]>([]);
 
-	const form = useForm<AdvertiserSignupValues>({
-		resolver: zodResolver(advertiserSignupSchema),
-		mode: 'onBlur',
+	// Account Information Form
+	const accountForm = useForm<z.infer<typeof accountInformationSchema>>({
+		resolver: zodResolver(accountInformationSchema),
 		defaultValues: {
-			campaigns: [],
-			leadGenMethods: [],
-			fullName: '',
+			name: '',
 			companyName: '',
 			companyWebsite: '',
 			email: '',
-			phone: '',
 			imType: '',
-			imScreenName: '',
-			otherCampaigns: '',
-			otherLeadGen: '',
-			leadsPerWeek: '',
-			additionalInfo: '',
+			screenName: '',
 			country: '',
 			city: '',
 			address: '',
 			zipCode: '',
+			phone: '',
 		},
 	});
 
-	async function onSubmit(data: AdvertiserSignupValues) {
-		console.log('Form submitted:', data);
-		setIsSuccess(true);
+	// Promotional Preferences Form
+	const promotionalForm = useForm<z.infer<typeof promotionalPreferencesSchema>>({
+		resolver: zodResolver(promotionalPreferencesSchema),
+		defaultValues: {
+			marketNiche: [],
+			topVertical: [],
+			productName: '',
+			trafficTypes: [],
+			otherMarketingCompanies: '',
+			budget: '',
+			additionalInfo: '',
+			termsAccepted: false,
+		},
+	});
 
-		toast.success("Application Submitted Successfully!")
-	}
+	// Get vertical options based on selected market niches
+	const verticalOptions = React.useMemo(() => {
+		return getVerticalsForNiches(selectedMarketNiches);
+	}, [selectedMarketNiches]);
 
-	const nextStep = async () => {
-		const fields = getFieldsForStep(step);
-		const isValid = await form.trigger(fields as (keyof AdvertiserSignupValues)[]);
-		if (isValid) setStep((s) => Math.min(s + 1, totalSteps));
+	// Handle next button - validate account information and switch to promotional preferences
+	const handleNext = () => {
+		const accountValues = accountForm.getValues();
+		const result = accountInformationSchema.safeParse(accountValues);
+
+		if (!result.success) {
+			result.error.issues.forEach((issue) => {
+				const fieldName = issue.path[0] as keyof typeof accountValues;
+				accountForm.setError(fieldName, {
+					type: 'manual',
+					message: issue.message,
+				});
+			});
+			return;
+		}
+
+		setActiveTab('promotional');
 	};
 
-	const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+	// Handle form submission
+	async function onSubmit() {
+		const accountValues = accountForm.getValues();
+		const promotionalValues = promotionalForm.getValues();
 
-	function getFieldsForStep(step: number) {
-		switch (step) {
-			case 1:
-				return ['fullName', 'companyName', 'companyWebsite', 'email', 'phone', 'imType', 'imScreenName'];
-			case 2:
-				return ['campaigns'];
-			case 3:
-				return ['leadGenMethods', 'leadsPerWeek'];
-			case 4:
-				return ['country', 'city', 'address', 'zipCode'];
-			default:
-				return [];
+		// Validate both forms
+		const accountResult = accountInformationSchema.safeParse(accountValues);
+		const promotionalResult = promotionalPreferencesSchema.safeParse(promotionalValues);
+
+		if (!accountResult.success) {
+			accountResult.error.issues.forEach((issue) => {
+				const fieldName = issue.path[0] as keyof typeof accountValues;
+				accountForm.setError(fieldName, {
+					type: 'manual',
+					message: issue.message,
+				});
+			});
+			setActiveTab('account');
+			return;
 		}
+
+		if (!promotionalResult.success) {
+			promotionalResult.error.issues.forEach((issue) => {
+				const fieldName = issue.path[0] as keyof typeof promotionalValues;
+				promotionalForm.setError(fieldName, {
+					type: 'manual',
+					message: issue.message,
+				});
+			});
+			return;
+		}
+
+		const formData: AdvertiserSignupValues = {
+			...accountValues,
+			...promotionalValues,
+		};
+
+		console.log('Form submitted:', formData);
+		setIsSuccess(true);
+		toast.success('Application Submitted Successfully!');
 	}
 
 	if (isSuccess) {
 		return (
-			<Card className='border-none shadow-none bg-transparent'>
-				<CardContent className='p-0 flex flex-col items-center justify-center text-center py-12'>
-					<div className='w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6'>
-						<CheckCircle2 className='w-10 h-10 text-primary' />
-					</div>
-					<h2 className='text-3xl font-heading mb-4'>Application Received</h2>
-					<p className='text-muted-foreground max-w-sm mb-8'>
-						Thank you for applying to join our network. Our team will review your application and get back to you within
-						24-48 hours.
-					</p>
-					<Button
-						onClick={() => {
-							setIsSuccess(false);
-							setStep(1);
-							form.reset();
-						}}
-						variant='outline'
-						className='font-utility'>
-						Submit Another Application
-					</Button>
-				</CardContent>
-			</Card>
+			<div className='flex flex-col items-center justify-center text-center py-12'>
+				<div className='w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6'>
+					<CheckCircle2 className='w-10 h-10 text-primary' />
+				</div>
+				<h2 className='text-3xl font-heading mb-4'>Application Received</h2>
+				<p className='text-muted-foreground max-w-sm mb-8'>
+					Thank you for applying to join our network. Our team will review your application and get back to you within
+					24-48 hours.
+				</p>
+				<Button
+					onClick={() => {
+						setIsSuccess(false);
+						setActiveTab('account');
+						accountForm.reset();
+						promotionalForm.reset();
+						setSelectedCountry(null);
+						setSelectedMarketNiches([]);
+					}}
+					variant='outline'
+					className='font-utility'>
+					Submit Another Application
+				</Button>
+			</div>
 		);
 	}
 
 	return (
-		<Card className='border-none shadow-none bg-transparent'>
-			<CardContent className='p-0'>
-				<div className='mb-8'>
-					<div className='flex justify-between items-center mb-4'>
-						<span className='text-sm font-medium text-muted-foreground'>
-							Step {step} of {totalSteps}
-						</span>
-						<span className='text-sm font-medium text-primary'>{Math.round((step / totalSteps) * 100)}% Complete</span>
-					</div>
-					<div className='w-full bg-muted h-2 rounded-full overflow-hidden'>
-						<div
-							className='bg-primary h-full transition-all duration-300 ease-in-out'
-							style={{ width: `${(step / totalSteps) * 100}%` }}
-						/>
-					</div>
-				</div>
+		<div className='w-full space-y-6'>
+			<Tabs value={activeTab} onValueChange={setActiveTab} className='w-full'>
+				<TabsList className='grid w-full grid-cols-2'>
+					<TabsTrigger value='account' className='font-medium'>
+						Account Information
+					</TabsTrigger>
+					<TabsTrigger value='promotional' className='font-medium'>
+						Promotional Preferences
+					</TabsTrigger>
+				</TabsList>
 
-				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-						{step === 1 && (
+				{/* Account Information Tab */}
+				<TabsContent value='account' className='space-y-6 mt-6'>
+					<Form {...accountForm}>
+						<form className='space-y-6'>
 							<div className='space-y-4'>
-								<h2 className='text-2xl font-heading mb-6'>Contact Information</h2>
-								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-									<FormField
-										control={form.control}
-										name='fullName'
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Primary Contact Name</FormLabel>
-												<FormControl>
-													<Input placeholder='John Doe' {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name='companyName'
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Company Name</FormLabel>
-												<FormControl>
-													<Input placeholder='Acme Corp' {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-								</div>
+								<h2 className='text-2xl font-heading mb-2'>Account Information</h2>
+								<p className='text-sm text-muted-foreground mb-6'>
+									Please provide your contact and company details to get started.
+								</p>
+
 								<FormField
-									control={form.control}
-									name='companyWebsite'
+									control={accountForm.control}
+									name='name'
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Company Website</FormLabel>
+											<FormLabel>Name</FormLabel>
 											<FormControl>
-												<Input placeholder='https://example.com' {...field} />
+												<Input placeholder='John Doe' {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
 									)}
 								/>
+
+								<FormField
+									control={accountForm.control}
+									name='companyName'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Company Name</FormLabel>
+											<FormControl>
+												<Input placeholder='Acme Corp' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={accountForm.control}
+									name='companyWebsite'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Company Website</FormLabel>
+											<FormControl>
+												<Input placeholder='https://example.com' type='url' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={accountForm.control}
+									name='email'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Email Address</FormLabel>
+											<FormControl>
+												<Input placeholder='john@company.com' type='email' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
 								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 									<FormField
-										control={form.control}
-										name='email'
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Email Address</FormLabel>
-												<FormControl>
-													<Input type='email' placeholder='john@company.com' {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name='phone'
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Phone Number</FormLabel>
-												<FormControl>
-													<Input placeholder='+1 (555) 000-0000' {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-								</div>
-								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-									<FormField
-										control={form.control}
+										control={accountForm.control}
 										name='imType'
 										render={({ field }) => (
 											<FormItem>
 												<FormLabel>IM Type</FormLabel>
-												<Select onValueChange={field.onChange} defaultValue={field.value}>
+												<Select onValueChange={field.onChange} value={field.value}>
 													<FormControl>
 														<SelectTrigger>
-															<SelectValue placeholder='Select type' />
+															<SelectValue placeholder='Select IM type' />
 														</SelectTrigger>
 													</FormControl>
 													<SelectContent>
-														<SelectItem value='skype'>Skype</SelectItem>
-														<SelectItem value='telegram'>Telegram</SelectItem>
-														<SelectItem value='slack'>Slack</SelectItem>
-														<SelectItem value='whatsapp'>WhatsApp</SelectItem>
+														{IM_TYPES.map((type) => (
+															<SelectItem key={type} value={type.toLowerCase()}>
+																{type}
+															</SelectItem>
+														))}
 													</SelectContent>
 												</Select>
 												<FormMessage />
 											</FormItem>
 										)}
 									/>
+
 									<FormField
-										control={form.control}
-										name='imScreenName'
+										control={accountForm.control}
+										name='screenName'
 										render={({ field }) => (
 											<FormItem>
 												<FormLabel>Screen Name</FormLabel>
@@ -266,175 +337,46 @@ export function AdvertiserSignupForm() {
 										)}
 									/>
 								</div>
-							</div>
-						)}
 
-						{step === 2 && (
-							<div className='space-y-4'>
-								<h2 className='text-2xl font-heading mb-6'>Campaign Selection</h2>
 								<FormField
-									control={form.control}
-									name='campaigns'
-									render={() => (
+									control={accountForm.control}
+									name='country'
+									render={({ field }) => (
 										<FormItem>
-											<div className='mb-4'>
-												<FormLabel className='text-base'>What campaigns are you working on now? *</FormLabel>
-												<FormDescription>Select all that apply.</FormDescription>
-											</div>
-											<div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
-												{CAMPAIGNS.map((item) => (
-													<FormField
-														key={item}
-														control={form.control}
-														name='campaigns'
-														render={({ field }) => (
-															<FormItem className='flex flex-row items-start space-x-3 space-y-0 p-2 rounded-md hover:bg-muted/50 transition-colors'>
-																<FormControl>
-																	<Checkbox
-																		checked={field.value?.includes(item)}
-																		onCheckedChange={(checked) => {
-																			return checked ?
-																					field.onChange([...field.value, item])
-																				:	field.onChange(field.value?.filter((value) => value !== item));
-																		}}
-																	/>
-																</FormControl>
-																<FormLabel className='font-normal cursor-pointer'>{item}</FormLabel>
-															</FormItem>
-														)}
-													/>
-												))}
-											</div>
+											<FormLabel>Country</FormLabel>
+											<CountryDropdown
+												placeholder='Select country'
+												defaultValue={field.value}
+												onChange={(country) => {
+													field.onChange(country.alpha3);
+													setSelectedCountry(country);
+												}}
+											/>
 											<FormMessage />
 										</FormItem>
 									)}
 								/>
+
 								<FormField
-									control={form.control}
-									name='otherCampaigns'
+									control={accountForm.control}
+									name='city'
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Other campaigns (optional)</FormLabel>
+											<FormLabel>City</FormLabel>
 											<FormControl>
-												<Input placeholder='Specify other verticals' {...field} />
+												<Input placeholder='New York' {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
 									)}
 								/>
-							</div>
-						)}
 
-						{step === 3 && (
-							<div className='space-y-4'>
-								<h2 className='text-2xl font-heading mb-6'>Lead Generation</h2>
 								<FormField
-									control={form.control}
-									name='leadGenMethods'
-									render={() => (
-										<FormItem>
-											<div className='mb-4'>
-												<FormLabel className='text-base'>How are you generating leads? *</FormLabel>
-												<FormDescription>Select all that apply.</FormDescription>
-											</div>
-											<div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
-												{LEAD_GEN_METHODS.map((item) => (
-													<FormField
-														key={item}
-														control={form.control}
-														name='leadGenMethods'
-														render={({ field }) => (
-															<FormItem className='flex flex-row items-start space-x-3 space-y-0 p-2 rounded-md hover:bg-muted/50 transition-colors'>
-																<FormControl>
-																	<Checkbox
-																		checked={field.value?.includes(item)}
-																		onCheckedChange={(checked) => {
-																			return checked ?
-																					field.onChange([...field.value, item])
-																				:	field.onChange(field.value?.filter((value) => value !== item));
-																		}}
-																	/>
-																</FormControl>
-																<FormLabel className='font-normal cursor-pointer'>{item}</FormLabel>
-															</FormItem>
-														)}
-													/>
-												))}
-											</div>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='leadsPerWeek'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Leads per vertical per week? *</FormLabel>
-											<FormControl>
-												<Input placeholder='e.g. 500-1000' {...field} />
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name='additionalInfo'
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Anything else to share?</FormLabel>
-											<FormControl>
-												<Textarea
-													placeholder='Tell us more about your business or specific needs...'
-													className='resize-none'
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</div>
-						)}
-
-						{step === 4 && (
-							<div className='space-y-4'>
-								<h2 className='text-2xl font-heading mb-6'>Business Location</h2>
-								<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-									<FormField
-										control={form.control}
-										name='country'
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Country</FormLabel>
-												<FormControl>
-													<Input placeholder='United States' {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name='city'
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>City</FormLabel>
-												<FormControl>
-													<Input placeholder='New York' {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-								</div>
-								<FormField
-									control={form.control}
+									control={accountForm.control}
 									name='address'
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Street Address</FormLabel>
+											<FormLabel>Address</FormLabel>
 											<FormControl>
 												<Input placeholder='123 Business Way' {...field} />
 											</FormControl>
@@ -442,12 +384,13 @@ export function AdvertiserSignupForm() {
 										</FormItem>
 									)}
 								/>
+
 								<FormField
-									control={form.control}
+									control={accountForm.control}
 									name='zipCode'
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Zip/Postal Code</FormLabel>
+											<FormLabel>Zip / Postal Code</FormLabel>
 											<FormControl>
 												<Input placeholder='10001' {...field} />
 											</FormControl>
@@ -455,30 +398,228 @@ export function AdvertiserSignupForm() {
 										</FormItem>
 									)}
 								/>
-							</div>
-						)}
 
-						<div className='flex justify-between pt-6 border-t border-border'>
-							<Button
-								type='button'
-								variant='outline'
-								onClick={prevStep}
-								disabled={step === 1}
-								className='font-utility bg-transparent'>
-								Previous
-							</Button>
-							{step < totalSteps ?
-								<Button type='button' onClick={nextStep} className='font-utility px-8'>
-									Next Step
+								<FormField
+									control={accountForm.control}
+									name='phone'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Phone Number</FormLabel>
+											<FormControl>
+												<PhoneInput
+													{...field}
+													value={field.value}
+													placeholder='Enter your number'
+													defaultCountry={selectedCountry?.alpha2}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</div>
+
+							<div className='flex justify-end pt-4 border-t border-border'>
+								<Button type='button' onClick={handleNext} className='font-utility px-8'>
+									Next
 								</Button>
-							:	<Button type='submit' className='font-utility px-8'>
+							</div>
+						</form>
+					</Form>
+				</TabsContent>
+
+				{/* Promotional Preferences Tab */}
+				<TabsContent value='promotional' className='space-y-6 mt-6'>
+					<Form {...promotionalForm}>
+						<form onSubmit={promotionalForm.handleSubmit(onSubmit)} className='space-y-6'>
+							<div className='space-y-4'>
+								<h2 className='text-2xl font-heading mb-2'>Promotional Preferences</h2>
+								<p className='text-sm text-muted-foreground mb-6'>
+									Tell us about your products and marketing preferences.
+								</p>
+
+								<FormField
+									control={promotionalForm.control}
+									name='marketNiche'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>What market niche do(es) your product(s)/service(s) belong to?</FormLabel>
+											<FormControl>
+												<MultiSelectDropdown
+													options={MARKET_NICHES}
+													selectedValues={field.value || []}
+													onChange={(values) => {
+														field.onChange(values);
+														setSelectedMarketNiches(values);
+														// Clear top vertical if no niches selected
+														if (values.length === 0) {
+															promotionalForm.setValue('topVertical', []);
+														}
+													}}
+													placeholder='Select market niche(s)'
+													searchPlaceholder='Search market niche...'
+												/>
+											</FormControl>
+											<FormDescription>Select all that apply.</FormDescription>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={promotionalForm.control}
+									name='topVertical'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Please pick your top vertical</FormLabel>
+											<FormControl>
+												<VerticalMultiSelectDropdown
+													options={verticalOptions}
+													selectedValues={field.value || []}
+													onChange={field.onChange}
+													placeholder='Select vertical(s)'
+													disabled={selectedMarketNiches.length === 0}
+													searchPlaceholder='Search vertical...'
+												/>
+											</FormControl>
+											<FormDescription>
+												{selectedMarketNiches.length === 0 ?
+													'Please select at least one market niche first'
+												:	'Select all that apply.'}
+											</FormDescription>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={promotionalForm.control}
+									name='productName'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>What is the name of the product(s) you would like us to promote for you?</FormLabel>
+											<FormControl>
+												<Input placeholder='Enter product name(s)' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={promotionalForm.control}
+									name='trafficTypes'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>What type(s) of traffic are you looking for?</FormLabel>
+											<FormControl>
+												<MultiSelectDropdown
+													options={TRAFFIC_TYPES}
+													selectedValues={field.value || []}
+													onChange={field.onChange}
+													placeholder='Select traffic type(s)'
+													searchPlaceholder='Search traffic types...'
+												/>
+											</FormControl>
+											<FormDescription>Select all that apply.</FormDescription>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={promotionalForm.control}
+									name='otherMarketingCompanies'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>What other marketing companies are you buying traffic from?</FormLabel>
+											<FormControl>
+												<Input placeholder='Enter company names (optional)' {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={promotionalForm.control}
+									name='budget'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>What budgets do you plan to spend with us?</FormLabel>
+											<Select onValueChange={field.onChange} value={field.value}>
+												<FormControl>
+													<SelectTrigger>
+														<SelectValue placeholder='Select budget range' />
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													{BUDGET_OPTIONS.map((budget) => (
+														<SelectItem key={budget} value={budget}>
+															{budget}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={promotionalForm.control}
+									name='additionalInfo'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Feel free to include any other information you want to share</FormLabel>
+											<FormControl>
+												<Textarea
+													placeholder='Tell us more about your business or specific needs...'
+													className='resize-none min-h-[100px]'
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={promotionalForm.control}
+									name='termsAccepted'
+									render={({ field }) => (
+										<FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4'>
+											<FormControl>
+												<Checkbox checked={field.value} onCheckedChange={field.onChange} />
+											</FormControl>
+											<div className='space-y-1 leading-none'>
+												<FormLabel className='font-normal cursor-pointer'>
+													By checking this box, I confirm that I have read, understand and agree to the Terms of
+													Agreement and Privacy Policy
+												</FormLabel>
+											</div>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</div>
+
+							<div className='flex justify-between pt-4 border-t border-border'>
+								<Button
+									type='button'
+									variant='outline'
+									onClick={() => setActiveTab('account')}
+									className='font-utility bg-transparent'>
+									Previous
+								</Button>
+								<Button type='submit' className='font-utility px-8'>
 									Submit Application
 								</Button>
-							}
-						</div>
-					</form>
-				</Form>
-			</CardContent>
-		</Card>
+							</div>
+						</form>
+					</Form>
+				</TabsContent>
+			</Tabs>
+		</div>
 	);
 }

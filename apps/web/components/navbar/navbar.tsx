@@ -70,7 +70,7 @@ export function Navbar() {
 							</Link>
 
 							{/* Navigation Items */}
-							<div className='flex items-center gap-8'>
+							<div className='flex items-center gap-4'>
 								{navigationData.map((item) => (
 									<div key={item.id}>
 										{item.href ?
