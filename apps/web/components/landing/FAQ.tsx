@@ -1,67 +1,55 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@workspace/ui/components/accordion';
-import { HelpCircle, MessageSquare, ShieldCheck, Zap } from 'lucide-react';
+import Link from 'next/link';
 
 const faqs = [
 	{
-		question: 'How quickly can we kick off a new project?',
+		question: 'How do you ensure lead quality?',
 		answer:
-			'For engineering tasks, we typically initiate discovery within 48 hours. PPC campaigns and DevOps infrastructure audits can often begin immediately after the strategic alignment call.',
-		icon: <Zap className='size-4 text-accent' />,
+			'Every lead goes through our verification process before delivery. We validate contact information, confirm intent through qualifying questions, and filter out duplicates. Our clients typically see 30-40% higher conversion rates compared to other lead sources.',
 	},
 	{
-		question: 'Do you work with existing in-house technical teams?',
+		question: 'What industries do you specialize in?',
 		answer:
-			'Absolutely. We often act as a force-multiplier for existing teams, taking over specialized DevOps pipelines or complex frontend migrations while your team stays focused on core business logic.',
-		icon: <ShieldCheck className='size-4 text-blue-500' />,
+			'We focus on industries where phone calls drive conversions: Insurance (auto, home, health, Medicare), Legal Services (personal injury, bankruptcy, family law), Home Services (HVAC, plumbing, roofing, solar), Healthcare, Financial Services, and Automotive. Our team has deep expertise in compliance requirements for each vertical.',
 	},
 	{
-		question: 'What is your stack preference for high-scale apps?',
+		question: 'How is pricing structured?',
 		answer:
-			'We specialize in the MERN stack (MongoDB, Express, React, Node) and Next.js for the frontend. For infrastructure, we are AWS and Docker heavy to ensure 99.9% uptime and global scalability.',
-		icon: <HelpCircle className='size-4 text-sky-400' />,
+			'We offer performance-based pricing—you only pay for qualified leads or calls that meet your criteria. Pricing varies by industry and lead type. There are no long-term contracts required, and we provide transparent reporting so you can track exactly what you are paying for.',
 	},
 	{
-		question: 'How do you handle post-launch maintenance?',
+		question: 'How quickly can I start receiving leads?',
 		answer:
-			'We don’t believe in "ship and forget." We offer tiered maintenance retainers that include 24/7 monitoring, security patches, and performance optimization as your user base grows.',
-		icon: <MessageSquare className='size-4 text-primary' />,
+			'Most clients start receiving leads within 24-48 hours of completing onboarding. We begin with a discovery call to understand your ideal customer profile, set up tracking and routing, then launch campaigns. Initial volume can be adjusted as we optimize for quality.',
 	},
 	{
-		question: 'Is your PPC management outcome-based?',
+		question: 'Can I set my own lead criteria and filters?',
 		answer:
-			'Yes. We focus on "Cost Per Qualified Lead" rather than just vanity clicks. Our systems integrate directly with your CRM to track the full lifecycle of every call generated.',
-		icon: <Zap className='size-4 text-accent' />,
+			'Absolutely. You can define geographic targeting, demographic filters, specific services of interest, and qualification questions. Leads that do not meet your criteria are not charged. We also offer real-time pause and resume controls so you can manage volume based on your capacity.',
+	},
+	{
+		question: 'How do you track and report results?',
+		answer:
+			'You get access to a real-time dashboard showing all leads, call recordings (where permitted), conversion tracking, and ROI metrics. We provide weekly performance reports and monthly strategy reviews to continuously improve results.',
 	},
 ];
 
 export default function FAQ() {
 	return (
-		<section className='relative py-24 px-6 bg-background overflow-hidden'>
-			{/* Background Glow */}
-			<div className='absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-primary/5 blur-[120px] pointer-events-none' />
-
-			<div className='max-w-7xl mx-auto'>
-				<div className='grid grid-cols-1 lg:grid-cols-12 gap-16'>
-					{/* Left Side: Editorial Content */}
-					<div className='lg:col-span-5 space-y-6'>
-						<motion.div
-							initial={{ opacity: 0, x: -20 }}
-							whileInView={{ opacity: 1, x: 0 }}
-							viewport={{ once: true }}
-							className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-[0.2em]'>
-							Support & Discovery
-						</motion.div>
+		<section className='py-24 px-6 bg-muted/30'>
+			<div className='max-w-6xl mx-auto'>
+				<div className='grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16'>
+					{/* Left Side: Header */}
+					<div className='lg:col-span-5 space-y-4'>
 						<motion.h2
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
-							className='text-4xl md:text-5xl font-heading font-bold tracking-tight'>
-							Got questions? <br />
-							<span className='text-muted-foreground'>We have engineered answers.</span>
+							className='text-3xl md:text-4xl font-heading font-bold tracking-tight text-foreground'>
+							Frequently Asked Questions
 						</motion.h2>
 						<motion.p
 							initial={{ opacity: 0, y: 20 }}
@@ -69,9 +57,11 @@ export default function FAQ() {
 							viewport={{ once: true }}
 							transition={{ delay: 0.1 }}
 							className='text-lg text-muted-foreground leading-relaxed'>
-							Everything you need to know about our process, technology, and how we scale your digital presence.
-							Can&apos;t find what you&apos;re looking for?
-							<span className='text-primary font-bold cursor-pointer hover:underline ml-1'>Reach out directly.</span>
+							Everything you need to know about our lead generation services. Can&apos;t find what you&apos;re looking
+							for?{' '}
+							<Link href='/contact' className='text-primary font-medium hover:underline'>
+								Contact us
+							</Link>
 						</motion.p>
 					</div>
 
@@ -81,24 +71,17 @@ export default function FAQ() {
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
-							className='rounded-3xl border border-border/50 bg-card/30 backdrop-blur-xl p-2 md:p-8'>
-							<Accordion type='single' collapsible className='w-full space-y-4'>
+							className='rounded-lg border border-border bg-card'>
+							<Accordion type='single' collapsible className='w-full'>
 								{faqs.map((faq, index) => (
 									<AccordionItem
 										key={index}
 										value={`item-${index}`}
-										className='border-b border-border/50 last:border-0 px-4'>
-										<AccordionTrigger className='hover:no-underline py-6 text-left group'>
-											<div className='flex items-center gap-4'>
-												<div className='p-2 rounded-lg bg-background border border-border group-hover:border-primary/50 transition-colors'>
-													{faq.icon}
-												</div>
-												<span className='text-base md:text-lg font-bold tracking-tight group-hover:text-primary transition-colors'>
-													{faq.question}
-												</span>
-											</div>
+										className='border-b border-border last:border-0 px-6'>
+										<AccordionTrigger className='hover:no-underline py-5 text-left'>
+											<span className='text-base font-semibold text-foreground'>{faq.question}</span>
 										</AccordionTrigger>
-										<AccordionContent className='text-muted-foreground text-sm md:text-base leading-relaxed pb-6 pl-14'>
+										<AccordionContent className='text-muted-foreground text-sm leading-relaxed pb-5'>
 											{faq.answer}
 										</AccordionContent>
 									</AccordionItem>

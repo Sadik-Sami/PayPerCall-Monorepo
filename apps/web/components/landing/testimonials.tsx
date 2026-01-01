@@ -67,122 +67,121 @@ export function TestimonialCard({
 }
 const testimonials = [
 	{
-		name: 'Jordan Hayes',
-		role: 'CTO at Quantum Innovations',
+		name: 'Michael Torres',
+		role: 'Owner, Torres Insurance Agency',
 		img: 'https://randomuser.me/api/portraits/men/22.jpg',
 		description: (
 			<p>
-				NexaUI has completely transformed our development workflow.
-				<Highlight>The component system saved us weeks of custom coding and design work.</Highlight> Our team can now
-				focus on business logic instead of UI details.
+				We struggled to find quality leads until we partnered with Core Closer.
+				<Highlight>Our close rate jumped from 12% to 34% in the first quarter.</Highlight> The leads are pre-qualified
+				and ready to buy.
 			</p>
 		),
 	},
 	{
-		name: 'Maya Rodriguez',
-		role: 'Lead Developer at Skyline Digital',
+		name: 'Sarah Mitchell',
+		role: 'Managing Partner, Mitchell Law Group',
 		img: 'https://randomuser.me/api/portraits/women/33.jpg',
 		description: (
 			<p>
-				I was skeptical at first, but NexaUI proved me wrong.
-				<Highlight>The accessibility features and responsive design are top-notch.</Highlight> It&apos;s rare to find a
-				framework that prioritizes both aesthetics and functionality.
+				As a personal injury firm, we need clients who are serious about their cases.
+				<Highlight>Every call we receive is from someone actively seeking legal help.</Highlight> The ROI speaks for
+				itself.
 			</p>
 		),
 	},
 	{
-		name: 'Ethan Park',
-		role: 'Startup Founder at Elevate Labs',
+		name: 'David Chen',
+		role: 'Marketing Director, Premier HVAC',
 		img: 'https://randomuser.me/api/portraits/men/32.jpg',
 		description: (
 			<p>
-				As a non-technical founder, NexaUI has been a game-changer for our MVP.
-				<Highlight>We launched three months ahead of schedule.</Highlight> The modular components allowed us to iterate
-				quickly based on user feedback.
+				We tried other lead gen companies before, but the quality was never there.
+				<Highlight>Core Closer delivers homeowners who actually need our services.</Highlight> Our technicians are
+				booked solid now.
 			</p>
 		),
 	},
 	{
-		name: 'Zoe Bennett',
-		role: 'UX Architect at Fusion Systems',
+		name: 'Jennifer Adams',
+		role: 'CEO, Adams Medicare Solutions',
 		img: 'https://randomuser.me/api/portraits/women/44.jpg',
 		description: (
 			<p>
-				NexaUI&apos;s attention to detail is impressive.
-				<Highlight>The micro-interactions and animations create a polished experience.</Highlight> It&apos;s become our
-				go-to solution for client projects with tight deadlines.
+				Medicare leads are tricky because timing matters so much.
+				<Highlight>The real-time delivery means we connect with seniors during enrollment periods.</Highlight> Our
+				enrollment numbers have tripled.
 			</p>
 		),
 	},
 	{
-		name: 'Victor Nguyen',
-		role: 'Product Lead at FinEdge',
+		name: 'Robert Kim',
+		role: 'Owner, Kim Roofing & Construction',
 		img: 'https://randomuser.me/api/portraits/men/55.jpg',
 		description: (
 			<p>
-				Our financial dashboard needed a complete overhaul, and NexaUI delivered.
-				<Highlight>The data visualization components are both beautiful and functional.</Highlight> User engagement has
-				increased by 47% since the redesign.
+				After a major storm, we needed to scale quickly.
+				<Highlight>Core Closer helped us handle 3x our normal call volume.</Highlight> The pay-per-call model meant we
+				only paid for actual opportunities.
 			</p>
 		),
 	},
 	{
-		name: 'Amara Johnson',
-		role: 'Frontend Specialist at Nimbus Tech',
+		name: 'Amanda Foster',
+		role: 'Branch Manager, Foster Financial',
 		img: 'https://randomuser.me/api/portraits/women/67.jpg',
 		description: (
 			<p>
-				The documentation for NexaUI is exceptional.
-				<Highlight>I was able to implement complex UI patterns in just a few hours.</Highlight> The TypeScript support
-				is also a major productivity booster.
+				Debt relief clients need to trust you from the first conversation.
+				<Highlight>The warm transfers feel natural, not like a cold lead.</Highlight> Our consultants can focus on
+				helping people instead of prospecting.
 			</p>
 		),
 	},
 	{
-		name: 'Leo Tanaka',
-		role: 'Creative Technologist at Prism Agency',
+		name: 'James Wilson',
+		role: 'Director, Wilson Auto Group',
 		img: 'https://randomuser.me/api/portraits/men/78.jpg',
 		description: (
 			<p>
-				NexaUI has the perfect balance of flexibility and structure.
-				<Highlight>We can maintain brand consistency while still creating unique experiences.</Highlight> Our clients
-				are consistently impressed with the results.
+				Car buyers today research online but want to talk to a real person.
+				<Highlight>We get calls from people ready to visit the showroom.</Highlight> Our sales team loves these leads.
 			</p>
 		),
 	},
 	{
-		name: 'Sophia Martinez',
-		role: 'E-commerce Director at StyleHub',
+		name: 'Maria Santos',
+		role: 'Owner, Santos Solar Solutions',
 		img: 'https://randomuser.me/api/portraits/women/89.jpg',
 		description: (
 			<p>
-				Our conversion rates have increased by 28% since implementing NexaUI.
-				<Highlight>The checkout flow components are optimized for both desktop and mobile.</Highlight> The dark mode
-				support was also a huge hit with our customers.
+				Solar is competitive, so lead quality is everything.
+				<Highlight>Homeowners who call us are already interested in going solar.</Highlight> Our cost per acquisition
+				dropped by 40%.
 			</p>
 		),
 	},
 	{
-		name: 'Aiden Wilson',
-		role: 'Healthcare Solutions Architect',
+		name: 'Thomas Brown',
+		role: 'Practice Manager, Brown Dental Care',
 		img: 'https://randomuser.me/api/portraits/men/92.jpg',
 		description: (
 			<p>
-				NexaUI&apos;s accessibility features were crucial for our healthcare platform.
-				<Highlight>We passed compliance requirements with minimal additional work.</Highlight> The form components are
-				especially well-designed for complex data entry.
+				Getting new patients used to mean expensive ads with uncertain results.
+				<Highlight>Now we get calls from people looking for a dentist in our area.</Highlight> The consistency has been
+				remarkable.
 			</p>
 		),
 	},
 	{
-		name: 'Olivia Chen',
-		role: 'EdTech Product Manager at LearnSphere',
+		name: 'Lisa Park',
+		role: 'Owner, Park Plumbing Services',
 		img: 'https://randomuser.me/api/portraits/women/29.jpg',
 		description: (
 			<p>
-				Our educational platform needed to work for students of all ages and abilities.
-				<Highlight>NexaUI&apos;s inclusive design principles made this possible without compromise.</Highlight> The
-				interactive components have significantly improved student engagement.
+				Emergency plumbing calls are our bread and butter.
+				<Highlight>Core Closer connects us with homeowners who need help right now.</Highlight> Response time is
+				everything in this business.
 			</p>
 		),
 	},
@@ -191,19 +190,13 @@ const testimonials = [
 export default function Testimonials() {
 	return (
 		<section className='relative max-w-7xl mx-auto py-10'>
-			{/* Decorative elements */}
-			<div className='absolute top-20 md:-left-20 z-10 h-64 w-64 rounded-full bg-blue-500/5 blur-3xl' />
-			<div className='absolute md:-right-20 bottom-20 z-10 h-64 w-64 rounded-full bg-blue-500/5 blur-3xl' />
-
 			<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-				<h2 className='text-foreground mb-4 text-center text-4xl leading-[1.2] font-bold tracking-tighter md:text-5xl'>
-					What Our Users Are Saying
+				<h2 className='text-foreground mb-4 text-center text-3xl leading-[1.2] font-bold tracking-tight md:text-5xl'>
+					What Our Clients Say
 				</h2>
-				<h3 className='text-muted-foreground mx-auto mb-8 max-w-lg text-center text-lg font-medium tracking-tight text-balance'>
-					Don&apos;t just take our word for it. Here&apos;s what{' '}
-					<span className='bg-linear-to-r from-blue-500 to-sky-500 bg-clip-text text-transparent'>real people</span> are
-					saying about <span className='font-semibold text-blue-500'>PayPerCall</span>
-				</h3>
+				<p className='text-muted-foreground mx-auto mb-8 max-w-lg text-center text-lg'>
+					Businesses across industries trust us to deliver qualified leads that convert into customers.
+				</p>
 			</motion.div>
 
 			<div className='relative mt-6 max-h-screen overflow-hidden'>

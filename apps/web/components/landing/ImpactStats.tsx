@@ -1,8 +1,8 @@
 'use client';
 
-import React, { SVGProps, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useInView, useSpring, useTransform } from 'framer-motion';
-import { TrendingUp, Globe, Cpu, Users } from 'lucide-react';
+import { Phone, Users, TrendingUp, Building2 } from 'lucide-react';
 
 function Counter({ value }: { value: number }) {
 	const ref = useRef(null);
@@ -27,65 +27,47 @@ function Counter({ value }: { value: number }) {
 
 const stats = [
 	{
-		label: 'Ad Spend Managed',
-		prefix: '$',
-		value: 12,
-		suffix: 'M+',
-		description: 'Optimized across PPC campaigns',
-		icon: <TrendingUp className='text-accent' />,
-		color: 'oklch(0.82 0.15 160)',
-	},
-	{
-		label: 'System Uptime',
-		value: 99.99,
-		suffix: '%',
-		isDecimal: true,
-		description: 'For mission-critical DevOps',
-		icon: <Cpu className='text-blue-500' />,
-		color: 'oklch(0.55 0.24 262)',
-	},
-	{
-		label: 'Apps Deployed',
-		value: 250,
-		suffix: '+',
-		description: 'High-performance MERN/Next.js',
-		icon: <Globe className='text-sky-400' />,
-		color: 'oklch(0.746 0.16 232.66)',
-	},
-	{
 		label: 'Leads Generated',
 		value: 850,
-		suffix: 'K',
-		description: 'Qualified Pay-Per-Call leads',
-		icon: <Users className='text-accent' />,
-		color: 'oklch(0.82 0.15 160)',
+		suffix: 'K+',
+		description: 'Qualified leads delivered to clients',
+		icon: <Users className='size-6 text-primary' />,
+	},
+	{
+		label: 'Calls Connected',
+		value: 120,
+		suffix: 'K+',
+		description: 'Monthly inbound calls routed',
+		icon: <Phone className='size-6 text-primary' />,
+	},
+	{
+		label: 'Client ROI',
+		value: 340,
+		suffix: '%',
+		description: 'Average return on ad spend',
+		icon: <TrendingUp className='size-6 text-primary' />,
+	},
+	{
+		label: 'Industries Served',
+		value: 12,
+		suffix: '+',
+		description: 'Verticals with proven results',
+		icon: <Building2 className='size-6 text-primary' />,
 	},
 ];
 
 export default function ImpactStats() {
 	return (
-		<section className='relative py-24 px-6 overflow-hidden'>
-			{/* Background depth */}
-			<div className='absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-blue-500/5 blur-[240px] pointer-events-none' />
-
-			<div className='max-w-7xl mx-auto'>
+		<section className='py-24 px-6 bg-muted/30'>
+			<div className='max-w-6xl mx-auto'>
 				{/* Header Section */}
-				<div className='mb-16 space-y-4 text-center'>
-					<motion.div
-						initial={{ opacity: 0, y: 10 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-wider'>
-						Performance Metrics
-					</motion.div>
-
+				<div className='mb-16 text-center'>
 					<motion.h2
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						className='text-3xl md:text-5xl lg:text-6xl tracking-wide text-foreground'>
-						Measured by <span className='text-primary'>Reliability.</span> <br />
-						Driven by <span className='text-accent text-glow'>Results.</span>
+						className='text-3xl md:text-5xl font-heading font-bold tracking-tight text-foreground mb-4'>
+						Results That Speak for Themselves
 					</motion.h2>
 
 					<motion.p
@@ -94,12 +76,12 @@ export default function ImpactStats() {
 						viewport={{ once: true }}
 						transition={{ delay: 0.1 }}
 						className='max-w-2xl mx-auto text-muted-foreground text-lg'>
-						Our track record is built on precision engineering and data-driven growth.
+						Our track record is built on delivering measurable outcomes for businesses across multiple industries.
 					</motion.p>
 				</div>
 
 				{/* Stats Grid */}
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+				<div className='grid grid-cols-2 lg:grid-cols-4 gap-6'>
 					{stats.map((stat, index) => (
 						<motion.div
 							key={index}
@@ -107,32 +89,16 @@ export default function ImpactStats() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ delay: index * 0.1 }}
-							className='group relative flex flex-col items-center p-8 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-md hover:border-primary/30 transition-all duration-500'>
-							<div className='mb-6 p-4 rounded-full bg-background/50 border border-border group-hover:scale-110 transition-transform duration-500 shadow-inner'>
-								{React.isValidElement(stat.icon) ?
-									React.cloneElement(stat.icon as React.ReactElement<SVGProps<SVGSVGElement>>, {
-										width: 28,
-										height: 28,
-									})
-								:	stat.icon}
-							</div>
+							className='flex flex-col items-center p-6 md:p-8 rounded-lg border border-border bg-card'>
+							<div className='mb-4 p-3 rounded-lg bg-primary/10'>{stat.icon}</div>
 
-							{/* Animated Number */}
-							<h3
-								className='text-4xl lg:text-5xl font-heading font-bold tracking-wide mb-2 tabular-nums'
-								style={{ color: stat.color }}>
-								{stat.prefix}
+							<h3 className='text-3xl md:text-4xl font-heading font-bold text-foreground mb-1 tabular-nums'>
 								<Counter value={stat.value} />
 								{stat.suffix}
 							</h3>
 
-							<p className='text-sm font-bold uppercase tracking-widest text-foreground/90 mb-1'>{stat.label}</p>
+							<p className='text-sm font-semibold text-foreground mb-1'>{stat.label}</p>
 							<p className='text-xs text-muted-foreground text-center'>{stat.description}</p>
-
-							<div
-								className='absolute bottom-0 left-1/2 -translate-x-1/2 h-1 w-0 group-hover:w-1/2 transition-all duration-500 rounded-t-full opacity-50'
-								style={{ backgroundColor: stat.color }}
-							/>
 						</motion.div>
 					))}
 				</div>
