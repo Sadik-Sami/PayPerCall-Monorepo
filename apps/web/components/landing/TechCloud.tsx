@@ -25,7 +25,7 @@ const tech = [
 	{ icon: <SiDrupal />, name: 'Drupal' },
 ];
 
-export function TechCloud() {
+export default function TechCloud() {
 	return (
 		<section className='py-20 border-y border-border/50 bg-card/20 overflow-hidden'>
 			<div className='container mx-auto px-6 mb-10 text-center'>

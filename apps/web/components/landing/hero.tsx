@@ -6,7 +6,7 @@ import sliderImage1 from '@/public/images/slider/slider-1.jpg';
 import sliderImage3 from '@/public/images/slider/slider-3.jpg';
 import sliderImage2 from '@/public/images/slider/slider-2.jpg';
 
-export function Hero() {
+export default function Hero() {
 	const images = [sliderImage1.src, sliderImage2.src, sliderImage3.src];
 	return (
 		<ImagesSlider className='h-160' images={images}>

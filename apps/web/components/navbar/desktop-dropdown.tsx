@@ -1,42 +1,55 @@
 'use client';
 
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import type { NavItem } from './types';
 import { columnVariants, linkVariants } from './animations';
 
 interface DesktopDropdownProps {
 	navItem: NavItem;
-	onMouseEnter: () => void;
 }
 
-export function DesktopDropdown({ navItem, onMouseEnter }: DesktopDropdownProps) {
+export const DesktopDropdown = memo(function DesktopDropdown({ navItem }: DesktopDropdownProps) {
 	if (!navItem.columns) return null;
 
+	// Services has 6 columns - use 2-row layout (3 columns per row)
+	// Other dropdowns use single row
+	const isServices = navItem.id === 'services';
+	const columnCount = navItem.columns.length;
+
+	// Determine grid classes based on column count
+	const getGridClasses = () => {
+		if (isServices) {
+			return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+		}
+		// For other dropdowns, use appropriate grid based on column count
+		if (columnCount === 1) return 'grid-cols-1';
+		if (columnCount === 2) return 'grid-cols-1 sm:grid-cols-2';
+		if (columnCount === 3) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+		return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
+	};
+
 	return (
-		<div className='overflow-hidden bg-muted border-b border-border' onMouseEnter={onMouseEnter}>
-			<div className='max-w-7xl mx-auto px-6 py-12'>
+		<div className='overflow-hidden bg-muted border-b border-border'>
+			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12'>
 				<motion.div
 					key={navItem.id}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
-					className='grid gap-4'
-					style={{
-						gridTemplateColumns: `repeat(${navItem.columns.length}, minmax(0, 1fr))`,
-					}}>
+					className={`grid gap-6 sm:gap-8 ${getGridClasses()}`}>
 					{navItem.columns.map((column, colIndex) => (
-						<motion.div key={colIndex} variants={columnVariants} className='space-y-4'>
-							<h3 className='font-utility text-xl font-extrabold dark:text-gray-200 text-gray-900 uppercase tracking-tighter whitespace-nowrap'>
+						<motion.div key={colIndex} variants={columnVariants} className='space-y-3 sm:space-y-4'>
+							<h3 className='font-utility text-base sm:text-lg lg:text-xl font-bold text-foreground uppercase tracking-tight'>
 								{column.title}
 							</h3>
-							<ul className='space-y-3'>
+							<ul className='space-y-2 sm:space-y-2.5'>
 								{column.links.map((link, linkIndex) => (
 									<motion.li key={linkIndex} variants={linkVariants}>
 										<a
 											href={link.href}
-											className='font-utility text-sm dark:text-gray-400 text-gray-700 hover:text-blue-400 dark:hover:text-blue-400 transition-colors block'>
+											className='font-utility text-sm sm:text-sm lg:text-base text-muted-foreground hover:text-primary transition-colors duration-200 block py-1'>
 											{link.label}
 										</a>
-										<div className='h-px w-full bg-border mt-3' />
 									</motion.li>
 								))}
 							</ul>
@@ -46,4 +59,4 @@ export function DesktopDropdown({ navItem, onMouseEnter }: DesktopDropdownProps)
 			</div>
 		</div>
 	);
-}
+});

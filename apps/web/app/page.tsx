@@ -1,11 +1,11 @@
 import CTA from '@/components/landing/cta';
 import FAQ from '@/components/landing/FAQ';
 import FounderInsight from '@/components/landing/FounderInsight';
-import { Hero } from '@/components/landing/hero';
+import Hero from '@/components/landing/hero';
 import ImpactStats from '@/components/landing/ImpactStats';
 import Services from '@/components/landing/services';
 import FeatureSteps from '@/components/landing/steps';
-import { TechCloud } from '@/components/landing/TechCloud';
+import TechCloud from '@/components/landing/TechCloud';
 import TechSpotlight from '@/components/landing/techSpotlight';
 import Testimonials from '@/components/landing/testimonials';
 

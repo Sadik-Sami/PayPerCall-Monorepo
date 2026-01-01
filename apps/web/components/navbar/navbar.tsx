@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { navigationData } from './data';
@@ -15,74 +15,159 @@ export function Navbar() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null);
 	const [dropdownHeight, setDropdownHeight] = useState(0);
-	const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const [navbarHeight, setNavbarHeight] = useState(56);
+	const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
+	const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const dropdownRef = useRef<HTMLDivElement>(null);
+	const navbarRef = useRef<HTMLElement>(null);
 
+	// Memoize active nav item to avoid recalculation
+	const activeNavItem = useMemo(() => navigationData.find((item) => item.id === activeDropdown), [activeDropdown]);
+
+	// Reset dropdown height when dropdown closes
 	useEffect(() => {
-		if (activeDropdown && dropdownRef.current) {
-			const height = dropdownRef.current.scrollHeight;
-			setDropdownHeight(height);
-		} else {
+		if (!activeDropdown) {
 			setDropdownHeight(0);
 		}
 	}, [activeDropdown]);
 
-	const handleMouseEnter = (id: string | null) => {
-		if (hoverTimeoutRef.current) {
-			clearTimeout(hoverTimeoutRef.current);
-		}
-		// Reduced timeout for snappier response
-		hoverTimeoutRef.current = setTimeout(() => {
-			setActiveDropdown(id);
-		}, 50);
-	};
+	// Optimize height calculation with ResizeObserver
+	useEffect(() => {
+		if (!activeDropdown || !dropdownRef.current) return;
 
-	const handleMouseLeave = () => {
-		if (hoverTimeoutRef.current) {
-			clearTimeout(hoverTimeoutRef.current);
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				setDropdownHeight(entry.contentRect.height);
+			}
+		});
+
+		resizeObserver.observe(dropdownRef.current);
+
+		return () => {
+			resizeObserver.disconnect();
+		};
+	}, [activeDropdown]);
+
+	// Track navbar height for responsive spacer
+	useEffect(() => {
+		if (!navbarRef.current) return;
+
+		const updateNavbarHeight = () => {
+			if (navbarRef.current) {
+				setNavbarHeight(navbarRef.current.offsetHeight);
+			}
+		};
+
+		updateNavbarHeight();
+		window.addEventListener('resize', updateNavbarHeight);
+
+		return () => {
+			window.removeEventListener('resize', updateNavbarHeight);
+		};
+	}, []);
+
+	// Clear all timeouts helper
+	const clearAllTimeouts = useCallback(() => {
+		if (openTimeoutRef.current) {
+			clearTimeout(openTimeoutRef.current);
+			openTimeoutRef.current = null;
 		}
-		hoverTimeoutRef.current = setTimeout(() => {
+		if (closeTimeoutRef.current) {
+			clearTimeout(closeTimeoutRef.current);
+			closeTimeoutRef.current = null;
+		}
+	}, []);
+
+	// Handle hovering over nav items with dropdowns
+	const handleNavItemEnter = useCallback(
+		(id: string) => {
+			clearAllTimeouts();
+			// Small delay to prevent flickering when moving between items
+			openTimeoutRef.current = setTimeout(() => {
+				setActiveDropdown(id);
+			}, 50);
+		},
+		[clearAllTimeouts]
+	);
+
+	// Handle hovering over nav items WITHOUT dropdowns (like Home, Contact)
+	const handleNonDropdownItemEnter = useCallback(() => {
+		clearAllTimeouts();
+		// Immediately close dropdown when hovering non-dropdown items
+		setActiveDropdown(null);
+		setIsHoveringDropdown(false);
+	}, [clearAllTimeouts]);
+
+	// Handle entering the dropdown content area
+	const handleDropdownEnter = useCallback(() => {
+		clearAllTimeouts();
+		setIsHoveringDropdown(true);
+	}, [clearAllTimeouts]);
+
+	// Handle leaving the dropdown content area
+	const handleDropdownLeave = useCallback(() => {
+		setIsHoveringDropdown(false);
+		clearAllTimeouts();
+		closeTimeoutRef.current = setTimeout(() => {
 			setActiveDropdown(null);
 		}, 150);
-	};
+	}, [clearAllTimeouts]);
 
-	const toggleMobileDropdown = (id: string) => {
-		setMobileActiveDropdown(mobileActiveDropdown === id ? null : id);
-	};
+	// Handle mouse leaving the entire navbar
+	const handleNavLeave = useCallback(() => {
+		if (!isHoveringDropdown) {
+			clearAllTimeouts();
+			closeTimeoutRef.current = setTimeout(() => {
+				setActiveDropdown(null);
+			}, 150);
+		}
+	}, [clearAllTimeouts, isHoveringDropdown]);
 
-	const activeNavItem = navigationData.find((item) => item.id === activeDropdown);
+	const toggleMobileDropdown = useCallback((id: string) => {
+		setMobileActiveDropdown((prev) => (prev === id ? null : id));
+	}, []);
+
+	// Cleanup timeouts on unmount
+	useEffect(() => {
+		return () => {
+			if (openTimeoutRef.current) clearTimeout(openTimeoutRef.current);
+			if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+		};
+	}, []);
 
 	return (
 		<>
 			{/* Desktop Navigation */}
 			<div className='hidden md:block'>
 				<nav
-					className='fixed top-0 left-0 right-0 z-50 bg-background border-b border-border'
-					onMouseLeave={handleMouseLeave}>
-					<div className='max-w-7xl mx-auto px-6'>
-						<div className='flex items-center justify-between h-14'>
+					ref={navbarRef}
+					className='fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border'
+					onMouseLeave={handleNavLeave}>
+					<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+						<div className='flex items-center justify-between h-14 lg:h-16'>
 							{/* Logo */}
 							<Link
 								href='/'
-								className='font-utility text-xl font-semibold tracking-tight text-foreground hover:text-muted-foreground transition-colors'
-								onMouseEnter={() => handleMouseEnter(null)}>
+								className='font-utility text-lg sm:text-xl font-semibold tracking-tight text-foreground hover:text-muted-foreground transition-colors'
+								onMouseEnter={handleNonDropdownItemEnter}>
 								Core Closer
 							</Link>
 
 							{/* Navigation Items */}
-							<div className='flex items-center gap-4'>
+							<div className='flex items-center gap-3 sm:gap-4 lg:gap-6'>
 								{navigationData.map((item) => (
 									<div key={item.id}>
 										{item.href ?
 											<a
 												href={item.href}
-												onMouseEnter={() => handleMouseEnter(null)}
-												className='font-utility text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'>
+												onMouseEnter={handleNonDropdownItemEnter}
+												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap'>
 												{item.label}
 											</a>
 										:	<button
-												onMouseEnter={() => handleMouseEnter(item.id)}
-												className='font-utility text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1 relative'
+												onMouseEnter={() => handleNavItemEnter(item.id)}
+												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1 relative whitespace-nowrap'
 												aria-expanded={activeDropdown === item.id}
 												aria-controls={`dropdown-${item.id}`}>
 												{item.label}
@@ -113,15 +198,10 @@ export function Navbar() {
 								initial='hidden'
 								animate='visible'
 								exit='hidden'
-								className='absolute left-0 right-0 z-40'>
-								<DesktopDropdown
-									navItem={activeNavItem}
-									onMouseEnter={() => {
-										if (hoverTimeoutRef.current) {
-											clearTimeout(hoverTimeoutRef.current);
-										}
-									}}
-								/>
+								className='absolute left-0 right-0 z-40'
+								onMouseEnter={handleDropdownEnter}
+								onMouseLeave={handleDropdownLeave}>
+								<DesktopDropdown navItem={activeNavItem} />
 							</motion.div>
 						)}
 					</AnimatePresence>
@@ -130,7 +210,7 @@ export function Navbar() {
 				{/* Spacer to push content down */}
 				<div
 					style={{
-						height: `${56 + dropdownHeight}px`,
+						height: dropdownHeight > 0 ? `${navbarHeight + dropdownHeight}px` : `${navbarHeight}px`,
 						transition: 'height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
 					}}
 				/>
@@ -138,19 +218,19 @@ export function Navbar() {
 
 			{/* Mobile Navigation */}
 			<div className='md:hidden'>
-				<nav className='fixed top-0 left-0 right-0 z-50 bg-background border-b border-border'>
-					<div className='flex items-center justify-between h-14 px-6'>
-						<Link href='/' className='font-utility text-xl font-semibold tracking-tight text-foreground'>
-							Premium
+				<nav className='fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border'>
+					<div className='flex items-center justify-between h-14 px-4 sm:px-6'>
+						<Link href='/' className='font-utility text-lg sm:text-xl font-semibold tracking-tight text-foreground'>
+							Core Closer
 						</Link>
 						<button
-							onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-							className='p-2 text-muted-foreground hover:text-foreground'
+							onClick={() => setMobileMenuOpen((prev) => !prev)}
+							className='p-2 text-muted-foreground hover:text-foreground transition-colors'
 							aria-label='Toggle menu'
 							aria-expanded={mobileMenuOpen}>
 							{mobileMenuOpen ?
-								<X size={24} />
-							:	<Menu size={24} />}
+								<X size={20} className='sm:w-6 sm:h-6' />
+							:	<Menu size={20} className='sm:w-6 sm:h-6' />}
 						</button>
 					</div>
 				</nav>
@@ -178,8 +258,8 @@ export function Navbar() {
 							animate='visible'
 							exit='hidden'
 							className='fixed top-14 left-0 right-0 bottom-0 z-50 bg-background overflow-hidden border-b border-border'>
-							<div className='h-full overflow-y-auto'>
-								<div className='px-6 py-2'>
+							<div className='h-full overflow-y-auto overscroll-contain'>
+								<div className='px-4 sm:px-6 py-2'>
 									{navigationData.map((item) => (
 										<motion.div
 											key={item.id}

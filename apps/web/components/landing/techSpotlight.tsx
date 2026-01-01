@@ -2,109 +2,117 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Zap, Target, Headset, ArrowRight, BarChart3 } from 'lucide-react';
+import { CheckCircle2, Code2, Database, Server, ArrowRight } from 'lucide-react';
 import { Button } from '@workspace/ui/components/button';
 
-const highlights = [
+const capabilities = [
 	{
-		title: 'Dedicated Specialists',
-		desc: 'Certified engineers and strategists.',
-		icon: <Shield className='size-5 text-primary' />,
+		title: 'Full-Stack Development',
+		description: 'Production-ready applications built with Next.js, React, and TypeScript. Optimized for performance, SEO, and scalability.',
+		details: ['MERN stack expertise', 'Serverless architecture', 'Real-time features'],
+		icon: <Code2 className='size-5 text-primary' />,
 	},
 	{
-		title: 'Tailored Solutions',
-		desc: 'Data-built for unique needs.',
-		icon: <Zap className='size-5 text-accent' />,
+		title: 'DevOps & Infrastructure',
+		description: 'Reliable cloud infrastructure with 99.99% uptime. Automated deployments, monitoring, and monitoring.',
+		details: ['CI/CD pipelines', 'Container orchestration', 'Performance monitoring'],
+		icon: <Server className='size-5 text-primary' />,
 	},
 	{
-		title: 'Proven Results',
-		desc: 'Data-driven, measurable growth.',
-		icon: <BarChart3 className='size-5 text-primary' />,
+		title: 'Data Architecture',
+		description: 'Scalable database design and data pipelines. Built for growth with proper indexing and query optimization.',
+		details: ['Database optimization', 'Data migration', 'Backup strategies'],
+		icon: <Database className='size-5 text-primary' />,
 	},
-	{
-		title: 'High-Quality Support',
-		desc: '24/7 proactive monitoring.',
-		icon: <Headset className='size-5 text-accent' />,
-	},
+];
+
+const trustIndicators = [
+	'No vendor lock-in',
+	'Transparent pricing',
+	'Code ownership',
+	'Documentation included',
 ];
 
 export default function TechSpotlight() {
 	return (
-		<section className='relative py-32 px-6 bg-background overflow-hidden border-y border-border/50'>
-			<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 border border-primary/10 rounded-full pointer-events-none' />
-			<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-225 h-225 border border-accent/5 rounded-full pointer-events-none' />
-
-			<div className='relative z-10 max-w-7xl mx-auto'>
-				<div className='flex flex-col items-center text-center mb-16'>
-					{/* Badge */}
-					<motion.div
-						initial={{ opacity: 0, y: 10 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-6'>
-						<Target className='size-3' />
-						Elevate Your Infrastructure
-					</motion.div>
-
-					{/* Headline */}
+		<section className='relative py-24 px-6 bg-background border-y border-border'>
+			<div className='max-w-6xl mx-auto'>
+				{/* Header */}
+				<div className='mb-20 text-center'>
 					<motion.h2
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						className='text-3xl md:text-6xl lg:text-6xl font-heading font-bold tracking-wide text-foreground mb-6 leading-tight'>
-						Unlocking <span className='text-primary'>Peak Performance</span> <br />
-						For Digital Leaders
+						transition={{ duration: 0.5 }}
+						className='text-3xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight text-foreground mb-6 leading-tight'>
+						Built for <span className='text-primary'>Business Growth</span>
 					</motion.h2>
 
-					{/* Sub-description */}
 					<motion.p
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						transition={{ delay: 0.1 }}
-						className='max-w-2xl text-muted-foreground text-lg'>
-						We engineer bespoke digital solutions, from scalable cloud architectures to high-converting funnels,
-						designed for the top 1% of businesses.
+						transition={{ duration: 0.5, delay: 0.1 }}
+						className='max-w-3xl mx-auto text-muted-foreground text-lg leading-relaxed'>
+						We deliver enterprise-grade software solutions and infrastructure that scale with your business.
+						Every project includes comprehensive documentation, ongoing support, and full code ownership.
 					</motion.p>
 				</div>
 
-				{/* Feature Grid */}
-				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
-					{highlights.map((item, idx) => (
+				{/* Capabilities Grid */}
+				<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16'>
+					{capabilities.map((capability, idx) => (
 						<motion.div
 							key={idx}
-							initial={{ opacity: 0, scale: 0.95 }}
-							whileInView={{ opacity: 1, scale: 1 }}
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
-							transition={{ delay: idx * 0.1 }}
-							className='group relative p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:bg-card transition-all duration-300'>
-							<div className='mb-6 p-3 w-fit rounded-xl bg-background border border-border group-hover:border-primary/30 transition-colors shadow-sm'>
-								{item.icon}
+							transition={{ duration: 0.5, delay: idx * 0.1 }}
+							className='p-8 border border-border bg-card rounded-lg hover:border-primary/30 transition-colors duration-300'>
+							<div className='mb-6 p-3 w-fit rounded-lg bg-background border border-border'>
+								{capability.icon}
 							</div>
-							<h4 className='text-base font-bold text-foreground mb-2 tracking-tight'>{item.title}</h4>
-							<p className='text-sm text-muted-foreground leading-relaxed'>{item.desc}</p>
-							<div className='absolute bottom-0 left-8 right-8 h-px bg-linear-to-r from-transparent via-border to-transparent group-hover:via-primary/50 transition-all' />
+							<h3 className='text-xl font-bold text-foreground mb-3 tracking-tight'>
+								{capability.title}
+							</h3>
+							<p className='text-muted-foreground mb-4 leading-relaxed'>
+								{capability.description}
+							</p>
+							<ul className='space-y-2'>
+								{capability.details.map((detail, detailIdx) => (
+									<li key={detailIdx} className='flex items-start gap-2 text-sm text-muted-foreground'>
+										<CheckCircle2 className='size-4 text-primary mt-0.5 shrink-0' />
+										<span>{detail}</span>
+									</li>
+								))}
+							</ul>
 						</motion.div>
 					))}
 				</div>
 
-				{/* Footer */}
+				{/* Trust Indicators */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
-					transition={{ delay: 0.4 }}
-					className='mt-16 flex flex-col items-center gap-6'>
-					<Button
-						size='lg'
-						className='bg-primary hover:bg-primary/90 text-primary-foreground hover:text-gray-200 px-10 h-14 rounded-full group font-bold tracking-tight shadow-lg shadow-primary/20 transition-colors duration-300'>
-						Launch Your Success
-						<ArrowRight className='ml-2 size-5 transition-transform group-hover:translate-x-1' />
-					</Button>
-
-					<p className='text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium'>
-						Zero-Debt Engineering • Radical Transparency
-					</p>
+					transition={{ duration: 0.5, delay: 0.3 }}
+					className='border-t border-border pt-12'>
+					<div className='flex flex-col md:flex-row items-center justify-between gap-8'>
+						<div className='flex flex-wrap items-center gap-6 justify-center md:justify-start'>
+							{trustIndicators.map((indicator, idx) => (
+								<div key={idx} className='flex items-center gap-2 text-sm text-muted-foreground'>
+									<CheckCircle2 className='size-4 text-primary' />
+									<span>{indicator}</span>
+								</div>
+							))}
+						</div>
+						<Button
+							size='lg'
+							className='bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 rounded-lg group font-medium transition-colors duration-300'>
+							Get Started
+							<ArrowRight className='ml-2 size-4 transition-transform group-hover:translate-x-1' />
+						</Button>
+					</div>
 				</motion.div>
 			</div>
 		</section>
