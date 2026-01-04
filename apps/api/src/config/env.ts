@@ -2,6 +2,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Parse CORS origins - supports comma-separated string or single origin
+const parseCorsOrigin = (origin: string | undefined): string | string[] => {
+	if (!origin) return 'http://localhost:3000';
+	// If comma-separated, split and trim
+	if (origin.includes(',')) {
+		return origin.split(',').map((o) => o.trim()).filter(Boolean);
+	}
+	return origin;
+};
+
 export const config = {
 	port: Number.parseInt(process.env.PORT || '3001', 10),
 	nodeEnv: process.env.NODE_ENV || 'development',
@@ -9,7 +19,7 @@ export const config = {
 		url: process.env.DATABASE_URL,
 	},
 	cors: {
-		origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+		origin: parseCorsOrigin(process.env.CORS_ORIGIN),
 	},
 	jwt: {
 		accessSecret: process.env.JWT_ACCESS_SECRET,
