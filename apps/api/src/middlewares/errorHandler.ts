@@ -30,6 +30,8 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
 		timestamp: new Date().toISOString(),
 		path: req.path,
 		method: req.method,
+		stack: err?.stack,
+		cause: err?.cause,
 	});
 
 	// Zod validation error

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { LayoutDashboard, FileText, Newspaper, Package, Users, User, LogOut, Shield, ChevronUp } from 'lucide-react';
+import { LayoutDashboard, FileText, Newspaper, Package, Users, User, LogOut, Shield, ChevronUp, Code } from 'lucide-react';
 import { ROUTES } from '@/utils/constants';
 import { useAuth } from '@/hooks/use-auth';
 import {
@@ -29,6 +29,11 @@ const navigationItems = [
 		title: 'Dashboard',
 		href: ROUTES.DASHBOARD,
 		icon: LayoutDashboard,
+	},
+	{
+		title: 'Web Dev Services',
+		href: ROUTES.DASHBOARD_WEB_DEV_SERVICES,
+		icon: Code,
 	},
 	{
 		title: 'Blogs',
@@ -93,7 +98,7 @@ export default function AppSidebar() {
 					<SidebarGroupContent>
 						<SidebarMenu>
 							{navigationItems.map((item) => {
-								const isActive = location.pathname === item.href;
+								const isActive = location.pathname === item.href || location.pathname.startsWith(item.href + '/');
 								return (
 									<SidebarMenuItem key={item.href}>
 										<SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>

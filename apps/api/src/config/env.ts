@@ -16,6 +16,11 @@ export const config = {
 		accessExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN || '15m',
 		refreshTokenDays: Number(process.env.REFRESH_TOKEN_DAYS || '30'),
 	},
+	cloudinary: {
+		cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+		apiKey: process.env.CLOUDINARY_API_KEY,
+		apiSecret: process.env.CLOUDINARY_API_SECRET,
+	},
 };
 
 // Validate required env vars

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { z, ZodError } from 'zod';
+import { z, ZodError, ZodSchema } from 'zod';
 
-export function validateData(schema: z.ZodObject<any, any>) {
+export function validateData(schema: ZodSchema) {
 	return (req: Request, res: Response, next: NextFunction) => {
 		try {
 			req.body = schema.parse(req.body);
@@ -13,7 +13,8 @@ export function validateData(schema: z.ZodObject<any, any>) {
 				}));
 				res.status(400).json({ error: 'Invalid data', details: errorMessages });
 			} else {
-				res.status(500).json({ error: 'Internal Server Error' });
+				console.error('[Validation Middleware Error]', error);
+				next(error);
 			}
 		}
 	};

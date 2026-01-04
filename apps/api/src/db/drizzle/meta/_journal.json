@@ -8,6 +8,13 @@
       "when": 1765805070371,
       "tag": "0000_exotic_spiral",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1767459891185,
+      "tag": "0001_condemned_stardust",
+      "breakpoints": true
     }
   ]
 }

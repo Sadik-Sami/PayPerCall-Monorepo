@@ -1,2 +1,7 @@
 export * from "./users.schema"
 export * from "./session.schema"
+export * from "./web-dev-services.schema"
+export * from "./web-dev-sub-services.schema"
+export * from "./web-dev-packages.schema"
+export * from "./web-dev-case-studies.schema"
+export * from "./web-dev-testimonials.schema"
