@@ -10,6 +10,7 @@ import {
 	CTABanner,
 	CaseStudyGrid,
 } from '@workspace/ui/components/sections';
+import { TestimonialsSection } from '@workspace/ui/components/testimonials';
 
 // Page-specific components
 import HireCallCenterHero from './_components/hero';
@@ -17,13 +18,13 @@ import TrustBar from './_components/trust-bar';
 import ServicesBreakdown from './_components/services-breakdown';
 import WhyChooseUs from './_components/why-choose-us';
 import PricingSection from './_components/pricing-section';
-import TestimonialsSection from './_components/testimonials-section';
 
 // Data
 import { impactStats } from './_data/stats';
 import { processSteps } from './_data/process';
 import { faqs } from './_data/faq';
 import { caseStudies } from './_data/case-studies';
+import { testimonials } from './_data/testimonials';
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -159,7 +160,20 @@ export default function HireCallCenterPage() {
 				</section>
 
 				{/* Testimonials */}
-				<TestimonialsSection />
+				<TestimonialsSection
+					title='Trusted by growing'
+					highlight='businesses'
+					subtitle='Leaders rely on our agents to protect their brand and keep customers supported around the clock.'
+					testimonials={testimonials.map((testimonial) => ({
+						name: testimonial.name,
+						role: testimonial.role,
+						company: testimonial.company,
+						quote: testimonial.quote,
+						highlight: testimonial.highlight,
+						avatarUrl: testimonial.image,
+					}))}
+					badge='Client Feedback'
+				/>
 
 				{/* Pricing */}
 				<PricingSection />
