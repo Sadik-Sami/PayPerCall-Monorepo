@@ -2,10 +2,10 @@ import Link from 'next/link';
 import {
 	CaseStudyStrip,
 	FAQSection,
+	ServiceHero,
 	FreeConsultationSection,
 	PricingTable,
 	ProcessSteps,
-	ServiceHero,
 	TrustStrip,
 } from '@/components/services';
 import { WEB_DEV_SERVICE_NAV } from '@/components/services/nav-items';
@@ -14,8 +14,6 @@ import { StickyScroll } from '@workspace/ui/components/ui/sticky-scroll-reveal';
 import { TestimonialsSection } from '@workspace/ui/components/testimonials';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
-
-export const revalidate = 3600;
 
 const HERO_CONTENT = {
 	pill: 'Web Development',
@@ -26,13 +24,14 @@ const HERO_CONTENT = {
 	features: ['SSG + ISR first', 'Analytics-ready', 'Accessible by default'],
 	stat: { value: '30 minutes', label: 'Strategy session · free consultation' },
 	primaryCta: { label: 'Book a Free Consultation', href: '/contact' },
-	secondaryCta: { label: 'View Recent Work', href: '/about/portfolio' },
+	secondaryCta: { label: 'View Recent Work', href: '/portfolio' },
 	footnote: 'No retainers or prep fees—just bring your goals and constraints.',
 	media: {
 		src: heroImage1,
-		alt: 'Team reviewing analytics dashboards in a studio',
+		alt: 'Web development visualization',
 		caption: 'Our roadmap sessions end with a written action plan.',
 	},
+	variant: 'asymmetric' as const,
 };
 
 const TRUST_CONTENT = {

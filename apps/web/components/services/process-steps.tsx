@@ -3,7 +3,7 @@ import type { ProcessStepsProps } from './types';
 
 export function ProcessSteps({ steps, title, className }: ProcessStepsProps) {
 	return (
-		<section className={cn('space-y-6 rounded-3xl border border-primary/5 bg-gradient-to-br from-slate-900/5 to-primary/5 p-8', className)}>
+		<section className={cn('space-y-6 rounded-3xl border border-primary/5 bg-linear-to-br from-slate-900/5 to-primary/5 p-8', className)}>
 			{title ? <h2 className='text-2xl font-semibold text-foreground'>{title}</h2> : null}
 			<div className='grid gap-6 md:grid-cols-2'>
 				{steps.map((step, index) => (

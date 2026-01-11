@@ -1,85 +1,94 @@
-import Link from 'next/link';
-import { cn } from '@workspace/ui/lib/utils';
-import type { CaseStudyStripProps } from './types';
-import { Button } from '@workspace/ui/components/button';
+"use client";
+import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { cn } from '@workspace/ui/lib/utils';
+import { containerVariants, cardVariants } from '@/lib/animations';
+import type { CaseStudyStripProps } from '@/types/services';
 
 export function CaseStudyStrip({ items, title, description, className }: CaseStudyStripProps) {
+	if (!items.length) return null;
+
 	return (
-		<section className={cn('space-y-8', className)}>
-			<div className='space-y-2'>
-				{title ?
-					<h2 className='text-2xl font-semibold text-foreground'>{title}</h2>
-				:	null}
-				{description ?
-					<p className='text-muted-foreground'>{description}</p>
-				:	null}
-			</div>
-			<div className='grid gap-6 md:grid-cols-3'>
-				{items.map((item, index) => {
-					const sparkTemplate = [45, 65, 40, 80, 55, 70, 35, 90, 60, 85, 45, 65, 40, 80, 55, 70, 35, 90, 60, 85, 45, 65, 40, 80, 55, 70, 35, 90];
-					return (
-						<div
-							key={`${item.client}-${item.problem}`}
-							className='group h-full rounded-3xl border border-primary/10 bg-linear-to-br from-background to-primary/5 p-6 shadow-lg shadow-primary/5'>
-							<div className='flex items-center gap-3 text-primary'>
-								<div className='flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary'>
-									{item.icon ?? <ArrowUpRight className='size-4' />}
+		<section className={cn('section-container py-16', className)}>
+			{(title || description) && (
+				<div className='mb-12 max-w-2xl'>
+					{title && <h1 className='mb-4 text-foreground text-3xl font-bold'>{title}</h1>}
+					{description && <p className='text-muted-foreground text-lg'>{description}</p>}
+				</div>
+			)}
+
+			<motion.div
+				variants={containerVariants}
+				initial='hidden'
+				whileInView='visible'
+				viewport={{ once: true, margin: '-100px' }}
+				className='grid gap-6 lg:grid-cols-3'>
+				{items.map((item) => (
+					<motion.div
+						key={item.client || item.problem}
+						variants={cardVariants}
+						className='group relative flex flex-col overflow-hidden rounded-3xl border border-border/50 bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-xl'>
+						{/* Header */}
+						<div className='border-b border-border/50 p-6'>
+							<div className='flex items-start justify-between gap-4'>
+								<div>
+									{item.industry && (
+										<p className='mb-1 text-xs font-semibold uppercase tracking-wider text-primary'>{item.industry}</p>
+									)}
+									{item.client && <h3 className='text-lg font-semibold text-foreground'>{item.client}</h3>}
+								</div>
+								{item.icon && (
+									<div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary'>
+										{item.icon}
+									</div>
+								)}
+							</div>
+						</div>
+
+						{/* Content */}
+						<div className='flex flex-1 flex-col p-6'>
+							<div className='flex-1 space-y-4'>
+								<div>
+									<p className='mb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground'>Challenge</p>
+									<p className='text-sm text-foreground'>{item.problem}</p>
 								</div>
 								<div>
-									<p className='text-xs font-semibold uppercase tracking-wide text-primary/80'>
-										{item.industry ?? 'B2B'}
-									</p>
-									<p className='text-lg font-semibold text-foreground'>{item.client ?? 'Confidential Client'}</p>
+									<p className='mb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground'>Solution</p>
+									<p className='text-sm text-muted-foreground'>{item.solution}</p>
 								</div>
 							</div>
-							<div className='mt-5 space-y-3 text-sm text-muted-foreground'>
-								<div>
-									<p className='text-xs font-semibold uppercase tracking-wide text-muted-foreground/80'>Problem</p>
-									<p>{item.problem}</p>
-								</div>
-								<div>
-									<p className='text-xs font-semibold uppercase tracking-wide text-muted-foreground/80'>Solution</p>
-									<p>{item.solution}</p>
-								</div>
-								<div>
-									<p className='text-xs font-semibold uppercase tracking-wide text-muted-foreground/80'>Outcome</p>
-									<p>{item.outcome}</p>
-								</div>
+
+							{/* Outcome */}
+							<div className='mt-6 rounded-xl bg-primary/5 p-4'>
+								<p className='mb-2 text-xs font-semibold uppercase tracking-wider text-primary'>Outcome</p>
+								<p className='text-sm font-medium text-foreground'>{item.outcome}</p>
 							</div>
-							{item.metrics?.length ?
-								<div className='mt-5 grid grid-cols-2 gap-3'>
+
+							{/* Metrics */}
+							{item.metrics && item.metrics.length > 0 && (
+								<div className='mt-4 flex gap-4'>
 									{item.metrics.map((metric) => (
-										<div
-											key={metric.label}
-											className='rounded-2xl bg-white/70 p-3 text-sm font-semibold text-slate-900 dark:bg-slate-900/60 dark:text-slate-100'>
+										<div key={metric.label} className='flex-1'>
 											<p className='text-2xl font-bold text-primary'>{metric.value}</p>
-											<p className='text-xs uppercase tracking-wide text-muted-foreground'>{metric.label}</p>
-											{metric.helperText ?
-												<p className='text-[11px] text-muted-foreground'>{metric.helperText}</p>
-											:	null}
+											<p className='text-xs text-muted-foreground'>{metric.label}</p>
 										</div>
 									))}
 								</div>
-							:	null}
-							<div className='mt-6 flex h-20 items-end gap-2 rounded-2xl bg-linear-to-t from-primary/20 to-transparent p-3'>
-								{sparkTemplate.map((height, idx) => (
-									<span
-										key={idx}
-										className='w-2 rounded-full bg-primary/70'
-										style={{ height: `${Math.min(95, height + ((index * 7 + idx * 5) % 25))}%` }}
-									/>
-								))}
-							</div>
-							{item.link ?
-								<Button asChild variant='link' className='mt-4 px-0 text-primary'>
-									<Link href={item.link}>View case study</Link>
-								</Button>
-							:	null}
+							)}
+
+							{/* Link */}
+							{item.link && (
+								<a
+									href={item.link}
+									className='mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline'>
+									View full case study
+									<ArrowUpRight className='h-4 w-4' />
+								</a>
+							)}
 						</div>
-					);
-				})}
-			</div>
+					</motion.div>
+				))}
+			</motion.div>
 		</section>
 	);
 }

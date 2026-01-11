@@ -9,23 +9,25 @@ import {
 } from '@/components/services';
 import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
-import { CircuitBoard, ServerCog, Lock } from 'lucide-react';
+import { ShieldCheck, Factory, Activity } from 'lucide-react';
 
 export const revalidate = 3600;
 
 const HERO_CONTENT = {
-	pill: 'Full-Stack Delivery',
-	title: 'One accountable team for product, API, and ops',
-	subtitle: 'Architecture, frontend, backend, and integrations handled together so you see progress every sprint.',
-	features: ['React & Next.js', 'Node · Go · Python', 'Secure APIs + observability'],
-	stat: { value: '30 minutes', label: 'Technical discovery · free' },
-	primaryCta: { label: 'Discuss Your Full-Stack Project', href: '/contact' },
-	secondaryCta: { label: 'Review Collaboration Models', href: '/about/why-us' },
-	footnote: 'Discovery calls include a short follow-up summary with risks and next steps.',
+	pill: 'Web Development',
+	eyebrow: 'Services',
+	title: 'Web programs built for measurable impact',
+	subtitle:
+		'We ship React/Next.js experiences that stay fast, search-ready, and easy to operate. Start with a no-cost roadmap call.',
+	features: ['SSG + ISR first', 'Analytics-ready', 'Accessible by default'],
+	stat: { value: '30 minutes', label: 'Strategy session · free consultation' },
+	primaryCta: { label: 'Book a Free Consultation', href: '/contact' },
+	secondaryCta: { label: 'View Recent Work', href: '/portfolio' },
+	footnote: 'No retainers or prep fees—just bring your goals and constraints.',
 	media: {
 		src: heroImage2,
-		alt: 'Engineers collaborating on architecture diagrams',
-		caption: 'Cross-functional pods blend product, design, and engineering.',
+		alt: 'Web development visualization',
+		caption: 'Our roadmap sessions end with a written action plan.',
 	},
 };
 
@@ -116,38 +118,39 @@ const FULL_STACK_TIMELINE: TimelineEntry[] = [
 
 const CASE_STUDIES = [
 	{
-		client: 'Helios Labs',
-		problem: 'Needed a secure platform for processing IoT telemetry with real-time dashboards.',
-		solution: 'Built a full-stack Next.js + NestJS platform with WebSocket streaming and role-based access controls.',
-		outcome: 'Process automation removed 22 manual touchpoints, while dashboards kept <200ms latency under load.',
-		icon: <CircuitBoard className='size-5' />,
+		client: 'Regional Insurance Platform',
+		industry: 'Insurance',
+		problem: 'Legacy marketing site could not keep up with new product launches.',
+		solution: 'Migrated to a headless Next.js stack with modular CMS entries and ISR.',
+		outcome: '+37% qualified inbound calls in 90 days with <2s median LCP.',
+		icon: <ShieldCheck className='h-5 w-5' />,
 		metrics: [
-			{ label: 'Latency', value: '<200ms' },
-			{ label: 'Manual steps', value: '-22' },
+			{ label: 'Page load', value: '1.7s' },
+			{ label: 'Lead lift', value: '+37%' },
 		],
 	},
 	{
-		client: 'SecureLend',
-		industry: 'Fintech',
-		problem: 'Legacy underwriting system could not be exposed to partners safely.',
-		solution: 'Designed a modular API layer with audit logging, rate limiting, and partner-specific policies.',
-		outcome: 'Partner onboarding went from 12 weeks to 4 while meeting SOC 2 security benchmarks.',
-		icon: <Lock className='size-5' />,
+		client: 'Northwind Energy',
+		industry: 'Energy',
+		problem: 'Corporate site failed security reviews and had inconsistent lead capture.',
+		solution: 'Rebuilt with strict access controls, encrypted forms, and CRM routing.',
+		outcome: 'Lead-to-opportunity rate improved by 29%.',
+		icon: <Factory className='h-5 w-5' />,
 		metrics: [
-			{ label: 'Onboarding time', value: '4 wks' },
-			{ label: 'Compliance', value: 'SOC 2' },
+			{ label: 'Security findings', value: '0' },
+			{ label: 'SQL growth', value: '+29%' },
 		],
 	},
 	{
-		client: 'Beacon Health',
-		industry: 'Healthcare',
-		problem: 'Multiple patient intake apps created inconsistent data and compliance gaps.',
-		solution: 'Unified intake workflows, EHR integrations, and consent management in a HIPAA-aligned platform.',
-		outcome: 'Error rates dropped 41% and clinicians gained real-time visibility into patient queues.',
-		icon: <ServerCog className='size-5' />,
+		client: 'Cedar Labs',
+		industry: 'SaaS',
+		problem: 'Outdated product pages did not reflect the new platform narrative.',
+		solution: 'Designed modular product stories and pricing scenarios for enterprise buyers.',
+		outcome: 'Time on page doubled and demo requests grew 46%.',
+		icon: <Activity className='h-5 w-5' />,
 		metrics: [
-			{ label: 'Error reduction', value: '-41%' },
-			{ label: 'Queue visibility', value: 'Real-time' },
+			{ label: 'Time on page', value: '2x' },
+			{ label: 'Demo lift', value: '+46%' },
 		],
 	},
 ];
@@ -218,7 +221,11 @@ export default function FullStackWebDevPage() {
 				description='Four structured phases keep product, platform, and operations aligned.'
 				data={FULL_STACK_TIMELINE}
 			/>
-			<CaseStudyStrip items={CASE_STUDIES} title='Representative full-stack engagements' />
+			<CaseStudyStrip
+				items={CASE_STUDIES}
+				title='Representative full-stack engagements'
+				description='Every case study highlights the measurable outcomes stakeholders care about.'
+			/>
 			<PricingTable
 				title='Flexible engagement structures'
 				description='Pick the model that best matches your internal capacity—each starts with a free discovery call.'
