@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {
 	CaseStudyStrip,
 	FAQSection,
@@ -7,13 +6,14 @@ import {
 	PricingTable,
 	ProcessSteps,
 	TrustStrip,
+	AnimatedServicesGrid,
 } from '@/components/services';
-import { WEB_DEV_SERVICE_NAV } from '@/components/services/nav-items';
+import { WEB_DEV_SERVICE_NAV, WEB_DEV_TECH_STACK } from '@/components/services/nav-items';
 import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
-import { StickyScroll } from '@workspace/ui/components/ui/sticky-scroll-reveal';
 import { TestimonialsSection } from '@workspace/ui/components/testimonials';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
+import { TechMarquee } from '@/components/services/Tech-Marquee';
 
 const HERO_CONTENT = {
 	pill: 'Web Development',
@@ -118,42 +118,6 @@ const DELIVERY_TIMELINE_ITEMS: TimelineEntry[] = [
 					<li>• Post-launch support SLAs</li>
 				</ul>
 			</>
-		),
-	},
-];
-
-const CAPABILITY_SCROLL_CONTENT = [
-	{
-		title: 'Front-end foundations',
-		description: 'UI systems built with React, Next.js, shadcn/ui, and TailwindCSS stay accessible and consistent.',
-		content: (
-			<ul className='space-y-2 text-sm leading-relaxed text-muted-foreground'>
-				<li>• Component libraries wired to Figma tokens</li>
-				<li>• HTML-first markup with semantic headings</li>
-				<li>• Performance budgets baked into review checklist</li>
-			</ul>
-		),
-	},
-	{
-		title: 'Back-end + API layer',
-		description: 'Node.js, Go, or Python services with Prisma/Drizzle keep data reliable and testable.',
-		content: (
-			<ul className='space-y-2 text-sm leading-relaxed text-muted-foreground'>
-				<li>• Secure auth (NextAuth, Better Auth, OAuth, custom JWT)</li>
-				<li>• APIs validated end-to-end with contract tests</li>
-				<li>• Works with NeonDB, Supabase, PostgreSQL, MongoDB</li>
-			</ul>
-		),
-	},
-	{
-		title: 'Operations + delivery',
-		description: 'CI/CD pipelines use Docker, GitHub Actions, and testing suites to keep releases boring.',
-		content: (
-			<ul className='space-y-2 text-sm leading-relaxed text-muted-foreground'>
-				<li>• Automated lint, unit, accessibility, and visual checks</li>
-				<li>• Deploy to Vercel, Render, or Cloudflare with ISR defaults</li>
-				<li>• Observability via distributed tracing + dashboards</li>
-			</ul>
 		),
 	},
 ];
@@ -289,54 +253,31 @@ export default function WebDevOverviewPage() {
 	return (
 		<main className='space-y-12'>
 			<ServiceHero {...HERO_CONTENT} />
+			<div className='section-container'>
+				<TechMarquee items={WEB_DEV_TECH_STACK} speed='slow' />
+			</div>
 			<TrustStrip {...TRUST_CONTENT} />
-
-			<section className='space-y-6 rounded-3xl border bg-background/80 p-8'>
-				<div className='space-y-2'>
-					<h2 className='text-2xl font-semibold text-foreground'>Web Development Capabilities</h2>
+			<section className='section-container py-16'>
+				<div className='mb-12 max-w-2xl'>
+					<h2 className='mb-4 text-foreground text-2xl font-semibold'>Web Development Capabilities</h2>
 					<p className='text-muted-foreground'>
 						Each capability links to a dedicated plan so stakeholders can scan what matters most.
 					</p>
 				</div>
-				<div className='grid gap-4 md:grid-cols-2'>
-					{WEB_DEV_SERVICE_NAV.filter((item) => item.href !== '/services/web-dev').map((service) => (
-						<Link
-							key={service.href}
-							href={service.href}
-							className='rounded-2xl border border-muted-foreground/30 bg-card/60 p-6 transition hover:border-primary hover:bg-card'>
-							<p className='text-sm font-semibold uppercase tracking-wide text-primary/80'>Service</p>
-							<p className='text-lg font-semibold text-foreground'>{service.label}</p>
-							<p className='text-sm text-muted-foreground'>
-								Learn about scope, pricing, and process for {service.label.toLowerCase()}.
-							</p>
-						</Link>
-					))}
-				</div>
+				<AnimatedServicesGrid
+					services={WEB_DEV_SERVICE_NAV.filter((item) => item.href !== '/services/web-dev').map(
+						// eslint-disable-next-line @typescript-eslint/no-unused-vars
+						({ icon: _icon, ...service }) => service
+					)}
+					className='grid gap-6 md:grid-cols-2'
+				/>
 			</section>
-
 			<ProcessSteps steps={PROCESS_STEPS} title='How we deliver web development projects' />
 			<Timeline
 				title='A transparent delivery timeline'
 				description='Every engagement follows a predictable arc so stakeholders always know what is happening next.'
 				data={DELIVERY_TIMELINE_ITEMS}
 			/>
-			<div className='space-y-6'>
-				<h2 className='text-2xl font-semibold text-foreground'>Depth across the stack</h2>
-				<p className='text-muted-foreground'>
-					Scroll through the core areas we own so your internal team can stay focused.
-				</p>
-				<StickyScroll
-					content={CAPABILITY_SCROLL_CONTENT}
-					className='border border-muted-foreground/30 bg-background text-foreground'
-					contentClassName='bg-card/80'
-					backgroundColors={['#0a0d12', '#0c111d', '#0a0d12']}
-					gradientBackgrounds={[
-						'linear-gradient(to bottom right, rgba(15,118,110,0.25), rgba(8,47,73,0.6))',
-						'linear-gradient(to bottom right, rgba(37,99,235,0.25), rgba(15,23,42,0.7))',
-						'linear-gradient(to bottom right, rgba(2,132,199,0.25), rgba(8,47,73,0.6))',
-					]}
-				/>
-			</div>
 			<CaseStudyStrip
 				items={CASE_STUDIES}
 				title='Results grounded in performance data'

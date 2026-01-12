@@ -13,6 +13,16 @@ const nextConfig = {
 				hostname: 'images.unsplash.com',
 				pathname: '/**',
 			},
+			{
+				protocol: 'https',
+				hostname: 'ik.imagekit.io',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'html.tailus.io',
+				pathname: '/**',
+			},
 		],
 	},
 };

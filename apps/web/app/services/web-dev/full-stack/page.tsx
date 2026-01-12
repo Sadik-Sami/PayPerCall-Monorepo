@@ -10,7 +10,8 @@ import {
 import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
-
+import { WEB_DEV_TECH_STACK } from '@/components/services/nav-items';
+import { TechMarquee } from '@/components/services/Tech-Marquee';
 export const revalidate = 3600;
 
 const HERO_CONTENT = {
@@ -214,7 +215,11 @@ export default function FullStackWebDevPage() {
 	return (
 		<main className='space-y-12'>
 			<ServiceHero {...HERO_CONTENT} />
+			<div className='section-container'>
+				<TechMarquee items={WEB_DEV_TECH_STACK} speed='fast' />
+			</div>
 			<TrustStrip {...TRUST_CONTENT} />
+
 			<ProcessSteps steps={PROCESS_STEPS} title='A predictable full-stack delivery model' />
 			<Timeline
 				title='Delivery timeline for full-stack builds'

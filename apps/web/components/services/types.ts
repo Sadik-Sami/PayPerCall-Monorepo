@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { StaticImageData } from 'next/image';
+import { LucideIcon } from 'lucide-react';
 
 export type ServiceCta = {
 	label: string;
@@ -122,5 +123,7 @@ export type ServiceNavItem = {
 	summary?: string;
 	capabilities?: string[];
 	isExternal?: boolean;
+	icon?: LucideIcon;
+	iconName?: string; // For server-to-client serialization
 };
 

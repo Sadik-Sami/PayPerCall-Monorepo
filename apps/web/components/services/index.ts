@@ -7,4 +7,5 @@ export * from './pricing-table';
 export * from './faq-section';
 export * from './free-consultation-section';
 export * from './service-subnav';
+export * from './AnimatedServicesGrid';
 
