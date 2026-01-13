@@ -6,6 +6,7 @@ interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
   pauseOnHover?: boolean
   direction?: "left" | "right"
   speed?: number
+  vertical?: boolean
 }
 
 export function Marquee({
@@ -13,19 +14,43 @@ export function Marquee({
   pauseOnHover = false,
   direction = "left",
   speed = 30,
+  vertical = false,
   className,
   ...props
 }: MarqueeProps) {
+  if (vertical) {
+    return (
+      <div
+        className={cn(
+          "overflow-hidden",
+          className
+        )}
+        {...props}
+      >
+        <div
+          className={cn(
+            "flex flex-col animate-marquee-vertical",
+            pauseOnHover && "hover:[animation-play-state:paused]"
+          )}
+          style={{ "--duration": `${speed}s` } as React.CSSProperties}
+        >
+          {children}
+          {children}
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div 
+    <div
       className={cn(
         "w-full overflow-hidden sm:mt-24 mt-10 z-10",
         className
-      )} 
+      )}
       {...props}
     >
       <div className="relative flex max-w-[90vw] overflow-hidden py-5">
-        <div 
+        <div
           className={cn(
             "flex w-max animate-marquee",
             pauseOnHover && "hover:[animation-play-state:paused]",
