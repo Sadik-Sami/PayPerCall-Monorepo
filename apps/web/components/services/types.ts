@@ -124,6 +124,5 @@ export type ServiceNavItem = {
 	capabilities?: string[];
 	isExternal?: boolean;
 	icon?: LucideIcon;
-	iconName?: string; // For server-to-client serialization
 };
 

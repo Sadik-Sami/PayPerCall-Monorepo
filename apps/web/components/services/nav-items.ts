@@ -31,7 +31,6 @@ export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
 		summary: 'See how our team plans, builds, and optimizes modern web programs.',
 		capabilities: ['Program roadmaps', 'Cross-team governance', 'Full lifecycle support'],
 		icon: Globe,
-		iconName: 'Globe',
 	},
 	{
 		label: 'Full-Stack Development',
@@ -39,7 +38,6 @@ export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
 		summary: 'End-to-end delivery for complex products, APIs, and integrations.',
 		capabilities: ['React & Next.js', 'Node.js · Go · Python', 'Secure APIs', 'Observability'],
 		icon: Code2,
-		iconName: 'Code2',
 	},
 	{
 		label: 'Business Websites',
@@ -47,7 +45,6 @@ export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
 		summary: 'Credible corporate sites with measurable lead-generation infrastructure.',
 		capabilities: ['Headless CMS', 'Schema & SEO', 'Analytics & CRM routing'],
 		icon: Building2,
-		iconName: 'Building2',
 	},
 	{
 		label: 'Ecommerce Websites',
@@ -55,7 +52,6 @@ export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
 		summary: 'High-conversion storefronts with resilient ops and fulfillment flows.',
 		capabilities: ['Headless commerce', 'Payments & tax', 'Inventory integrations'],
 		icon: ShoppingCart,
-		iconName: 'ShoppingCart',
 	},
 	{
 		label: 'Landing Pages',
@@ -63,7 +59,6 @@ export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
 		summary: 'Campaign-focused pages with clear proof, tracking, and experiments.',
 		capabilities: ['Conversion copy', 'Event tracking', 'A/B test support'],
 		icon: FileText,
-		iconName: 'FileText',
 	},
 ];
 

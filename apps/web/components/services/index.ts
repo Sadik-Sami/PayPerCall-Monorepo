@@ -5,7 +5,10 @@ export * from './process-steps';
 export * from './case-study-strip';
 export * from './pricing-table';
 export * from './faq-section';
-export * from './free-consultation-section';
+export * from './consultation-CTA';
 export * from './service-subnav';
 export * from './AnimatedServicesGrid';
-
+export * from './TrustBanner';
+export * from './results-showcase';
+export * from './testimonial';
+export * from './IntegrationLogos';

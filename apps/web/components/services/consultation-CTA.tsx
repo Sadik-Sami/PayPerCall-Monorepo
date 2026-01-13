@@ -1,0 +1,126 @@
+'use client';
+import { motion } from 'framer-motion';
+import { ArrowRight, MessageSquare } from 'lucide-react';
+import { cn } from '@workspace/ui/lib/utils';
+import { containerVariants, itemVariants } from '@/lib/animations';
+import { Button } from '@workspace/ui/components/button';
+import { Input } from '@workspace/ui/components/input';
+import { Textarea } from '@workspace/ui/components/textarea';
+import { Label } from '@workspace/ui/components/label';
+import type { FreeConsultationSectionProps } from '@/types/services';
+
+const SHORT_FIELDS = [
+	{ id: 'name', label: 'Full name', type: 'text', autoComplete: 'name' },
+	{ id: 'email', label: 'Work email', type: 'email', autoComplete: 'email' },
+] as const;
+
+const DETAILED_FIELDS = [
+	...SHORT_FIELDS,
+	{ id: 'company', label: 'Company', type: 'text', autoComplete: 'organization' },
+	{ id: 'projectType', label: 'Project focus', type: 'text', autoComplete: 'off' },
+] as const;
+
+export function ConsultationCTA({
+	title,
+	subtitle,
+	bullets,
+	formVariant = 'detailed',
+	className,
+}: FreeConsultationSectionProps) {
+	const fields = formVariant === 'short' ? SHORT_FIELDS : DETAILED_FIELDS;
+
+	return (
+		<section
+			className={cn(
+				'relative overflow-hidden rounded-3xl border border-border/50 bg-linear-to-br from-card via-card to-primary/5',
+				className
+			)}>
+			{/* Background decoration */}
+			<div className='absolute -right-32 -top-32 h-64 w-64 rounded-full bg-primary/10 blur-3xl' />
+			<div className='absolute -bottom-32 -left-32 h-64 w-64 rounded-full bg-accent/10 blur-3xl' />
+
+			<motion.div
+				variants={containerVariants}
+				initial='hidden'
+				whileInView='visible'
+				viewport={{ once: true, margin: '-100px' }}
+				className='relative grid gap-8 p-8 md:grid-cols-2 lg:p-12'>
+				{/* Left column - Content */}
+				<motion.div variants={itemVariants} className='space-y-6'>
+					<div className='inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary'>
+						<MessageSquare className='h-4 w-4' />
+						Free consultation
+					</div>
+
+					<h2 className='text-foreground'>{title}</h2>
+
+					{subtitle && <p className='text-muted-foreground'>{subtitle}</p>}
+
+					<ul className='space-y-4'>
+						{bullets.map((bullet) => (
+							<li key={bullet} className='flex items-start gap-3'>
+								<span className='mt-2 h-2 w-2 shrink-0 rounded-full bg-primary' />
+								<span className='text-muted-foreground'>{bullet}</span>
+							</li>
+						))}
+					</ul>
+
+					<p className='text-sm text-muted-foreground'>
+						No invoices, no retainers—just a focused conversation on goals and constraints.
+					</p>
+				</motion.div>
+
+				{/* Right column - Form */}
+				<motion.div variants={itemVariants}>
+					<form
+						className='rounded-2xl border border-dashed border-border bg-card/50 p-6 backdrop-blur-sm'
+						method='post'
+						action='/contact'>
+						<input type='hidden' name='source' value='web-dev-services' />
+
+						<div className='space-y-4'>
+							{fields.map((field) => (
+								<div key={field.id} className='space-y-2'>
+									<Label htmlFor={field.id} className='text-sm font-medium'>
+										{field.label}
+									</Label>
+									<Input
+										id={field.id}
+										name={field.id}
+										type={field.type}
+										required
+										autoComplete={field.autoComplete}
+										className='bg-background'
+									/>
+								</div>
+							))}
+
+							{formVariant === 'detailed' && (
+								<div className='space-y-2'>
+									<Label htmlFor='projectSummary' className='text-sm font-medium'>
+										Project context
+									</Label>
+									<Textarea
+										id='projectSummary'
+										name='projectSummary'
+										rows={4}
+										placeholder='Timeline, systems involved, internal stakeholders...'
+										required
+										className='resize-none bg-background'
+									/>
+								</div>
+							)}
+
+							<Button type='submit' size='lg' className='group w-full gap-2'>
+								Book Your Free Call
+								<ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-1' />
+							</Button>
+
+							<p className='text-center text-xs text-muted-foreground'>We respond within 24 hours on business days.</p>
+						</div>
+					</form>
+				</motion.div>
+			</motion.div>
+		</section>
+	);
+}

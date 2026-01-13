@@ -2,18 +2,19 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ServiceHero,
-	FreeConsultationSection,
+	ConsultationCTA,
 	PricingTable,
 	ProcessSteps,
-	TrustStrip,
 	AnimatedServicesGrid,
+	TrustBanner,
+	ResultsShowcase,
+	TestimonialsSection,
+	IntegrationLogos,
 } from '@/components/services';
-import { WEB_DEV_SERVICE_NAV, WEB_DEV_TECH_STACK } from '@/components/services/nav-items';
-import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
-import { TestimonialsSection } from '@workspace/ui/components/testimonials';
+import { WEB_DEV_SERVICE_NAV } from '@/components/services/nav-items';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
-import { TechMarquee } from '@/components/services/Tech-Marquee';
+import TechMarquee from '@/components/services/Tech-Marquee';
 
 const HERO_CONTENT = {
 	pill: 'Web Development',
@@ -32,16 +33,6 @@ const HERO_CONTENT = {
 		caption: 'Our roadmap sessions end with a written action plan.',
 	},
 	variant: 'asymmetric' as const,
-};
-
-const TRUST_CONTENT = {
-	logos: [{ name: 'Atlas Capital' }, { name: 'Northwind Health' }, { name: 'Cedar Labs' }, { name: 'Summit Legal' }],
-	metrics: [
-		{ label: 'Custom web builds delivered', value: '120+' },
-		{ label: 'Median LCP on launch', value: '<1.8s', helperText: 'Measured on production Core Web Vitals' },
-		{ label: 'Industries served', value: '15+' },
-		{ label: 'Average engagement', value: '18 mos', helperText: 'Many clients stay for ongoing optimization' },
-	],
 };
 
 const PROCESS_STEPS = [
@@ -64,87 +55,6 @@ const PROCESS_STEPS = [
 		title: 'Launch & Improve',
 		description:
 			'Deploy via SSG/ISR, monitor analytics, and run structured optimization cycles once real data arrives.',
-	},
-];
-
-const DELIVERY_TIMELINE_ITEMS: TimelineEntry[] = [
-	{
-		title: '01 · Strategy sprint',
-		content: (
-			<>
-				<p>Stakeholders, goals, and constraints captured in a concise brief.</p>
-				<ul className='mt-4 space-y-1 text-sm text-muted-foreground'>
-					<li>• Tech + content inventory</li>
-					<li>• KPI targets + reporting needs</li>
-					<li>• Security/compliance checkpoints</li>
-				</ul>
-			</>
-		),
-	},
-	{
-		title: '02 · Experience & architecture',
-		content: (
-			<>
-				<p>Low/high-fidelity flows paired with stack choices (React, Next.js, Prisma/Drizzle).</p>
-				<ul className='mt-4 space-y-1 text-sm text-muted-foreground'>
-					<li>• Content models + CMS governance</li>
-					<li>• Integration plan (CRM, Supabase, auth)</li>
-					<li>• Performance budgets + testing matrix</li>
-				</ul>
-			</>
-		),
-	},
-	{
-		title: '03 · Build & verify',
-		content: (
-			<>
-				<p>Type-safe engineering with Dockerized environments and CI across linting, tests, and accessibility.</p>
-				<ul className='mt-4 space-y-1 text-sm text-muted-foreground'>
-					<li>• Components with shadcn/ui + Tailwind</li>
-					<li>• Secure end-to-end APIs (Better Auth / NextAuth / custom JWT)</li>
-					<li>• Data via NeonDB, PostgreSQL, MongoDB, or Supabase</li>
-				</ul>
-			</>
-		),
-	},
-	{
-		title: '04 · Launch & optimize',
-		content: (
-			<>
-				<p>Deploy to Vercel, Render, or Cloudflare with ISR, then iterate with testing insights.</p>
-				<ul className='mt-4 space-y-1 text-sm text-muted-foreground'>
-					<li>• Analytics + heatmaps wired</li>
-					<li>• Experiment backlog + ownership</li>
-					<li>• Post-launch support SLAs</li>
-				</ul>
-			</>
-		),
-	},
-];
-
-const WEB_DEV_TESTIMONIALS = [
-	{
-		name: 'Priya Patel',
-		role: 'VP of Growth',
-		company: 'Atlas Capital',
-		quote:
-			'The new site loads in under two seconds worldwide and our inbound opportunities finally match enterprise expectations.',
-		highlight: '+42% qualified demo requests in 60 days',
-	},
-	{
-		name: 'Leo Ramirez',
-		role: 'CTO',
-		company: 'Northwind Health',
-		quote: 'Their hybrid of React, Node, and Go gave us the flexibility we needed without sacrificing reliability.',
-		highlight: 'Zero P1 incidents since launch',
-	},
-	{
-		name: 'Katherine Wu',
-		role: 'Head of Digital',
-		company: 'Summit Legal',
-		quote:
-			'They handled compliance reviews, CMS governance, and analytics instrumentation so our team could focus on content.',
-		highlight: 'Month-end reporting time cut in half',
 	},
 ];
 
@@ -191,8 +101,8 @@ const CASE_STUDIES = [
 const PRICING_PLANS = [
 	{
 		name: 'Foundation',
-		description: 'Focused engagement for brand-new sites with a lean scope.',
-		priceLabel: 'From $18k',
+		description: 'Focused engagement for brand-new sites.',
+		priceLabel: 'From $1k',
 		features: [
 			'Up to 5 essential page templates',
 			'CMS implementation',
@@ -202,8 +112,8 @@ const PRICING_PLANS = [
 	},
 	{
 		name: 'Growth',
-		description: 'Most teams choose this for multi-page builds with integrations.',
-		priceLabel: 'From $42k',
+		description: 'Most teams choose this for multi-page builds.',
+		priceLabel: 'From $3k',
 		features: [
 			'End-to-end UX + content support',
 			'Custom component library',
@@ -215,7 +125,7 @@ const PRICING_PLANS = [
 	},
 	{
 		name: 'Enterprise',
-		description: 'Complex builds with advanced security, compliance, or localization needs.',
+		description: 'Complex builds with advanced security needs.',
 		priceLabel: 'Custom',
 		features: [
 			'Multi-region deployments',
@@ -252,14 +162,15 @@ const FAQ_ITEMS = [
 export default function WebDevOverviewPage() {
 	return (
 		<main className='space-y-12'>
-			<ServiceHero {...HERO_CONTENT} />
-			<div className='section-container'>
-				<TechMarquee items={WEB_DEV_TECH_STACK} speed='slow' />
-			</div>
-			<TrustStrip {...TRUST_CONTENT} />
-			<section className='section-container py-16'>
-				<div className='mb-12 max-w-2xl'>
-					<h2 className='mb-4 text-foreground text-2xl font-semibold'>Web Development Capabilities</h2>
+			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+			<TechMarquee />
+			<TrustBanner />
+			<ResultsShowcase className='max-w-7xl mx-auto' variant='split' />
+			<section className='py-16 max-w-7xl mx-auto'>
+				<div className='mb-12 max-w-3xl mx-auto text-center'>
+					<h2 className='mb-4 text-foreground text-3xl md:text-4xl lg:text-5xl font-bold'>
+						Web Development Capabilities
+					</h2>
 					<p className='text-muted-foreground'>
 						Each capability links to a dedicated plan so stakeholders can scan what matters most.
 					</p>
@@ -272,43 +183,38 @@ export default function WebDevOverviewPage() {
 					className='grid gap-6 md:grid-cols-2'
 				/>
 			</section>
-			<ProcessSteps steps={PROCESS_STEPS} title='How we deliver web development projects' />
-			<Timeline
-				title='A transparent delivery timeline'
+			<ProcessSteps
+				className='max-w-7xl mx-auto'
+				steps={PROCESS_STEPS}
+				title='How we deliver web development projects'
 				description='Every engagement follows a predictable arc so stakeholders always know what is happening next.'
-				data={DELIVERY_TIMELINE_ITEMS}
+				variant='cards'
 			/>
 			<CaseStudyStrip
 				items={CASE_STUDIES}
 				title='Results grounded in performance data'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
 			/>
+			<TestimonialsSection className='max-w-7xl mx-auto' variant='featured' />
+			<IntegrationLogos className='max-w-7xl mx-auto' />
 			<PricingTable
+				className='max-w-7xl mx-auto'
 				title='Engagement models suited to your stage'
-				description='Transparent ranges help you budget faster. Every project still begins with a free planning call.'
+				description='Transparent ranges help you budget faster. Every project begins with a free planning call.'
 				plans={PRICING_PLANS}
-				billingNote='Budgets include design, engineering, QA, and launch support. Content strategy or copywriting can be added as needed.'
+				billingNote='Budgets include design, engineering, QA, and launch support.'
 			/>
-			<TestimonialsSection
-				badge='Client feedback'
-				title='Leaders trust us with'
-				highlight='mission-critical launches'
-				subtitle='A few quick notes from product, marketing, and engineering teams we support.'
-				testimonials={WEB_DEV_TESTIMONIALS}
-				columns={2}
-				showStars={false}
-				className='px-0'
-			/>
-			<FAQSection items={FAQ_ITEMS} />
-			<FreeConsultationSection
-				title='Plan your next web program with a 30-minute strategy session'
-				bullets={[
-					'Share goals, KPIs, and blockers—no prep deck required.',
-					'Receive phased recommendations within one business day.',
-					'See budget ranges and timelines before you commit to work.',
-				]}
-				formVariant='detailed'
-			/>
+			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
+			<div className='section-container pb-16 max-w-7xl mx-auto'>
+				<ConsultationCTA
+					title='Plan your next web program with a 30-minute strategy session'
+					bullets={[
+						'Share goals, KPIs, and blockers—no prep deck required.',
+						'Receive phased recommendations within one business day.',
+						'See budget ranges and timelines before you commit.',
+					]}
+				/>
+			</div>
 		</main>
 	);
 }

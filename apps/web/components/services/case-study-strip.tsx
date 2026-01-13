@@ -9,7 +9,7 @@ export function CaseStudyStrip({ items, title, description, className }: CaseStu
 	if (!items.length) return null;
 
 	return (
-		<section className={cn('section-container py-16', className)}>
+		<section className={cn('section-container py-16 max-w-7xl mx-auto', className)}>
 			{(title || description) && (
 				<div className='mb-12 max-w-2xl'>
 					{title && <h1 className='mb-4 text-foreground text-3xl font-bold'>{title}</h1>}

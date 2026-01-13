@@ -7,11 +7,9 @@ import {
 	ServiceHero,
 	TrustStrip,
 } from '@/components/services';
-import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
-import { WEB_DEV_TECH_STACK } from '@/components/services/nav-items';
-import { TechMarquee } from '@/components/services/Tech-Marquee';
+import TechMarquee from '@/components/services/Tech-Marquee';
 export const revalidate = 3600;
 
 const HERO_CONTENT = {
@@ -59,61 +57,6 @@ const PROCESS_STEPS = [
 	{
 		title: 'Stabilize & Transition',
 		description: 'Hardening sprints, documentation, and optional handoff training for in-house teams.',
-	},
-];
-
-const FULL_STACK_TIMELINE: TimelineEntry[] = [
-	{
-		title: '01 · Architecture baseline',
-		content: (
-			<>
-				<p>Document context, domain models, and integration contracts.</p>
-				<ul className='mt-3 space-y-1'>
-					<li>• Diagram services + data sources</li>
-					<li>• Select auth (NextAuth, Better Auth, custom JWT)</li>
-					<li>• Define observability + SLO targets</li>
-				</ul>
-			</>
-		),
-	},
-	{
-		title: '02 · Experience rehearsal',
-		content: (
-			<>
-				<p>Wireframes, admin tools, and operational views validated with stakeholders.</p>
-				<ul className='mt-3 space-y-1'>
-					<li>• Shared component inventory</li>
-					<li>• Access + compliance requirements captured</li>
-					<li>• Data contracts for FE/BE handoff</li>
-				</ul>
-			</>
-		),
-	},
-	{
-		title: '03 · Iterative delivery',
-		content: (
-			<>
-				<p>Weekly increments deploy to staging using Docker, GitHub actions, and automated tests.</p>
-				<ul className='mt-3 space-y-1'>
-					<li>• Drizzle/Prisma migrations with review gates</li>
-					<li>• API hardening (rate limits, logging)</li>
-					<li>• Contract tests against partner systems</li>
-				</ul>
-			</>
-		),
-	},
-	{
-		title: '04 · Stabilize & handoff',
-		content: (
-			<>
-				<p>Performance, load, and security checks precede launch, followed by docs/training.</p>
-				<ul className='mt-3 space-y-1'>
-					<li>• Runbooks + escalation paths</li>
-					<li>• Optional onsite/remote training</li>
-					<li>• Optimization backlog for post-launch</li>
-				</ul>
-			</>
-		),
 	},
 ];
 
@@ -215,16 +158,13 @@ export default function FullStackWebDevPage() {
 	return (
 		<main className='space-y-12'>
 			<ServiceHero {...HERO_CONTENT} />
-			<div className='section-container'>
-				<TechMarquee items={WEB_DEV_TECH_STACK} speed='fast' />
-			</div>
+			<TechMarquee />
 			<TrustStrip {...TRUST_CONTENT} />
-
-			<ProcessSteps steps={PROCESS_STEPS} title='A predictable full-stack delivery model' />
-			<Timeline
-				title='Delivery timeline for full-stack builds'
+			<ProcessSteps
+				steps={PROCESS_STEPS}
+				title='How we deliver Full-Stack projects'
 				description='Four structured phases keep product, platform, and operations aligned.'
-				data={FULL_STACK_TIMELINE}
+				variant='cards'
 			/>
 			<CaseStudyStrip
 				items={CASE_STUDIES}

@@ -64,21 +64,6 @@ export const navigationData: NavItem[] = [
 		],
 	},
 	{
-		id: 'blog',
-		label: 'Blog',
-		columns: [
-			{
-				title: 'Latest Updates',
-				links: [
-					{ label: 'Insurance Insights', href: '/blog/insurance' },
-					{ label: 'Legal Trends', href: '/blog/legal' },
-					{ label: 'Home Services Market', href: '/blog/home-services' },
-					{ label: 'Healthcare News', href: '/blog/healthcare' },
-				],
-			},
-		],
-	},
-	{
 		id: 'about',
 		label: 'About',
 		columns: [
