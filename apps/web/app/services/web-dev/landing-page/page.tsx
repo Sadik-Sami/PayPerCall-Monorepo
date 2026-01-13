@@ -1,7 +1,7 @@
 import {
 	CaseStudyStrip,
 	FAQSection,
-	FreeConsultationSection,
+	ConsultationCTA,
 	PricingTable,
 	ProcessSteps,
 	ServiceHero,
@@ -29,11 +29,7 @@ const HERO_CONTENT = {
 };
 
 const TRUST_CONTENT = {
-	logos: [
-		{ name: 'Peak Software' },
-		{ name: 'Atlas Risk' },
-		{ name: 'Lumen Healthcare' },
-	],
+	logos: [{ name: 'Peak Software' }, { name: 'Atlas Risk' }, { name: 'Lumen Healthcare' }],
 	metrics: [
 		{ label: 'Landing pages shipped in 2025', value: '210' },
 		{ label: 'Median conversion lift', value: '+28%' },
@@ -44,9 +40,18 @@ const TRUST_CONTENT = {
 
 const PROCESS_STEPS = [
 	{ title: 'Campaign Intake', description: 'Clarify the offer, audience, traffic source, and success metrics.' },
-	{ title: 'Wireframe & Copy Collaboration', description: 'Draft structure and conversion copy with stakeholders or internal copy partners.' },
-	{ title: 'Build & QA', description: 'Develop in Next.js with strict performance budgets and analytics instrumentation.' },
-	{ title: 'Experiment & Optimize', description: 'Support variant launches, heatmaps, and metric reviews to secure lift.' },
+	{
+		title: 'Wireframe & Copy Collaboration',
+		description: 'Draft structure and conversion copy with stakeholders or internal copy partners.',
+	},
+	{
+		title: 'Build & QA',
+		description: 'Develop in Next.js with strict performance budgets and analytics instrumentation.',
+	},
+	{
+		title: 'Experiment & Optimize',
+		description: 'Support variant launches, heatmaps, and metric reviews to secure lift.',
+	},
 ];
 
 const CASE_STUDIES = [
@@ -90,7 +95,12 @@ const PRICING_PLANS = [
 		name: 'Single Landing Page',
 		description: 'One campaign, high velocity.',
 		priceLabel: 'From $6k',
-		features: ['Strategy + copy walkthrough', 'Custom design + build', 'Analytics + event setup', 'One round of refinements'],
+		features: [
+			'Strategy + copy walkthrough',
+			'Custom design + build',
+			'Analytics + event setup',
+			'One round of refinements',
+		],
 	},
 	{
 		name: 'Landing Page Bundle',
@@ -104,7 +114,12 @@ const PRICING_PLANS = [
 		name: 'Optimization Retainer',
 		description: 'Ongoing testing and variant creation.',
 		priceLabel: 'From $8k / month',
-		features: ['Experiment backlog management', 'Design + build of variants', 'Weekly reporting', 'Stakeholder reviews'],
+		features: [
+			'Experiment backlog management',
+			'Design + build of variants',
+			'Weekly reporting',
+			'Stakeholder reviews',
+		],
 	},
 ];
 
@@ -116,7 +131,8 @@ const FAQ_ITEMS = [
 	},
 	{
 		question: 'What analytics integrations are included?',
-		answer: 'We wire up your analytics stack (GA4, HubSpot, Segment, etc.) and configure conversion events tied to the campaign goal.',
+		answer:
+			'We wire up your analytics stack (GA4, HubSpot, Segment, etc.) and configure conversion events tied to the campaign goal.',
 	},
 	{
 		question: 'Can you support multiple traffic sources?',
@@ -132,19 +148,20 @@ const FAQ_ITEMS = [
 export default function LandingPageWebDevPage() {
 	return (
 		<main className='space-y-12'>
-			<ServiceHero {...HERO_CONTENT} />
-			<TrustStrip {...TRUST_CONTENT} />
-			<ProcessSteps steps={PROCESS_STEPS} title='Landing page delivery model' />
-			<CaseStudyStrip items={CASE_STUDIES} title='Conversion lifts backed by data' />
+			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+			<TrustStrip className='max-w-7xl mx-auto' {...TRUST_CONTENT} />
+			<ProcessSteps className='max-w-7xl mx-auto' steps={PROCESS_STEPS} title='Landing page delivery model' />
+			<CaseStudyStrip className='max-w-7xl mx-auto' items={CASE_STUDIES} title='Conversion lifts backed by data' />
 			<PricingTable
+				className='max-w-7xl mx-auto scroll-mt-24'
 				title='Landing page pricing'
 				description='Choose the engagement that matches your campaign cadence—every option kicks off with a free brief.'
 				plans={PRICING_PLANS}
 				billingNote='Turnarounds assume approved copy and brand assets within 48 hours of kickoff.'
-				className='scroll-mt-24'
 			/>
-			<FAQSection items={FAQ_ITEMS} />
-			<FreeConsultationSection
+			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
+			<ConsultationCTA
+				className='max-w-7xl mx-auto scroll-mt-24'
 				title='Highlight your next campaign with a free planning call'
 				bullets={[
 					'Share the offer, KPI, and traffic plan in plain language.',
@@ -152,9 +169,7 @@ export default function LandingPageWebDevPage() {
 					'Leave with scope, price range, and launch timeline.',
 				]}
 				formVariant='short'
-				className='scroll-mt-24'
 			/>
 		</main>
 	);
 }
-

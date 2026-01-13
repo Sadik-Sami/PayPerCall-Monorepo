@@ -1,7 +1,7 @@
 import {
 	CaseStudyStrip,
 	FAQSection,
-	FreeConsultationSection,
+	ConsultationCTA,
 	PricingTable,
 	ProcessSteps,
 	ServiceHero,
@@ -30,11 +30,7 @@ const HERO_CONTENT = {
 };
 
 const TRUST_CONTENT = {
-	logos: [
-		{ name: 'Westward Goods' },
-		{ name: 'Boreal Outdoor' },
-		{ name: 'Harbor Supply' },
-	],
+	logos: [{ name: 'Westward Goods' }, { name: 'Boreal Outdoor' }, { name: 'Harbor Supply' }],
 	metrics: [
 		{ label: 'GMV supported in 2025', value: '$220M+' },
 		{ label: 'Average checkout completion rate', value: '78%' },
@@ -44,10 +40,22 @@ const TRUST_CONTENT = {
 };
 
 const PROCESS_STEPS = [
-	{ title: 'Commerce Blueprint', description: 'Forecast SKU counts, fulfillment flows, and integration requirements before design.' },
-	{ title: 'Experience Design', description: 'Define product templates, merchandising rules, and conversion guardrails for every journey.' },
-	{ title: 'Build & Integrate', description: 'Implement storefront, headless services, payment, tax, and fulfillment systems with automated QA.' },
-	{ title: 'Optimize & Scale', description: 'Monitor funnel metrics, iterate on CRO experiments, and support seasonal traffic patterns.' },
+	{
+		title: 'Commerce Blueprint',
+		description: 'Forecast SKU counts, fulfillment flows, and integration requirements before design.',
+	},
+	{
+		title: 'Experience Design',
+		description: 'Define product templates, merchandising rules, and conversion guardrails for every journey.',
+	},
+	{
+		title: 'Build & Integrate',
+		description: 'Implement storefront, headless services, payment, tax, and fulfillment systems with automated QA.',
+	},
+	{
+		title: 'Optimize & Scale',
+		description: 'Monitor funnel metrics, iterate on CRO experiments, and support seasonal traffic patterns.',
+	},
 ];
 
 const CASE_STUDIES = [
@@ -79,7 +87,8 @@ const CASE_STUDIES = [
 		client: 'Harbor Supply',
 		industry: 'B2B ecommerce',
 		problem: 'Needed customer-specific pricing, punchout integrations, and account workflows.',
-		solution: 'Deployed a headless commerce stack with contract pricing, account approvals, and procurement integrations.',
+		solution:
+			'Deployed a headless commerce stack with contract pricing, account approvals, and procurement integrations.',
 		outcome: 'Digital revenue surpassed in-person orders within six months.',
 		icon: <Truck className='size-5' />,
 		metrics: [
@@ -149,7 +158,12 @@ const PRICING_PLANS = [
 		name: 'Growth Storefront',
 		description: 'For scaling DTC brands ready for a custom experience layer.',
 		priceLabel: 'From $55k',
-		features: ['Custom storefront with headless CMS', 'Optimized PDP + PLP templates', 'Payment + tax integration', 'Analytics + CRO setup'],
+		features: [
+			'Custom storefront with headless CMS',
+			'Optimized PDP + PLP templates',
+			'Payment + tax integration',
+			'Analytics + CRO setup',
+		],
 	},
 	{
 		name: 'B2B Commerce',
@@ -163,7 +177,12 @@ const PRICING_PLANS = [
 		name: 'Replatform & Scale',
 		description: 'Full migration or multi-store program.',
 		priceLabel: 'Custom',
-		features: ['Platform selection support', 'Data + SEO migration', 'Load + resilience testing', 'Runbook + team training'],
+		features: [
+			'Platform selection support',
+			'Data + SEO migration',
+			'Load + resilience testing',
+			'Runbook + team training',
+		],
 	},
 ];
 
@@ -192,23 +211,30 @@ const FAQ_ITEMS = [
 export default function EcommerceWebDevPage() {
 	return (
 		<main className='space-y-12'>
-			<ServiceHero {...HERO_CONTENT} />
-			<TrustStrip {...TRUST_CONTENT} />
-			<ProcessSteps steps={PROCESS_STEPS} title='Ecommerce engagement model' />
+			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+			<TrustStrip className='max-w-7xl mx-auto' {...TRUST_CONTENT} />
+			<ProcessSteps className='max-w-7xl mx-auto' steps={PROCESS_STEPS} title='Ecommerce engagement model' />
 			<Timeline
+				className='max-w-7xl mx-auto'
 				title='Commerce program timeline'
 				description='Each commerce build follows four checkpoints so ops, marketing, and engineering stay aligned.'
 				data={ECOM_TIMELINE}
 			/>
-			<CaseStudyStrip items={CASE_STUDIES} title='Commerce case studies anchored in revenue' />
+			<CaseStudyStrip
+				className='max-w-7xl mx-auto'
+				items={CASE_STUDIES}
+				title='Commerce case studies anchored in revenue'
+			/>
 			<PricingTable
+				className='max-w-7xl mx-auto'
 				title='Ecommerce engagement tiers'
 				description='Each tier includes launch readiness, QA, and hypercare—and starts with a free store audit.'
 				plans={PRICING_PLANS}
 				billingNote='Payment schedules are milestone-based with clear deliverable checkpoints.'
 			/>
-			<FAQSection items={FAQ_ITEMS} />
-			<FreeConsultationSection
+			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
+			<ConsultationCTA
+				className='max-w-7xl mx-auto'
 				title='Request an ecommerce performance review'
 				bullets={[
 					'Share funnel data, speed metrics, and ops gaps.',
@@ -216,9 +242,7 @@ export default function EcommerceWebDevPage() {
 					'Choose replatform vs. optimization with clarity.',
 				]}
 				formVariant='detailed'
-				className='scroll-mt-24'
 			/>
 		</main>
 	);
 }
-

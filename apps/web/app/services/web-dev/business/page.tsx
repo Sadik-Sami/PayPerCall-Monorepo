@@ -1,7 +1,7 @@
 import {
 	CaseStudyStrip,
 	FAQSection,
-	FreeConsultationSection,
+	ConsultationCTA,
 	PricingTable,
 	ProcessSteps,
 	ServiceHero,
@@ -29,11 +29,7 @@ const HERO_CONTENT = {
 };
 
 const TRUST_CONTENT = {
-	logos: [
-		{ name: 'Everest Advisory' },
-		{ name: 'Waypoint Logistics' },
-		{ name: 'Meridian Legal' },
-	],
+	logos: [{ name: 'Everest Advisory' }, { name: 'Waypoint Logistics' }, { name: 'Meridian Legal' }],
 	metrics: [
 		{ label: 'Business sites launched in 24 months', value: '48' },
 		{ label: 'Average organic lift', value: '+32%', helperText: 'Three months after launch' },
@@ -105,7 +101,12 @@ const PRICING_PLANS = [
 		name: 'Essential Corporate Site',
 		description: 'For focused positioning sites or rebrands with lean content.',
 		priceLabel: 'From $22k',
-		features: ['Up to 6 core templates', 'CMS + publishing workflow', 'On-page SEO + schema', 'Analytics + lead routing'],
+		features: [
+			'Up to 6 core templates',
+			'CMS + publishing workflow',
+			'On-page SEO + schema',
+			'Analytics + lead routing',
+		],
 	},
 	{
 		name: 'Growth Website',
@@ -158,19 +159,28 @@ const FAQ_ITEMS = [
 export default function BusinessWebsitesPage() {
 	return (
 		<main className='space-y-12'>
-			<ServiceHero {...HERO_CONTENT} />
-			<TrustStrip {...TRUST_CONTENT} />
-			<ProcessSteps steps={PROCESS_STEPS} title='Structured delivery for corporate sites' />
-			<CaseStudyStrip items={CASE_STUDIES} title='Case studies focused on outcomes executives value' />
+			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+			<TrustStrip className='max-w-7xl mx-auto' {...TRUST_CONTENT} />
+			<ProcessSteps
+				className='max-w-7xl mx-auto'
+				steps={PROCESS_STEPS}
+				title='Structured delivery for corporate sites'
+			/>
+			<CaseStudyStrip
+				className='max-w-7xl mx-auto'
+				items={CASE_STUDIES}
+				title='Case studies focused on outcomes executives value'
+			/>
 			<PricingTable
+				className='max-w-7xl mx-auto scroll-mt-24'
 				title='Business website packages'
 				description='Choose the tier that fits your content footprint. Every engagement still begins with a free website review.'
 				plans={PRICING_PLANS}
 				billingNote='Pricing assumes approved brand guidelines and access to stakeholders for timely reviews.'
-				className='scroll-mt-24'
 			/>
-			<FAQSection items={FAQ_ITEMS} />
-			<FreeConsultationSection
+			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
+			<ConsultationCTA
+				className='max-w-7xl mx-auto'
 				title='Request an evidence-based website review'
 				bullets={[
 					'Get a quick audit across UX, SEO, and trust signals.',
@@ -182,4 +192,3 @@ export default function BusinessWebsitesPage() {
 		</main>
 	);
 }
-

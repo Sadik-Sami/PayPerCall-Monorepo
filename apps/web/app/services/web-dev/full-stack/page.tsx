@@ -1,7 +1,7 @@
 import {
 	CaseStudyStrip,
 	FAQSection,
-	FreeConsultationSection,
+	ConsultationCTA,
 	PricingTable,
 	ProcessSteps,
 	ServiceHero,
@@ -157,28 +157,32 @@ const FAQ_ITEMS = [
 export default function FullStackWebDevPage() {
 	return (
 		<main className='space-y-12'>
-			<ServiceHero {...HERO_CONTENT} />
+			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
 			<TechMarquee />
-			<TrustStrip {...TRUST_CONTENT} />
+			<TrustStrip className='max-w-7xl mx-auto' {...TRUST_CONTENT} />
 			<ProcessSteps
+				className='max-w-7xl mx-auto'
 				steps={PROCESS_STEPS}
 				title='How we deliver Full-Stack projects'
 				description='Four structured phases keep product, platform, and operations aligned.'
 				variant='cards'
 			/>
 			<CaseStudyStrip
+				className='max-w-7xl mx-auto'
 				items={CASE_STUDIES}
 				title='Representative full-stack engagements'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
 			/>
 			<PricingTable
+				className='max-w-7xl mx-auto'
 				title='Flexible engagement structures'
 				description='Pick the model that best matches your internal capacity—each starts with a free discovery call.'
 				plans={PRICING_PLANS}
 				billingNote='Budgets include senior engineering oversight, QA, and documentation. Travel or third-party licenses billed at cost.'
 			/>
-			<FAQSection items={FAQ_ITEMS} />
-			<FreeConsultationSection
+			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
+			<ConsultationCTA
+				className='max-w-7xl mx-auto'
 				title='Book a full-stack discovery call'
 				bullets={[
 					'Walk through architecture, teams, and constraints.',
