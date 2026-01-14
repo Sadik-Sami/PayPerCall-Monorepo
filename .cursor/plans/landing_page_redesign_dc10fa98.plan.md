@@ -1,42 +1,3 @@
----
-name: Landing Page Redesign
-overview: Redesign the landing page to remove generic AI/SaaS aesthetics and create a confident, trustworthy experience that naturally flows between sections while accurately representing your Pay Per Call, Pay Per Lead, Digital Marketing, and Web/App Development services.
-todos:
-  - id: hero
-    content: Rewrite Hero with clear value proposition for lead generation business
-    status: completed
-  - id: trustbar
-    content: Create new TrustBar component with client logos/industry badges
-    status: completed
-  - id: impactstats
-    content: Rework ImpactStats with relevant metrics (leads, calls, ROI) and remove glows
-    status: completed
-  - id: industries
-    content: Create Industries component to replace TechCloud
-    status: completed
-  - id: services-delete
-    content: Remove redundant Services.tsx component
-    status: completed
-  - id: howitworks
-    content: Rework FeatureSteps to static process (remove auto-carousel)
-    status: completed
-  - id: testimonials
-    content: Replace placeholder NexaUI content with real service testimonials
-    status: completed
-  - id: founder
-    content: Update FounderInsight quote and remove DevOps references
-    status: completed
-  - id: faq
-    content: Rewrite FAQ questions to focus on lead generation business
-    status: completed
-  - id: cta
-    content: Update CTA messaging to focus on consultation/lead gen
-    status: completed
-  - id: page-order
-    content: Update page.tsx with new section order and remove deleted components
-    status: completed
----
-
 # Landing Page Redesign Plan
 
 ## Current State Analysis
@@ -73,7 +34,7 @@ todos:
 
 ## Proposed Section Order and Changes
 
-```
+```javascript
 Hero (value proposition)
     ↓
 TrustBar (NEW - client logos/badges)
@@ -106,9 +67,7 @@ CTA (REWORK messaging)
 
 ### 1. Hero (Complete Rewrite)
 
-**Current:** Placeholder text with image slider
-
-**New:** Clear value proposition focused on lead generation
+**Current:** Placeholder text with image slider**New:** Clear value proposition focused on lead generation
 
 - Headline: Direct statement about connecting businesses with customers
 - Subheadline: Mention Pay Per Call, Pay Per Lead as core offerings
@@ -127,9 +86,7 @@ CTA (REWORK messaging)
 
 ### 3. TechSpotlight (KEEP)
 
-**Status:** Recently improved, aligns with services
-
-**Minor tweaks:** None needed, content is accurate
+**Status:** Recently improved, aligns with services**Minor tweaks:** None needed, content is accurate
 
 ### 4. ImpactStats (REWORK)
 
@@ -156,9 +113,7 @@ CTA (REWORK messaging)
 
 ### 5. Industries (NEW - Replace TechCloud)
 
-**Purpose:** Show expertise across verticals (from your navbar data)
-
-Content from `data.ts`:
+**Purpose:** Show expertise across verticals (from your navbar data)Content from `data.ts`:
 
 - Financial & Legal (Insurance, Legal Services, Financial)
 - Service & Health (Home Services, Healthcare, Automotive)
@@ -190,11 +145,7 @@ Content from `data.ts`:
 
 ### 7. Testimonials (KEEP UI, Fix Content)
 
-**UI:** Keep the vertical marquee layout (it works)
-
-**Performance:** Optimize by reducing motion on scroll
-
-**Content changes (critical):**
+**UI:** Keep the vertical marquee layout (it works)**Performance:** Optimize by reducing motion on scroll**Content changes (critical):**
 
 - Replace all "NexaUI" references with actual service testimonials
 - Focus on: Insurance agents, lawyers, home service businesses
@@ -269,35 +220,7 @@ Content from `data.ts`:
 
 ## Files to Modify
 
-| File | Action | Priority |
-
-|------|--------|----------|
-
-| `hero.tsx` | Complete rewrite | High |
-
-| `ImpactStats.tsx` | Rework metrics and design | High |
-
-| `Services.tsx` | Delete (redundant) | High |
-
-| `TechCloud.tsx` | Replace with Industries | High |
-
-| `steps.tsx` | Rework to static process | Medium |
-
-| `FounderInsight.tsx` | Update content | Medium |
-
-| `FAQ.tsx` | Rewrite questions | Medium |
-
-| `cta.tsx` | Update messaging | Medium |
-
-| `testimonials.tsx` | Replace placeholder content | Medium |
-
-| `page.tsx` | Update section order | High |
-
-| NEW: `TrustBar.tsx` | Create new component | Medium |
-
-| NEW: `Industries.tsx` | Create new component | Medium |
-
----
+| File | Action | Priority ||------|--------|----------|| `hero.tsx` | Complete rewrite | High || `ImpactStats.tsx` | Rework metrics and design | High || `Services.tsx` | Delete (redundant) | High || `TechCloud.tsx` | Replace with Industries | High || `steps.tsx` | Rework to static process | Medium || `FounderInsight.tsx` | Update content | Medium || `FAQ.tsx` | Rewrite questions | Medium || `cta.tsx` | Update messaging | Medium || `testimonials.tsx` | Replace placeholder content | Medium || `page.tsx` | Update section order | High || NEW: `TrustBar.tsx` | Create new component | Medium || NEW: `Industries.tsx` | Create new component | Medium |---
 
 ## SEO Considerations
 
@@ -305,4 +228,3 @@ Content from `data.ts`:
 - Each section should have semantic headings (H2)
 - Industries section helps with local/vertical SEO
 - FAQ structured data potential
-- Remove generic tech terms, add industry-specific keywords

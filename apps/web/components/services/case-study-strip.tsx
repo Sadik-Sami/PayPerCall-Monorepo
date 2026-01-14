@@ -12,7 +12,7 @@ export function CaseStudyStrip({ items, title, description, className }: CaseStu
 		<section className={cn('section-container py-16 max-w-7xl mx-auto', className)}>
 			{(title || description) && (
 				<div className='mb-12 max-w-2xl'>
-					{title && <h1 className='mb-4 text-foreground text-3xl font-bold'>{title}</h1>}
+					{title && <h2 className='mb-4 text-foreground text-3xl font-bold'>{title}</h2>}
 					{description && <p className='text-muted-foreground text-lg'>{description}</p>}
 				</div>
 			)}

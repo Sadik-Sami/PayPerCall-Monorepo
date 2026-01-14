@@ -38,7 +38,19 @@ export function FAQSection({ items, title = 'Frequently Asked Questions', descri
 										{item.question}
 									</span>
 								</AccordionTrigger>
-								<AccordionContent className='pb-5 pl-12 text-muted-foreground'>{item.answer}</AccordionContent>
+								<AccordionContent className='pb-5 pl-12 text-muted-foreground space-y-4'>
+									<p>{item.answer}</p>
+									{item.bulletPoints && item.bulletPoints.length > 0 && (
+										<ul className='space-y-2'>
+											{item.bulletPoints.map((point) => (
+												<li key={point} className='flex items-start gap-3'>
+													<span className='mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary' />
+													<span className='text-sm text-muted-foreground'>{point}</span>
+												</li>
+											))}
+										</ul>
+									)}
+								</AccordionContent>
 							</AccordionItem>
 						))}
 					</Accordion>

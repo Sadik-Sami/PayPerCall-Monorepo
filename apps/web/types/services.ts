@@ -104,6 +104,7 @@ export interface PricingTableProps {
 export interface FaqItem {
   question: string;
   answer: string;
+  bulletPoints?: string[];
 }
 
 export interface FAQSectionProps {
@@ -157,5 +158,19 @@ export interface FeatureGridProps {
   description?: string;
   columns?: 2 | 3 | 4;
   variant?: 'cards' | 'minimal' | 'bento';
+  className?: string;
+}
+
+export interface DeliverableItem {
+  title: string;
+  description: string;
+  bulletPoints?: string[];
+}
+
+export interface DeliverablesSectionProps {
+  title?: string;
+  subtitle?: string;
+  standards?: string[];
+  deliverables: DeliverableItem[];
   className?: string;
 }
