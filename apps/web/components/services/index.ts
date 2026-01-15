@@ -19,3 +19,4 @@ export * from './integration-showcase';
 export * from './service-comparison';
 export * from './timeline-steps';
 export * from './deliverables-section';
+export * from './trending-up';

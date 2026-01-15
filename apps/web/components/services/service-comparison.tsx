@@ -7,7 +7,8 @@ import { containerVariants, itemVariants } from '@/lib/animations';
 
 export interface ComparisonFeature {
 	name: string;
-	included: boolean[] | ('Yes' | 'No' | 'Optional')[];
+	// Allows boolean presence/absence, standard Yes/No/Optional labels, or descriptive strings (e.g. "Up to 6").
+	included: (boolean | 'Yes' | 'No' | 'Optional' | string)[];
 }
 
 export interface ComparisonTier {
@@ -48,70 +49,72 @@ export function ServiceComparison({
 	};
 
 	return (
-		<section className={cn('py-16 md:py-24 overflow-x-auto', className)}>
-			<motion.div
-				variants={containerVariants}
-				initial='hidden'
-				whileInView='visible'
-				viewport={{ once: true, margin: '-100px' }}
-				className='space-y-12'>
-				{/* Header */}
-				<motion.div variants={itemVariants} className='max-w-3xl'>
-					<h2 className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl'>{title}</h2>
-					{subtitle && <p className='text-lg text-muted-foreground'>{subtitle}</p>}
-				</motion.div>
-
-				{/* Comparison table */}
+		<section className={cn('py-12 md:py-16 overflow-x-auto', className)}>
+			<div className='section-container'>
 				<motion.div
-					variants={itemVariants}
-					className='rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm overflow-x-auto'>
-					<table className='w-full'>
-						<thead>
-							<tr className='border-b border-border/50'>
-								<th className='px-6 py-4 text-left text-sm font-semibold text-foreground'>Feature</th>
-								{tiers.map((tier, idx) => (
-									<th
-										key={tier.name}
-										className={cn(
-											'px-6 py-4 text-center text-sm font-semibold whitespace-nowrap',
-											tier.recommended && 'bg-primary/5',
-											idx === 0 && 'border-r border-border/30',
-											idx === tiers.length - 1 && idx > 0 && 'border-l border-border/30'
-										)}>
-										<div className='flex flex-col items-center gap-2'>
-											<span className='text-foreground'>{tier.name}</span>
-											{tier.recommended && (
-												<span className='inline-block px-2 py-1 rounded text-xs font-medium bg-primary/20 text-primary'>
-													Recommended
-												</span>
-											)}
-										</div>
-									</th>
-								))}
-							</tr>
-						</thead>
-						<tbody>
-							{features.map((feature, idx) => (
-								<tr
-									key={feature.name}
-									className={cn('border-b border-border/30 last:border-b-0', idx % 2 === 0 && 'bg-muted/30')}>
-									<td className='px-6 py-4 text-sm font-medium text-foreground'>{feature.name}</td>
-									{feature.included.map((value, tierIdx) => (
-										<td
-											key={`${feature.name}-${tierIdx}`}
-											className={cn('px-6 py-4 text-center', tiers[tierIdx]?.recommended && 'bg-primary/5')}>
-											<div className='flex justify-center'>{getIcon(value)}</div>
-											{getFeatureValue(value) && (
-												<p className='text-xs text-muted-foreground mt-1'>{getFeatureValue(value)}</p>
-											)}
-										</td>
+					variants={containerVariants}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true, margin: '-100px' }}
+					className='space-y-10'>
+					{/* Header */}
+					<motion.div variants={itemVariants} className='max-w-3xl'>
+						<h2 className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl'>{title}</h2>
+						{subtitle && <p className='text-lg text-muted-foreground'>{subtitle}</p>}
+					</motion.div>
+
+					{/* Comparison table */}
+					<motion.div
+						variants={itemVariants}
+						className='rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm overflow-x-auto'>
+						<table className='w-full'>
+							<thead>
+								<tr className='border-b border-border/50'>
+									<th className='px-6 py-4 text-left text-sm font-semibold text-foreground'>Feature</th>
+									{tiers.map((tier, idx) => (
+										<th
+											key={tier.name}
+											className={cn(
+												'px-6 py-4 text-center text-sm font-semibold whitespace-nowrap',
+												tier.recommended && 'bg-primary/5',
+												idx === 0 && 'border-r border-border/30',
+												idx === tiers.length - 1 && idx > 0 && 'border-l border-border/30'
+											)}>
+											<div className='flex flex-col items-center gap-2'>
+												<span className='text-foreground'>{tier.name}</span>
+												{tier.recommended && (
+													<span className='inline-block px-2 py-1 rounded text-xs font-medium bg-primary/20 text-primary'>
+														Recommended
+													</span>
+												)}
+											</div>
+										</th>
 									))}
 								</tr>
-							))}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{features.map((feature, idx) => (
+									<tr
+										key={feature.name}
+										className={cn('border-b border-border/30 last:border-b-0', idx % 2 === 0 && 'bg-muted/30')}>
+										<td className='px-6 py-4 text-sm font-medium text-foreground'>{feature.name}</td>
+										{feature.included.map((value, tierIdx) => (
+											<td
+												key={`${feature.name}-${tierIdx}`}
+												className={cn('px-6 py-4 text-center', tiers[tierIdx]?.recommended && 'bg-primary/5')}>
+												<div className='flex justify-center'>{getIcon(value)}</div>
+												{getFeatureValue(value) && (
+													<p className='text-xs text-muted-foreground mt-1'>{getFeatureValue(value)}</p>
+												)}
+											</td>
+										))}
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</motion.div>
 				</motion.div>
-			</motion.div>
+			</div>
 		</section>
 	);
 }
