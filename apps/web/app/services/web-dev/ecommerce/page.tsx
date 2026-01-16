@@ -3,15 +3,55 @@ import {
 	FAQSection,
 	ConsultationCTA,
 	PricingTable,
-	ProcessSteps,
 	ServiceHero,
-	TrustStrip,
+	ClientSuccessBreakdown,
+	type SuccessOutcome,
+	IntegrationLogos,
+	ResultsGallery,
+	ProcessSteps,
 } from '@/components/services';
 import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
 import heroImageCommerce from '@/public/images/slider/slider-1.jpg';
 import { ShoppingBag, Truck, CreditCard } from 'lucide-react';
+import type { Metadata } from 'next';
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+	title: 'Ecommerce Website Development | Performance, Ops, and Integrations | PayPerCall',
+	description:
+		'Conversion-ready ecommerce builds: storefront performance, payments, tax, fulfillment, and ERP/CRM integrations with measurable revenue outcomes.',
+	alternates: { canonical: '/services/web-dev/ecommerce' },
+	robots: { index: true, follow: true },
+	openGraph: {
+		type: 'website',
+		title: 'Ecommerce Website Development',
+		description: 'Storefront performance, merchandising, and integrations delivered together for reliable growth.',
+		url: '/services/web-dev/ecommerce',
+		images: [
+			{
+				url: '/images/slider/slider-1.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'Ecommerce website development and operations',
+			},
+		],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Ecommerce Website Development',
+		description: 'Performance, payments, and ops-ready ecommerce builds with measurable outcomes.',
+		images: ['/images/slider/slider-1.jpg'],
+	},
+	keywords: [
+		'ecommerce web development',
+		'headless commerce development',
+		'Shopify headless storefront',
+		'checkout optimization',
+		'payments tax fulfillment integrations',
+		'ecommerce performance optimization',
+	],
+};
 
 const HERO_CONTENT = {
 	pill: 'Ecommerce',
@@ -29,32 +69,71 @@ const HERO_CONTENT = {
 	},
 };
 
-const TRUST_CONTENT = {
-	logos: [{ name: 'Westward Goods' }, { name: 'Boreal Outdoor' }, { name: 'Harbor Supply' }],
-	metrics: [
-		{ label: 'GMV supported in 2025', value: '$220M+' },
-		{ label: 'Average checkout completion rate', value: '78%' },
-		{ label: 'Page load under 2s across catalog size', value: '95%', helperText: 'Based on CrUX data' },
-		{ label: 'Supported platforms', value: 'Headless, Shopify, Commerce tools' },
-	],
-};
+const SUCCESS_OUTCOMES = [
+	{
+		icon: 'default',
+		metric: '$220M+',
+		label: 'GMV supported in 2025',
+		description: "Total gross merchandise value processed through storefronts we've built",
+		context: 'Across DTC brands, B2B marketplaces, and enterprise catalogs.',
+	},
+	{
+		icon: 'database',
+		metric: '78%',
+		label: 'Average checkout completion rate',
+		description: 'Conversion from cart to confirmation across all store types',
+		context: 'Industry average is 70%. We focus on reducing friction and removing abandonment.',
+	},
+	{
+		icon: 'gitBranch',
+		metric: '+21%',
+		label: 'Average AOV lift',
+		description: 'Increase in average order value post-launch',
+		context: 'Through better product discovery, bundling, and personalization.',
+	},
+] satisfies SuccessOutcome[];
 
-const PROCESS_STEPS = [
+const ECOMMERCE_INTEGRATIONS = [
+	{ name: 'Stripe', category: 'Payments' },
+	{ name: 'Adyen', category: 'Payments' },
+	{ name: 'Square', category: 'Payments' },
+	{ name: 'TaxJar', category: 'Tax & Compliance' },
+	{ name: 'Avalara', category: 'Tax & Compliance' },
+	{ name: 'ShipStation', category: 'Fulfillment' },
+	{ name: 'ShipBob', category: 'Fulfillment' },
+	{ name: 'NetSuite', category: 'ERP' },
+	{ name: 'SAP', category: 'ERP' },
+	{ name: 'Segment', category: 'Analytics' },
+	{ name: 'Google Analytics', category: 'Analytics' },
+	{ name: 'Klaviyo', category: 'Marketing' },
+	{ name: 'Mailchimp', category: 'Marketing' },
+	{ name: 'Chargify', category: 'Subscriptions' },
+	{ name: 'Recurly', category: 'Subscriptions' },
+	{ name: 'Algolia', category: 'Search' },
+	{ name: 'Elasticsearch', category: 'Search' },
+];
+
+const RESULTS = [
 	{
-		title: 'Commerce Blueprint',
-		description: 'Forecast SKU counts, fulfillment flows, and integration requirements before design.',
+		label: 'Checkout Completion',
+		before: '62%',
+		after: '78%',
+		improvement: '+16pp',
+		context: 'Reduced form friction, mobile optimization, and trust signals.',
 	},
 	{
-		title: 'Experience Design',
-		description: 'Define product templates, merchandising rules, and conversion guardrails for every journey.',
+		label: 'Page Load Speed',
+		before: '3.2s',
+		after: '1.1s',
+		improvement: '3x faster',
+		context: 'ISR, edge caching, and image optimization impact.',
 	},
 	{
-		title: 'Build & Integrate',
-		description: 'Implement storefront, headless services, payment, tax, and fulfillment systems with automated QA.',
-	},
-	{
-		title: 'Optimize & Scale',
-		description: 'Monitor funnel metrics, iterate on CRO experiments, and support seasonal traffic patterns.',
+		label: 'Average Order Value',
+		before: '$87',
+		after: '$105',
+		improvement: '+21%',
+		context: 'Better product discovery, related items, and bundling.',
 	},
 ];
 
@@ -95,6 +174,25 @@ const CASE_STUDIES = [
 			{ label: 'Digital revenue', value: '>50%' },
 			{ label: 'Implementation', value: '6 mo' },
 		],
+	},
+];
+
+const PROCESS_STEPS = [
+	{
+		title: 'Commerce Blueprint',
+		description: 'Forecast SKU counts, fulfillment flows, and integration requirements before design.',
+	},
+	{
+		title: 'Experience Design',
+		description: 'Define product templates, merchandising rules, and conversion guardrails for every journey.',
+	},
+	{
+		title: 'Build & Integrate',
+		description: 'Implement storefront, headless services, payment, tax, and fulfillment systems with automated QA.',
+	},
+	{
+		title: 'Optimize & Scale',
+		description: 'Monitor funnel metrics, iterate on CRO experiments, and support seasonal traffic patterns.',
 	},
 ];
 
@@ -188,14 +286,39 @@ const PRICING_PLANS = [
 
 const FAQ_ITEMS = [
 	{
+		question: "We're worried about losing sales during a platform migration.",
+		answer:
+			'We protect conversion rates through parallel testing, redirect mapping, and real-time monitoring. We preserve all structured data (product schemas, reviews, pricing) and run side-by-side analytics to catch any dips immediately.',
+		bulletPoints: [
+			'Pre-launch SEO audit and redirect plan',
+			'Structured data migration without data loss',
+			'Parallel monitoring for 30 days post-launch',
+		],
+	},
+	{
+		question: 'What happens with payment security and PCI compliance?',
+		answer:
+			'Payment processing is never stored on your servers. We use tokenization and handle everything through PCI-compliant payment gateways. Your infrastructure stays clean and auditable.',
+		bulletPoints: [
+			'Tokenized payment handling via Stripe, Adyen, or Square',
+			'PCI DSS compliance verified pre-launch',
+			'Encrypted form transmission and HTTPS everywhere',
+		],
+	},
+	{
+		question: 'How do you handle traffic spikes during peak seasons?',
+		answer:
+			'Built-in auto-scaling, edge caching, and load testing before peak dates. We run chaos tests before Black Friday or your busy season so we know exactly how the system behaves under stress.',
+		bulletPoints: [
+			'Edge caching for product pages and assets',
+			'Load tests at 3x expected peak traffic',
+			'Database connection pooling and optimization',
+		],
+	},
+	{
 		question: 'Do you handle platform selection?',
 		answer:
 			'Yes. We assess catalog complexity, internal capabilities, and integration needs to recommend the right platform before we commit to build.',
-	},
-	{
-		question: 'How do you protect conversion rates during a migration?',
-		answer:
-			'We map redirects, preserve structured data, replicate tracking, and run parallel monitoring to ensure conversions do not dip post-launch.',
 	},
 	{
 		question: 'Can you support CRO after launch?',
@@ -210,39 +333,101 @@ const FAQ_ITEMS = [
 
 export default function EcommerceWebDevPage() {
 	return (
-		<main className='space-y-12'>
-			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<TrustStrip className='max-w-7xl mx-auto' {...TRUST_CONTENT} />
-			<ProcessSteps className='max-w-7xl mx-auto' steps={PROCESS_STEPS} title='Ecommerce engagement model' />
-			<Timeline
-				className='max-w-7xl mx-auto'
-				title='Commerce program timeline'
-				description='Each commerce build follows four checkpoints so ops, marketing, and engineering stay aligned.'
-				data={ECOM_TIMELINE}
+		<>
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						'@context': 'https://schema.org',
+						'@type': 'Service',
+						serviceType: 'Ecommerce Website Development',
+						provider: {
+							'@type': 'Organization',
+							name: 'PayPerCall',
+							url: 'https://paypercall.com',
+						},
+						description:
+							'Conversion-ready ecommerce builds: storefront performance, payments, tax, fulfillment, and ERP/CRM integrations with measurable revenue outcomes.',
+						areaServed: {
+							'@type': 'Place',
+							name: 'United States',
+						},
+						offers: {
+							'@type': 'Offer',
+							availability: 'https://schema.org/InStock',
+							priceSpecification: {
+								'@type': 'PriceSpecification',
+								priceCurrency: 'USD',
+								price: '55000',
+								description: 'Starting from $55k for Growth Storefront builds',
+							},
+						},
+					}),
+				}}
 			/>
-			<CaseStudyStrip
-				className='max-w-7xl mx-auto'
-				items={CASE_STUDIES}
-				title='Commerce case studies anchored in revenue'
-			/>
-			<PricingTable
-				className='max-w-7xl mx-auto'
-				title='Ecommerce engagement tiers'
-				description='Each tier includes launch readiness, QA, and hypercare—and starts with a free store audit.'
-				plans={PRICING_PLANS}
-				billingNote='Payment schedules are milestone-based with clear deliverable checkpoints.'
-			/>
-			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
-			<ConsultationCTA
-				className='max-w-7xl mx-auto'
-				title='Request an ecommerce performance review'
-				bullets={[
-					'Share funnel data, speed metrics, and ops gaps.',
-					'Receive prioritized recommendations with ranges.',
-					'Choose replatform vs. optimization with clarity.',
-				]}
-				formVariant='detailed'
-			/>
-		</main>
+			<main className='space-y-0'>
+				<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+				<ClientSuccessBreakdown
+					className='py-12 md:py-16 max-w-7xl mx-auto'
+					title='Ecommerce results that drive revenue'
+					subtitle='We measure success in sales, not just metrics.'
+					outcomes={SUCCESS_OUTCOMES}
+				/>
+				<ProcessSteps
+					className='py-12 md:py-16 max-w-7xl mx-auto'
+					steps={PROCESS_STEPS}
+					title='How we deliver ecommerce projects'
+					variant='cards'
+				/>
+				<Timeline
+					className='py-12 md:py-16 max-w-7xl mx-auto'
+					title='Commerce program timeline'
+					description='Each commerce build follows four checkpoints so ops, marketing, and engineering stay aligned.'
+					data={ECOM_TIMELINE}
+				/>
+				<IntegrationLogos
+					className='py-12 md:py-16 max-w-7xl mx-auto'
+					title='Integrated payment & fulfillment stack'
+					description='We work with every major commerce platform and payment gateway.'
+					integrations={ECOMMERCE_INTEGRATIONS}
+					variant='grid'
+					ctaHref='/contact'
+					ctaLabel='Discuss integrations'
+				/>
+				<ResultsGallery
+					className='py-12 md:py-16 max-w-7xl mx-auto'
+					title='Ecommerce performance gains'
+					subtitle='Real improvements from migration and optimization projects.'
+					results={RESULTS}
+				/>
+				<CaseStudyStrip
+					className='py-12 md:py-16 max-w-7xl mx-auto'
+					items={CASE_STUDIES}
+					title='Commerce case studies anchored in revenue'
+				/>
+				<div id='pricing' className='scroll-mt-24'>
+					<PricingTable
+						className='py-12 md:py-16 max-w-7xl mx-auto'
+						title='Ecommerce engagement tiers'
+						description='Each tier includes launch readiness, QA, and hypercare—and starts with a free store audit.'
+						plans={PRICING_PLANS}
+						billingNote='Payment schedules are milestone-based with clear deliverable checkpoints.'
+					/>
+				</div>
+				<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />
+				<div id='consultation' className='scroll-mt-24 py-12 md:py-16 max-w-7xl mx-auto'>
+					<ConsultationCTA
+						className='max-w-7xl mx-auto'
+						title='Request an ecommerce performance review'
+						bullets={[
+							'Share funnel data, speed metrics, and ops gaps.',
+							'Receive prioritized recommendations with ranges.',
+							'Choose replatform vs. optimization with clarity.',
+						]}
+						formVariant='detailed'
+					/>
+				</div>
+			</main>
+		</>
 	);
 }
