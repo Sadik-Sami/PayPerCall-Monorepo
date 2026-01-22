@@ -172,3 +172,63 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+@layer base {
+	/* Minimal, predictable editor styling for Tiptap/ProseMirror (lists, code, quotes). */
+	.ppc-prosemirror .ProseMirror {
+		outline: none;
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+
+	.ppc-prosemirror .ProseMirror p {
+		margin: 0.25rem 0;
+	}
+
+	.ppc-prosemirror .ProseMirror h2,
+	.ppc-prosemirror .ProseMirror h3,
+	.ppc-prosemirror .ProseMirror h4 {
+		margin: 0.5rem 0 0.25rem;
+		font-weight: 600;
+	}
+
+	.ppc-prosemirror .ProseMirror ul {
+		list-style: disc;
+		padding-left: 1.5rem;
+	}
+
+	.ppc-prosemirror .ProseMirror ol {
+		list-style: decimal;
+		padding-left: 1.5rem;
+	}
+
+	.ppc-prosemirror .ProseMirror li {
+		margin: 0.125rem 0;
+	}
+
+	.ppc-prosemirror .ProseMirror blockquote {
+		border-left: 2px solid hsl(var(--border));
+		padding-left: 0.75rem;
+		color: hsl(var(--muted-foreground));
+		margin: 0.5rem 0;
+	}
+
+	.ppc-prosemirror .ProseMirror pre {
+		background: hsl(var(--muted));
+		border: 1px solid hsl(var(--border));
+		border-radius: 0.5rem;
+		padding: 0.75rem;
+		overflow-x: auto;
+	}
+
+	.ppc-prosemirror .ProseMirror code {
+		font-family: var(--font-mono);
+		font-size: 0.875em;
+	}
+
+	.ppc-prosemirror .ProseMirror a {
+		color: hsl(var(--primary));
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+}

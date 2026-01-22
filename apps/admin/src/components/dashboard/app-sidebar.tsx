@@ -56,6 +56,12 @@ export default function AppSidebar() {
 	const location = useLocation();
 	const { user, logout, isLoading } = useAuth();
 
+	const isActiveHref = (href: string) => {
+		if (location.pathname === href) return true;
+		// Keep parent items active for nested routes, e.g. /dashboard/blogs/new
+		return location.pathname.startsWith(`${href}/`);
+	};
+
 	const getInitials = (name: string) => {
 		return name
 			.split(' ')
@@ -93,7 +99,7 @@ export default function AppSidebar() {
 					<SidebarGroupContent>
 						<SidebarMenu>
 							{navigationItems.map((item) => {
-								const isActive = location.pathname === item.href;
+								const isActive = isActiveHref(item.href);
 								return (
 									<SidebarMenuItem key={item.href}>
 										<SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>

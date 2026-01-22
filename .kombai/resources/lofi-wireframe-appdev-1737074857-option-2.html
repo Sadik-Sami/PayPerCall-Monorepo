@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Option 2: Balanced Approach - App Dev Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .wireframe-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border: 3px solid #333;
+        }
+        .wireframe-title {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #999;
+        }
+        .wireframe-title h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .wireframe-title p {
+            font-size: 14px;
+            color: #666;
+        }
+        .section {
+            margin-bottom: 50px;
+            border: 2px dashed #999;
+            padding: 30px;
+            background: #fff;
+        }
+        .section-label {
+            background: #666;
+            color: white;
+            padding: 5px 15px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge {
+            position: absolute;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            z-index: 10;
+        }
+        .badge-reuse {
+            background: #4CAF50;
+            color: white;
+        }
+        .badge-new {
+            background: #FF9800;
+            color: white;
+        }
+        .hero {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .pill {
+            display: inline-block;
+            border: 2px solid #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .h1 {
+            font-size: 48px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 35px;
+        }
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 15px 35px;
+            border: 3px solid #333;
+            background: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #333;
+            color: white;
+        }
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #ccc;
+        }
+        .badge-item {
+            text-align: center;
+        }
+        .logo-box {
+            width: 80px;
+            height: 40px;
+            border: 2px solid #999;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+        .platform-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .tab {
+            padding: 12px 30px;
+            border: 3px solid #999;
+            background: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .tab.active {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+        .platform-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .platform-info h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .platform-info ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .platform-info li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .platform-visual {
+            height: 350px;
+            border: 3px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e0e0e0;
+        }
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 3px solid #333;
+            margin: 30px 0;
+        }
+        .stat-box {
+            padding: 40px;
+            text-align: center;
+            border-right: 2px solid #999;
+        }
+        .stat-box:last-child {
+            border-right: none;
+        }
+        .stat-number {
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 15px;
+            color: #666;
+        }
+        .process-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        .process-card {
+            border: 3px solid #333;
+            padding: 20px;
+            text-align: center;
+            background: white;
+            position: relative;
+        }
+        .step-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 35px;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .process-card h4 {
+            font-size: 14px;
+            margin: 15px 0 10px;
+        }
+        .process-card p {
+            font-size: 11px;
+            color: #666;
+        }
+        .expandable-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .expand-card {
+            border: 3px solid #333;
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        .expand-card:hover {
+            background: #f9f9f9;
+        }
+        .expand-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+        }
+        .case-preview {
+            width: 100%;
+            height: 140px;
+            border: 2px solid #ccc;
+            background: #e0e0e0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .metrics-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .metric-badge {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #999;
+            text-align: center;
+            font-size: 11px;
+        }
+        .tech-carousel {
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #333;
+            padding: 40px 20px;
+            background: #fafafa;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 25px;
+            animation: slide 25s linear infinite;
+        }
+        .tech-card {
+            min-width: 100px;
+            height: 100px;
+            border: 2px solid #999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            flex-shrink: 0;
+        }
+        .tech-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .security-strip {
+            display: flex;
+            justify-content: space-around;
+            padding: 25px;
+            border: 3px solid #333;
+            margin-top: 25px;
+            background: white;
+        }
+        .security-item {
+            text-align: center;
+        }
+        .accordion {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            border: 2px solid #999;
+            margin-bottom: 10px;
+        }
+        .accordion-header {
+            padding: 20px;
+            background: #f5f5f5;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        .accordion-content {
+            padding: 20px;
+            border-top: 2px solid #999;
+            font-size: 14px;
+            color: #666;
+        }
+        .split-cta {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            border: 3px solid #333;
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #999;
+            background: white;
+            font-size: 14px;
+        }
+        .contact-sidebar {
+            background: #f9f9f9;
+            padding: 30px;
+            border: 2px solid #ccc;
+        }
+        .contact-method {
+            padding: 20px;
+            border: 2px solid #999;
+            margin-bottom: 15px;
+            background: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <div class="wireframe-title">
+            <h1>Option 2: Balanced Approach</h1>
+            <p>Centered hero with tabbed platform selector and expandable case studies</p>
+        </div>
+
+        <!-- HERO SECTION (SPLIT LAYOUT) -->
+        <div class="section">
+            <div class="section-label">SECTION: HERO (Split layout with image)</div>
+            <!-- REUSABLE: ServiceHero (default variant) from apps/web/components/services/service-hero.tsx -->
+            <div style="position: relative;">
+                <span class="badge badge-reuse" style="top: -8px; right: -8px;" title="apps/web/components/services/service-hero.tsx">[REUSE] ServiceHero</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+                    <!-- Left: Content -->
+                    <div>
+                        <div class="pill">🚀 App Development Services</div>
+                        <h1 class="h1">App development for startups & enterprises — iOS, Android & cross-platform</h1>
+                        <p class="subtitle">From product strategy to App Store release — fast, secure, proven.</p>
+                        
+                        <!-- REUSABLE: Button -->
+                        <div style="margin-bottom: 30px;">
+                            <span class="badge badge-reuse" style="position: absolute; margin-left: -8px; margin-top: -8px;" title="packages/ui/src/components/button.tsx">[REUSE] Button</span>
+                            <button class="btn btn-primary">Book free scoping call →</button>
+                        </div>
+
+                        <div class="trust-badges" style="justify-content: flex-start; padding-top: 25px; border-top: 2px solid #ccc;">
+                            <div class="badge-item">
+                                <div class="logo-box">Client Logo</div>
+                                <div class="logo-box">Client Logo</div>
+                                <div class="logo-box">Client Logo</div>
+                            </div>
+                            <div class="badge-item">
+                                <div style="font-size: 24px;">★★★★★</div>
+                                <div style="font-size: 13px; color: #666;">4.9/5 rating</div>
+                            </div>
+                            <div class="badge-item">
+                                <div style="font-size: 28px; font-weight: bold;">150+</div>
+                                <div style="font-size: 13px; color: #666;">Apps shipped</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Image -->
+                    <div style="width: 100%; height: 450px; border: 3px solid #333; background: #e0e0e0; display: flex; align-items: center; justify-content: center; font-size: 16px;">
+                        [Hero Image: 600x450]<br>App mockups showcase
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PLATFORM SELECTOR (TABBED INTERFACE) -->
+        <div class="section">
+            <div class="section-label">SECTION: WHAT WE BUILD (Interactive tabs)</div>
+            <!-- NEW COMPONENT: PlatformSelector with tabs -->
+            <div style="position: relative;">
+                <span class="badge badge-new" style="top: 4px; right: 4px;" title="To be created at apps/web/components/services/PlatformSelector.tsx">[NEW] PlatformSelector</span>
+                <h2 style="font-size: 32px; margin-bottom: 35px; text-align: center;">Choose your platform</h2>
+                
+                <div class="platform-tabs">
+                    <div class="tab active">📱 Native iOS</div>
+                    <div class="tab">🤖 Native Android</div>
+                    <div class="tab">⚡ Cross-Platform</div>
+                    <div class="tab">🔧 Maintenance</div>
+                </div>
+
+                <div class="platform-content">
+                    <div class="platform-info">
+                        <h3>Native iOS Development</h3>
+                        <p style="color: #666; margin-bottom: 25px;">Swift-based apps optimized for iPhone and iPad with seamless Apple ecosystem integration</p>
+                        <ul>
+                            <li>✓ Native performance & fluid animations</li>
+                            <li>✓ Apple Design Guidelines compliance</li>
+                            <li>✓ App Store optimization & submission</li>
+                            <li>✓ iOS 15+ support with latest features</li>
+                            <li>✓ TestFlight beta distribution</li>
+                        </ul>
+                        <!-- REUSABLE: Button -->
+                        <button class="btn">Explore iOS services →</button>
+                    </div>
+                    <div class="platform-visual">
+                        [Platform Mockup Image]<br>
+                        iPhone screens showcase
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OUTCOMES (BANNER STYLE) -->
+        <div class="section">
+            <div class="section-label">SECTION: BUSINESS OUTCOMES (Banner stats)</div>
+            <!-- REUSABLE: ClientSuccessBreakdown (modified layout) -->
+            <div style="position: relative;">
+                <span class="badge badge-reuse" style="top: 4px; right: 4px;" title="apps/web/components/services/client-success-breakdown.tsx">[REUSE] ClientSuccessBreakdown</span>
+                <div class="stats-banner">
+                    <div class="stat-box">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Faster time-to-market<br>vs traditional agencies</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">4.7★</div>
+                        <div class="stat-label">Average App Store rating<br>across 150+ apps</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">92%</div>
+                        <div class="stat-label">Client retention rate<br>for ongoing support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROCESS (CARD STYLE) -->
+        <div class="section">
+            <div class="section-label">SECTION: HOW WE WORK (Compact cards)</div>
+            <!-- REUSABLE: ProcessSteps (variant="cards") -->
+            <div style="position: relative;">
+                <span class="badge badge-reuse" style="top: 4px; right: 4px;" title="apps/web/components/services/process-steps.tsx with variant='cards'">[REUSE] ProcessSteps</span>
+                <h2 style="font-size: 32px; margin-bottom: 40px; text-align: center;">5-step development process</h2>
+                <div class="process-cards">
+                    <div class="process-card">
+                        <div class="step-badge">1</div>
+                        <div style="font-size: 28px;">🔍</div>
+                        <h4>Discovery</h4>
+                        <p>Requirements & technical planning</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="step-badge">2</div>
+                        <div style="font-size: 28px;">🎨</div>
+                        <h4>UI/UX</h4>
+                        <p>Design system & prototypes</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="step-badge">3</div>
+                        <div style="font-size: 28px;">⚙️</div>
+                        <h4>Development</h4>
+                        <p>Agile sprints & testing</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="step-badge">4</div>
+                        <div style="font-size: 28px;">✅</div>
+                        <h4>QA & Launch</h4>
+                        <p>Testing & store release</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="step-badge">5</div>
+                        <div style="font-size: 28px;">🚀</div>
+                        <h4>Support</h4>
+                        <p>Monitoring & updates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASE STUDIES (EXPANDABLE CARDS) -->
+        <div class="section">
+            <div class="section-label">SECTION: CASE STUDIES (Click to expand)</div>
+            <!-- NEW COMPONENT: ExpandableCaseCard -->
+            <div style="position: relative;">
+                <span class="badge badge-new" style="top: 4px; right: 4px;" title="To be created at apps/web/components/services/ExpandableCaseCard.tsx">[NEW] ExpandableCaseCard</span>
+                <h2 style="font-size: 32px; margin-bottom: 40px; text-align: center;">Featured success stories</h2>
+                <div class="expandable-cards">
+                    <div class="expand-card">
+                        <div class="expand-icon">+</div>
+                        <div class="case-preview">[App Screenshots]</div>
+                        <h4 style="font-size: 18px; margin-bottom: 10px;">FinTech Payment App</h4>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">60% faster transactions, 4.8★ rating, 100k+ downloads</p>
+                        <div class="metrics-row">
+                            <div class="metric-badge"><strong>iOS</strong><br>Swift</div>
+                            <div class="metric-badge"><strong>4 mo</strong><br>Timeline</div>
+                        </div>
+                    </div>
+                    <div class="expand-card">
+                        <div class="expand-icon">+</div>
+                        <div class="case-preview">[App Screenshots]</div>
+                        <h4 style="font-size: 18px; margin-bottom: 10px;">Healthcare Platform</h4>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">HIPAA compliant, 50k users, 95% uptime SLA</p>
+                        <div class="metrics-row">
+                            <div class="metric-badge"><strong>Cross</strong><br>RN</div>
+                            <div class="metric-badge"><strong>6 mo</strong><br>Timeline</div>
+                        </div>
+                    </div>
+                    <div class="expand-card">
+                        <div class="expand-icon">+</div>
+                        <div class="case-preview">[App Screenshots]</div>
+                        <h4 style="font-size: 18px; margin-bottom: 10px;">E-commerce Mobile</h4>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">2M downloads, 35% conversion increase</p>
+                        <div class="metrics-row">
+                            <div class="metric-badge"><strong>Android</strong><br>Kotlin</div>
+                            <div class="metric-badge"><strong>5 mo</strong><br>Timeline</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECH STACK (ANIMATED CAROUSEL) -->
+        <div class="section">
+            <div class="section-label">SECTION: TECH & SECURITY (Animated carousel)</div>
+            <!-- REUSABLE: Tech-Marquee -->
+            <div style="position: relative;">
+                <span class="badge badge-reuse" style="top: 4px; right: 4px;" title="apps/web/components/services/Tech-Marquee.tsx">[REUSE] Tech-Marquee</span>
+                <h2 style="font-size: 32px; margin-bottom: 15px; text-align: center;">Technology & Tools</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 35px;">Modern stack for scalable, secure applications</p>
+                
+                <div class="tech-carousel">
+                    <div class="carousel-track">
+                        <div class="tech-card">
+                            <div class="tech-icon">📱</div>
+                            <div style="font-size: 11px;">Swift</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🤖</div>
+                            <div style="font-size: 11px;">Kotlin</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">⚛️</div>
+                            <div style="font-size: 11px;">React Native</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🦋</div>
+                            <div style="font-size: 11px;">Flutter</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🔥</div>
+                            <div style="font-size: 11px;">Firebase</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">☁️</div>
+                            <div style="font-size: 11px;">AWS</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🌐</div>
+                            <div style="font-size: 11px;">GCP</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🗄️</div>
+                            <div style="font-size: 11px;">PostgreSQL</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🍃</div>
+                            <div style="font-size: 11px;">MongoDB</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🔄</div>
+                            <div style="font-size: 11px;">CI/CD</div>
+                        </div>
+                        <!-- Duplicates -->
+                        <div class="tech-card">
+                            <div class="tech-icon">📱</div>
+                            <div style="font-size: 11px;">Swift</div>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon">🤖</div>
+                            <div style="font-size: 11px;">Kotlin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-strip">
+                    <div class="security-item">
+                        <div style="font-size: 32px; margin-bottom: 10px;">🔒</div>
+                        <div style="font-size: 14px; font-weight: bold;">OWASP Practices</div>
+                    </div>
+                    <div class="security-item">
+                        <div style="font-size: 32px; margin-bottom: 10px;">🛡️</div>
+                        <div style="font-size: 14px; font-weight: bold;">End-to-End Encryption</div>
+                    </div>
+                    <div class="security-item">
+                        <div style="font-size: 32px; margin-bottom: 10px;">✓</div>
+                        <div style="font-size: 14px; font-weight: bold;">SOC 2 Compliance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ (ACCORDION) -->
+        <div class="section">
+            <div class="section-label">SECTION: FAQ (Accordion style)</div>
+            <!-- REUSABLE: FAQSection -->
+            <div style="position: relative;">
+                <span class="badge badge-reuse" style="top: 4px; right: 4px;" title="apps/web/components/services/faq-section.tsx">[REUSE] FAQSection</span>
+                <h2 style="font-size: 32px; margin-bottom: 40px; text-align: center;">Common questions</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            How long does mobile app development take?
+                            <span>▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            Typical timeline is 3-6 months. Simple apps take 8-12 weeks, complex enterprise apps 4-6 months.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            Native vs cross-platform — which is better?
+                            <span>▼</span>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            What's included in post-launch support?
+                            <span>▼</span>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            How do you ensure app security?
+                            <span>▼</span>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            Do you handle App Store submissions?
+                            <span>▼</span>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            What industries do you serve?
+                            <span>▼</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA SECTION -->
+        <div class="section">
+            <div class="section-label">SECTION: CONTACT CTA (Split layout)</div>
+            <!-- REUSABLE: ConsultationCTA -->
+            <div style="position: relative;">
+                <span class="badge badge-reuse" style="top: 4px; right: 4px;" title="apps/web/components/services/consultation-CTA.tsx">[REUSE] ConsultationCTA</span>
+                <h2 style="font-size: 36px; margin-bottom: 15px; text-align: center;">Start your app project</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 18px;">Free scoping call • No obligation • Clear pricing</p>
+                
+                <div class="split-cta">
+                    <div>
+                        <h3 style="font-size: 20px; margin-bottom: 25px;">Tell us about your project</h3>
+                        <div class="form-group">
+                            <label class="form-label">Name *</label>
+                            <input type="text" class="form-input" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Work Email *</label>
+                            <input type="email" class="form-input" placeholder="you@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-input" placeholder="Your company">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Budget Range *</label>
+                            <select class="form-input">
+                                <option>Select range...</option>
+                                <option>$25k - $50k</option>
+                                <option>$50k - $100k</option>
+                                <option>$100k+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Project Details *</label>
+                            <textarea class="form-input" rows="4" placeholder="Describe your app idea, target users, and key features..."></textarea>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; font-size: 17px;">Schedule Free Call →</button>
+                    </div>
+
+                    <div class="contact-sidebar">
+                        <h4 style="font-size: 18px; margin-bottom: 20px;">Quick connect</h4>
+                        <div class="contact-method">
+                            <div style="font-size: 28px; margin-bottom: 10px;">📞</div>
+                            <div style="font-size: 14px; font-weight: bold;">Call us</div>
+                            <div style="font-size: 13px; color: #666;">+1 (555) 123-4567</div>
+                        </div>
+                        <div class="contact-method">
+                            <div style="font-size: 28px; margin-bottom: 10px;">💬</div>
+                            <div style="font-size: 14px; font-weight: bold;">WhatsApp</div>
+                            <div style="font-size: 13px; color: #666;">Message us instantly</div>
+                        </div>
+                        <div class="contact-method">
+                            <div style="font-size: 28px; margin-bottom: 10px;">📅</div>
+                            <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">Book calendar</div>
+                            <div style="padding: 40px 20px; border: 2px dashed #999; background: white;">
+                                [Calendar Widget]<br>
+                                Pick a 30-min slot
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

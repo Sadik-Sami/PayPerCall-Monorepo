@@ -8,6 +8,20 @@
       "when": 1765805070371,
       "tag": "0000_exotic_spiral",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1768982083300,
+      "tag": "0001_breezy_thunderbolt_ross",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769049724610,
+      "tag": "0002_watery_black_panther",
+      "breakpoints": true
     }
   ]
 }

@@ -6,6 +6,8 @@ import PrivateLayout from '@/layout/private-layout';
 import LoginPage from '@/pages/auth/login';
 import DashboardPage from '@/pages/dashboard/index';
 import BlogsPage from '@/pages/dashboard/blogs';
+import BlogCreatePage from '@/pages/dashboard/blog-create';
+import BlogEditPage from '@/pages/dashboard/blog-edit';
 import NewsPage from '@/pages/dashboard/news';
 import PackagesPage from '@/pages/dashboard/packages';
 import LeadsPage from '@/pages/dashboard/leads';
@@ -37,12 +39,14 @@ function App() {
 
 								{/* Protected routes */}
 								<Route element={<PrivateLayout />}>
-									<Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
-									<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
-									<Route path={ROUTES.DASHBOARD_BLOGS} element={<BlogsPage />} />
-									<Route path={ROUTES.DASHBOARD_NEWS} element={<NewsPage />} />
-									<Route path={ROUTES.DASHBOARD_PACKAGES} element={<PackagesPage />} />
-									<Route path={ROUTES.DASHBOARD_LEADS} element={<LeadsPage />} />
+								<Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+								<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+								<Route path={ROUTES.DASHBOARD_BLOGS} element={<BlogsPage />} />
+								<Route path={ROUTES.DASHBOARD_BLOG_CREATE} element={<BlogCreatePage />} />
+								<Route path={ROUTES.DASHBOARD_BLOG_EDIT_PATTERN} element={<BlogEditPage />} />
+								<Route path={ROUTES.DASHBOARD_NEWS} element={<NewsPage />} />
+								<Route path={ROUTES.DASHBOARD_PACKAGES} element={<PackagesPage />} />
+								<Route path={ROUTES.DASHBOARD_LEADS} element={<LeadsPage />} />
 								</Route>
 
 								{/* 404 */}

@@ -6,6 +6,9 @@ import { notFoundHandler } from '@/middlewares/notFound.middleware';
 import { healthRouter } from './modules/health/health.routes';
 import { authRouter } from './modules/auth/auth.routes';
 import { userRouter } from './modules/users/user.routes';
+import { adminBlogsRouter, publicBlogsRouter } from './modules/blogs/blogs.routes';
+import { adminBlocksRouter } from './modules/blocks/blocks.routes';
+import { uploadsRouter } from './modules/uploads/uploads.routes';
 import cookieParser from 'cookie-parser';
 import { loggingMiddleware } from './middlewares/logging.middleware';
 import { globalRateLimiter } from './middlewares/rateLimiting.middleware';
@@ -33,6 +36,10 @@ app.use('/api/health', healthRouter);
 // API Routes
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
+app.use('/api/blogs', publicBlogsRouter);
+app.use('/api/admin/blogs', adminBlogsRouter);
+app.use('/api/admin/blocks', adminBlocksRouter);
+app.use('/api/admin/uploads', uploadsRouter);
 
 // Error Handling Middlewares
 app.use(notFoundHandler);
