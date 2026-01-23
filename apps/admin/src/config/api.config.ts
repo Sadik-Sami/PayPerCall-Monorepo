@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-	BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000',
-	WEB_BASE_URL: import.meta.env.VITE_WEB_BASE_URL || 'http://localhost:3000',
+	BASE_URL: import.meta.env.VITE_API_BASE_URL,
+	WEB_BASE_URL: import.meta.env.VITE_WEB_BASE_URL,
 	ENDPOINTS: {
 		AUTH: {
 			LOGIN: '/api/auth/login',

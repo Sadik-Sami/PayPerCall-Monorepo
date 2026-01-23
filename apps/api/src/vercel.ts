@@ -8,6 +8,13 @@ import app from './app';
  *
  * Important: do NOT call `app.listen()` in serverless environments.
  */
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'API is running',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+  });
+});
 export default app;
 
 

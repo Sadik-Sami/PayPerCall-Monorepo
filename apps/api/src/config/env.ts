@@ -9,7 +9,10 @@ export const config = {
 		url: process.env.DATABASE_URL,
 	},
 	cors: {
-		origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+		origin_admin: process.env.CORS_ORIGIN_ADMIN,
+		origin_web: process.env.CORS_ORIGIN_WEB,
+		origin_localhost_admin: process.env.CORS_ORIGIN_LOCALHOST_ADMIN,
+		origin_localhost_web: process.env.CORS_ORIGIN_LOCALHOST_WEB,
 	},
 	jwt: {
 		accessSecret: process.env.JWT_ACCESS_SECRET,
