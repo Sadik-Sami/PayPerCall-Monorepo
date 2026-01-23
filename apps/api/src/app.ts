@@ -23,13 +23,14 @@ const corsOptions = {
 		return callback(new Error('Not allowed by CORS'));
 	},
 	credentials: true,
-	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 	allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
 };
 
 // Middlewares
 app.use(cors(corsOptions));
-app.options('/', cors(corsOptions));
+// Express 5 + path-to-regexp v8: "*" is not a valid path pattern. Use a RegExp to match all.
+app.options(/.*/, cors(corsOptions));
 app.use(globalRateLimiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +47,13 @@ app.use('/api/blogs', publicBlogsRouter);
 app.use('/api/admin/blogs', adminBlogsRouter);
 app.use('/api/admin/blocks', adminBlocksRouter);
 app.use('/api/admin/uploads', uploadsRouter);
-
+app.get('/api', (req, res) => {
+	res.json({
+		message: 'API is running',
+		version: '1.0.0',
+		timestamp: new Date().toISOString(),
+	});
+});
 
 // Error Handling Middlewares
 app.use(notFoundHandler);
