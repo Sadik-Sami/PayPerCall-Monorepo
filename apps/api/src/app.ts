@@ -29,7 +29,6 @@ const corsOptions = {
 
 // Middlewares
 app.use(cors(corsOptions));
-// Express 5 + path-to-regexp v8: "*" is not a valid path pattern. Use a RegExp to match all.
 app.options(/.*/, cors(corsOptions));
 app.use(globalRateLimiter);
 app.use(express.json());
