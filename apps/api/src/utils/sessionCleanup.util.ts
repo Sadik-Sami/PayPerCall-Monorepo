@@ -1,4 +1,4 @@
-import { sessionService } from "@/modules/auth/session.service"
+import { sessionService } from '../modules/auth/session.service'
 
 const CLEANUP_INTERVAL = 60 * 60 * 1000 // 1 hour
 

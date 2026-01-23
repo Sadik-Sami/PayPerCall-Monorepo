@@ -1,5 +1,5 @@
-import { db } from '@/db';
-import { sessionsTable } from '@/db/schema/session.schema';
+import { db } from '../../db';
+import { sessionsTable } from '../../db/schema/session.schema';
 import { eq, lt } from 'drizzle-orm';
 
 export const sessionService = {

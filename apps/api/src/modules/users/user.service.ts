@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
-import { db } from '@/db';
-import { usersTable, User, NewUser } from '@/db/schema/users.schema';
-import { sessionsTable } from '@/db/schema';
+import { db } from '../../db';
+import { usersTable, User, NewUser } from '../../db/schema/users.schema';
+import { sessionsTable } from '../../db/schema';
 import { eq } from 'drizzle-orm';
-import { AppError } from '@/middlewares/errorHandler';
-import { Role } from '@/utils/validation.util';
+import { AppError } from '../../middlewares/errorHandler';
+import { Role } from '../../utils/validation.util';
 
 export const userServices = {
 	async getByEmail(email: string): Promise<User | undefined> {

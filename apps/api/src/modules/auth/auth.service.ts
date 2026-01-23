@@ -1,12 +1,12 @@
 import bcrypt from 'bcryptjs';
-import { db } from '@/db';
-import { User, usersTable } from '@/db/schema/users.schema';
-import { NewSession, Session, sessionsTable } from '@/db/schema/session.schema';
+import { db } from '../../db';
+import { User, usersTable } from '../../db/schema/users.schema';
+import { NewSession, Session, sessionsTable } from '../../db/schema/session.schema';
 import { eq } from 'drizzle-orm';
-import { signAccessToken, generateRefreshToken, refreshExpiresAt } from '@/utils/token.util';
-import { LoginRequest } from '@/db/validator/auth.validator';
-import { AppError } from '@/middlewares/errorHandler';
-import { UnauthorizedError } from '@/utils/error.util';
+import { signAccessToken, generateRefreshToken, refreshExpiresAt } from '../../utils/token.util';
+import { LoginRequest } from '../../db/validator/auth.validator';
+import { AppError } from '../../middlewares/errorHandler';
+import { UnauthorizedError } from '../../utils/error.util';
 
 export const authService = {
 	async login(

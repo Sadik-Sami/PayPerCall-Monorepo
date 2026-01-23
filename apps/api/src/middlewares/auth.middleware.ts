@@ -1,13 +1,13 @@
 import type { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
-import { verifyAccessToken } from '@/utils/token.util';
-import { db } from '@/db';
-import { sessionsTable } from '@/db/schema/session.schema';
-import { usersTable } from '@/db/schema/users.schema';
+import { verifyAccessToken } from '../utils/token.util';
+import { db } from '../db';
+import { sessionsTable } from '../db/schema/session.schema';
+import { usersTable } from '../db/schema/users.schema';
 import { eq } from 'drizzle-orm';
 import { AppError } from './errorHandler';
-import { UnauthorizedError, ForbiddenError } from '@/utils/error.util';
-import { isValidUUID } from '@/utils/validation.util';
+import { UnauthorizedError, ForbiddenError } from '../utils/error.util';
+import { isValidUUID } from '../utils/validation.util';
 
 export async function authenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
 	try {

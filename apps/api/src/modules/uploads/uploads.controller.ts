@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
-import { config } from '@/config/env';
+import { config } from '../../config/env';
 
 export const uploadsController = {
 	// POST /api/admin/uploads/cloudinary-signature

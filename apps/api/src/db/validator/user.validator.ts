@@ -1,7 +1,7 @@
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 import { usersTable } from '../schema/users.schema';
 import { z } from 'zod';
-import { roleSchema } from '@/utils/validation.util';
+import { roleSchema } from '../../utils/validation.util';
 
 export const userImageSchema = z.object({
 	url: z.url('Please provide a valid image URL'),

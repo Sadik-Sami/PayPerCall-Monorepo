@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { createRateLimiter } from '@/utils/rateLimiter.util';
+import { createRateLimiter } from '../utils/rateLimiter.util';
 
 
 export const globalRateLimiter: RequestHandler = createRateLimiter({

@@ -1,5 +1,5 @@
 import morgan from "morgan"
-import { config } from "@/config/env"
+import { config } from '../config/env'
 
 // Custom morgan token for request ID (can add UUID generation if needed)
 morgan.token("user-id", (req) => {

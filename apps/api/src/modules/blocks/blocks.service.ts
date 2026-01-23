@@ -1,9 +1,9 @@
-import { db } from '@/db';
-import { blogBlocksTable } from '@/db/schema';
-import { AppError } from '@/middlewares/errorHandler';
+import { db } from '../../db';
+import { blogBlocksTable } from '../../db/schema';
+import { AppError } from '../../middlewares/errorHandler';
 import { asc, eq } from 'drizzle-orm';
-import type { BlockUpdateInput } from '@/db/validator/blogBlock.validator';
-import { validateBlockContentType } from '@/utils/blogBlocks.util';
+import type { BlockUpdateInput } from '../../db/validator/blogBlock.validator';
+import { validateBlockContentType } from '../../utils/blogBlocks.util';
 
 type DbOrTransaction = Parameters<Parameters<typeof db.transaction>[0]>[0] | typeof db;
 

@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express"
 import { healthService } from "./health.service"
-import { ApiResponse } from "@/utils/apiResponse.util"
+import { ApiResponse } from '../../utils/apiResponse.util'
 
 export const healthController = {
   check: async (req: Request, res: Response, next: NextFunction) => {

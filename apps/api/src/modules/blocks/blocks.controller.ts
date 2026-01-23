@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { blockServices } from './blocks.service';
-import { AppError } from '@/middlewares/errorHandler';
-import { isValidUUID } from '@/utils/validation.util';
+import { AppError } from '../../middlewares/errorHandler';
+import { isValidUUID } from '../../utils/validation.util';
 
 export const blocksController = {
 	// PUT /api/admin/blocks/:id

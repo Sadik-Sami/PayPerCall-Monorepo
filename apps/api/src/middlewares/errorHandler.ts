@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { config } from '@/config/env';
+import { config } from '../config/env';
 import {
 	TooManyRequestsError,
 	ValidationError,
@@ -8,7 +8,7 @@ import {
 	ForbiddenError,
 	NotFoundError,
 	ConflictError,
-} from '@/utils/error.util';
+} from '../utils/error.util';
 
 export class AppError extends Error {
 	statusCode: number;

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { userController } from './user.controller';
-import { authenticate, authorize } from '@/middlewares/auth.middleware';
-import { validateData } from '@/middlewares/validation.middleware';
-import { changePasswordSchema, changeRoleSchema, userUpdateSchema } from '@/db/validator/user.validator';
+import { authenticate, authorize } from '../../middlewares/auth.middleware';
+import { validateData } from '../../middlewares/validation.middleware';
+import { changePasswordSchema, changeRoleSchema, userUpdateSchema } from '../../db/validator/user.validator';
 
 export const userRouter: Router = Router();
 

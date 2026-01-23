@@ -1,10 +1,10 @@
-import { db } from '@/db';
-import { blogsTable, blogBlocksTable, type Blog, type NewBlog } from '@/db/schema';
-import { AppError } from '@/middlewares/errorHandler';
+import { db } from '../../db';
+import { blogsTable, blogBlocksTable, type Blog, type NewBlog } from '../../db/schema';
+import { AppError } from '../../middlewares/errorHandler';
 import { and, asc, desc, eq, sql } from 'drizzle-orm';
-import type { BlogCreateInput, BlogUpdateInput } from '@/db/validator/blog.validator';
-import type { BlockCreateInput } from '@/db/validator/blogBlock.validator';
-import { validateBlockContentType } from '@/utils/blogBlocks.util';
+import type { BlogCreateInput, BlogUpdateInput } from '../../db/validator/blog.validator';
+import type { BlockCreateInput } from '../../db/validator/blogBlock.validator';
+import { validateBlockContentType } from '../../utils/blogBlocks.util';
 
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
