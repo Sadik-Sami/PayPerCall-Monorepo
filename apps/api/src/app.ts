@@ -29,7 +29,6 @@ const corsOptions = {
 
 // Middlewares
 app.use(cors(corsOptions));
-app.options(/.*/, cors(corsOptions));
 app.use(globalRateLimiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
