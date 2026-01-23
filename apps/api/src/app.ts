@@ -28,9 +28,9 @@ const corsOptions = {
 };
 
 // Middlewares
-app.use(cors(corsOptions));
 app.use(globalRateLimiter);
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(loggingMiddleware);
@@ -39,19 +39,19 @@ app.use(loggingMiddleware);
 app.use('/api/health', healthRouter);
 
 // API Routes
-app.use('/api/auth', authRouter);
-app.use('/api/users', userRouter);
-app.use('/api/blogs', publicBlogsRouter);
-app.use('/api/admin/blogs', adminBlogsRouter);
-app.use('/api/admin/blocks', adminBlocksRouter);
-app.use('/api/admin/uploads', uploadsRouter);
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
 	res.json({
 		message: 'API is running',
 		version: '1.0.0',
 		timestamp: new Date().toISOString(),
 	});
 });
+app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
+app.use('/api/blogs', publicBlogsRouter);
+app.use('/api/admin/blogs', adminBlogsRouter);
+app.use('/api/admin/blocks', adminBlocksRouter);
+app.use('/api/admin/uploads', uploadsRouter);
 
 // Error Handling Middlewares
 app.use(notFoundHandler);
