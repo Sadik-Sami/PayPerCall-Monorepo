@@ -14,38 +14,48 @@ import { loggingMiddleware } from './middlewares/logging.middleware';
 import { globalRateLimiter } from './middlewares/rateLimiting.middleware';
 
 export const app: Express = express();
-
 app.set('trust proxy', 1);
-const allowedOrigins = [config.cors.origin_admin, config.cors.origin_web, config.cors.origin_localhost_admin, config.cors.origin_localhost_web];
-const corsOptions = {
-	origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
-		if (allowedOrigins.includes(origin)) return callback(null, true);
-		return callback(new Error('Not allowed by CORS'));
+
+const allowedOrigins = [
+	config.cors.origin_admin,
+	config.cors.origin_web,
+	config.cors.origin_localhost_admin,
+	config.cors.origin_localhost_web,
+].filter((v): v is string => typeof v === 'string' && v.length > 0);
+
+const corsOptions: cors.CorsOptions = {
+	origin: (origin, callback) => {
+		// Non-browser requests (Render health checks, curl, server-to-server) often have no Origin.
+		if (!origin) return callback(null, true);
+
+		// For browsers: allow only explicit origins. If not allowed, DO NOT throw (that becomes a 500).
+		// Returning `false` simply omits CORS headers; the browser will block the response.
+		return callback(null, allowedOrigins.includes(origin));
 	},
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 	allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+	optionsSuccessStatus: 204,
 };
 
 // Middlewares
+app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
+
 app.use(globalRateLimiter);
 app.use(express.json());
-app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(loggingMiddleware);
+
+app.get('/', (req, res) => {
+	res.status(200).send('OK');
+});
 
 // Health Check
 app.use('/api/health', healthRouter);
 
 // API Routes
-app.get('/', (req, res) => {
-	res.json({
-		message: 'API is running',
-		version: '1.0.0',
-		timestamp: new Date().toISOString(),
-	});
-});
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/blogs', publicBlogsRouter);
