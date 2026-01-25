@@ -228,10 +228,16 @@ export default function BlogEditPage() {
 			toast.error('Add a slug to preview this blog.');
 			return;
 		}
+		if (!API_CONFIG.DRAFT_MODE_SECRET) {
+			toast.error('Draft mode secret not configured. Please set VITE_DRAFT_MODE_SECRET in your .env file.');
+			return;
+		}
 		const previewPath = API_CONFIG.ENDPOINTS.WEB.BLOG_PREVIEW_PATH(blog.slug);
-		const previewUrl = `${API_CONFIG.WEB_BASE_URL}${API_CONFIG.ENDPOINTS.WEB.DRAFT_ENABLE}?redirect=${encodeURIComponent(
-			previewPath
-		)}`;
+		const previewUrl = `${API_CONFIG.WEB_BASE_URL}${API_CONFIG.ENDPOINTS.WEB.DRAFT_ENABLE}?secret=${encodeURIComponent(
+			API_CONFIG.DRAFT_MODE_SECRET
+		)}&redirect=${encodeURIComponent(previewPath)}`;
+		console.log('Preview Path:', previewPath);
+		console.log('Preview URL:', previewUrl);
 		window.open(previewUrl, '_blank', 'noopener');
 	};
 

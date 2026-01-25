@@ -23,6 +23,11 @@ const nextConfig = {
 				hostname: 'html.tailus.io',
 				pathname: '/**',
 			},
+			{
+				protocol: 'https',
+				hostname: 'res.cloudinary.com',
+				pathname: '/**',
+			},
 		],
 	},
 };

@@ -10,6 +10,7 @@ export const adminBlogsRouter: Router = Router();
 
 // Public routes
 publicBlogsRouter.get('/', blogsController.listPublished);
+publicBlogsRouter.get('/preview/:slug', blogsController.getPreviewBySlug);
 publicBlogsRouter.get('/:slug', blogsController.getPublishedBySlug);
 
 // Admin routes

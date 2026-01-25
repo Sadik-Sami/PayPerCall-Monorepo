@@ -128,6 +128,20 @@ export const blogServices = {
 		return { blog, blocks };
 	},
 
+	async getBySlugForPreview(slug: string): Promise<{ blog: Blog; blocks: any[] }> {
+		const rows = await db
+			.select()
+			.from(blogsTable)
+			.where(eq(blogsTable.slug, slug))
+			.limit(1);
+		const blog = rows[0];
+		if (!blog) throw new AppError('Blog not found', 404);
+
+		const blocks = await this.listBlocks(blog.id);
+
+		return { blog, blocks };
+	},
+
 	async getById(id: string): Promise<Blog | undefined> {
 		const rows = await db.select().from(blogsTable).where(eq(blogsTable.id, id)).limit(1);
 		return rows[0];

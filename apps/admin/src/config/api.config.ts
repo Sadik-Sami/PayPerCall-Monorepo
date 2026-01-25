@@ -1,6 +1,7 @@
 export const API_CONFIG = {
 	BASE_URL: import.meta.env.VITE_API_BASE_URL,
-	WEB_BASE_URL: import.meta.env.VITE_WEB_BASE_URL,
+	WEB_BASE_URL: import.meta.env.VITE_WEB_BASE_URL || 'http://localhost:3000',
+	DRAFT_MODE_SECRET: import.meta.env.VITE_DRAFT_MODE_SECRET,
 	ENDPOINTS: {
 		AUTH: {
 			LOGIN: '/api/auth/login',
@@ -28,7 +29,7 @@ export const API_CONFIG = {
 			// These routes are implemented in apps/web as part of Draft Mode preview (Part 3).
 			DRAFT_ENABLE: '/api/draft/enable',
 			DRAFT_DISABLE: '/api/draft/disable',
-			BLOG_PREVIEW_PATH: (slug: string) => `/blog/${slug}`,
+			BLOG_PREVIEW_PATH: (slug: string) => `/blogs/${slug}`,
 		},
 	},
 	TIMEOUT: 30000,

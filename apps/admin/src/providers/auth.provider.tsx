@@ -64,7 +64,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 			const userData = await authApi.me();
 			setUser(userData);
 		} catch (error) {
-			console.error('[v0] Auth: Failed to refresh user:', error);
+			console.error('[Auth]: Failed to refresh user:', error);
 			tokenUtil.remove();
 			setUser(null);
 		}
@@ -79,7 +79,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 					const userData = await authApi.me();
 					setUser(userData);
 				} catch (error) {
-					console.error('[v0] Auth: Token validation failed:', error);
+					console.error('[Auth]: Token validation failed:', error);
 					tokenUtil.remove();
 					setUser(null);
 				}

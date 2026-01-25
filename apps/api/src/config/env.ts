@@ -25,6 +25,9 @@ export const config = {
 		apiSecret: process.env.CLOUDINARY_API_SECRET,
 		folder: process.env.CLOUDINARY_UPLOAD_FOLDER || 'blog',
 	},
+	preview: {
+		secret: process.env.API_PREVIEW_SECRET,
+	},
 };
 
 // Validate required env vars
@@ -46,4 +49,8 @@ if (!config.cloudinary.apiKey) {
 
 if (!config.cloudinary.apiSecret) {
 	throw new Error('CLOUDINARY_API_SECRET environment variable is required');
+}
+
+if (!config.preview.secret) {
+	console.warn('WARNING: API_PREVIEW_SECRET is not set. Preview functionality will not work.');
 }

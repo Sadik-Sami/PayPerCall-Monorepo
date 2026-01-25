@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { blogServices } from './blogs.service';
 import { AppError } from '../../middlewares/errorHandler';
 import { isValidUUID } from '../../utils/validation.util';
+import { config } from '../../config/env';
 
 export const blogsController = {
 	// GET /api/admin/blogs
@@ -128,6 +129,26 @@ export const blogsController = {
 
 			const created = await blogServices.createBlock(blogId, req.body);
 			res.json({ success: true, statusCode: 201, message: 'Block created', data: created });
+		} catch (error) {
+			next(error);
+		}
+	},
+
+	// GET /api/blogs/preview/:slug (for Draft Mode preview)
+	async getPreviewBySlug(req: Request, res: Response, next: NextFunction) {
+		try {
+			const slug = req.params.slug;
+			if (!slug || typeof slug !== 'string') throw new AppError('Slug is required', 400);
+
+			// Verify preview secret from header
+			const previewSecret = req.headers['x-preview-secret'];
+			if (!previewSecret || previewSecret !== config.preview.secret) {
+				throw new AppError('Invalid or missing preview secret', 401);
+			}
+
+			// Get blog regardless of status (published or draft)
+			const result = await blogServices.getBySlugForPreview(slug);
+			res.json({ success: true, statusCode: 200, message: 'Blog preview retrieved', data: result });
 		} catch (error) {
 			next(error);
 		}
