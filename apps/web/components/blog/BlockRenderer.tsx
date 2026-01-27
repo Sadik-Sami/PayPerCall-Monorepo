@@ -198,7 +198,7 @@ function renderGallery(node: TiptapNode): React.ReactNode {
 	}
 
 	const images = node.attrs?.images;
-	const layout = node.attrs?.layout || 'grid';
+	// const layout = node.attrs?.layout || 'grid';
 
 	if (!images || !Array.isArray(images) || images.length === 0) {
 		console.warn('Gallery node has no images');

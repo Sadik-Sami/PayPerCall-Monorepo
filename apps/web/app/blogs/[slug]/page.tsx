@@ -74,7 +74,7 @@ export default async function BlogDetailPage({ params }: Props) {
 				{/* Hero section with cover image */}
 				<header className='relative'>
 					{blog.cover_image_url && (
-						<div className='relative aspect-[21/9] w-full overflow-hidden bg-muted'>
+						<div className='relative aspect-21/9 w-full overflow-hidden bg-muted'>
 							<Image
 								src={blog.cover_image_url}
 								alt={blog.title}
