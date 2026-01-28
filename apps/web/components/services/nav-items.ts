@@ -86,3 +86,41 @@ export const WEB_DEV_TECH_STACK: TechStackItem[] = [
 	{ label: 'Vercel · Cloudflare · Render', icon: Cloud },
 	{ label: 'Analytics & experimentation', icon: Sparkles },
 ];
+
+export const CMS_SERVICE_NAV: ServiceNavItem[] = [
+	{
+		label: 'Overview',
+		href: '/services/cms',
+		summary: 'Explore our CMS development capabilities across traditional and headless platforms.',
+		capabilities: ['Platform selection', 'Custom development', 'Migration support'],
+		icon: Globe,
+	},
+	{
+		label: 'WordPress',
+		href: '/services/cms/wordpress',
+		summary: 'Custom WordPress solutions with enterprise plugins, security, and performance optimization.',
+		capabilities: ['Custom themes', 'WooCommerce', 'Gutenberg blocks', 'Multisite'],
+		icon: FileText,
+	},
+	{
+		label: 'Drupal',
+		href: '/services/cms/drupal',
+		summary: 'Enterprise Drupal development for complex content models and high-security requirements.',
+		capabilities: ['Multi-site', 'Security hardening', 'API integrations', 'Custom modules'],
+		icon: ShieldCheck,
+	},
+	{
+		label: 'Content Hub',
+		href: '/services/cms/content-hub',
+		summary: 'Headless CMS architecture with API-first content delivery for omnichannel experiences.',
+		capabilities: ['Contentful', 'Sanity', 'Strapi', 'GraphQL APIs'],
+		icon: Cloud,
+	},
+	{
+		label: 'Wix Studio',
+		href: '/services/cms/wix-studio',
+		summary: 'Rapid website launches with Wix Studio for small businesses and fast time-to-market.',
+		capabilities: ['Visual builder', 'Managed hosting', 'App marketplace', 'SEO tools'],
+		icon: Sparkles,
+	},
+];

@@ -39,3 +39,6 @@ npm-debug.log*
 .cursor
 .kombai
 .pnpm-store
+.agents
+.claude
+.opencode
