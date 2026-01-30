@@ -22,6 +22,8 @@ import {
 	Building2,
 	ShoppingCart,
 	FileText,
+	Smartphone,
+	Tablet,
 } from 'lucide-react';
 
 export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
@@ -122,5 +124,36 @@ export const CMS_SERVICE_NAV: ServiceNavItem[] = [
 		summary: 'Rapid website launches with Wix Studio for small businesses and fast time-to-market.',
 		capabilities: ['Visual builder', 'Managed hosting', 'App marketplace', 'SEO tools'],
 		icon: Sparkles,
+	},
+];
+
+export const APP_DEV_SERVICE_NAV: ServiceNavItem[] = [
+	{
+		label: 'Overview',
+		href: '/services/app-dev',
+		summary: 'Mobile apps built for user engagement and measurable business growth.',
+		capabilities: ['Native & cross-platform', 'App Store optimization', 'Backend integration'],
+		icon: Globe,
+	},
+	{
+		label: 'iOS App Development',
+		href: '/services/app-dev/ios',
+		summary: 'Native iOS apps built for iPhone and iPad with SwiftUI and UIKit.',
+		capabilities: ['Swift & SwiftUI', 'App Store submission', 'Apple ecosystem integration'],
+		icon: Smartphone,
+	},
+	{
+		label: 'Android App Development',
+		href: '/services/app-dev/android',
+		summary: 'Native Android apps built for scale and performance across devices.',
+		capabilities: ['Kotlin & Jetpack Compose', 'Play Store optimization', 'Material Design'],
+		icon: Tablet,
+	},
+	{
+		label: 'Cross-Platform Apps',
+		href: '/services/app-dev/cross-platform',
+		summary: 'Cross-platform apps that reach iOS and Android from one codebase.',
+		capabilities: ['React Native', 'Flutter', 'Code reuse', 'Native modules'],
+		icon: Code2,
 	},
 ];

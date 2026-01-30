@@ -279,7 +279,7 @@ export default function FullStackWebDevPage() {
 	return (
 		<main className='space-y-0'>
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<section className='py-6 md:py-8'>
+			<section className='py-6 md:py-8 mx-auto max-w-7xl'>
 				<TechMarquee />
 			</section>
 			<ClientSuccessBreakdown
