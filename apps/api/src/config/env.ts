@@ -23,7 +23,8 @@ export const config = {
 		cloudName: process.env.CLOUDINARY_CLOUD_NAME,
 		apiKey: process.env.CLOUDINARY_API_KEY,
 		apiSecret: process.env.CLOUDINARY_API_SECRET,
-		folder: process.env.CLOUDINARY_UPLOAD_FOLDER || 'blog',
+		folder: process.env.CLOUDINARY_UPLOAD_FOLDER_BLOGS || 'blog',
+		usersFolder: process.env.CLOUDINARY_UPLOAD_FOLDER_USERS || 'user',
 	},
 	preview: {
 		secret: process.env.API_PREVIEW_SECRET,

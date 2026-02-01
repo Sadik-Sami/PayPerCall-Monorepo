@@ -4,10 +4,9 @@ import type { ApiResponse } from '@/types/api.types';
 import type { CloudinarySignature } from '@/types/blog.types';
 
 export const uploadsApi = {
-	getCloudinarySignature: async (): Promise<CloudinarySignature> => {
-		const { data } = await axiosInstance.post<ApiResponse<CloudinarySignature>>(
-			API_CONFIG.ENDPOINTS.UPLOADS.CLOUDINARY_SIGNATURE
-		);
+	getCloudinarySignature: async (folder?: string): Promise<CloudinarySignature> => {
+		const url = folder ? `${API_CONFIG.ENDPOINTS.UPLOADS.CLOUDINARY_SIGNATURE}?folder=${folder}` : API_CONFIG.ENDPOINTS.UPLOADS.CLOUDINARY_SIGNATURE;
+		const { data } = await axiosInstance.post<ApiResponse<CloudinarySignature>>(url);
 
 		if (!data.success || !data.data) {
 			throw new Error(data.message || 'Failed to get upload signature');
@@ -43,5 +42,5 @@ export async function uploadToCloudinary(params: {
 		throw new Error('Failed to upload image');
 	}
 
-	return response.json() as Promise<{ secure_url: string }>;
+	return response.json() as Promise<{ secure_url: string; public_id: string }>;
 }

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/use-auth';
 import { userApi } from '@/services/user.api';
+import { uploadsApi, uploadToCloudinary } from '@/services/uploads.api';
 import {
 	updateProfileSchema,
 	changePasswordSchema,
@@ -32,12 +33,21 @@ import {
 	XCircle,
 	Calendar,
 	Shield,
+	Trash2,
+	Image as ImageIcon,
+	X,
+	Upload,
 } from 'lucide-react';
 import { ModeToggle } from '@/components/common/mode-toggle';
 
 export default function ProfilePage() {
 	const { user, refreshUser, logout } = useAuth();
 	const [activeTab, setActiveTab] = useState<'profile' | 'password'>('profile');
+	const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
+	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [isImageDeleted, setIsImageDeleted] = useState(false);
+	const [isUploadingImage, setIsUploadingImage] = useState(false);
+	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const profileForm = useForm<UpdateProfileFormData>({
 		resolver: zodResolver(updateProfileSchema),
@@ -65,6 +75,16 @@ export default function ProfilePage() {
 		mutationFn: userApi.updateProfile,
 		onSuccess: async () => {
 			toast.success('Profile updated successfully');
+			// Clean up image state after successful update
+			if (imagePreview) {
+				URL.revokeObjectURL(imagePreview);
+			}
+			setSelectedImageFile(null);
+			setImagePreview(null);
+			setIsImageDeleted(false);
+			if (fileInputRef.current) {
+				fileInputRef.current.value = '';
+			}
 			await refreshUser();
 		},
 		onError: (error: Error) => {
@@ -84,16 +104,53 @@ export default function ProfilePage() {
 		},
 	});
 
-	const onProfileSubmit = (data: UpdateProfileFormData) => {
-		updateProfileMutation.mutate({
-			name: data.name,
-			email: data.email,
-			phone: data.phone || null,
-			address_street: data.address_street || null,
-			address_city: data.address_city || null,
-			address_state: data.address_state || null,
-			address_postal_code: data.address_postal_code || null,
-		});
+	const onProfileSubmit = async (data: UpdateProfileFormData) => {
+		try {
+			let imageData = undefined;
+
+			// Handle image upload or deletion
+			if (isImageDeleted) {
+				imageData = null;
+			} else if (selectedImageFile) {
+				setIsUploadingImage(true);
+				try {
+					const signature = await uploadsApi.getCloudinarySignature('user');
+					const upload = await uploadToCloudinary({
+						cloudName: signature.cloudName,
+						apiKey: signature.apiKey,
+						timestamp: signature.timestamp,
+						signature: signature.signature,
+						folder: signature.folder,
+						file: selectedImageFile,
+					});
+					imageData = {
+						url: upload.secure_url,
+						publicId: upload.public_id,
+					};
+				} catch (error) {
+					const message = error instanceof Error ? error.message : 'Failed to upload image';
+					toast.error(message);
+					setIsUploadingImage(false);
+					return;
+				} finally {
+					setIsUploadingImage(false);
+				}
+			}
+
+			updateProfileMutation.mutate({
+				name: data.name,
+				email: data.email,
+				phone: data.phone || null,
+				address_street: data.address_street || null,
+				address_city: data.address_city || null,
+				address_state: data.address_state || null,
+				address_postal_code: data.address_postal_code || null,
+				image: imageData,
+			});
+		} catch (error) {
+			const message = error instanceof Error ? error.message : 'Failed to update profile';
+			toast.error(message);
+		}
 	};
 
 	const onPasswordSubmit = (data: ChangePasswordFormData) => {
@@ -120,6 +177,54 @@ export default function ProfilePage() {
 		});
 	};
 
+	const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		if (file) {
+			// Validate file type
+			if (!file.type.startsWith('image/')) {
+				toast.error('Please select a valid image file');
+				return;
+			}
+			setSelectedImageFile(file);
+			setIsImageDeleted(false);
+			// Create preview URL
+			const previewUrl = URL.createObjectURL(file);
+			setImagePreview(previewUrl);
+		}
+	};
+
+	const handleImageDelete = () => {
+		if (imagePreview) {
+			URL.revokeObjectURL(imagePreview);
+		}
+		setSelectedImageFile(null);
+		setImagePreview(null);
+		setIsImageDeleted(true);
+		if (fileInputRef.current) {
+			fileInputRef.current.value = '';
+		}
+	};
+
+	const handleChooseImage = () => {
+		fileInputRef.current?.click();
+	};
+
+	// Clean up object URLs on unmount
+	useEffect(() => {
+		return () => {
+			if (imagePreview) {
+				URL.revokeObjectURL(imagePreview);
+			}
+		};
+	}, [imagePreview]);
+
+	// Get the current avatar source
+	const getAvatarSrc = () => {
+		if (imagePreview) return imagePreview;
+		if (user?.image?.url && !isImageDeleted) return user.image.url;
+		return undefined;
+	};
+
 	return (
 		<div className='space-y-8'>
 			{/* Header */}
@@ -135,13 +240,142 @@ export default function ProfilePage() {
 				{/* Profile Overview Card */}
 				<Card className='lg:col-span-1'>
 					<CardHeader className='text-center'>
-						<div className='mx-auto mb-4'>
-							<Avatar className='h-24 w-24'>
-								<AvatarImage src={user?.image?.url} alt={user?.name} />
-								<AvatarFallback className='bg-primary text-primary-foreground text-2xl'>
-									{user?.name ? getInitials(user.name) : 'AD'}
-								</AvatarFallback>
-							</Avatar>
+						<div className='mx-auto mb-4 space-y-3'>
+							{/* Avatar with hover overlay */}
+							<div className='relative inline-block group'>
+								<Avatar
+									className={`h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 ring-2 transition-all ${
+										imagePreview ? 'ring-primary ring-offset-2 ring-offset-background' : 'ring-border'
+									}`}
+								>
+									<AvatarImage src={getAvatarSrc()} alt={user?.name} />
+									<AvatarFallback className='bg-primary text-primary-foreground text-2xl sm:text-3xl'>
+										{user?.name ? getInitials(user.name) : 'AD'}
+									</AvatarFallback>
+								</Avatar>
+								{/* Hover overlay for desktop - shows action buttons */}
+								<div className='absolute inset-0 rounded-full bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none sm:pointer-events-auto'>
+									<div className='flex gap-2'>
+										<Button
+											type='button'
+											size='icon'
+											variant='secondary'
+											className='h-10 w-10 rounded-full shadow-lg backdrop-blur-sm bg-background/90 hover:bg-background border border-border'
+											onClick={handleChooseImage}
+											title='Choose image'
+										>
+											<ImageIcon className='h-4 w-4' />
+										</Button>
+										{(imagePreview || (user?.image?.url && !isImageDeleted)) && (
+											<Button
+												type='button'
+												size='icon'
+												variant='destructive'
+												className='h-10 w-10 rounded-full shadow-lg backdrop-blur-sm'
+												onClick={handleImageDelete}
+												title='Remove image'
+											>
+												<Trash2 className='h-4 w-4' />
+											</Button>
+										)}
+									</div>
+								</div>
+								{/* Badge indicator when new image is selected */}
+								{imagePreview && (
+									<div className='absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full p-1 shadow-lg'>
+										<Upload className='h-3 w-3' />
+									</div>
+								)}
+							</div>
+
+							{/* Action buttons - Mobile: always visible, Desktop: visible when image exists or is selected */}
+							<div className='flex items-center justify-center gap-2'>
+								{/* Mobile buttons */}
+								<div className='flex sm:hidden items-center justify-center gap-2 w-full'>
+									<Button
+										type='button'
+										size='sm'
+										variant='outline'
+										className='flex-1 h-9 text-xs'
+										onClick={handleChooseImage}
+									>
+										<ImageIcon className='h-3.5 w-3.5 mr-1.5' />
+										{imagePreview ? 'Change' : 'Choose Image'}
+									</Button>
+									{imagePreview && (
+										<Button
+											type='button'
+											size='sm'
+											variant='outline'
+											className='h-9 px-3 text-xs'
+											onClick={handleImageDelete}
+										>
+											<X className='h-3.5 w-3.5' />
+										</Button>
+									)}
+									{(user?.image?.url && !isImageDeleted && !imagePreview) && (
+										<Button
+											type='button'
+											size='sm'
+											variant='destructive'
+											className='h-9 px-3 text-xs'
+											onClick={handleImageDelete}
+										>
+											<Trash2 className='h-3.5 w-3.5' />
+										</Button>
+									)}
+								</div>
+
+								{/* Desktop buttons - shown when image exists or is selected */}
+								{(imagePreview || (user?.image?.url && !isImageDeleted)) && (
+									<div className='hidden sm:flex items-center justify-center gap-2'>
+										<Button
+											type='button'
+											size='sm'
+											variant='outline'
+											className='h-9 text-xs'
+											onClick={handleChooseImage}
+										>
+											<ImageIcon className='h-3.5 w-3.5 mr-1.5' />
+											Change Image
+										</Button>
+										<Button
+											type='button'
+											size='sm'
+											variant='destructive'
+											className='h-9 text-xs'
+											onClick={handleImageDelete}
+										>
+											<Trash2 className='h-3.5 w-3.5 mr-1.5' />
+											Remove
+										</Button>
+									</div>
+								)}
+
+								{/* Desktop: Show choose button when no image */}
+								{!imagePreview && !user?.image?.url && !isImageDeleted && (
+									<div className='hidden sm:block'>
+										<Button
+											type='button'
+											size='sm'
+											variant='outline'
+											className='h-9 text-xs'
+											onClick={handleChooseImage}
+										>
+											<ImageIcon className='h-3.5 w-3.5 mr-1.5' />
+											Choose Image
+										</Button>
+									</div>
+								)}
+							</div>
+
+							<input
+								ref={fileInputRef}
+								type='file'
+								accept='image/*'
+								onChange={handleImageSelect}
+								className='hidden'
+							/>
 						</div>
 						<CardTitle>{user?.name}</CardTitle>
 						<CardDescription>{user?.email}</CardDescription>
@@ -342,11 +576,11 @@ export default function ProfilePage() {
 										/>
 									</div>
 
-									<Button type='submit' disabled={updateProfileMutation.isPending}>
-										{updateProfileMutation.isPending ?
+									<Button type='submit' disabled={updateProfileMutation.isPending || isUploadingImage}>
+										{updateProfileMutation.isPending || isUploadingImage ?
 											<>
 												<Loader2 className='mr-2 h-4 w-4 animate-spin' />
-												Saving...
+												{isUploadingImage ? 'Uploading image...' : 'Saving...'}
 											</>
 										:	'Save Changes'}
 									</Button>

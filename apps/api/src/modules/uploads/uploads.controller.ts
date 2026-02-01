@@ -7,7 +7,9 @@ export const uploadsController = {
 	async getCloudinarySignature(req: Request, res: Response, next: NextFunction) {
 		try {
 			const timestamp = Math.floor(Date.now() / 1000);
-			const folder = config.cloudinary.folder;
+			// Check if folder query parameter is provided, default to blogs folder
+			const requestedFolder = req.query.folder as string;
+			const folder = requestedFolder === 'user' ? config.cloudinary.usersFolder : config.cloudinary.folder;
 
 			const paramsToSign = `folder=${folder}&timestamp=${timestamp}`;
 			const signature = crypto
