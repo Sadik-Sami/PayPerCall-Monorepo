@@ -19,6 +19,8 @@ export interface User {
 	address_city: string | null;
 	address_state: string | null;
 	address_postal_code: string | null;
+	bio: string | null;
+	designation: string | null;
 	created_at: string;
 	updated_at: string;
 }
@@ -31,6 +33,8 @@ export interface UpdateProfileRequest {
 	address_city?: string | null;
 	address_state?: string | null;
 	address_postal_code?: string | null;
+	bio?: string | null;
+	designation?: string | null;
 }
 
 export interface ChangePasswordRequest {

@@ -15,6 +15,7 @@ import { toast } from 'sonner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@workspace/ui/components/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -37,6 +38,8 @@ import {
 	Image as ImageIcon,
 	X,
 	Upload,
+	Briefcase,
+	FileText,
 } from 'lucide-react';
 import { ModeToggle } from '@/components/common/mode-toggle';
 
@@ -59,6 +62,8 @@ export default function ProfilePage() {
 			address_city: user?.address_city || '',
 			address_state: user?.address_state || '',
 			address_postal_code: user?.address_postal_code || '',
+			bio: user?.bio || '',
+			designation: user?.designation || '',
 		},
 	});
 
@@ -145,6 +150,8 @@ export default function ProfilePage() {
 				address_city: data.address_city || null,
 				address_state: data.address_state || null,
 				address_postal_code: data.address_postal_code || null,
+				bio: data.bio || null,
+				designation: data.designation || null,
 				image: imageData,
 			});
 		} catch (error) {
@@ -575,6 +582,56 @@ export default function ProfilePage() {
 											)}
 										/>
 									</div>
+
+									<FormField
+										control={profileForm.control}
+										name='designation'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Designation</FormLabel>
+												<FormControl>
+													<div className='relative'>
+														<Briefcase className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
+														<Input
+															className='pl-10'
+															placeholder='e.g., MPH, CPH, Health Care Advisor'
+															{...field}
+															value={field.value || ''}
+														/>
+													</div>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+
+									<FormField
+										control={profileForm.control}
+										name='bio'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Bio</FormLabel>
+												<FormControl>
+													<div className='relative'>
+														<FileText className='absolute left-3 top-3 h-4 w-4 text-muted-foreground' />
+														<Textarea
+															className='pl-10 min-h-32 resize-y'
+															placeholder='Write a brief biography about yourself...'
+															maxLength={2000}
+															{...field}
+															value={field.value || ''}
+														/>
+													</div>
+												</FormControl>
+												<div className='flex items-center justify-between'>
+													<FormMessage />
+													<span className='text-xs text-muted-foreground'>
+														{(field.value?.length || 0)} / 2000
+													</span>
+												</div>
+											</FormItem>
+										)}
+									/>
 
 									<Button type='submit' disabled={updateProfileMutation.isPending || isUploadingImage}>
 										{updateProfileMutation.isPending || isUploadingImage ?

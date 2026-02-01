@@ -38,6 +38,8 @@ export const publicUserSelectSchema = userSelectSchema.omit({ password: true });
 export const userUpdateSchema = createUpdateSchema(usersTable, {
 	name: (schema) => schema.min(1, 'Name is required'),
 	email: (schema) => schema.email('Please enter a valid email'),
+	bio: (schema) => schema.max(2000, 'Bio must be less than 2000 characters').optional(),
+	designation: (schema) => schema.max(255, 'Designation must be less than 255 characters').optional(),
 }).omit({
 	role: true,
 	password: true,

@@ -1,5 +1,5 @@
 import { db } from '../../db';
-import { blogsTable, blogBlocksTable, type Blog, type NewBlog } from '../../db/schema';
+import { blogsTable, blogBlocksTable, usersTable, type Blog, type NewBlog } from '../../db/schema';
 import { AppError } from '../../middlewares/errorHandler';
 import { and, asc, desc, eq, sql } from 'drizzle-orm';
 import type { BlogCreateInput, BlogUpdateInput } from '../../db/validator/blog.validator';
@@ -114,32 +114,58 @@ export const blogServices = {
 			.orderBy(desc(blogsTable.published_at));
 	},
 
-	async getPublishedBySlug(slug: string): Promise<{ blog: Blog; blocks: any[] }> {
+	async getPublishedBySlug(slug: string): Promise<{ blog: Blog; blocks: any[]; author: any }> {
 		const rows = await db
-			.select()
+			.select({
+				blog: blogsTable,
+				author: {
+					id: usersTable.id,
+					name: usersTable.name,
+					image: usersTable.image,
+					bio: usersTable.bio,
+					designation: usersTable.designation,
+				},
+			})
 			.from(blogsTable)
+			.leftJoin(usersTable, eq(blogsTable.author_id, usersTable.id))
 			.where(and(eq(blogsTable.slug, slug), eq(blogsTable.status, 'published')))
 			.limit(1);
-		const blog = rows[0];
-		if (!blog) throw new AppError('Blog not found', 404);
 
+		const row = rows[0];
+		if (!row) throw new AppError('Blog not found', 404);
+
+		const blog = row.blog;
 		const blocks = await this.listBlocks(blog.id);
+		const author = row.author?.id ? row.author : null;
 
-		return { blog, blocks };
+		return { blog, blocks, author };
 	},
 
-	async getBySlugForPreview(slug: string): Promise<{ blog: Blog; blocks: any[] }> {
+	async getBySlugForPreview(slug: string): Promise<{ blog: Blog; blocks: any[]; author: any }> {
 		const rows = await db
-			.select()
+			.select({
+				blog: blogsTable,
+				author: {
+					id: usersTable.id,
+					name: usersTable.name,
+					image: usersTable.image,
+					bio: usersTable.bio,
+					designation: usersTable.designation,
+				},
+			})
 			.from(blogsTable)
+			.leftJoin(usersTable, eq(blogsTable.author_id, usersTable.id))
 			.where(eq(blogsTable.slug, slug))
 			.limit(1);
-		const blog = rows[0];
-		if (!blog) throw new AppError('Blog not found', 404);
 
+		const row = rows[0];
+		if (!row) throw new AppError('Blog not found', 404);
+
+		const blog = row.blog;
 		const blocks = await this.listBlocks(blog.id);
+		const author = row.author?.id ? row.author : null;
 
-		return { blog, blocks };
+		return { blog, blocks, author };
 	},
 
 	async getById(id: string): Promise<Blog | undefined> {

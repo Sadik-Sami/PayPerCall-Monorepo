@@ -1,4 +1,4 @@
-import { pgTable, varchar, uuid, timestamp, pgEnum, boolean, jsonb } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, uuid, timestamp, pgEnum, boolean, jsonb, text } from 'drizzle-orm/pg-core';
 import { sessionsTable } from './session.schema';
 import { relations } from 'drizzle-orm';
 
@@ -20,6 +20,9 @@ export const usersTable = pgTable('users', {
 	address_city: varchar('address_city', { length: 100 }),
 	address_state: varchar('address_state', { length: 100 }),
 	address_postal_code: varchar('address_postal_code', { length: 30 }),
+
+	bio: text('bio'),
+	designation: varchar('designation', { length: 255 }),
 
 	created_at: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 	updated_at: timestamp('updated_at', { withTimezone: true })

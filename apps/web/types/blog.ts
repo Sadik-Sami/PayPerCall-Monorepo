@@ -11,6 +11,14 @@ export type BlogBlockType =
 	| 'ordered_list'
 	| 'divider';
 
+export interface Author {
+	id: string;
+	name: string;
+	image: { url: string; publicId: string } | null;
+	bio: string | null;
+	designation: string | null;
+}
+
 export interface Blog {
 	id: string;
 	title: string;
@@ -64,6 +72,7 @@ export interface BlogDetailResponse {
 	data: {
 		blog: Blog;
 		blocks: BlogBlock[];
+		author: Author | null;
 	};
 }
 

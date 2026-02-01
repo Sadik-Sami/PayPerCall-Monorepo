@@ -18,6 +18,8 @@ export const userSchema = z.object({
 	address_city: z.string().nullable(),
 	address_state: z.string().nullable(),
 	address_postal_code: z.string().nullable(),
+	bio: z.string().nullable(),
+	designation: z.string().nullable(),
 	created_at: z.string(),
 	updated_at: z.string(),
 });
@@ -32,6 +34,8 @@ export const updateProfileSchema = z.object({
 	address_city: z.string().optional().nullable(),
 	address_state: z.string().optional().nullable(),
 	address_postal_code: z.string().optional().nullable(),
+	bio: z.string().max(2000, 'Bio must be less than 2000 characters').optional().nullable(),
+	designation: z.string().max(255, 'Designation must be less than 255 characters').optional().nullable(),
 });
 
 export type UpdateProfileFormData = z.infer<typeof updateProfileSchema>;

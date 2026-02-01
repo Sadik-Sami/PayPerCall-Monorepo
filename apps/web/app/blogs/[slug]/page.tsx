@@ -5,6 +5,7 @@ import { Clock } from 'lucide-react';
 import { getBlogBySlug } from '@/lib/api/blogs';
 import { BlockRenderer } from '@/components/blog/BlockRenderer';
 import { ArticleJsonLd } from '@/components/blog/ArticleJsonLd';
+import { AuthorInfo } from '@/components/blog/AuthorInfo';
 
 export const revalidate = 60;
 
@@ -65,7 +66,8 @@ export default async function BlogDetailPage({ params }: Props) {
 		notFound();
 	}
 
-	const { blog, blocks } = data;
+	const { blog, blocks, author } = data;
+	console.log(author);
 
 	return (
 		<>
@@ -113,6 +115,9 @@ export default async function BlogDetailPage({ params }: Props) {
 							<BlockRenderer blocks={blocks} />
 						</div>
 					)}
+
+					{/* Author Info */}
+					<AuthorInfo author={author} updatedAt={blog.updated_at} />
 				</div>
 			</article>
 		</>

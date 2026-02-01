@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import { draftMode } from 'next/headers';
-import type { Blog, BlogBlock, BlogListResponse, BlogDetailResponse } from '@/types/blog';
+import type { Blog, BlogBlock, BlogListResponse, BlogDetailResponse, Author } from '@/types/blog';
 
 const API_BASE_URL = process.env.API_BASE_URL || 'https://paypercall-monorepo.onrender.com';
 const API_PREVIEW_SECRET = process.env.API_PREVIEW_SECRET;
@@ -8,6 +8,7 @@ const API_PREVIEW_SECRET = process.env.API_PREVIEW_SECRET;
 interface BlogDetailData {
 	blog: Blog;
 	blocks: BlogBlock[];
+	author: Author | null;
 }
 
 /**

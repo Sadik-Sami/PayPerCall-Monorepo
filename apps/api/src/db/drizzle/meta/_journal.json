@@ -22,6 +22,13 @@
       "when": 1769049724610,
       "tag": "0002_watery_black_panther",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1769950942388,
+      "tag": "0003_strange_frog_thor",
+      "breakpoints": true
     }
   ]
 }
