@@ -1,13 +1,19 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ArrowRight, MessageSquare } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, itemVariants } from '@/lib/animations';
 import { Button } from '@workspace/ui/components/button';
 import { Input } from '@workspace/ui/components/input';
 import { Textarea } from '@workspace/ui/components/textarea';
 import { Label } from '@workspace/ui/components/label';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { FreeConsultationSectionProps } from '@/types/services';
+import { leadCreateSchema, requireProjectSummary, type LeadCreateInput } from '@/lib/validators/leads';
+import { submitLead } from '@/lib/api/leads.client';
 
 const SHORT_FIELDS = [
 	{ id: 'name', label: 'Full name', type: 'text', autoComplete: 'name' },
@@ -25,9 +31,69 @@ export function ConsultationCTA({
 	subtitle,
 	bullets,
 	formVariant = 'detailed',
+	category,
+	sourcePage,
 	className,
 }: FreeConsultationSectionProps) {
+	const pathname = usePathname();
+	const resolvedSourcePage = sourcePage ?? pathname ?? '/';
 	const fields = formVariant === 'short' ? SHORT_FIELDS : DETAILED_FIELDS;
+
+	const [submitError, setSubmitError] = useState<string | null>(null);
+	const [submitSuccess, setSubmitSuccess] = useState(false);
+
+	const defaultValues = useMemo(
+		() =>
+			({
+				name: '',
+				email: '',
+				company: '',
+				projectType: '',
+				projectSummary: '',
+				category,
+				sourcePage: resolvedSourcePage,
+			}) satisfies LeadCreateInput,
+		[category, resolvedSourcePage]
+	);
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+		reset,
+	} = useForm<LeadCreateInput>({
+		resolver: zodResolver(leadCreateSchema),
+		defaultValues,
+	});
+
+	async function onSubmit(values: LeadCreateInput) {
+		setSubmitError(null);
+		setSubmitSuccess(false);
+
+		// Ensure stable non-input fields
+		values.category = category;
+		values.sourcePage = resolvedSourcePage;
+
+		// Enforce variant-specific requirements
+		const summaryCheck = requireProjectSummary(values, formVariant);
+		if (!summaryCheck.ok) {
+			setSubmitError(summaryCheck.message);
+			return;
+		}
+
+		try {
+			await submitLead(values);
+			setSubmitSuccess(true);
+			reset({
+				...defaultValues,
+				category,
+				sourcePage: resolvedSourcePage,
+			});
+		} catch (err) {
+			console.error('Lead submit failed:', err);
+			setSubmitError('Something went wrong. Please try again in a moment.');
+		}
+	}
 
 	return (
 		<section
@@ -74,9 +140,9 @@ export function ConsultationCTA({
 				<motion.div variants={itemVariants}>
 					<form
 						className='rounded-2xl border border-dashed border-border bg-card/50 p-6 backdrop-blur-sm'
-						method='post'
-						action='/contact'>
-						<input type='hidden' name='source' value='web-dev-services' />
+						onSubmit={handleSubmit(onSubmit)}>
+						<input type='hidden' value={category} {...register('category')} />
+						<input type='hidden' value={resolvedSourcePage} {...register('sourcePage')} />
 
 						<div className='space-y-4'>
 							{fields.map((field) => (
@@ -86,12 +152,15 @@ export function ConsultationCTA({
 									</Label>
 									<Input
 										id={field.id}
-										name={field.id}
 										type={field.type}
-										required
 										autoComplete={field.autoComplete}
 										className='bg-background'
+										{...register(field.id)}
+										required={field.id === 'name' || field.id === 'email'}
 									/>
+									{errors[field.id] && (
+										<p className='text-sm text-destructive'>{errors[field.id]?.message as string}</p>
+									)}
 								</div>
 							))}
 
@@ -102,21 +171,37 @@ export function ConsultationCTA({
 									</Label>
 									<Textarea
 										id='projectSummary'
-										name='projectSummary'
 										rows={4}
 										placeholder='Timeline, systems involved, internal stakeholders...'
-										required
 										className='resize-none bg-background'
+										{...register('projectSummary')}
+										required
 									/>
+									{errors.projectSummary && (
+										<p className='text-sm text-destructive'>{errors.projectSummary.message as string}</p>
+									)}
 								</div>
 							)}
 
-							<Button type='submit' size='lg' className='group w-full gap-2'>
+							<Button type='submit' size='lg' className='group w-full gap-2' disabled={isSubmitting}>
 								Book Your Free Call
 								<ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-1' />
 							</Button>
 
-							<p className='text-center text-xs text-muted-foreground'>We respond within 24 hours on business days.</p>
+							{submitSuccess && (
+								<p className='text-center text-sm text-foreground' role='status' aria-live='polite'>
+									Thanks — we received your request. We’ll respond within 24 hours on business days.
+								</p>
+							)}
+							{submitError && (
+								<p className='text-center text-sm text-destructive' role='alert' aria-live='polite'>
+									{submitError}
+								</p>
+							)}
+
+							{!submitSuccess && (
+								<p className='text-center text-xs text-muted-foreground'>We respond within 24 hours on business days.</p>
+							)}
 						</div>
 					</form>
 				</motion.div>

@@ -207,6 +207,7 @@ export default function WebDevOverviewPage() {
 			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='section-container pb-16 max-w-7xl mx-auto'>
 				<ConsultationCTA
+					category='web-dev'
 					title='Plan your next web program with a 30-minute strategy session'
 					bullets={[
 						'Share goals, KPIs, and blockers—no prep deck required.',

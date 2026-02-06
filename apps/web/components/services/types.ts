@@ -112,8 +112,17 @@ export type FAQSectionProps = {
 
 export type FreeConsultationSectionProps = {
 	title: string;
+	subtitle?: string;
 	bullets: string[];
 	formVariant?: 'short' | 'detailed';
+	/**
+	 * High-level service category used for lead routing/reporting (e.g. `app-dev`, `web-dev`, `cms`).
+	 */
+	category: string;
+	/**
+	 * Optional explicit source path. If omitted, components can infer it from `usePathname()`.
+	 */
+	sourcePage?: string;
 	className?: string;
 };
 

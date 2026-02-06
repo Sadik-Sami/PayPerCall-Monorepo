@@ -327,6 +327,7 @@ export default function FullStackWebDevPage() {
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div className='section-container py-12 md:py-16'>
 				<ConsultationCTA
+					category='web-dev'
 					className='w-full'
 					title='Book a full-stack discovery call'
 					bullets={[

@@ -316,6 +316,7 @@ export default function WixStudioPage() {
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA
+					category='cms'
 					className='w-full'
 					title='Start your Wix Studio project with a free consultation'
 					bullets={[

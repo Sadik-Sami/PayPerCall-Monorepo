@@ -259,6 +259,9 @@ importers:
       '@workspace/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      axios:
+        specifier: ^1.12.2
+        version: 1.13.2
       framer-motion:
         specifier: ^12.27.5
         version: 12.27.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)

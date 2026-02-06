@@ -283,6 +283,7 @@ export default function CMSOverviewPage() {
 			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='section-container pb-16 max-w-7xl mx-auto'>
 				<ConsultationCTA
+					category='cms'
 					title='Plan your content platform with a 30-minute assessment'
 					bullets={[
 						'Platform recommendation based on your content needs.',

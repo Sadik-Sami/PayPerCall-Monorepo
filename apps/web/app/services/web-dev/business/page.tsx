@@ -354,6 +354,7 @@ export default function BusinessWebsitesPage() {
 			<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='py-12 md:py-16 max-w-7xl mx-auto'>
 				<ConsultationCTA
+					category='web-dev'
 					className='max-w-7xl mx-auto'
 					title='Request an evidence-based website review'
 					bullets={[

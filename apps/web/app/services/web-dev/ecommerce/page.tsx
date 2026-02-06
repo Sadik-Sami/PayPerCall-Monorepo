@@ -417,6 +417,7 @@ export default function EcommerceWebDevPage() {
 				<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />
 				<div id='consultation' className='scroll-mt-24 py-12 md:py-16 max-w-7xl mx-auto'>
 					<ConsultationCTA
+						category='web-dev'
 						className='max-w-7xl mx-auto'
 						title='Request an ecommerce performance review'
 						bullets={[

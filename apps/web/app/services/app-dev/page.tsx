@@ -322,6 +322,7 @@ export default function AppDevOverviewPage() {
 			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='section-container pb-16 max-w-7xl mx-auto'>
 				<ConsultationCTA
+					category='app-dev'
 					title='Plan your next app with a 30-minute strategy session'
 					bullets={[
 						'Share goals, target audience, and platform preferences—no prep deck required.',

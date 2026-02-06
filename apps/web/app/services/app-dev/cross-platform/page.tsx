@@ -404,6 +404,7 @@ export default function CrossPlatformAppDevPage() {
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA
+					category='app-dev'
 					className='w-full'
 					title='Start your cross-platform project with a free framework consultation'
 					bullets={[
