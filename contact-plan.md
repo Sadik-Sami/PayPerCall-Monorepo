@@ -81,7 +81,7 @@ Todos:
 - Public route uses `validateData(leadCreateSchema)` and returns `201`.
 - Admin routes use `authenticate` + `authorize('admin')`.
 - Implement list query with pagination, filters, search, and sorting.
-- Add DB migration file (Drizzle SQL) for leads table and enum.
+- DB Migration using "db:generate": "drizzle-kit generate", "db:migrate": "drizzle-kit migrate", "db:push": "drizzle-kit push" - package.json script
 
 Implementation notes:
 - Follow existing controller/route patterns from `blogs`.

@@ -67,7 +67,6 @@ export default async function BlogDetailPage({ params }: Props) {
 	}
 
 	const { blog, blocks, author } = data;
-	console.log(author);
 
 	return (
 		<>

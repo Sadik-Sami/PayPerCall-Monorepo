@@ -12,8 +12,14 @@ import { Label } from '@workspace/ui/components/label';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { FreeConsultationSectionProps } from '@/types/services';
-import { leadCreateSchema, requireProjectSummary, type LeadCreateInput } from '@/lib/validators/leads';
-import { submitLead } from '@/lib/api/leads.client';
+import {
+	leadCreateSchema,
+	leadFormSchema,
+	requireProjectSummary,
+	type LeadCreateInput,
+	type LeadFormInput,
+} from '@/lib/validations/leads';
+import { submitLead } from '@/lib/api/leads';
 
 const SHORT_FIELDS = [
 	{ id: 'name', label: 'Full name', type: 'text', autoComplete: 'name' },
@@ -50,10 +56,8 @@ export function ConsultationCTA({
 				company: '',
 				projectType: '',
 				projectSummary: '',
-				category,
-				sourcePage: resolvedSourcePage,
-			}) satisfies LeadCreateInput,
-		[category, resolvedSourcePage]
+			}) satisfies LeadFormInput,
+		[]
 	);
 
 	const {
@@ -61,18 +65,14 @@ export function ConsultationCTA({
 		handleSubmit,
 		formState: { errors, isSubmitting },
 		reset,
-	} = useForm<LeadCreateInput>({
-		resolver: zodResolver(leadCreateSchema),
+	} = useForm<LeadFormInput>({
+		resolver: zodResolver(leadFormSchema),
 		defaultValues,
 	});
 
-	async function onSubmit(values: LeadCreateInput) {
+	async function onSubmit(values: LeadFormInput) {
 		setSubmitError(null);
 		setSubmitSuccess(false);
-
-		// Ensure stable non-input fields
-		values.category = category;
-		values.sourcePage = resolvedSourcePage;
 
 		// Enforce variant-specific requirements
 		const summaryCheck = requireProjectSummary(values, formVariant);
@@ -82,13 +82,21 @@ export function ConsultationCTA({
 		}
 
 		try {
-			await submitLead(values);
-			setSubmitSuccess(true);
-			reset({
-				...defaultValues,
+			const payload: LeadCreateInput = {
+				...values,
 				category,
 				sourcePage: resolvedSourcePage,
-			});
+			};
+
+			const parsed = leadCreateSchema.safeParse(payload);
+			if (!parsed.success) {
+				setSubmitError('Please double-check the form fields and try again.');
+				return;
+			}
+
+			await submitLead(parsed.data);
+			setSubmitSuccess(true);
+			reset(defaultValues);
 		} catch (err) {
 			console.error('Lead submit failed:', err);
 			setSubmitError('Something went wrong. Please try again in a moment.');
@@ -141,9 +149,6 @@ export function ConsultationCTA({
 					<form
 						className='rounded-2xl border border-dashed border-border bg-card/50 p-6 backdrop-blur-sm'
 						onSubmit={handleSubmit(onSubmit)}>
-						<input type='hidden' value={category} {...register('category')} />
-						<input type='hidden' value={resolvedSourcePage} {...register('sourcePage')} />
-
 						<div className='space-y-4'>
 							{fields.map((field) => (
 								<div key={field.id} className='space-y-2'>

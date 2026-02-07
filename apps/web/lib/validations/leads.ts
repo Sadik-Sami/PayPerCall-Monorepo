@@ -12,9 +12,15 @@ export const leadCreateSchema = z.object({
 	sourcePage: z.string().min(1, 'Source page is required'),
 });
 
-export type LeadCreateInput = z.infer<typeof leadCreateSchema>;
+export const leadFormSchema = leadCreateSchema.omit({
+	category: true,
+	sourcePage: true,
+});
 
-export function requireProjectSummary(val: LeadCreateInput, formVariant: 'short' | 'detailed') {
+export type LeadCreateInput = z.infer<typeof leadCreateSchema>;
+export type LeadFormInput = z.infer<typeof leadFormSchema>;
+
+export function requireProjectSummary(val: { projectSummary?: string }, formVariant: 'short' | 'detailed') {
 	if (formVariant === 'detailed' && (!val.projectSummary || val.projectSummary.trim().length === 0)) {
 		return { ok: false as const, message: 'Project context is required' };
 	}
