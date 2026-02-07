@@ -29,6 +29,13 @@
       "when": 1769950942388,
       "tag": "0003_strange_frog_thor",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1770489942137,
+      "tag": "0004_curious_redwing",
+      "breakpoints": true
     }
   ]
 }

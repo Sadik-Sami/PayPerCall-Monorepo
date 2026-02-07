@@ -106,7 +106,8 @@ Todos:
   - Search input
   - Sort controls
   - Status update actions (dropdown or inline select)
-- Add loading, empty, and error states.
+  - For pagination and other components use shadcn components
+- Add loading skeleton, empty, and error states.
 - Reuse existing `axiosInstance` and auth flow.
 
 Implementation notes:
@@ -117,9 +118,6 @@ Implementation notes:
 
 ## Validation & Testing
 
-- Unit test schema validators (if existing patterns allow).
-- Manual test flow:
-  - Submit CTA on `/services/app-dev` → verify record in DB.
-  - Log in admin → filter/search/sort and update status.
+- Typescript type checks
 
 

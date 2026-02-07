@@ -21,12 +21,14 @@ export const API_CONFIG = {
 			BLOG_BLOCKS: (blogId: string) => `/api/admin/blogs/${blogId}/blocks`,
 			BLOCK_BY_ID: (blockId: string) => `/api/admin/blocks/${blockId}`,
 			BLOCKS_REORDER: '/api/admin/blocks/reorder',
+			LEADS: '/api/admin/leads',
+			LEAD_BY_ID: (id: string) => `/api/admin/leads/${id}`,
+			LEAD_STATUS: (id: string) => `/api/admin/leads/${id}/status`,
 		},
 		UPLOADS: {
 			CLOUDINARY_SIGNATURE: '/api/admin/uploads/cloudinary-signature',
 		},
 		WEB: {
-			// These routes are implemented in apps/web as part of Draft Mode preview (Part 3).
 			DRAFT_ENABLE: '/api/draft/enable',
 			DRAFT_DISABLE: '/api/draft/disable',
 			BLOG_PREVIEW_PATH: (slug: string) => `/blogs/${slug}`,
