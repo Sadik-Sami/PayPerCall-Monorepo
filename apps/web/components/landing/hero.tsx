@@ -5,12 +5,13 @@ import { ImagesSlider } from '@workspace/ui/components/ui/images-slider';
 import { Button } from '@workspace/ui/components/button';
 import { ArrowRight, Phone } from 'lucide-react';
 import Link from 'next/link';
-// import sliderImage1 from '@/public/images/slider/slider-1.jpg';
+import sliderImage1 from '@/public/images/slider/slider-6.webp';
 import sliderImage2 from '@/public/images/slider/slider-4.webp';
 import sliderImage3 from '@/public/images/slider/slider-5.webp';
+import sliderImage4 from '@/public/images/slider/slider-7.webp';
 
 export default function Hero() {
-	const images = [ sliderImage2.src, sliderImage3.src];
+	const images = [sliderImage1.src, sliderImage2.src, sliderImage3.src, sliderImage4.src];
 
 	return (
 		<ImagesSlider className='h-150 md:h-175' images={images}>
