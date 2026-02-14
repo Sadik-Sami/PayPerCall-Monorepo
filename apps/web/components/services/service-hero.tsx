@@ -36,8 +36,8 @@ export function ServiceHero({
 			{/* Subtle Background Layer */}
 			<div className='absolute inset-0 -z-10'>
 				<div className='absolute inset-0 bg-linear-to-br from-background via-background to-primary/5' />
-				<div className='absolute -top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl' />
-				<div className='absolute -bottom-1/4 right-0 h-[600px] w-[600px] rounded-full bg-gradient-radial from-accent/8 via-transparent to-transparent blur-3xl' />
+				<div className='absolute -top-1/2 left-1/2 h-200 w-200 -translate-x-1/2 rounded-full bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl' />
+				<div className='absolute -bottom-1/4 right-0 h-150 w-150 rounded-full bg-gradient-radial from-accent/8 via-transparent to-transparent blur-3xl' />
 			</div>
 
 			<motion.div

@@ -575,7 +575,7 @@ export function AdvertiserSignupForm() {
 											<FormControl>
 												<Textarea
 													placeholder='Tell us more about your business or specific needs...'
-													className='resize-none min-h-[100px]'
+													className='resize-none min-h-25'
 													{...field}
 												/>
 											</FormControl>
