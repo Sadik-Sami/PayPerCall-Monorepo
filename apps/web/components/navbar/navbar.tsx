@@ -9,6 +9,8 @@ import { MobileMenuItem } from './mobile-menu-item';
 import { dropdownContainerVariants, mobileMenuVariants, mobileItemVariants } from './animations';
 import Link from 'next/link';
 import { ModeToggle } from '../mode-toggle';
+import logo from '@/public/logo.png';
+import Image from 'next/image';
 
 export function Navbar() {
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -88,7 +90,7 @@ export function Navbar() {
 				setActiveDropdown(id);
 			}, 50);
 		},
-		[clearAllTimeouts]
+		[clearAllTimeouts],
 	);
 
 	// Handle hovering over nav items WITHOUT dropdowns (like Home, Contact)
@@ -142,16 +144,17 @@ export function Navbar() {
 			<div className='hidden md:block'>
 				<nav
 					ref={navbarRef}
-					className='fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border'
+					className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border py-2'
 					onMouseLeave={handleNavLeave}>
 					<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-						<div className='flex items-center justify-between h-14 lg:h-16'>
+						<div className='flex items-center justify-between h-10 sm:h-14 lg:h-16'>
 							{/* Logo */}
 							<Link
 								href='/'
-								className='font-utility text-lg sm:text-xl font-semibold tracking-tight text-foreground hover:text-muted-foreground transition-colors'
+								className='flex items-center gap-2 font-utility text-foreground hover:text-muted-foreground transition-colors'
 								onMouseEnter={handleNonDropdownItemEnter}>
-								Core Closer
+								<Image src={logo} alt='Core Closer Logo' height={64} width={64} />
+								<span className='text-lg sm:text-xl tracking-tight text-foreground hover:text-muted-foreground transition-colors'><span className='text-primary font-bold'>Core</span> Closer</span>
 							</Link>
 
 							{/* Navigation Items */}
@@ -165,7 +168,7 @@ export function Navbar() {
 												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap'>
 												{item.label}
 											</a>
-										:	<button
+											: <button
 												onMouseEnter={() => handleNavItemEnter(item.id)}
 												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1 relative whitespace-nowrap'
 												aria-expanded={activeDropdown === item.id}
@@ -220,8 +223,9 @@ export function Navbar() {
 			<div className='md:hidden'>
 				<nav className='fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border'>
 					<div className='flex items-center justify-between h-14 px-4 sm:px-6'>
-						<Link href='/' className='font-utility text-lg sm:text-xl font-semibold tracking-tight text-foreground'>
-							Core Closer
+						<Link href='/' className='flex items-center gap-2 font-utility text-foreground hover:text-muted-foreground transition-colors'>
+							<Image src={logo} alt='Core Closer Logo' height={32} width={32} />
+							<span className='text-base sm:text-lg tracking-tight text-foreground hover:text-muted-foreground transition-colors'><span className='text-primary font-bold'>Core</span> Closer</span>
 						</Link>
 						<button
 							onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -230,7 +234,7 @@ export function Navbar() {
 							aria-expanded={mobileMenuOpen}>
 							{mobileMenuOpen ?
 								<X size={20} className='sm:w-6 sm:h-6' />
-							:	<Menu size={20} className='sm:w-6 sm:h-6' />}
+								: <Menu size={20} className='sm:w-6 sm:h-6' />}
 						</button>
 					</div>
 				</nav>
