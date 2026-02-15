@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@workspace/ui/components/accordion';
-import Link from 'next/link';
 
 const faqs = [
 	{

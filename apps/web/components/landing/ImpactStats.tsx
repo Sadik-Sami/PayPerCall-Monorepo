@@ -67,7 +67,7 @@ export default function ImpactStats() {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						className='text-3xl md:text-5xl font-heading font-bold tracking-tight text-foreground mb-4'>
-						Results That Speak for Themselves
+						Results That <span className='text-primary'>Sparks</span> for Businesses
 					</motion.h2>
 
 					<motion.p
