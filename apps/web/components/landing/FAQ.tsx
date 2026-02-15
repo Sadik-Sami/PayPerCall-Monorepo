@@ -6,34 +6,34 @@ import Link from 'next/link';
 
 const faqs = [
 	{
-		question: 'How do you ensure lead quality?',
+		question: 'What services do you offer?',
 		answer:
-			'Every lead goes through our verification process before delivery. We validate contact information, confirm intent through qualifying questions, and filter out duplicates. Our clients typically see 30-40% higher conversion rates compared to other lead sources.',
+			'We offer full-stack growth support from start to finish: Pay-Per-Call, Pay-Per-Lead, SEO, paid ads, and Web & App Development. Whether you’re looking to keep the phone ringing, generate sales-ready leads, climb the Google rankings, tighten up ad performance, or launch a high-converting website/app — we handle the strategy, buildout, launch, and ongoing optimization so results keep getting better over time.',
 	},
 	{
-		question: 'What industries do you specialize in?',
+		question: 'What’s the difference between Pay-Per-Call and Pay-Per-Lead?',
 		answer:
-			'We focus on industries where phone calls drive conversions: Insurance (auto, home, health, Medicare), Legal Services (personal injury, bankruptcy, family law), Home Services (HVAC, plumbing, roofing, solar), Healthcare, Financial Services, and Automotive. Our team has deep expertise in compliance requirements for each vertical.',
+			'Pay-Per-Call is built to drive live, inbound phone calls from high-intent prospects—great for urgent needs or high-ticket services where a conversation closes faster. Pay-Per-Lead delivers lead submissions (forms, quote requests, appointment requests) that your team follows up with. We’ll point you to the best fit based on your sales workflow, how quickly you can follow up, and the CPA/CPL targets you want to hit.',
 	},
 	{
-		question: 'How is pricing structured?',
+		question: 'How do you ensure call/lead quality?',
 		answer:
-			'We offer performance-based pricing—you only pay for qualified leads or calls that meet your criteria. Pricing varies by industry and lead type. There are no long-term contracts required, and we provide transparent reporting so you can track exactly what you are paying for.',
+			'Quality is the name of the game—and we protect it with smart targeting, layered filtering, and real-time monitoring. Depending on the campaign, that can include geo/device controls, keyword + intent targeting, IVR routing, duplicate suppression, fraud filtering, and quality rules (like minimum call duration or required lead fields). We also do weekly performance reviews and tighten the knobs based on what’s converting—so you’re not just getting more volume, you’re getting better outcomes.',
 	},
 	{
-		question: 'How quickly can I start receiving leads?',
+		question: 'How fast can I start receiving calls or leads?',
 		answer:
-			'Most clients start receiving leads within 24-48 hours of completing onboarding. We begin with a discovery call to understand your ideal customer profile, set up tracking and routing, then launch campaigns. Initial volume can be adjusted as we optimize for quality.',
+			'Most campaigns can go live within a few business days, depending on the offer, compliance/approvals, and tracking setup. Once we lock in your targeting, qualification rules, call routing, and reporting, we start testing traffic and optimizing toward your KPIs. SEO is a longer play—usually weeks to months—but the upside is compounding growth that builds month after month.',
 	},
 	{
-		question: 'Can I set my own lead criteria and filters?',
+		question: 'What do you need from me to get started?',
 		answer:
-			'Absolutely. You can define geographic targeting, demographic filters, specific services of interest, and qualification questions. Leads that do not meet your criteria are not charged. We also offer real-time pause and resume controls so you can manage volume based on your capacity.',
+			'To get off the ground smoothly, we typically need your target states/service area, hours of operation, offer details, any compliance requirements, your preferred call/lead type, and access to tracking (call tracking number, CRM/postback, or basic reporting). If tracking isn’t in place yet, no worries—we can walk you through it and help implement what you need.',
 	},
 	{
-		question: 'How do you track and report results?',
+		question: 'Do you provide reporting and optimization?',
 		answer:
-			'You get access to a real-time dashboard showing all leads, call recordings (where permitted), conversion tracking, and ROI metrics. We provide weekly performance reports and monthly strategy reviews to continuously improve results.',
+			'Absolutely. You’ll get clean, easy-to-read reporting on key metrics like call volume, call duration, lead delivery, CPL/CPA, conversion signals, and source performance, plus ongoing optimization. We’re always working to move the needle—sharper targeting, stronger quality, and scalable growth based on what actually converts (not vanity numbers).',
 	},
 ];
 
