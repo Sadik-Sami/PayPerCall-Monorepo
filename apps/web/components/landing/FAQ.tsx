@@ -49,7 +49,7 @@ export default function FAQ() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							className='text-3xl md:text-4xl font-heading font-bold tracking-tight text-foreground'>
-							Frequently Asked Questions
+							Got questions? We’ve got answers.
 						</motion.h2>
 						<motion.p
 							initial={{ opacity: 0, y: 20 }}
@@ -57,11 +57,7 @@ export default function FAQ() {
 							viewport={{ once: true }}
 							transition={{ delay: 0.1 }}
 							className='text-lg text-muted-foreground leading-relaxed'>
-							Everything you need to know about our lead generation services. Can&apos;t find what you&apos;re looking
-							for?{' '}
-							<Link href='/contact' className='text-primary font-medium hover:underline'>
-								Contact us
-							</Link>
+							Explore Core Closer FAQs for Pay Per Call, Lead Generation, SEO, PPC, and Web & App Development—plus full digital marketing support. Learn how we target the right audience, deliver quality calls/leads, and track results with clear reporting and compliance-first practices. Don’t see your question? Reach out anytime—our team will give you straight answers and recommend the best next step for your goals and budget.
 						</motion.p>
 					</div>
 
