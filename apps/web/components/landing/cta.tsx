@@ -17,12 +17,11 @@ export default function CTA() {
 					viewport={{ once: true }}
 					className='rounded-lg border border-border bg-card p-8 md:p-12 text-center'>
 					<h2 className='text-3xl md:text-4xl font-heading font-bold tracking-tight text-foreground mb-4'>
-						Ready to Grow Your Customer Base?
+						Ready to Grow Your Business?
 					</h2>
 
 					<p className='text-lg text-muted-foreground mb-8 max-w-2xl mx-auto'>
-						Get a free consultation to discuss your lead generation goals. We&apos;ll show you exactly how we can help
-						you connect with more customers.
+						Grab a free consult to dial in your growth plan—pay-per-call, lead gen, SEO, paid ads, plus web & app development. We’ll show you how we’ll drive more qualified leads, more inbound calls, and more customers—fast.
 					</p>
 
 					{/* Benefits */}
