@@ -81,15 +81,10 @@ export const navigationData: NavItem[] = [
 				links: [
 					{ label: 'FAQs', href: '/about/faq' },
 					{ label: 'Article', href: '/about/articles' },
-					{ label: 'Blog', href: '/about/blogs' },
+					{ label: 'Blog', href: '/blogs' },
 				],
 			},
 		],
-	},
-	{
-		id: 'contact',
-		label: 'Contact Us',
-		href: '/contact',
 	},
 	{
 		id: 'hire',
@@ -131,6 +126,11 @@ export const navigationData: NavItem[] = [
 		id: 'signup',
 		label: 'Advertiser Signup',
 		href: '/advertiser-signup',
+	},
+	{
+		id: 'contact',
+		label: 'Contact Us',
+		href: '/contact',
 	},
 ];
 
