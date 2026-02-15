@@ -28,14 +28,14 @@ function Counter({ value }: { value: number }) {
 const stats = [
 	{
 		label: 'Leads Generated',
-		value: 850,
-		suffix: 'K+',
+		value: 10,
+		suffix: 'M+',
 		description: 'Qualified leads delivered to clients',
 		icon: <Users className='size-6 text-primary' />,
 	},
 	{
 		label: 'Calls Connected',
-		value: 120,
+		value: 800,
 		suffix: 'K+',
 		description: 'Monthly inbound calls routed',
 		icon: <Phone className='size-6 text-primary' />,
@@ -49,7 +49,7 @@ const stats = [
 	},
 	{
 		label: 'Industries Served',
-		value: 12,
+		value: 20,
 		suffix: '+',
 		description: 'Verticals with proven results',
 		icon: <Building2 className='size-6 text-primary' />,
