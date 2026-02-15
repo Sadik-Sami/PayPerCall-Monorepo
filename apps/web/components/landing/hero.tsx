@@ -5,42 +5,21 @@ import { ImagesSlider } from '@workspace/ui/components/ui/images-slider';
 import { Button } from '@workspace/ui/components/button';
 import { ArrowRight, Phone } from 'lucide-react';
 import Link from 'next/link';
-import sliderImage1 from '@/public/images/slider/slider-6.webp';
-import sliderImage2 from '@/public/images/slider/slider-4.webp';
-import sliderImage3 from '@/public/images/slider/slider-5.webp';
-import sliderImage4 from '@/public/images/slider/slider-7.webp';
 import sliderImage5 from '@/public/images/slider/slider-8.png';
+import sliderImage6 from '@/public/images/slider/slider-9.png';
 
 export default function Hero() {
 	const slides = [
 		{
-			imageSrc: sliderImage1.src,
-			title: 'Pay Per Call Marketing for Qualified Inbound Calls',
-			subtitle:
-				'Consumer-initiated calls and compliant live transfers from online and offline media to boost sales.',
-		},
-		{
-			imageSrc: sliderImage2.src,
-			title: 'Real-Time Lead Generation with Exclusive or Shared Leads',
-			subtitle:
-				'Get exclusive or shared leads delivered instantly—improve contact rates, qualify faster, close more deals.',
-		},
-		{
-			imageSrc: sliderImage3.src,
-			title: 'SEO & Paid Media That Drives Organic and Paid Growth',
-			subtitle: 'SEO, ads, email, and social campaigns that raise rankings, cut CPA, and turn traffic into customers.',
-		},
-		{
-			imageSrc: sliderImage4.src,
-			title: 'Conversion-Focused Web Development for Business Sites',
-			subtitle:
-				'Full-stack builds for eCommerce and landing pages—fast, mobile-first, and optimized for higher conversions.',
-		},
-		{
 			imageSrc: sliderImage5.src,
-			title: 'CMS & App Development Built for Speed, Scale, and SEO',
+			title: 'One Shop. Real Growth',
 			subtitle:
-				'WordPress, Drupal, HubSpot, Wix Studio, plus iOS/Android apps—secure, scalable, and search-ready.',
+				'Pay-per-call, lead gen, digital marketing, web, CMS, and app development—built to convert.',
+		},
+		{
+			imageSrc: sliderImage6.src,
+			title: 'Your One-Stop Performance Shop',
+			subtitle: 'High-intent calls, quality leads, and digital plus development services that scale revenue.',
 		},
 	] as const;
 
@@ -59,7 +38,7 @@ export default function Hero() {
 						className='z-50 flex flex-col justify-center items-center px-6 max-w-4xl mx-auto text-center'>
 						{/* Stable H1 (SEO) */}
 						<h1 className='font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6'>
-							Quality Leads That Convert Into <span className='text-primary'>Paying Customers</span>
+							Core Closer
 						</h1>
 
 						{/* Per-slide content (H2 + lead) */}

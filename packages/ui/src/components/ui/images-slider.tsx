@@ -203,7 +203,7 @@ export const ImagesSlider = ({
 						exit={direction === 'up' ? 'upExit' : 'downExit'}
 						variants={slideVariants}
 						draggable={false}
-						className='image h-full w-full absolute inset-0 object-top object-cover select-none'
+						className='image h-full w-full absolute inset-0 object-cover select-none'
 					/>
 				</AnimatePresence>
 			)}
