@@ -64,6 +64,11 @@ export const navigationData: NavItem[] = [
 		],
 	},
 	{
+		id: 'hire',
+		label: 'Hire a Call Center',
+		href: '/hire-call-center',
+	},
+	{
 		id: 'about',
 		label: 'About',
 		columns: [
@@ -82,42 +87,6 @@ export const navigationData: NavItem[] = [
 					{ label: 'FAQs', href: '/about/faq' },
 					{ label: 'Article', href: '/about/articles' },
 					{ label: 'Blog', href: '/blogs' },
-				],
-			},
-		],
-	},
-	{
-		id: 'hire',
-		label: 'Hire a Call Center',
-		href: '/hire-call-center',
-	},
-	{
-		id: 'industries',
-		label: 'Industries',
-		columns: [
-			{
-				title: 'Financial & Legal',
-				links: [
-					{ label: 'Insurance', href: '/industries/insurance' },
-					{ label: 'Legal Services', href: '/industries/legal' },
-					{ label: 'Financial Services', href: '/industries/financial' },
-				],
-			},
-			{
-				title: 'Service & Health',
-				links: [
-					{ label: 'Home Services', href: '/industries/home-services' },
-					{ label: 'Healthcare & Medical', href: '/industries/healthcare' },
-					{ label: 'Automotive', href: '/industries/automotive' },
-				],
-			},
-			{
-				title: 'Other Sectors',
-				links: [
-					{ label: 'Travel & Hospitality', href: '/industries/travel' },
-					{ label: 'Telecom & Utilities', href: '/industries/telecom' },
-					{ label: 'Education & Career', href: '/industries/education' },
-					{ label: 'B2B Services', href: '/industries/b2b' },
 				],
 			},
 		],

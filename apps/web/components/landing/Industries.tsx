@@ -7,61 +7,61 @@ import Link from 'next/link';
 const industries = [
 	{
 		name: 'Insurance',
-		description: 'Auto, home, health, and life insurance leads',
+		description: 'Auto, Home, Health, and Life Insurance leads',
 		icon: <Shield className='size-5' />,
 		href: '/industries/insurance',
 	},
 	{
 		name: 'Legal Services',
-		description: 'Personal injury, family law, and bankruptcy',
+		description: 'Personal Injury, Family Law, and Bankruptcy',
 		icon: <Scale className='size-5' />,
 		href: '/industries/legal',
 	},
 	{
 		name: 'Financial Services',
-		description: 'Mortgage, debt relief, and tax services',
+		description: 'Mortgage, Debt Relief, and Tax Services',
 		icon: <Banknote className='size-5' />,
 		href: '/industries/financial',
 	},
 	{
 		name: 'Home Services',
-		description: 'HVAC, plumbing, roofing, and solar',
+		description: 'HVAC, Plumbing, Roofing, and Solar',
 		icon: <Home className='size-5' />,
 		href: '/industries/home-services',
 	},
 	{
 		name: 'Healthcare',
-		description: 'Medicare, medical devices, and rehab centers',
+		description: 'Medicare, Medical Devices, and Rehab Centers',
 		icon: <Stethoscope className='size-5' />,
 		href: '/industries/healthcare',
 	},
 	{
 		name: 'Automotive',
-		description: 'Auto dealers, repair, and warranty services',
+		description: 'Auto Dealers, Repair, and Warranty Services',
 		icon: <Car className='size-5' />,
 		href: '/industries/automotive',
 	},
 	{
 		name: 'Travel',
-		description: 'Hotels, vacation rentals, and travel agencies',
+		description: 'Hotels, Vacation Rentals, and Travel Agencies',
 		icon: <Plane className='size-5' />,
 		href: '/industries/travel',
 	},
 	{
 		name: 'Telecom',
-		description: 'Internet, phone, and cable providers',
+		description: 'Internet, Phone, and Cable Providers',
 		icon: <Wifi className='size-5' />,
 		href: '/industries/telecom',
 	},
 	{
 		name: 'Education',
-		description: 'Online courses, colleges, and trade schools',
+		description: 'Online Courses, Colleges, and Trade Schools',
 		icon: <GraduationCap className='size-5' />,
 		href: '/industries/education',
 	},
 	{
 		name: 'B2B Services',
-		description: 'Software, consulting, and professional services',
+		description: 'Software, Consulting, and Professional Services',
 		icon: <Briefcase className='size-5' />,
 		href: '/industries/b2b',
 	},
@@ -87,7 +87,7 @@ export default function Industries() {
 						viewport={{ once: true }}
 						transition={{ delay: 0.1 }}
 						className='max-w-2xl mx-auto text-muted-foreground text-lg'>
-						We specialize in high-intent lead generation across industries where phone calls drive conversions.
+						We serve industries where calls, leads, and digital performance directly impact revenue. Our core solutions include Pay Per Call, Pay Per Lead, Digital Marketing, and Web Development—built to drive qualified inquiries, improve conversion rates, and scale results with measurable ROI.
 					</motion.p>
 				</div>
 
