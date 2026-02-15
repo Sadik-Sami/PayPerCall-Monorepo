@@ -155,8 +155,8 @@ export function Navbar() {
 								onMouseEnter={handleNonDropdownItemEnter}>
 								<Image src={logo} alt='Core Closer Logo' height={64} width={64} />
 								<div className='flex flex-col'>
-									<span className='text-lg sm:text-xl tracking-tight text-foreground hover:text-muted-foreground transition-colors'><span className='text-primary '>Core</span> Closer</span>
-									<span className='text-xs sm:text-sm tracking-tight text-muted-foreground italic'>Performance You Can Bank On.</span>
+									<span className='text-lg sm:text-xl tracking-tight text-foreground hover:text-muted-foreground transition-colors font-bold'><span className='text-primary'>Core</span> Closer</span>
+									<span className='text-xs sm:text-sm tracking-tight text-foreground italic'>Performance You Can Bank On.</span>
 								</div>
 							</Link>
 
@@ -229,8 +229,8 @@ export function Navbar() {
 						<Link href='/' className='flex items-center gap-2 font-utility text-foreground hover:text-muted-foreground transition-colors'>
 							<Image src={logo} alt='Core Closer Logo' height={32} width={32} />
 							<div className='flex flex-col'>
-								<span className='text-base sm:text-lg tracking-tight text-foreground hover:text-muted-foreground transition-colors'><span className='text-primary '>Core</span> Closer</span>
-								<span className='text-xs sm:text-sm tracking-tight text-muted-foreground italic'>Performance You Can Bank On.</span>
+								<span className='text-base sm:text-lg tracking-tight text-foreground hover:text-muted-foreground transition-colors font-bold'><span className='text-primary '>Core</span> Closer</span>
+								<span className='text-xs sm:text-sm tracking-tight text-foreground italic'>Performance You Can Bank On.</span>
 							</div>
 						</Link>
 						<button
