@@ -9,15 +9,15 @@ const trustPoints = [
 	},
 	{
 		icon: <Shield className='size-5 text-primary' />,
-		text: 'Quality + Compliance First',
+		text: 'Quality & Compliance First',
 	},
 	{
 		icon: <Zap className='size-5 text-primary' />,
-		text: 'Real-Time Delivery + Transparency',
+		text: 'Real-Time Delivery & Transparency',
 	},
 	{
 		icon: <Puzzle className='size-5 text-primary' />,
-		text: 'Full-Stack Execution (From Marketing to Tech)',
+		text: 'Full-Stack Execution',
 	},
 ];
 
