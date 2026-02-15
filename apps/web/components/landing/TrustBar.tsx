@@ -1,23 +1,23 @@
 'use client';
 
-import { Shield, Award, Clock, Users } from 'lucide-react';
+import { Shield, TrendingUp, Zap, Puzzle } from 'lucide-react';
 
 const trustPoints = [
 	{
+		icon: <TrendingUp className='size-5 text-primary' />,
+		text: 'Performance-Driven Growth',
+	},
+	{
 		icon: <Shield className='size-5 text-primary' />,
-		text: 'TCPA Compliant',
+		text: 'Quality + Compliance First',
 	},
 	{
-		icon: <Award className='size-5 text-primary' />,
-		text: 'Performance-Based Pricing',
+		icon: <Zap className='size-5 text-primary' />,
+		text: 'Real-Time Delivery + Transparency',
 	},
 	{
-		icon: <Clock className='size-5 text-primary' />,
-		text: 'Real-Time Lead Delivery',
-	},
-	{
-		icon: <Users className='size-5 text-primary' />,
-		text: '10+ Industries Served',
+		icon: <Puzzle className='size-5 text-primary' />,
+		text: 'Full-Stack Execution (From Marketing to Tech)',
 	},
 ];
 
