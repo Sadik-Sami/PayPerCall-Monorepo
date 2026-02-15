@@ -6,30 +6,30 @@ import { MessageSquare, Target, Rocket, BarChart3 } from 'lucide-react';
 const steps = [
 	{
 		step: 1,
-		title: 'Discovery Call',
+		title: 'Quick Discovery',
 		description:
-			'We start with a free consultation to understand your business, target audience, and goals. No commitment required.',
+			'We review your offer, audience, compliance needs, and success metrics—plus your quality rules, geo targets, hours, and budget.',
 		icon: <MessageSquare className='size-6 text-primary' />,
 	},
 	{
 		step: 2,
-		title: 'Custom Strategy',
+		title: 'Strategy & Setup',
 		description:
-			'Based on your needs, we build a tailored lead generation strategy with clear targeting, budget allocation, and expected outcomes.',
+			'We design your plan end-to-end: campaigns, funnels/landing pages, tracking, call routing, and lead/call qualification—tailored for Pay Per Call, Pay Per Lead, Digital Marketing, and Development.',
 		icon: <Target className='size-6 text-primary' />,
 	},
 	{
 		step: 3,
-		title: 'Campaign Launch',
+		title: 'Launch & Deliver',
 		description:
-			'We launch your campaigns and start delivering qualified leads. You receive calls and leads in real-time with full tracking.',
+			'We launch and begin delivery: consumer-initiated calls, live transfers, or real-time leads sent to your CRM/dialer with full tracking and reporting.',
 		icon: <Rocket className='size-6 text-primary' />,
 	},
 	{
 		step: 4,
 		title: 'Optimize & Scale',
 		description:
-			'Using performance data, we continuously optimize for better lead quality and lower costs. Scale up when you are ready.',
+			'We improve quality and reduce costs through ongoing testing and refinements, then scale volume once performance is strong.',
 		icon: <BarChart3 className='size-6 text-primary' />,
 	},
 ];

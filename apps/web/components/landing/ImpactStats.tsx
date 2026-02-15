@@ -42,9 +42,9 @@ const stats = [
 	},
 	{
 		label: 'Client ROI',
-		value: 340,
+		value: 700,
 		suffix: '%',
-		description: 'Average return on ad spend',
+		description: 'Average return on investment',
 		icon: <TrendingUp className='size-6 text-primary' />,
 	},
 	{

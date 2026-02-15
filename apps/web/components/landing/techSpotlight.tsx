@@ -66,7 +66,7 @@ const trustIndicators = [
 
 export default function TechSpotlight() {
 	return (
-		<section className='relative py-24 px-6 bg-background border-y border-border'>
+		<section className='relative py-12 px-6 bg-background border-y border-border'>
 			<div className='max-w-6xl mx-auto'>
 				{/* Header */}
 				<div className='mb-16 text-center'>
