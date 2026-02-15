@@ -2,65 +2,66 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Phone, Users, TrendingUp, Code2, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Phone, Users, TrendingUp, Code2, ArrowRight, Rocket, Target, Megaphone, Sparkles } from 'lucide-react';
 import { Button } from '@workspace/ui/components/button';
+import Link from 'next/link';
 
 const services = [
 	{
-		title: 'Pay Per Call',
+		title: 'Pay Per Call Lead Generation',
 		description:
-			'Connect with high-intent customers through verified phone leads. Our call tracking and routing ensures you only pay for qualified conversations that convert.',
+			'Turn ready-to-buy shoppers into real conversations with qualified inbound calls and live transfer calls. Our call tracking, call routing, and call analytics help you focus on the calls that convert—so you\'re investing in outcomes, not guesswork.',
 		details: [
-			'Consumer-initiated inbound calls',
-			'Live transfer with real-time verification',
-			'Offline media-driven campaigns',
-			'Call recording and analytics',
+			'Consumer-initiated inbound calls from high-intent prospects',
+			'Live transfers with real-time screening and verification',
+			'Offline media campaigns that drive phone call volume',
+			'Call recording, reporting, and optimization for higher close rates',
 		],
 		icon: <Phone className='size-5 text-primary' />,
 	},
 	{
-		title: 'Pay Per Lead',
+		title: 'Pay Per Lead Services',
 		description:
-			'Receive pre-qualified leads delivered directly to your CRM. Each lead is verified for accuracy and matched to your specific criteria before delivery.',
+			'Get pre-qualified leads delivered directly to your team with the accuracy and targeting you expect. Every lead is validated and aligned to your criteria before delivery, helping you improve lead quality, sales efficiency, and cost per acquisition (CPA).',
 		details: [
-			'Exclusive leads with no reselling',
-			'Shared leads at competitive rates',
-			'Real-time delivery via API or email',
-			'Custom qualification filters',
+			'Exclusive leads with no reselling or recycled data',
+			'Shared leads at competitive pricing for scale',
+			'Real-time lead delivery via API, webhook, CRM, or email',
+			'Custom qualification filters to match your targeting rules',
 		],
 		icon: <Users className='size-5 text-primary' />,
 	},
 	{
-		title: 'Digital Marketing',
+		title: 'Digital Marketing That Scales',
 		description:
-			'Data-driven campaigns designed to maximize your return on ad spend. We manage everything from strategy to execution with full transparency on results.',
+			'Drive consistent growth with a performance-based approach to digital marketing services. From search engine optimization to paid media management, we build and manage campaigns designed to improve traffic, leads, and return on ad spend (ROAS).',
 		details: [
-			'Search engine optimization (SEO)',
-			'Paid advertising (PPC & display)',
-			'Email marketing automation',
-			'Social media management',
+			'SEO services with on-page, technical SEO, and content strategy',
+			'PPC management (Google Ads, Bing Ads, display advertising)',
+			'Email marketing automation and lifecycle campaigns',
+			'Social media marketing and ongoing optimization',
 		],
 		icon: <TrendingUp className='size-5 text-primary' />,
 	},
 	{
-		title: 'Web & App Development',
+		title: 'Web & App Development Built to Convert',
 		description:
-			'Custom websites and applications built to convert visitors into customers. From landing pages to full-scale platforms, we deliver production-ready solutions.',
+			'Your website should be a conversion engine—not just a brochure. We build modern, fast, and scalable experiences optimized for lead capture, landing page performance, and user experience (UX) across devices.',
 		details: [
-			'Business & ecommerce websites',
-			'WordPress, Drupal & CMS solutions',
-			'iOS & Android app development',
-			'Landing page optimization',
+			'Business websites and ecommerce development',
+			'WordPress development, Drupal development, and CMS builds',
+			'iOS app development and Android app development',
+			'Landing page design + conversion rate optimization (CRO)',
 		],
 		icon: <Code2 className='size-5 text-primary' />,
 	},
 ];
 
 const trustIndicators = [
-	'Performance-based pricing',
-	'No long-term contracts',
-	'Dedicated account manager',
-	'Weekly performance reports',
+	{ title: 'Fast Launch, Faster Results', icon: <Rocket className='size-4 text-primary' /> },
+	{ title: 'Exclusive & Scalable Supply', icon: <Target className='size-4 text-primary' /> },
+	{ title: 'Omnichannel Acquisition', icon: <Megaphone className='size-4 text-primary' /> },
+	{ title: 'Conversion-Optimized Experiences', icon: <Sparkles className='size-4 text-primary' /> },
 ];
 
 export default function TechSpotlight() {
@@ -75,7 +76,7 @@ export default function TechSpotlight() {
 						viewport={{ once: true }}
 						transition={{ duration: 0.5 }}
 						className='text-3xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight text-foreground mb-6 leading-tight'>
-						Solutions Built for <span className='text-primary'>Revenue Growth</span>
+						Revenue-Driven Performance Marketing Solutions <span className='text-primary'>Built for Growth</span>
 					</motion.h2>
 
 					<motion.p
@@ -84,8 +85,7 @@ export default function TechSpotlight() {
 						viewport={{ once: true }}
 						transition={{ duration: 0.5, delay: 0.1 }}
 						className='max-w-3xl mx-auto text-muted-foreground text-lg leading-relaxed'>
-						We specialize in performance marketing and lead generation for businesses that need measurable results.
-						Every service is designed to deliver qualified prospects and trackable ROI.
+						Grow faster with a results-first partner built for lead generation, customer acquisition, and measurable ROI. We help businesses scale with high-intent phone calls, verified leads, SEO, PPC advertising, and conversion-focused web & app development—all backed by transparent reporting and performance tracking.
 					</motion.p>
 				</div>
 
@@ -108,7 +108,7 @@ export default function TechSpotlight() {
 							<p className='text-muted-foreground mb-5 leading-relaxed'>{service.description}</p>
 							<ul className='space-y-2.5'>
 								{service.details.map((detail, detailIdx) => (
-									<li key={detailIdx} className='flex items-start gap-2 text-sm text-muted-foreground'>
+									<li key={detailIdx} className='flex items-start gap-2 text-sm text-muted-foreground italic'>
 										<CheckCircle2 className='size-4 text-primary mt-0.5 shrink-0' />
 										<span>{detail}</span>
 									</li>
@@ -125,21 +125,23 @@ export default function TechSpotlight() {
 					viewport={{ once: true }}
 					transition={{ duration: 0.5, delay: 0.3 }}
 					className='border-t border-border pt-12'>
-					<div className='flex flex-col md:flex-row items-center justify-between gap-8'>
-						<div className='flex flex-wrap items-center gap-x-8 gap-y-4 justify-center md:justify-start'>
+					<div className='flex flex-col md:flex-row items-center justify-between gap-4'>
+						<div className='flex flex-wrap items-center gap-x-4 gap-y-4 justify-center md:justify-start'>
 							{trustIndicators.map((indicator, idx) => (
 								<div key={idx} className='flex items-center gap-2 text-sm text-muted-foreground'>
-									<CheckCircle2 className='size-4 text-primary' />
-									<span>{indicator}</span>
+									{indicator.icon}
+									<span>{indicator.title}</span>
 								</div>
 							))}
 						</div>
-						<Button
-							size='lg'
-							className='bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 rounded-lg group font-medium transition-colors duration-300'>
-							Request a Quote
-							<ArrowRight className='ml-2 size-4 transition-transform group-hover:translate-x-1' />
-						</Button>
+						<Link href='/contact'>
+							<Button
+								size='lg'
+								className='bg-primary hover:bg-primary/90 text-primary-foreground px-4 h-12 rounded-lg group font-medium transition-colors duration-300'>
+								Get A Free Consultation
+								<ArrowRight className='ml-2 size-4 transition-transform group-hover:translate-x-1' />
+							</Button>
+						</Link>
 					</div>
 				</motion.div>
 			</div>
