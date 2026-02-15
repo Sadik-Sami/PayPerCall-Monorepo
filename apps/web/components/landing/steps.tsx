@@ -15,7 +15,7 @@ const steps = [
 		step: 2,
 		title: 'Strategy & Setup',
 		description:
-			'We design your plan end-to-end: campaigns, funnels/landing pages, tracking, call routing, and lead/call qualification—tailored for Pay Per Call, Pay Per Lead, Digital Marketing, and Development.',
+			'We build your plan end-to-end, pages, tracking, routing, and lead qualification—tailored for Pay Per Call, Pay Per Lead, Digital Marketing Development.',
 		icon: <Target className='size-6 text-primary' />,
 	},
 	{
@@ -54,7 +54,7 @@ export default function HowItWorks() {
 						viewport={{ once: true }}
 						transition={{ delay: 0.1 }}
 						className='max-w-2xl mx-auto text-muted-foreground text-lg'>
-						Getting started is simple. Our proven process ensures you receive quality leads from day one.
+						Getting started is fast and simple—built to deliver qualified calls, leads, and measurable growth.
 					</motion.p>
 				</div>
 
