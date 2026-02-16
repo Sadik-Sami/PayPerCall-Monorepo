@@ -6,8 +6,8 @@ import HowItWorks from '@/components/landing/steps';
 import ImpactStats from '@/components/landing/ImpactStats';
 import Industries from '@/components/landing/Industries';
 import TechSpotlight from '@/components/landing/techSpotlight';
-import Testimonials from '@/components/landing/testimonials';
 import TrustBar from '@/components/landing/TrustBar';
+import Testimonials from '@/components/landing/testimonials';
 
 export default function Page() {
 	return (
@@ -18,9 +18,7 @@ export default function Page() {
 			<ImpactStats />
 			<Industries />
 			<HowItWorks />
-			<div className='container px-6 mx-auto'>
-				<Testimonials />
-			</div>
+			<Testimonials />
 			<FounderInsight />
 			<FAQ />
 			<CTA />
