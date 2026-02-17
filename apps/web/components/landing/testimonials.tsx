@@ -93,6 +93,7 @@ export default function Testimonials() {
 					<TestimonialsColumn testimonials={firstColumn} duration={15} />
 					<TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
 					<TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+					<TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={16} />
 				</div>
 			</div>
 		</section>
