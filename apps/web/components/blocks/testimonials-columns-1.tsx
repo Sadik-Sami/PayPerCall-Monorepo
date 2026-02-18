@@ -29,16 +29,16 @@ export const TestimonialsColumn = (props: {
           ease: "linear",
           repeatType: "loop",
         }}
-        className="flex flex-col gap-6 pb-6 bg-background"
+        className="flex flex-col gap-4 pb-6 bg-background"
       >
         {[
           ...new Array(2).fill(0).map((_, index) => (
             <React.Fragment key={index}>
               {props.testimonials.map(({ text, image, name, role }, i) => (
-                <Card className="max-w-xs w-full" key={i}>
+                <Card className="max-w-md w-full py-6 backdrop-blur-lg" key={i}>
                   <CardContent className="relative">
-                    <Quote className="size-8 text-primary absolute top-0 left-5 -translate-y-1/4 rotate-180" />
-                    <p className="pl-8">{text}</p>
+                    <Quote className="size-8 text-primary/30 absolute top-0 left-5 -translate-y-1/4 rotate-180" />
+                    <p className="pl-8 text-sm leading-relaxed tracking-tight">{text}</p>
                   </CardContent>
                   <CardFooter>
                     <div className="flex items-center gap-2">
@@ -46,9 +46,9 @@ export const TestimonialsColumn = (props: {
                         <AvatarImage src={image} alt={name} />
                         <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                       </Avatar>
-                      <div className="flex flex-col">
-                        <p className="text-sm font-medium">{name}</p>
-                        <p className="text-sm text-muted-foreground">{role}</p>
+                      <div className="flex flex-col font-utility">
+                        <p className="text-xs font-bold">{name}</p>
+                        <p className="text-xs text-muted-foreground">{role}</p>
                       </div>
                     </div>
                   </CardFooter>

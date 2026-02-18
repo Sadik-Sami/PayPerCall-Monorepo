@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@workspace/ui/components/accordion';
-import { ArrowRight, Check, ChevronDown, HelpCircle, MessageSquare, PhoneCall } from 'lucide-react';
+import { ArrowRight, Check, HelpCircle, MessageSquare, PhoneCall } from 'lucide-react';
 
 const faqs = [
 	{
