@@ -15,6 +15,8 @@ import { WEB_DEV_SERVICE_NAV } from '@/components/services/nav-items';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import TechMarquee from '@/components/services/Tech-Marquee';
+import { PremiumServicesGrid } from '@/components/blocks/premium-services-grid';
+import { IndustryExpertiseSection } from '@/components/blocks/industry-expertise-section';
 
 const HERO_CONTENT = {
 	pill: 'Web Development',
@@ -165,6 +167,8 @@ export default function WebDevOverviewPage() {
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
 			<TechMarquee />
 			<TrustBanner />
+			<PremiumServicesGrid />
+			<IndustryExpertiseSection />
 			<ResultsShowcase className='max-w-7xl mx-auto' variant='split' />
 			<section className='py-16 max-w-7xl mx-auto'>
 				<div className='mb-12 max-w-3xl mx-auto text-center'>
