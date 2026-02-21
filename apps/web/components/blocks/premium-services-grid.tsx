@@ -10,28 +10,9 @@ import {
 	Cpu,
 	Smartphone,
 	Palette,
-	Bug,
-	Banknote,
-	ShoppingCart,
-	Phone,
-	Building2,
-	Terminal,
-	HeartPulse,
-	Car,
-	Video,
-	Briefcase,
-	Rocket,
-	Glasses,
-	Scale,
-	HeartHandshake,
-	Landmark,
-	Dumbbell,
-	Gamepad2,
-	Shirt,
-	Zap,
-	Leaf,
-	Truck,
+	Bug
 } from 'lucide-react';
+import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, itemVariants } from '@/lib/animations';
 
 const SERVICES = [
@@ -177,10 +158,15 @@ export function PremiumServicesGrid() {
 						<motion.div key={idx} variants={itemVariants} className="group">
 							<div className="relative w-16 h-16 mb-6">
 								<div
-									className={`absolute inset-0 ${colors.bg} ${service.bgShape} transform ${service.initialShape} transition-all duration-300 ease-out group-hover:${service.hoverShape}`}
+									className={cn(
+										'absolute inset-0 transform transition-all duration-300 ease-out group-hover:' + service.hoverShape,
+										colors?.bg,
+										service.bgShape,
+										service.initialShape
+									)}
 								></div>
 								<div className="absolute inset-0 flex items-center justify-center">
-									<Icon className={`w-8 h-8 ${colors.text}`} strokeWidth={1.5} />
+									<Icon className={cn('w-8 h-8', colors?.text)} strokeWidth={1.5} />
 								</div>
 							</div>
 							<h3 className="text-xl font-bold mb-3 text-foreground">{service.title}</h3>
