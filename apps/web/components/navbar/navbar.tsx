@@ -27,12 +27,8 @@ export function Navbar() {
 	// Memoize active nav item to avoid recalculation
 	const activeNavItem = useMemo(() => navigationData.find((item) => item.id === activeDropdown), [activeDropdown]);
 
-	// Reset dropdown height when dropdown closes
-	useEffect(() => {
-		if (!activeDropdown) {
-			setDropdownHeight(0);
-		}
-	}, [activeDropdown]);
+	// Derive effective dropdown height to avoid setState in effect (fixes cascading render warning)
+	const effectiveDropdownHeight = activeDropdown ? dropdownHeight : 0;
 
 	// Optimize height calculation with ResizeObserver
 	useEffect(() => {
@@ -165,12 +161,12 @@ export function Navbar() {
 								{navigationData.map((item) => (
 									<div key={item.id}>
 										{item.href ?
-											<a
+											<Link
 												href={item.href}
 												onMouseEnter={handleNonDropdownItemEnter}
 												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap'>
 												{item.label}
-											</a>
+											</Link>
 											: <button
 												onMouseEnter={() => handleNavItemEnter(item.id)}
 												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1 relative whitespace-nowrap'
@@ -216,7 +212,7 @@ export function Navbar() {
 				{/* Spacer to push content down */}
 				<div
 					style={{
-						height: dropdownHeight > 0 ? `${navbarHeight + dropdownHeight}px` : `${navbarHeight}px`,
+						height: effectiveDropdownHeight > 0 ? `${navbarHeight + effectiveDropdownHeight}px` : `${navbarHeight}px`,
 						transition: 'height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
 					}}
 				/>

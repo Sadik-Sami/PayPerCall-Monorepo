@@ -12,6 +12,7 @@ export interface ResultMetric {
 	description?: string;
 	trend?: string;
 	colorTheme?: 'emerald' | 'purple' | 'orange' | 'blue';
+	caseStudy?: string;
 }
 
 export interface ResultsShowcaseProps {
@@ -30,6 +31,7 @@ const defaultMetrics: ResultMetric[] = [
 		description: 'Average improvement in Core Web Vitals across all projects.',
 		trend: '+47%',
 		colorTheme: 'emerald',
+		caseStudy: 'How we helped TechFlow modernize their architecture to achieve sub-second load times.',
 	},
 	{
 		icon: TrendingUp,
@@ -38,6 +40,7 @@ const defaultMetrics: ResultMetric[] = [
 		description: 'Average increase in goal completions post-launch.',
 		trend: '3.2x',
 		colorTheme: 'purple',
+		caseStudy: 'How we redesigned the checkout experience to eliminate cart abandonment for a major retailer.',
 	},
 	{
 		icon: Users,
@@ -46,6 +49,7 @@ const defaultMetrics: ResultMetric[] = [
 		description: 'Clients return for additional projects or ongoing support.',
 		trend: '89%',
 		colorTheme: 'orange',
+		caseStudy: 'Why SaaS platform DataSync chose to retain us for 3 consecutive major version updates.',
 	},
 	{
 		icon: DollarSign,
@@ -54,6 +58,7 @@ const defaultMetrics: ResultMetric[] = [
 		description: 'Tracked revenue increase attributed to our web builds.',
 		trend: '+$2.4M',
 		colorTheme: 'blue',
+		caseStudy: 'How a headless commerce migration unlocked $2.4M in new revenue for StyleHouse.',
 	},
 ];
 
@@ -131,7 +136,7 @@ export function ResultsShowcase({
 	metrics = defaultMetrics,
 	title = 'Results that speak for themselves',
 	description = 'We measure success by the outcomes that matter to your business—speed, conversions, and sustainable growth.',
-	variant = 'default',
+	variant = 'split',
 	className,
 }: ResultsShowcaseProps) {
 	if (variant === 'split') {
@@ -159,7 +164,7 @@ export function ResultsShowcase({
 						<motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-lg leading-relaxed">
 							{description}
 						</motion.p>
-						
+
 						<motion.div variants={itemVariants} className="space-y-4 pt-4">
 							{[
 								'Full-stack engineering for scalable growth',
@@ -199,72 +204,100 @@ export function ResultsShowcase({
 								const Icon = metric.icon ?? TrendingUp;
 								const style = getColorStyles(metric.colorTheme || 'emerald');
 								const isOffset = index === 1 || index === 3;
-								
-								return (
-									<div key={metric.label} className={cn('h-full', isOffset && 'sm:translate-y-12')}>
-										<motion.div
-											variants={itemVariants}
-											className={cn(
-												'rounded-2xl p-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-none border border-transparent backdrop-blur-md hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden group h-full',
-												style.bg,
-												style.border
-											)}
-										>
-											{/* Abstract 3D Shapes */}
-											{index === 0 && (
-												<motion.div 
-													animate={floatingAnimation}
-													className="absolute -top-4 -right-4 w-16 h-16 rounded-full opacity-60 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9),rgba(255,255,255,0.1))] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.05)] backdrop-blur-sm" 
-												/>
-											)}
-											{index === 1 && (
-												<motion.div 
-													animate={floatingAnimation}
-													className="absolute -bottom-2 -right-2 w-12 h-12 rounded-lg rotate-12 opacity-50 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),rgba(255,255,255,0.1))] border border-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]" 
-												/>
-											)}
-											{index === 2 && (
-												<motion.div 
-													animate={floatingReverseAnimation}
-													className="absolute top-10 -right-6 w-20 h-20 rounded-full opacity-50 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9),rgba(255,255,255,0.1))] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.05)] backdrop-blur-sm" 
-												/>
-											)}
-											{index === 3 && (
-												<motion.div 
-													animate={floatingAnimation}
-													initial={{ y: -10 }}
-													transition={{ delay: 1 }}
-													className="absolute -top-6 left-10 w-14 h-14 rounded-xl rotate-45 opacity-60 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),rgba(255,255,255,0.1))] border border-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]" 
-												/>
-											)}
 
-											<div className="relative z-10">
-												<Icon className={cn('w-8 h-8 mb-4', style.icon)} />
-												<motion.div 
-													initial={{ opacity: 0, scale: 0.5 }}
-													whileInView={{ opacity: 1, scale: 1 }}
-													transition={{ type: 'spring', stiffness: 100, delay: 0.2 + (index * 0.1) }}
-													className={cn('text-5xl font-bold mb-2', style.textBase)}
+								return (
+									<motion.div 
+										key={metric.label} 
+										variants={itemVariants}
+										className={cn('h-full', isOffset && 'sm:translate-y-12')} 
+									>
+										<div className="group relative w-full h-full cursor-pointer" style={{ perspective: 1000 }}>
+											<div
+												className="relative w-full h-full transition-transform duration-700 ease-in-out group-hover:transform-[rotateY(180deg)]"
+												style={{ transformStyle: 'preserve-3d' }}
+											>
+												{/* Front of Card */}
+												<div
+													className={cn(
+														'rounded-2xl p-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-none border border-transparent backdrop-blur-md relative overflow-hidden w-full h-full',
+														style.bg,
+														style.border
+													)}
+													style={{ backfaceVisibility: 'hidden' }}
 												>
-													{metric.value}
-												</motion.div>
-												<h3 className={cn('text-lg font-semibold mb-2', style.textAccent)}>{metric.label}</h3>
-												<p className={cn('text-sm leading-relaxed', style.textMuted)}>{metric.description}</p>
-												
-												{/* Sparkline Graph */}
-												<div className="mt-4 h-10 w-28">
-													<svg className={cn("w-full h-full fill-none stroke-[3px] drop-shadow-[0_0_4px_rgba(255,255,255,0.6)]", style.sparkline)} preserveAspectRatio="none" viewBox="0 0 100 30">
-														<motion.path 
-															initial={{ pathLength: 0 }}
-															whileInView={{ pathLength: 1 }}
-															transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 + (index * 0.1) }}
-															d={style.path}
+													{/* Abstract 3D Shapes */}
+													{index === 0 && (
+														<motion.div
+															animate={floatingAnimation}
+															className="absolute -top-4 -right-4 w-16 h-16 rounded-full opacity-60 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9),rgba(255,255,255,0.1))] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.05)] backdrop-blur-sm"
 														/>
-													</svg>
+													)}
+													{index === 1 && (
+														<motion.div
+															animate={floatingAnimation}
+															className="absolute -bottom-2 -right-2 w-12 h-12 rounded-lg rotate-12 opacity-50 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),rgba(255,255,255,0.1))] border border-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]"
+														/>
+													)}
+													{index === 2 && (
+														<motion.div
+															animate={floatingReverseAnimation}
+															className="absolute top-10 -right-6 w-20 h-20 rounded-full opacity-50 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9),rgba(255,255,255,0.1))] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.05)] backdrop-blur-sm"
+														/>
+													)}
+													{index === 3 && (
+														<motion.div
+															animate={floatingAnimation}
+															initial={{ y: -10 }}
+															transition={{ delay: 1 }}
+															className="absolute -top-6 left-10 w-14 h-14 rounded-xl rotate-45 opacity-60 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),rgba(255,255,255,0.1))] border border-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]"
+														/>
+													)}
+
+													<div className="relative z-10">
+														<Icon className={cn('w-8 h-8 mb-4', style.icon)} />
+														<motion.div
+															initial={{ opacity: 0, scale: 0.5 }}
+															whileInView={{ opacity: 1, scale: 1 }}
+															transition={{ type: 'spring', stiffness: 100, delay: 0.2 + (index * 0.1) }}
+															className={cn('text-5xl font-bold mb-2', style.textBase)}
+														>
+															{metric.value}
+														</motion.div>
+														<h3 className={cn('text-lg font-semibold mb-2', style.textAccent)}>{metric.label}</h3>
+														<p className={cn('text-sm leading-relaxed', style.textMuted)}>{metric.description}</p>
+
+														{/* Sparkline Graph */}
+														<div className="mt-4 h-10 w-28">
+															<svg className={cn("w-full h-full fill-none stroke-[3px] drop-shadow-[0_0_4px_rgba(255,255,255,0.6)]", style.sparkline)} preserveAspectRatio="none" viewBox="0 0 100 30">
+																<motion.path
+																	initial={{ pathLength: 0 }}
+																	whileInView={{ pathLength: 1 }}
+																	transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 + (index * 0.1) }}
+																	d={style.path}
+																/>
+															</svg>
+														</div>
+													</div>
+												</div>
+
+												{/* Back of Card (Case Study) */}
+												<div
+													className={cn(
+														'absolute inset-0 rounded-2xl p-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-none border border-transparent backdrop-blur-md flex flex-col items-center justify-center text-center overflow-hidden',
+														style.bg,
+														style.border
+													)}
+													style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+												>
+													<Icon className={cn('w-10 h-10 mb-4 opacity-50', style.icon)} />
+													<h4 className={cn('text-lg font-bold mb-3', style.textBase)}>The Story</h4>
+													<p className={cn('text-sm leading-relaxed', style.textMuted)}>
+														{metric.caseStudy}
+													</p>
 												</div>
 											</div>
-										</motion.div>
-									</div>
+										</div>
+									</motion.div>
 								);
 							})}
 						</motion.div>

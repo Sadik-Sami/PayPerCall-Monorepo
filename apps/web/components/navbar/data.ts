@@ -37,6 +37,7 @@ export const navigationData: NavItem[] = [
 			},
 			{
 				title: 'Web Development',
+				href: '/services/web-dev',
 				links: [
 					{ label: 'Full-Stack Development', href: '/services/web-dev/full-stack' },
 					{ label: 'Business Websites', href: '/services/web-dev/business' },
@@ -46,6 +47,7 @@ export const navigationData: NavItem[] = [
 			},
 			{
 				title: 'CMS Development',
+				href: '/services/cms',
 				links: [
 					{ label: 'Wordpress', href: '/services/cms/wordpress' },
 					{ label: 'Drupal', href: '/services/cms/drupal' },
@@ -55,6 +57,7 @@ export const navigationData: NavItem[] = [
 			},
 			{
 				title: 'App Development',
+				href: '/services/app-dev',
 				links: [
 					{ label: 'iOS App Development', href: '/services/app-dev/ios' },
 					{ label: 'Android App Development', href: '/services/app-dev/android' },

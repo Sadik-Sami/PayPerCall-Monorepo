@@ -3,6 +3,7 @@
 import { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import Link from 'next/link';
 import type { NavItem } from './types';
 import { mobileAccordionVariants, mobileSubItemVariants } from './animations';
 
@@ -48,9 +49,19 @@ export const MobileMenuItem = memo(function MobileMenuItem({ item, isActive, onT
 						<div className='pb-2 sm:pb-4'>
 							{item.columns.map((column, colIndex) => (
 								<motion.div key={colIndex} variants={mobileSubItemVariants} className='mb-3 sm:mb-4 last:mb-0'>
-									<h4 className='font-utility text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-4'>
-										{column.title}
-									</h4>
+									{column.href ? (
+										<Link
+											href={column.href}
+											onClick={onClose}
+											className='font-utility text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-4 block hover:text-primary transition-colors'
+										>
+											{column.title}
+										</Link>
+									) : (
+										<h4 className='font-utility text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-4'>
+											{column.title}
+										</h4>
+									)}
 									<ul className='space-y-0'>
 										{column.links.map((link, linkIndex) => (
 											<motion.li key={linkIndex} variants={mobileSubItemVariants}>

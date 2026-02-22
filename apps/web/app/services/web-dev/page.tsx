@@ -169,7 +169,7 @@ export default function WebDevOverviewPage() {
 			<TrustBanner />
 			<PremiumServicesGrid />
 			<IndustryExpertiseSection />
-			<ResultsShowcase className='max-w-7xl mx-auto' variant='split' />
+			<ResultsShowcase />
 			<section className='py-16 max-w-7xl mx-auto'>
 				<div className='mb-12 max-w-3xl mx-auto text-center'>
 					<h2 className='mb-4 text-foreground text-3xl md:text-4xl lg:text-5xl font-bold'>

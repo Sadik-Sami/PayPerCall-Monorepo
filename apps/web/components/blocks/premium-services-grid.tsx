@@ -2,96 +2,96 @@
 
 import { motion } from 'framer-motion';
 import {
-	PenTool,
-	Cloud,
-	Headset,
-	BarChart,
-	Database,
-	Cpu,
-	Smartphone,
-	Palette,
-	Bug
+	Code2,
+	Globe,
+	ShoppingCart,
+	Layers,
+	Briefcase,
+	LayoutDashboard,
+	Plug,
+	CalendarCheck,
+	Wrench,
 } from 'lucide-react';
 import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, itemVariants } from '@/lib/animations';
 
 const SERVICES = [
 	{
-		title: 'Scalable System Design',
-		description: 'High-performing product giving you a tailored solution for your business.',
-		icon: PenTool,
+		title: 'Custom Web Application Development',
+		description: 'We build custom web applications tailored to your business needs using modern technologies like React and Node.js.',
+		icon: Code2,
 		color: 'blue',
 		bgShape: 'rounded-tr-[2rem] rounded-bl-[1rem] rounded-tl-md rounded-br-md',
 		hoverShape: 'rotate-0',
 		initialShape: '-rotate-3',
 	},
 	{
-		title: 'Cloud Services',
-		description: 'Cloud outsourcing provider managed cloud services for businesses.',
-		icon: Cloud,
+		title: 'E-Commerce Development',
+		description: 'Professional online stores with secure payments, product management, and modern user experiences.',
+		icon: ShoppingCart,
 		color: 'pink',
 		bgShape: 'rounded-full',
 		hoverShape: 'scale-100',
 		initialShape: 'scale-110 opacity-80',
 	},
 	{
-		title: 'Consultation Service',
-		description: 'DevOps consulting services based on modern tools & technologies.',
-		icon: Headset,
-		color: 'purple',
+		title: 'Business Management Systems',
+		description: 'Custom systems like ERP, CRM, inventory management, and dashboards to streamline your business operations.',
+		icon: Briefcase,
+		color: 'green',
 		bgShape: 'rounded-tl-[2rem] rounded-br-[2rem]',
 		hoverShape: 'rotate-0',
 		initialShape: 'rotate-6',
 	},
 	{
-		title: 'Big Data & Data Science',
-		description: 'Drive business transformation through data analytics.',
-		icon: BarChart,
-		color: 'green',
+		title: 'SaaS Application Development',
+		description: 'We build scalable Software-as-a-Service platforms with subscriptions, user roles, and secure authentication.',
+		icon: Layers,
+		color: 'purple',
 		bgShape: 'rounded-full',
 		hoverShape: 'rounded-lg',
 		initialShape: '',
 	},
 	{
-		title: 'Database Management',
-		description: 'DBMS establish the relationship between datasets, and how users interact with them.',
-		icon: Database,
+		title: 'Admin Dashboards & Panels',
+		description: 'Powerful admin panels for managing users, content, analytics, and business operations.',
+		icon: LayoutDashboard,
 		color: 'sky',
 		bgShape: 'rounded-bl-[2rem] rounded-tr-[1rem]',
 		hoverShape: 'rotate-0',
 		initialShape: '-rotate-6',
 	},
 	{
-		title: 'Embedded System Design',
-		description: 'Provide high-quality embedded system design and embedded architecture design services.',
-		icon: Cpu,
+		title: 'Booking & Reservation Systems',
+		description: 'Online booking systems for hotels, appointments, services, and reservations.',
+		icon: CalendarCheck,
 		color: 'rose',
 		bgShape: 'rounded-tl-[1.5rem] rounded-br-[1.5rem] rounded-tr-sm rounded-bl-sm',
 		hoverShape: 'scale-105',
 		initialShape: '',
 	},
 	{
-		title: 'Mobile Application Dev',
-		description: 'We build your apps for all the devices out there.',
-		icon: Smartphone,
+		title: 'API Development & Integration',
+		description: 'Secure REST APIs and third-party integrations including payments, email services, and external platforms.',
+		icon: Plug,
 		color: 'indigo',
 		bgShape: 'rounded-tr-[2rem] rounded-bl-[1rem]',
 		hoverShape: 'rotate-0',
 		initialShape: 'rotate-3',
 	},
 	{
-		title: 'UX Design',
-		description: 'UX design ensures the quality of user journey of your digital products and services.',
-		icon: Palette,
+		title: 'Website Design & Development',
+		description: 'Modern, fast, and responsive websites designed to grow your business online.',
+		icon: Globe,
 		color: 'emerald',
 		bgShape: 'rounded-tl-[2rem] rounded-tr-[0.5rem] rounded-bl-[0.5rem] rounded-br-[1rem]',
 		hoverShape: 'translate-y-1',
 		initialShape: '',
 	},
 	{
-		title: 'SQA',
-		description: 'Software test lifecycle services; from test planning to execution and everything in between.',
-		icon: Bug,
+		title: 'Maintenance & Support',
+		description: 'Ongoing support, updates, and improvements to keep your web application secure and up-to-date.',
+		icon: Wrench,
 		color: 'cyan',
 		bgShape: 'rounded-full scale-90',
 		hoverShape: 'scale-100',
@@ -126,9 +126,9 @@ export function PremiumServicesGrid() {
 					className="lg:col-span-5"
 				>
 					<h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-foreground">
-						Premium Custom <br className="hidden lg:block" />
-						Software Development <br className="hidden lg:block" />
-						Services
+						Web Development <br className="hidden lg:block" />
+						Services That <br className="hidden lg:block" />
+						Scale With You
 					</h2>
 				</motion.div>
 				<motion.div
@@ -139,8 +139,7 @@ export function PremiumServicesGrid() {
 					className="lg:col-span-7 flex items-start lg:items-center"
 				>
 					<p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-						We prioritize cultivating lasting business partnerships as your trusted software development
-						partner.
+						From custom web apps to e-commerce and SaaS platforms—we deliver modern, performant solutions built with React, Next.js, and your business goals in mind.
 					</p>
 				</motion.div>
 			</div>
