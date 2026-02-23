@@ -1,7 +1,6 @@
 import {
 	CaseStudyStrip,
 	FAQSection,
-	ServiceHero,
 	ConsultationCTA,
 	PricingTable,
 	ProcessSteps,
@@ -12,30 +11,11 @@ import {
 	IntegrationLogos,
 } from '@/components/services';
 import { WEB_DEV_SERVICE_NAV } from '@/components/services/nav-items';
-import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import TechMarquee from '@/components/services/Tech-Marquee';
 import { PremiumServicesGrid } from '@/components/blocks/premium-services-grid';
 import { IndustryExpertiseSection } from '@/components/blocks/industry-expertise-section';
-
-const HERO_CONTENT = {
-	pill: 'Web Development',
-	eyebrow: 'Services',
-	title: 'Web programs built for measurable impact',
-	subtitle:
-		'We ship React/Next.js experiences that stay fast, search-ready, and easy to operate. Start with a no-cost roadmap call.',
-	features: ['SSG + ISR first', 'Analytics-ready', 'Accessible by default'],
-	stat: { value: '30 minutes', label: 'Strategy session · free consultation' },
-	primaryCta: { label: 'Book a Free Consultation', href: '/contact' },
-	secondaryCta: { label: 'View Recent Work', href: '/portfolio' },
-	footnote: 'No retainers or prep fees—just bring your goals and constraints.',
-	media: {
-		src: heroImage1,
-		alt: 'Web development visualization',
-		caption: 'Our roadmap sessions end with a written action plan.',
-	},
-	variant: 'asymmetric' as const,
-};
+import { WebDevHero } from './_components';
 
 const PROCESS_STEPS = [
 	{
@@ -164,7 +144,7 @@ const FAQ_ITEMS = [
 export default function WebDevOverviewPage() {
 	return (
 		<main className='space-y-12'>
-			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+			<WebDevHero />
 			<TechMarquee />
 			<TrustBanner />
 			<PremiumServicesGrid />
