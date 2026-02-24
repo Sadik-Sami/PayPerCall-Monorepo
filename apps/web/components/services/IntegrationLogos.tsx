@@ -423,7 +423,7 @@ function MarqueeLane({
   }
 
   return (
-    <div className='relative space-y-4 sm:space-y-5'>
+    <div className='relative space-y-2 sm:space-y-3'>
       <div className='pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-background to-transparent sm:w-15 h-full' />
       <div className='pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-background to-transparent sm:w-20 h-full' />
 
@@ -546,7 +546,7 @@ export function IntegrationLogos({
 
   if (variant === 'grouped') {
     return (
-      <section className={cn('relative overflow-hidden py-20 lg:py-24', className)}>
+      <section className={cn('relative overflow-hidden py-6 lg:py-12', className)}>
         <div className='absolute inset-0 -z-10 overflow-hidden'>
           <div className='absolute inset-0 bg-linear-to-br from-background via-background to-primary/5' />
           <div className='absolute -top-1/2 left-1/2 h-200 w-200 -translate-x-1/2 rounded-full bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl' />
@@ -582,7 +582,7 @@ export function IntegrationLogos({
 
   // Default global layout: reference-inspired two-column composition + marquee lane
   return (
-    <section className={cn('relative overflow-hidden py-20 lg:py-24', className)}>
+    <section className={cn('relative overflow-hidden py-6 lg:py-12', className)}>
       <div className='absolute inset-0 -z-10 overflow-hidden'>
         <div className='absolute inset-0 bg-linear-to-br from-background via-background to-primary/5' />
         <div className='absolute -top-1/2 left-1/2 h-200 w-200 -translate-x-1/2 rounded-full bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl' />

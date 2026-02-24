@@ -83,7 +83,7 @@ const CASE_STUDIES = [
 const PRICING_PLANS = [
 	{
 		name: 'Foundation',
-		description: 'Focused engagement for brand-new sites.',
+		description: 'Focused engagement for brand-new sites getting off the ground.',
 		priceLabel: 'From $1k',
 		features: [
 			'Up to 5 essential page templates',
@@ -94,12 +94,12 @@ const PRICING_PLANS = [
 	},
 	{
 		name: 'Growth',
-		description: 'Most teams choose this for multi-page builds.',
+		description: 'Most teams choose this for robust multi-page builds.',
 		priceLabel: 'From $3k',
 		features: [
 			'End-to-end UX + content support',
 			'Custom component library',
-			'System integrations (CRM, marketing ops)',
+			'System integrations (CRM, Ops)',
 			'Performance & accessibility audits',
 		],
 		isRecommended: true,
@@ -107,7 +107,7 @@ const PRICING_PLANS = [
 	},
 	{
 		name: 'Enterprise',
-		description: 'Complex builds with advanced security needs.',
+		description: 'Complex builds with advanced security and scale requirements.',
 		priceLabel: 'Custom',
 		features: [
 			'Multi-region deployments',
@@ -181,7 +181,6 @@ export default function WebDevOverviewPage() {
 			<TestimonialsSection className='max-w-7xl mx-auto' variant='featured' />
 			<IntegrationLogos className='max-w-7xl mx-auto' />
 			<PricingTable
-				className='max-w-7xl mx-auto'
 				title='Engagement models suited to your stage'
 				description='Transparent ranges help you budget faster. Every project begins with a free planning call.'
 				plans={PRICING_PLANS}
