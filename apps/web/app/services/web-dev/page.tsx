@@ -19,24 +19,24 @@ import { WebDevHero } from './_components';
 
 const PROCESS_STEPS = [
 	{
-		title: 'Discovery & Prioritization',
+		title: 'Discovery',
 		description:
-			'Align on business goals, primary KPIs, and existing systems. Produce a measurable requirements brief.',
+			'We dive deep into your business goals. Through stakeholder interviews and data analysis, we establish a crystal-clear roadmap and set success metrics.',
 	},
 	{
-		title: 'Architecture & Experience Design',
+		title: 'Architecture',
 		description:
-			'Select the right stack, map integrations, and work through low-fidelity and high-fidelity experience flows.',
+			'Design systems and tech stacks are selected. We create high-fidelity prototypes and map out the database schemas to ensure scalability from day one.',
 	},
 	{
-		title: 'Build & Integrate',
+		title: 'Development',
 		description:
-			'Ship accessible, type-safe code, wire up first-party and third-party systems, and cover automated QA.',
+			'Agile sprints bring the design to life. We write clean, type-safe code with automated testing, ensuring regular deployments for feedback loops.',
 	},
 	{
-		title: 'Launch & Improve',
+		title: 'Launch',
 		description:
-			'Deploy via SSG/ISR, monitor analytics, and run structured optimization cycles once real data arrives.',
+			'We manage the final deployment, DNS configuration, and performance tuning. Post-launch monitoring ensures stability as users start to engage.',
 	},
 ];
 
@@ -168,10 +168,9 @@ export default function WebDevOverviewPage() {
 				/>
 			</section>
 			<ProcessSteps
-				className='max-w-7xl mx-auto'
 				steps={PROCESS_STEPS}
-				title='How we deliver web development projects'
-				description='Every engagement follows a predictable arc so stakeholders always know what is happening next.'
+				title='Our Path to Digital Perfection'
+				description='A transparent, step-by-step approach ensuring your vision translates flawlessly into reality.'
 				variant='cards'
 			/>
 			<CaseStudyStrip
