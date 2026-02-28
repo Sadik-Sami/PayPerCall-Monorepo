@@ -5,12 +5,12 @@ import { ServiceCard } from './ServicesCard';
 import { containerVariants } from '@/lib/animations';
 import type { ServiceNavItem } from './types';
 
-interface AnimatedServicesGridProps {
+interface ServicesGridProps {
 	services: ServiceNavItem[];
 	className?: string;
 }
 
-export function AnimatedServicesGrid({ services, className }: AnimatedServicesGridProps) {
+export function ServicesGrid({ services, className }: ServicesGridProps) {
 	return (
 		<motion.div
 			variants={containerVariants}

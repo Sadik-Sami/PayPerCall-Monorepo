@@ -9,10 +9,11 @@ export function CaseStudyStrip({ items, title, description, className }: CaseStu
 	if (!items.length) return null;
 
 	return (
-		<section className={cn('section-container py-16 max-w-7xl mx-auto', className)}>
+		<section className={cn('w-full', className)}>
+			<div className="section-container">
 			{(title || description) && (
-				<div className='mb-12 max-w-2xl'>
-					{title && <h2 className='mb-4 text-foreground text-3xl font-bold'>{title}</h2>}
+				<div className='mb-8 md:mb-10 lg:mb-12 max-w-2xl'>
+					{title && <h2 className='font-heading mb-4 text-foreground text-2xl md:text-3xl font-bold text-balance'>{title}</h2>}
 					{description && <p className='text-muted-foreground text-lg'>{description}</p>}
 				</div>
 			)}
@@ -22,7 +23,7 @@ export function CaseStudyStrip({ items, title, description, className }: CaseStu
 				initial='hidden'
 				whileInView='visible'
 				viewport={{ once: true, margin: '-100px' }}
-				className='grid gap-6 lg:grid-cols-3'>
+				className='grid gap-6 md:gap-8 lg:grid-cols-3 lg:gap-10'>
 				{items.map((item) => (
 					<motion.div
 						key={item.client || item.problem}
@@ -69,7 +70,7 @@ export function CaseStudyStrip({ items, title, description, className }: CaseStu
 								<div className='mt-4 flex gap-4'>
 									{item.metrics.map((metric) => (
 										<div key={metric.label} className='flex-1'>
-											<p className='text-2xl font-bold text-primary'>{metric.value}</p>
+											<p className='text-2xl font-bold text-primary tabular-nums'>{metric.value}</p>
 											<p className='text-xs text-muted-foreground'>{metric.label}</p>
 										</div>
 									))}
@@ -89,6 +90,7 @@ export function CaseStudyStrip({ items, title, description, className }: CaseStu
 					</motion.div>
 				))}
 			</motion.div>
+			</div>
 		</section>
 	);
 }

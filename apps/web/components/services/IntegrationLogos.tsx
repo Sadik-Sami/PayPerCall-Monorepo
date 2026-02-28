@@ -582,7 +582,7 @@ export function IntegrationLogos({
 
   // Default global layout: reference-inspired two-column composition + marquee lane
   return (
-    <section className={cn('relative overflow-hidden py-6 lg:py-12', className)}>
+    <section className={cn('relative overflow-hidden w-full', className)}>
       <div className='absolute inset-0 -z-10 overflow-hidden'>
         <div className='absolute inset-0 bg-linear-to-br from-background via-background to-primary/5' />
         <div className='absolute -top-1/2 left-1/2 h-200 w-200 -translate-x-1/2 rounded-full bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl' />
@@ -594,9 +594,9 @@ export function IntegrationLogos({
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true, margin: '-100px' }}
-        className='relative z-10 mx-auto w-full max-w-7xl space-y-12 px-6 lg:px-12 xl:px-0'
+        className='section-container relative z-10 space-y-10 md:space-y-12'
       >
-        <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16'>
+        <div className='grid grid-cols-1 items-center gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16'>
           <motion.div variants={itemVariants}>
             <IntegrationHeader
               title={title}

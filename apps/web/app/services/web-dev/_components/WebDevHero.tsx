@@ -24,7 +24,7 @@ const HERO = {
 	deployCard: {
 		title: 'Seamless Deployment',
 		checks: ['Build optimized', 'Tests passed (42/42)'],
-		live: 'Deploying to Edge...',
+		live: 'Deploying to Edge…',
 	},
 	dashboard: {
 		revenue: '$124,500',

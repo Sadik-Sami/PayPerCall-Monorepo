@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
 	ServiceHero,
 	ClientSuccessBreakdown,
@@ -201,44 +200,6 @@ const CASE_STUDIES = [
 	},
 ];
 
-const PRICING_PLANS = [
-	{
-		name: 'Essential Corporate Site',
-		description: 'For focused positioning sites or rebrands with lean content.',
-		priceLabel: 'From $22k',
-		features: [
-			'Up to 6 core templates',
-			'CMS + publishing workflow',
-			'On-page SEO + schema',
-			'Analytics + lead routing',
-		],
-	},
-	{
-		name: 'Growth Website',
-		description: 'Best for multi-offer businesses that need robust proof and resources.',
-		priceLabel: 'From $38k',
-		features: [
-			'10+ templates including resources',
-			'Case study + testimonial system',
-			'CRM + marketing automation integration',
-			'Performance budget + monitoring',
-		],
-		isRecommended: true,
-		badge: 'Recommended',
-	},
-	{
-		name: 'Enterprise Communications Hub',
-		description: 'Global or regulated organizations with complex governance.',
-		priceLabel: 'Custom',
-		features: [
-			'Multi-region or multilingual support',
-			'Granular permissions + approval chains',
-			'Advanced security reviews',
-			'Quarterly optimization retainers',
-		],
-	},
-];
-
 const FAQ_ITEMS = [
 	...OBJECTION_FAQ,
 	{
@@ -342,15 +303,6 @@ export default function BusinessWebsitesPage() {
 				items={CASE_STUDIES}
 				title='Case studies focused on outcomes executives value'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='py-12 md:py-16 max-w-7xl mx-auto'
-					title='Business website packages'
-					description='Choose the tier that fits your content footprint. Every engagement still begins with a free website review.'
-					plans={PRICING_PLANS}
-					billingNote='Pricing assumes approved brand guidelines and access to stakeholders for timely reviews.'
-				/>
-			</div>
 			<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='py-12 md:py-16 max-w-7xl mx-auto'>
 				<ConsultationCTA

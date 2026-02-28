@@ -147,7 +147,8 @@ export function TestimonialsSection({
 
 	if (variant === 'grid') {
 		return (
-			<section className={cn('section-container py-20 lg:py-28', className)}>
+			<section className={cn('w-full', className)}>
+				<div className="section-container">
 				<motion.div
 					variants={containerVariants}
 					initial='hidden'
@@ -160,7 +161,7 @@ export function TestimonialsSection({
 							<Building2 className='h-4 w-4 text-primary' />
 							<span className='text-sm font-medium text-primary'>Client Stories</span>
 						</div>
-						<h2 className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl'>{title}</h2>
+						<h2 className='font-heading mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl text-balance'>{title}</h2>
 						<p className='text-muted-foreground'>{description}</p>
 					</motion.div>
 
@@ -171,6 +172,7 @@ export function TestimonialsSection({
 						))}
 					</motion.div>
 				</motion.div>
+				</div>
 			</section>
 		);
 	}
@@ -186,20 +188,21 @@ export function TestimonialsSection({
 		const rest = testimonials.slice(1);
 
 		return (
-			<section className={cn('section-container py-20 lg:py-28', className)}>
+			<section className={cn('w-full', className)}>
+				<div className="section-container">
 				<motion.div
 					variants={containerVariants}
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-100px' }}
-					className='space-y-12'>
+					className='space-y-10 md:space-y-12'>
 					{/* Header */}
 					<motion.div variants={itemVariants} className='mx-auto max-w-2xl text-center'>
 						<div className='mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5'>
 							<Building2 className='h-4 w-4 text-primary' />
 							<span className='text-sm font-medium text-primary'>Client Stories</span>
 						</div>
-						<h2 className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl'>{title}</h2>
+						<h2 className='font-heading mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl text-balance'>{title}</h2>
 						<p className='text-muted-foreground'>{description}</p>
 					</motion.div>
 
@@ -213,13 +216,14 @@ export function TestimonialsSection({
 						</div>
 					</motion.div>
 				</motion.div>
+				</div>
 			</section>
 		);
 	}
 
 	// Carousel variant (default)
 	return (
-		<section className={cn('overflow-hidden py-20 lg:py-28', className)}>
+		<section className={cn('overflow-hidden w-full', className)}>
 			<div className='section-container'>
 				<motion.div
 					variants={containerVariants}
@@ -233,7 +237,7 @@ export function TestimonialsSection({
 							<Building2 className='h-4 w-4 text-primary' />
 							<span className='text-sm font-medium text-primary'>Client Stories</span>
 						</div>
-						<h2 className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl'>{title}</h2>
+						<h2 className='font-heading mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl text-balance'>{title}</h2>
 						<p className='text-muted-foreground'>{description}</p>
 					</motion.div>
 

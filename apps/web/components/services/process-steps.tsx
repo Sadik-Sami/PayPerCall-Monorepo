@@ -13,7 +13,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 			<section className={cn('section-container py-16', className)}>
 				{(title || description) && (
 					<div className='mb-12 max-w-3xl'>
-						{title && <h2 className='mb-4 text-foreground'>{title}</h2>}
+						{title && <h2 className='font-heading mb-4 text-foreground text-pretty'>{title}</h2>}
 						{description && <p className='text-muted-foreground'>{description}</p>}
 					</div>
 				)}
@@ -74,7 +74,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 		] as const;
 
 		return (
-			<section className={cn('relative overflow-hidden py-6 lg:py-12 px-6', className)}>
+			<section className={cn('relative overflow-hidden w-full', className)}>
 				<div className='pointer-events-none absolute inset-0 -z-10'>
 					<div className='absolute inset-0 bg-linear-to-br from-background via-background to-primary/5' />
 					<div className='absolute -top-1/3 left-1/3 h-72 w-72 rounded-full bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl' />
@@ -88,7 +88,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 							Process Workflow
 						</span>
 						{title && (
-							<h2 className='mt-5 text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl'>
+							<h2 className='font-heading mt-5 text-pretty text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl'>
 								{title.includes('Digital Perfection') ? (
 									<>
 										{title.replace('Digital Perfection', '')}{' '}
@@ -109,12 +109,13 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 					</div>
 				)}
 
+				<div className='section-container'>
 				<motion.div
 					variants={containerVariants}
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-100px' }}
-					className='grid gap-2 md:grid-cols-2 max-w-7xl mx-auto'>
+					className='grid gap-6 md:gap-8 md:grid-cols-2'>
 					{steps.map((step, index) => (
 						<motion.div
 							key={step.title}
@@ -146,7 +147,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 					))}
 				</motion.div>
 
-				<div className='mt-12 flex flex-col items-center justify-center gap-3 text-center'>
+				<div className='mt-10 md:mt-12 flex flex-col items-center justify-center gap-3 text-center'>
 					<Button asChild size='lg' className='group rounded-full px-8'>
 						<Link href='/contact'>
 							Queue Up Your Free Consultation
@@ -154,6 +155,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 						</Link>
 					</Button>
 					<p className='text-sm text-muted-foreground'>Typical response time: &lt; 2 hours</p>
+				</div>
 				</div>
 			</section>
 		);
@@ -167,7 +169,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 			)}>
 			{(title || description) && (
 				<div className='mb-10 max-w-2xl'>
-					{title && <h2 className='mb-4 text-foreground'>{title}</h2>}
+					{title && <h2 className='font-heading mb-4 text-foreground text-pretty'>{title}</h2>}
 					{description && <p className='text-muted-foreground'>{description}</p>}
 				</div>
 			)}

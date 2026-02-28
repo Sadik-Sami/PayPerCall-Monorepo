@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { TrendingUp, Zap, Users, DollarSign, ArrowUpRight, Check } from 'lucide-react';
 import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, itemVariants } from '@/lib/animations';
@@ -139,10 +139,14 @@ export function ResultsShowcase({
 	variant = 'split',
 	className,
 }: ResultsShowcaseProps) {
+	const reduceMotion = useReducedMotion();
+	const floatingAnim = reduceMotion ? {} : floatingAnimation;
+	const floatingRevAnim = reduceMotion ? {} : floatingReverseAnimation;
+
 	if (variant === 'split') {
 		return (
-			<section className={cn('relative w-full py-24', className)}>
-				<div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+			<section className={cn('relative w-full', className)}>
+				<div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
 					{/* Left Content */}
 					<motion.div
 						variants={containerVariants}
@@ -155,7 +159,7 @@ export function ResultsShowcase({
 							<TrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4" />
 							<span className="text-blue-600 dark:text-blue-400 font-medium text-sm">Proven Results</span>
 						</motion.div>
-						<motion.h2 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-foreground">
+						<motion.h2 variants={itemVariants} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-foreground text-balance">
 							{title.split('themselves')[0]}
 							<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
 								{title.includes('themselves') ? 'themselves' : title}
@@ -228,25 +232,25 @@ export function ResultsShowcase({
 													{/* Abstract 3D Shapes */}
 													{index === 0 && (
 														<motion.div
-															animate={floatingAnimation}
+															animate={floatingAnim}
 															className="absolute -top-4 -right-4 w-16 h-16 rounded-full opacity-60 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9),rgba(255,255,255,0.1))] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.05)] backdrop-blur-sm"
 														/>
 													)}
 													{index === 1 && (
 														<motion.div
-															animate={floatingAnimation}
+															animate={floatingAnim}
 															className="absolute -bottom-2 -right-2 w-12 h-12 rounded-lg rotate-12 opacity-50 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),rgba(255,255,255,0.1))] border border-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]"
 														/>
 													)}
 													{index === 2 && (
 														<motion.div
-															animate={floatingReverseAnimation}
+															animate={floatingRevAnim}
 															className="absolute top-10 -right-6 w-20 h-20 rounded-full opacity-50 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9),rgba(255,255,255,0.1))] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.05)] backdrop-blur-sm"
 														/>
 													)}
 													{index === 3 && (
 														<motion.div
-															animate={floatingAnimation}
+															animate={floatingAnim}
 															initial={{ y: -10 }}
 															transition={{ delay: 1 }}
 															className="absolute -top-6 left-10 w-14 h-14 rounded-xl rotate-45 opacity-60 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),rgba(255,255,255,0.1))] border border-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]"
@@ -327,7 +331,7 @@ export function ResultsShowcase({
 								<TrendingUp className='h-4 w-4 text-primary' />
 								<span className='text-sm font-medium text-primary'>Proven Results</span>
 							</div>
-							<h2 className='mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl'>
+							<h2 className='font-heading mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl text-balance'>
 								{title}
 							</h2>
 							<p className='text-lg text-muted-foreground'>{description}</p>
@@ -379,7 +383,7 @@ export function ResultsShowcase({
 								<TrendingUp className='h-3.5 w-3.5 text-primary' />
 								<span className='text-xs font-medium text-primary'>Proven Results</span>
 							</div>
-							<h2 className='text-2xl font-bold tracking-tight text-foreground md:text-3xl'>{title}</h2>
+							<h2 className='font-heading text-2xl font-bold tracking-tight text-foreground md:text-3xl text-balance'>{title}</h2>
 						</div>
 						<p className='max-w-md text-muted-foreground lg:text-right'>{description}</p>
 					</motion.div>

@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ServiceHero,
 	ClientSuccessBreakdown,
 	TimelineSteps,
@@ -11,7 +10,7 @@ import {
 	ServiceComparison,
 } from '@/components/services';
 import type { Metadata } from 'next';
-import type { FaqItem, CaseStudyItem, PricingPlan } from '@/types/services';
+import type { FaqItem, CaseStudyItem } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage3 from '@/public/images/slider/slider-3.jpg';
 import { Shield, Building2, Lock } from 'lucide-react';
@@ -278,45 +277,6 @@ const COMPARISON_FEATURES = [
 	{ name: 'Ongoing Support', included: ['Optional', 'Included (6 mo)', 'Included (12 mo)'] },
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'Single Site',
-		description: 'Drupal site for departmental or single-purpose use.',
-		priceLabel: 'From $35k',
-		features: [
-			'Drupal 10 installation',
-			'Custom theme + content types',
-			'Security hardening',
-			'Editorial training',
-		],
-	},
-	{
-		name: 'Multi-Site Platform',
-		description: 'Centralized Drupal for multiple sites or brands.',
-		priceLabel: 'From $75k',
-		features: [
-			'Multi-site architecture',
-			'Shared content repository',
-			'Role-based publishing workflows',
-			'HIPAA/GDPR compliance support',
-			'Managed hosting setup',
-		],
-		isRecommended: true,
-		badge: 'Enterprise standard',
-	},
-	{
-		name: 'Headless Drupal',
-		description: 'Drupal as API-driven content backend.',
-		priceLabel: 'From $85k',
-		features: [
-			'Headless architecture (JSON:API or GraphQL)',
-			'Decoupled frontend (Next.js)',
-			'API documentation',
-			'Developer onboarding',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'Why choose Drupal over WordPress for enterprise content?',
@@ -401,15 +361,6 @@ export default function DrupalPage() {
 				title='Enterprise Drupal engagements'
 				description='Every Drupal build delivers security, compliance, and operational efficiency for large organizations.'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='max-w-7xl mx-auto py-12 md:py-16'
-					title='Drupal engagement models'
-					description='Transparent pricing for enterprise Drupal projects. Every engagement starts with a free architecture review.'
-					plans={PRICING_PLANS}
-					billingNote='Budgets include custom development, security hardening, compliance documentation, and training. Hosting (Acquia/Pantheon) billed separately.'
-				/>
-			</div>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA

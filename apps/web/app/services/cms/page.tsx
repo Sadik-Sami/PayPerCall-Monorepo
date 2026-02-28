@@ -3,20 +3,22 @@ import {
 	FAQSection,
 	ServiceHero,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
-	AnimatedServicesGrid,
+	ServiceCapabilitiesGateway,
 	TrustBanner,
 	ResultsShowcase,
 	TestimonialsSection,
 	IntegrationLogos,
 } from '@/components/services';
-import { CMS_SERVICE_NAV } from '@/components/services/nav-items';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Lock, Cloud } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 import type { Metadata } from 'next';
-import type { ProcessStep, CaseStudyItem, PricingPlan, FaqItem } from '@/types/services';
+import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
+import {
+	CMS_SERVICE_NAV,
+	CMS_GATEWAY_CONFIG,
+	buildGatewayCards,
+} from '@/components/services/nav-items';
 
 export const metadata: Metadata = {
 	title: 'CMS Development Services | WordPress, Drupal, Headless CMS | PayPerCall',
@@ -160,44 +162,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	},
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'WordPress Site',
-		description: 'Custom WordPress build for content-focused sites.',
-		priceLabel: 'From $8k',
-		features: [
-			'Custom theme development',
-			'Essential plugin setup (SEO, security, performance)',
-			'Editor training & documentation',
-			'Security hardening',
-		],
-	},
-	{
-		name: 'Enterprise CMS',
-		description: 'Drupal or WordPress Multisite for complex needs.',
-		priceLabel: 'From $35k',
-		features: [
-			'Multi-site or advanced architecture',
-			'Custom modules/plugins',
-			'Role-based workflows',
-			'Compliance alignment (HIPAA, SOC 2, GDPR)',
-		],
-		isRecommended: true,
-		badge: 'Most popular',
-	},
-	{
-		name: 'Headless CMS',
-		description: 'API-first content hub for omnichannel delivery.',
-		priceLabel: 'From $45k',
-		features: [
-			'Headless CMS setup (Contentful, Sanity, Strapi)',
-			'GraphQL or REST API architecture',
-			'Multi-channel content delivery',
-			'Developer documentation',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'How do I choose between WordPress, Drupal, and headless CMS?',
@@ -230,26 +194,22 @@ export default function CMSOverviewPage() {
 	return (
 		<main className='space-y-12'>
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<TechMarquee />
 			<TrustBanner />
 			<ResultsShowcase className='max-w-7xl mx-auto' variant='split' />
-			<section className='py-16 max-w-7xl mx-auto'>
-				<div className='mb-12 max-w-3xl mx-auto text-center'>
-					<h2 className='mb-4 text-foreground text-3xl md:text-4xl lg:text-5xl font-bold'>
-						CMS Development Capabilities
-					</h2>
-					<p className='text-muted-foreground'>
-						Each platform links to a dedicated plan so stakeholders can explore what matters most.
-					</p>
-				</div>
-				<AnimatedServicesGrid
-					services={CMS_SERVICE_NAV.filter((item) => item.href !== '/services/cms').map(
-						// eslint-disable-next-line @typescript-eslint/no-unused-vars
-						({ icon: _icon, ...service }) => service
-					)}
-					className='grid gap-6 md:grid-cols-2'
-				/>
-			</section>
+			<ServiceCapabilitiesGateway
+				title={CMS_GATEWAY_CONFIG.title}
+				subtitle={CMS_GATEWAY_CONFIG.subtitle}
+				cards={buildGatewayCards(
+					CMS_SERVICE_NAV,
+					'/services/cms',
+					CMS_GATEWAY_CONFIG.ctaLabels,
+					CMS_GATEWAY_CONFIG.iconKeys
+				)}
+				primaryCta={CMS_GATEWAY_CONFIG.primaryCta}
+				primaryCtaNote={CMS_GATEWAY_CONFIG.primaryCtaNote}
+				columns={CMS_GATEWAY_CONFIG.columns}
+				className='max-w-7xl mx-auto'
+			/>
 			<ProcessSteps
 				className='max-w-7xl mx-auto'
 				steps={PROCESS_STEPS}
@@ -272,13 +232,6 @@ export default function CMSOverviewPage() {
 				variant='grid'
 				ctaLabel='Discuss platform requirements'
 				ctaHref='/contact'
-			/>
-			<PricingTable
-				className='max-w-7xl mx-auto'
-				title='Flexible CMS engagement models'
-				description='Transparent ranges help you budget faster. Every project begins with a free platform assessment.'
-				plans={PRICING_PLANS}
-				billingNote='Budgets include platform setup, security hardening, editor training, and documentation. Third-party licenses billed at cost.'
 			/>
 			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='section-container pb-16 max-w-7xl mx-auto'>

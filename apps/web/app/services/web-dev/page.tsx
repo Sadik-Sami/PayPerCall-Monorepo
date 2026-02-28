@@ -1,18 +1,21 @@
+import { cn } from '@workspace/ui/lib/utils';
 import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
-	AnimatedServicesGrid,
+	ServiceCapabilitiesGateway,
 	TrustBanner,
 	ResultsShowcase,
 	TestimonialsSection,
 	IntegrationLogos,
 } from '@/components/services';
-import { WEB_DEV_SERVICE_NAV } from '@/components/services/nav-items';
+import {
+	WEB_DEV_SERVICE_NAV,
+	WEB_DEV_GATEWAY_CONFIG,
+	buildGatewayCards,
+} from '@/components/services/nav-items';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 import { PremiumServicesGrid } from '@/components/blocks/premium-services-grid';
 import { IndustryExpertiseSection } from '@/components/blocks/industry-expertise-section';
 import { WebDevHero } from './_components';
@@ -80,44 +83,6 @@ const CASE_STUDIES = [
 	},
 ];
 
-const PRICING_PLANS = [
-	{
-		name: 'Foundation',
-		description: 'Focused engagement for brand-new sites getting off the ground.',
-		priceLabel: 'From $1k',
-		features: [
-			'Up to 5 essential page templates',
-			'CMS implementation',
-			'Technical SEO baseline',
-			'Analytics instrumentation',
-		],
-	},
-	{
-		name: 'Growth',
-		description: 'Most teams choose this for robust multi-page builds.',
-		priceLabel: 'From $3k',
-		features: [
-			'End-to-end UX + content support',
-			'Custom component library',
-			'System integrations (CRM, Ops)',
-			'Performance & accessibility audits',
-		],
-		isRecommended: true,
-		badge: 'Recommended',
-	},
-	{
-		name: 'Enterprise',
-		description: 'Complex builds with advanced security and scale requirements.',
-		priceLabel: 'Custom',
-		features: [
-			'Multi-region deployments',
-			'Design system collaboration',
-			'Migration support and content ops',
-			'Ongoing optimization retainer',
-		],
-	},
-];
-
 const FAQ_ITEMS = [
 	{
 		question: 'How do you decide between SSG, ISR, or SSR for a project?',
@@ -141,62 +106,58 @@ const FAQ_ITEMS = [
 	},
 ];
 
+const SECTION_PADDING = 'py-12 sm:py-16 md:py-20 lg:py-24';
+
 export default function WebDevOverviewPage() {
 	return (
-		<main className='space-y-12'>
+		<main className='flex flex-col'>
 			<WebDevHero />
-			<TechMarquee />
-			<TrustBanner />
-			<PremiumServicesGrid />
-			<IndustryExpertiseSection />
-			<ResultsShowcase />
-			<section className='py-16 max-w-7xl mx-auto'>
-				<div className='mb-12 max-w-3xl mx-auto text-center'>
-					<h2 className='mb-4 text-foreground text-3xl md:text-4xl lg:text-5xl font-bold'>
-						Web Development Capabilities
-					</h2>
-					<p className='text-muted-foreground'>
-						Each capability links to a dedicated plan so stakeholders can scan what matters most.
-					</p>
-				</div>
-				<AnimatedServicesGrid
-					services={WEB_DEV_SERVICE_NAV.filter((item) => item.href !== '/services/web-dev').map(
-						// eslint-disable-next-line @typescript-eslint/no-unused-vars
-						({ icon: _icon, ...service }) => service
-					)}
-					className='grid gap-6 md:grid-cols-2'
-				/>
-			</section>
+			<TrustBanner className={cn('bg-muted/30', SECTION_PADDING)} />
+			<PremiumServicesGrid className={cn('bg-background', SECTION_PADDING)} />
+			<IndustryExpertiseSection className={cn('bg-muted/30', SECTION_PADDING)} />
+			<ResultsShowcase className={cn('bg-background', SECTION_PADDING)} />
+			<ServiceCapabilitiesGateway
+				title={WEB_DEV_GATEWAY_CONFIG.title}
+				subtitle={WEB_DEV_GATEWAY_CONFIG.subtitle}
+				cards={buildGatewayCards(
+					WEB_DEV_SERVICE_NAV,
+					'/services/web-dev',
+					WEB_DEV_GATEWAY_CONFIG.ctaLabels,
+					WEB_DEV_GATEWAY_CONFIG.iconKeys
+				)}
+				primaryCta={WEB_DEV_GATEWAY_CONFIG.primaryCta}
+				primaryCtaNote={WEB_DEV_GATEWAY_CONFIG.primaryCtaNote}
+				columns={WEB_DEV_GATEWAY_CONFIG.columns}
+				className={cn('w-full bg-muted/30', SECTION_PADDING)}
+			/>
 			<ProcessSteps
 				steps={PROCESS_STEPS}
 				title='Our Path to Digital Perfection'
 				description='A transparent, step-by-step approach ensuring your vision translates flawlessly into reality.'
 				variant='cards'
+				className={cn('bg-background', SECTION_PADDING)}
 			/>
+			<IntegrationLogos className={cn('w-full bg-background', SECTION_PADDING)} />
 			<CaseStudyStrip
 				items={CASE_STUDIES}
 				title='Results grounded in performance data'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
+				className={cn('w-full bg-muted/30', SECTION_PADDING)}
 			/>
-			<TestimonialsSection className='max-w-7xl mx-auto' variant='featured' />
-			<IntegrationLogos className='max-w-7xl mx-auto' />
-			<PricingTable
-				title='Engagement models suited to your stage'
-				description='Transparent ranges help you budget faster. Every project begins with a free planning call.'
-				plans={PRICING_PLANS}
-				billingNote='Budgets include design, engineering, QA, and launch support.'
-			/>
-			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
-			<div className='section-container pb-16 max-w-7xl mx-auto'>
-				<ConsultationCTA
-					category='web-dev'
-					title='Plan your next web program with a 30-minute strategy session'
-					bullets={[
-						'Share goals, KPIs, and blockers—no prep deck required.',
-						'Receive phased recommendations within one business day.',
-						'See budget ranges and timelines before you commit.',
-					]}
-				/>
+			<TestimonialsSection className={cn('w-full bg-background', SECTION_PADDING)} variant='featured' />
+			<FAQSection className={cn('w-full bg-muted/30', SECTION_PADDING)} items={FAQ_ITEMS} />
+			<div className={cn('bg-background w-full', SECTION_PADDING)}>
+				<div className="section-container">
+					<ConsultationCTA
+						category='web-dev'
+						title='Plan your next web program with a 30-minute strategy session'
+						bullets={[
+							'Share goals, KPIs, and blockers—no prep deck required.',
+							'Receive phased recommendations within one business day.',
+							'See budget ranges and timelines before you commit.',
+						]}
+					/>
+				</div>
 			</div>
 		</main>
 	);

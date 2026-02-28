@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
 	ServiceHero,
 	ClientSuccessBreakdown,
@@ -11,11 +10,10 @@ import {
 	IntegrationLogos,
 } from '@/components/services';
 import type { Metadata } from 'next';
-import type { FaqItem, ProcessStep, CaseStudyItem, PricingPlan } from '@/types/services';
+import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Code2, Smartphone, Tablet } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 
 export const metadata: Metadata = {
 	title: 'Cross-Platform App Development | React Native & Flutter | PayPerCall',
@@ -234,48 +232,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	},
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'Cross-Platform MVP',
-		description: 'Essential cross-platform app with core features for both iOS and Android.',
-		priceLabel: 'From $65k',
-		features: [
-			'React Native or Flutter app',
-			'Core features (3-5 features)',
-			'iOS & Android support',
-			'Dual store submission',
-			'Basic backend integration',
-		],
-	},
-	{
-		name: 'Cross-Platform Growth',
-		description: 'Full-featured cross-platform app with native modules and integrations.',
-		priceLabel: 'From $95k',
-		features: [
-			'Complete feature set',
-			'Native module integration',
-			'App Store & Play Store optimization',
-			'Backend API integration',
-			'Push notifications & analytics',
-			'3 months post-launch support',
-		],
-		isRecommended: true,
-		badge: 'Recommended',
-	},
-	{
-		name: 'Cross-Platform Enterprise',
-		description: 'Complex cross-platform apps with advanced features and compliance needs.',
-		priceLabel: 'Custom',
-		features: [
-			'Advanced features & custom modules',
-			'Enterprise security & compliance',
-			'Custom backend development',
-			'Multi-platform support',
-			'Ongoing optimization retainer',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'Should we choose React Native or Flutter for our cross-platform app?',
@@ -348,9 +304,6 @@ export default function CrossPlatformAppDevPage() {
 		<main className='space-y-0'>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<section className='py-6 md:py-8'>
-				<TechMarquee />
-			</section>
 			<ClientSuccessBreakdown
 				className='max-w-7xl mx-auto py-12 md:py-16'
 				title='Cross-platform outcomes backed by data'
@@ -392,15 +345,6 @@ export default function CrossPlatformAppDevPage() {
 				title='Representative cross-platform engagements'
 				description='Every cross-platform build delivers measurable improvements in development efficiency, time-to-market, and business outcomes.'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='max-w-7xl mx-auto py-12 md:py-16'
-					title='Cross-platform engagement models'
-					description='Choose the tier that matches your needs. Every project starts with a free consultation and framework recommendation.'
-					plans={PRICING_PLANS}
-					billingNote='All plans include React Native or Flutter development, dual store submission, native module integration, and documentation.'
-				/>
-			</div>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA

@@ -11,7 +11,6 @@ import {
 } from '@/components/services';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 export const revalidate = 3600;
 
 const HERO_CONTENT = {
@@ -279,9 +278,6 @@ export default function FullStackWebDevPage() {
 	return (
 		<main className='space-y-0'>
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<section className='py-6 md:py-8 mx-auto max-w-7xl'>
-				<TechMarquee />
-			</section>
 			<ClientSuccessBreakdown
 				className='max-w-7xl mx-auto py-12 md:py-16'
 				title='Full-stack outcomes backed by data'

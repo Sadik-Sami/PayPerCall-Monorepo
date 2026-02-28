@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   Shield,
   Clock,
@@ -95,6 +95,9 @@ const defaultStats: TrustStat[] = [
   { value: '0', label: 'Security Breaches', suffix: '' },
 ];
 
+const reducedMotionContainerVariants = { hidden: {}, visible: {} };
+const reducedMotionItemVariants = { hidden: {}, visible: {} };
+
 export function TrustBanner({
   guarantees = defaultGuarantees,
   stats = defaultStats,
@@ -104,10 +107,14 @@ export function TrustBanner({
   variant = 'default',
   className,
 }: TrustBannerProps) {
+  const reduceMotion = useReducedMotion();
+  const containerVariantsToUse = reduceMotion ? reducedMotionContainerVariants : containerVariants;
+  const itemVariantsToUse = reduceMotion ? reducedMotionItemVariants : itemVariants;
+
   return (
     <section
       className={cn(
-        'relative overflow-hidden px-4 py-16 sm:py-20 lg:py-24',
+        'relative overflow-hidden w-full py-12 sm:py-16 md:py-20 lg:py-24',
         variant === 'gradient' &&
           'bg-linear-to-br from-primary/5 via-background to-primary/5',
         variant === 'minimal' && 'bg-background',
@@ -126,9 +133,9 @@ export function TrustBanner({
         />
       )}
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="section-container relative z-10">
         <motion.div
-          variants={containerVariants}
+          variants={containerVariantsToUse}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
@@ -136,7 +143,7 @@ export function TrustBanner({
         >
           {/* Badge */}
           <motion.div
-            variants={itemVariants}
+            variants={itemVariantsToUse}
             className="mb-6 sm:mb-8 flex justify-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
@@ -147,10 +154,10 @@ export function TrustBanner({
 
           {/* Headline + subheadline */}
           <motion.div
-            variants={itemVariants}
+            variants={itemVariantsToUse}
             className="mb-12 lg:mb-16 max-w-3xl text-center"
           >
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <h2 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-5xl leading-tight text-balance">
               Built on{' '}
               <span className="font-serif italic text-primary">trust</span>,
               delivered with{' '}
@@ -163,7 +170,7 @@ export function TrustBanner({
 
           {/* Stats row – glass cards with colored borders */}
           <motion.div
-            variants={itemVariants}
+            variants={itemVariantsToUse}
             className="mb-12 lg:mb-16 w-full grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           >
             {stats.map((stat, index) => {
@@ -172,15 +179,15 @@ export function TrustBanner({
               return (
                 <motion.div
                   key={stat.label}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.03 }}
+                  variants={itemVariantsToUse}
+                  whileHover={reduceMotion ? undefined : { scale: 1.03 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   className={cn(
                     'rounded-[2.5rem_0.5rem_2.5rem_0.5rem] border bg-card/50 dark:bg-white/5 backdrop-blur-sm p-6 sm:p-8 text-center flex flex-col items-center justify-center border-border/50',
                     borderClass
                   )}
                 >
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 tabular-nums">
                     {stat.value}
                     {stat.suffix && (
                       <span className="text-primary text-xl sm:text-2xl ml-0.5">
@@ -198,7 +205,7 @@ export function TrustBanner({
 
           {/* Guarantee cards – no floating, hover scale only */}
           <motion.div
-            variants={itemVariants}
+            variants={itemVariantsToUse}
             className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {guarantees.map((guarantee, index) => {
@@ -209,11 +216,12 @@ export function TrustBanner({
               return (
                 <motion.div
                   key={guarantee.title}
-                  variants={itemVariants}
-                  whileHover={{
-                    scale: 1.02,
-                    transition: { type: 'spring', stiffness: 400, damping: 25 },
-                  }}
+                  variants={itemVariantsToUse}
+                  whileHover={
+                    reduceMotion
+                      ? undefined
+                      : { scale: 1.02, transition: { type: 'spring', stiffness: 400, damping: 25 } }
+                  }
                   className="group relative rounded-2xl border border-border/50 bg-card dark:bg-slate-900/50 p-6 sm:p-8 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-primary/30 hover:shadow-xl dark:shadow-none"
                 >
                   <motion.div
@@ -222,7 +230,7 @@ export function TrustBanner({
                       iconBg,
                       iconText
                     )}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={reduceMotion ? undefined : { scale: 1.1 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                   >
                     <Icon className="h-6 w-6" strokeWidth={1.5} />
@@ -241,13 +249,13 @@ export function TrustBanner({
           {/* Compliance badges */}
           {badges.length > 0 && (
             <motion.div
-              variants={itemVariants}
+              variants={itemVariantsToUse}
               className="mt-12 sm:mt-16 lg:mt-20 flex flex-wrap items-center justify-center gap-4 sm:gap-6 opacity-80"
             >
               {badges.map((badge) => (
                 <motion.div
                   key={badge}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={reduceMotion ? undefined : { scale: 1.05 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:border-primary/40 hover:text-foreground transition-colors"
                 >

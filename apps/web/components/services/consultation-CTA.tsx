@@ -126,7 +126,7 @@ export function ConsultationCTA({
 						Free consultation
 					</div>
 
-					<h2 className='text-foreground'>{title}</h2>
+					<h2 className='font-heading text-2xl md:text-3xl font-bold text-foreground'>{title}</h2>
 
 					{subtitle && <p className='text-muted-foreground'>{subtitle}</p>}
 
@@ -177,7 +177,7 @@ export function ConsultationCTA({
 									<Textarea
 										id='projectSummary'
 										rows={4}
-										placeholder='Timeline, systems involved, internal stakeholders...'
+										placeholder='Timeline, systems involved, internal stakeholders…'
 										className='resize-none bg-background'
 										{...register('projectSummary')}
 										required

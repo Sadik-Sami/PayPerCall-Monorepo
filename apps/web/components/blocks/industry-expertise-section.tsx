@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'framer-motion';
 import {
 	Banknote,
@@ -49,18 +50,18 @@ const INDUSTRIES = [
 	{ name: 'Logistics', icon: Truck, color: 'bg-[#CBEBF9]', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl' },
 ];
 
-export function IndustryExpertiseSection() {
+export function IndustryExpertiseSection({ className }: { className?: string }) {
 	return (
-		<section className="py-24 bg-card relative overflow-hidden my-16 mx-4 lg:mx-12 xl:mx-auto max-w-7xl">
-			<div className="relative z-10 text-center px-6 lg:px-12">
+		<section className={cn('relative overflow-hidden w-full', className)}>
+			<div className="section-container relative z-10 text-center">
 				<motion.h2
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: '-100px' }}
 					transition={{ duration: 0.6 }}
-					className="text-3xl lg:text-5xl font-bold text-foreground mb-6"
+					className="font-heading text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-6 text-balance"
 				>
-					Our Industry Expertises
+					Our Industry Expertise
 				</motion.h2>
 				<motion.p
 					initial={{ opacity: 0, y: 20 }}

@@ -1,5 +1,6 @@
 import type { ServiceNavItem } from './types';
 import type { LucideIcon } from 'lucide-react';
+import type { GatewayIconKey } from './ServiceCapabilitiesGateway';
 import {
 	Code2,
 	CircuitBoard,
@@ -24,6 +25,9 @@ import {
 	FileText,
 	Smartphone,
 	Tablet,
+	Users,
+	UserCheck,
+	Zap,
 } from 'lucide-react';
 
 export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
@@ -61,6 +65,68 @@ export const WEB_DEV_SERVICE_NAV: ServiceNavItem[] = [
 		summary: 'Campaign-focused pages with clear proof, tracking, and experiments.',
 		capabilities: ['Conversion copy', 'Event tracking', 'A/B test support'],
 		icon: FileText,
+	},
+];
+
+export const PAY_PER_CALL_SERVICE_NAV: ServiceNavItem[] = [
+	{
+		label: 'Overview',
+		href: '/services/pay-per-call',
+		summary: 'Explore our Pay Per Call development capabilities.',
+		capabilities: ['Program roadmaps', 'Cross-team governance', 'Full lifecycle support'],
+		icon: Globe,
+	},
+	{
+		label: 'Consumer-Initiated Calls',
+		href: '/services/pay-per-call/consumer-initiated',
+		summary: 'Explore our Consumer-Initiated Calls development capabilities.',
+		capabilities: ['Program roadmaps', 'Cross-team governance', 'Full lifecycle support'],
+		icon: Globe,
+	},
+	{
+		label: 'Live Transfer Calls',
+		href: '/services/pay-per-call/live-transfer',
+		summary: 'Explore our Live Transfer Calls development capabilities.',
+		capabilities: ['Program roadmaps', 'Cross-team governance', 'Full lifecycle support'],
+		icon: Globe,
+	},
+	{
+		label: 'Offline Media-Driven Calls',
+		href: '/services/pay-per-call/offline-media',
+		summary: 'Explore our Offline Media-Driven Calls development capabilities.',
+		capabilities: ['Program roadmaps', 'Cross-team governance', 'Full lifecycle support'],
+		icon: Globe,
+	},
+];
+
+export const PAY_PER_LEAD_SERVICE_NAV: ServiceNavItem[] = [
+	{
+		label: 'Overview',
+		href: '/services/pay-per-lead',
+		summary: 'Explore our Pay Per Lead development capabilities.',
+		capabilities: ['Program roadmaps', 'Lead qualification', 'Full lifecycle support'],
+		icon: Globe,
+	},
+	{
+		label: 'Exclusive Leads',
+		href: '/services/pay-per-lead/exclusive',
+		summary: 'Exclusive lead programs with no sharing and full ownership of each lead.',
+		capabilities: ['Dedicated leads', 'No sharing', 'Custom qualification'],
+		icon: Users,
+	},
+	{
+		label: 'Shared Leads',
+		href: '/services/pay-per-lead/shared',
+		summary: 'Cost-effective shared leads distributed across multiple buyers.',
+		capabilities: ['Lower cost', 'Volume scaling', 'Shared distribution'],
+		icon: UserCheck,
+	},
+	{
+		label: 'Real-Time Lead Delivery',
+		href: '/services/pay-per-lead/real-time',
+		summary: 'Instant lead delivery via API, webhook, or CRM integration.',
+		capabilities: ['Real-time delivery', 'API integration', 'CRM sync'],
+		icon: Zap,
 	},
 ];
 
@@ -157,3 +223,130 @@ export const APP_DEV_SERVICE_NAV: ServiceNavItem[] = [
 		icon: Code2,
 	},
 ];
+
+// Gateway section config and helper (serializable data for ServiceCapabilitiesGateway)
+export type GatewaySectionConfig = {
+	title: string;
+	subtitle: string;
+	primaryCta: { label: string; href: string };
+	primaryCtaNote: string;
+	columns: 2 | 3;
+	ctaLabels: Record<string, string>;
+	iconKeys: Record<string, string>;
+};
+
+export function buildGatewayCards(
+	navItems: ServiceNavItem[],
+	overviewHref: string,
+	ctaLabels: Record<string, string>,
+	iconKeys: Record<string, string>
+): Array<{ label: string; description: string; href: string; ctaLabel: string; iconKey: GatewayIconKey }> {
+	return navItems
+		.filter((item) => item.href !== overviewHref)
+		.map((item) => ({
+			label: item.label,
+			description: item.summary ?? '',
+			href: item.href,
+			ctaLabel: ctaLabels[item.href] ?? 'Explore →',
+			iconKey: (iconKeys[item.href] ?? 'Globe') as GatewayIconKey,
+		}));
+}
+
+export const WEB_DEV_GATEWAY_CONFIG: GatewaySectionConfig = {
+	title: 'Web Development Capabilities',
+	subtitle:
+		'Each capability links to a dedicated plan so stakeholders can scan what matters most.',
+	primaryCta: { label: 'Start Your Web Blueprint', href: '/contact' },
+	primaryCtaNote: 'No commitment required. Free 30-minute strategy session.',
+	columns: 2,
+	ctaLabels: {
+		'/services/web-dev/full-stack': 'Explore Full-Stack',
+		'/services/web-dev/business': 'Explore Business Sites',
+		'/services/web-dev/ecommerce': 'Explore Ecommerce',
+		'/services/web-dev/landing-page': 'Explore Landing Pages',
+	},
+	iconKeys: {
+		'/services/web-dev/full-stack': 'Code2',
+		'/services/web-dev/business': 'Building2',
+		'/services/web-dev/ecommerce': 'ShoppingCart',
+		'/services/web-dev/landing-page': 'FileText',
+	},
+};
+
+export const CMS_GATEWAY_CONFIG: GatewaySectionConfig = {
+	title: 'CMS Development Capabilities',
+	subtitle:
+		'Each platform links to a dedicated plan so stakeholders can explore what matters most.',
+	primaryCta: { label: 'Get a Platform Assessment', href: '/contact' },
+	primaryCtaNote: 'No commitment required. Free 30-minute assessment.',
+	columns: 2,
+	ctaLabels: {
+		'/services/cms/wordpress': 'Explore WordPress',
+		'/services/cms/drupal': 'Explore Drupal',
+		'/services/cms/content-hub': 'Explore Content Hub',
+		'/services/cms/wix-studio': 'Explore Wix Studio',
+	},
+	iconKeys: {
+		'/services/cms/wordpress': 'FileText',
+		'/services/cms/drupal': 'ShieldCheck',
+		'/services/cms/content-hub': 'Cloud',
+		'/services/cms/wix-studio': 'Sparkles',
+	},
+};
+
+export const APP_DEV_GATEWAY_CONFIG: GatewaySectionConfig = {
+	title: 'App Development Capabilities',
+	subtitle:
+		'Each platform links to a dedicated plan so stakeholders can explore what matters most.',
+	primaryCta: { label: 'Start Your App Blueprint', href: '/contact' },
+	primaryCtaNote: 'No commitment required. Free 30-minute strategy session.',
+	columns: 3,
+	ctaLabels: {
+		'/services/app-dev/ios': 'Explore iOS',
+		'/services/app-dev/android': 'Explore Android',
+		'/services/app-dev/cross-platform': 'Explore Cross-Platform',
+	},
+	iconKeys: {
+		'/services/app-dev/ios': 'Smartphone',
+		'/services/app-dev/android': 'Tablet',
+		'/services/app-dev/cross-platform': 'Code2',
+	},
+};
+
+export const PAY_PER_CALL_GATEWAY_CONFIG: GatewaySectionConfig = {
+	title: 'Pay Per Call Capabilities',
+	subtitle:
+		'Select your call acquisition channel. Our gateway routes high-intent callers directly to your sales floor.',
+	primaryCta: { label: 'Start Your Call Blueprint', href: '/contact' },
+	primaryCtaNote: 'No commitment required. Free 30-minute consultation.',
+	columns: 3,
+	ctaLabels: {
+		'/services/pay-per-call/consumer-initiated': 'Explore Search & Social',
+		'/services/pay-per-call/live-transfer': 'View Qualification Process',
+		'/services/pay-per-call/offline-media': 'See Media Channels',
+	},
+	iconKeys: {
+		'/services/pay-per-call/consumer-initiated': 'Phone',
+		'/services/pay-per-call/live-transfer': 'Headphones',
+		'/services/pay-per-call/offline-media': 'Radio',
+	},
+};
+
+export const PAY_PER_LEAD_GATEWAY_CONFIG: GatewaySectionConfig = {
+	title: 'Pay Per Lead Capabilities',
+	subtitle:
+		'Select your lead acquisition model. Our gateway delivers qualified leads directly to your CRM or sales team.',
+	primaryCta: { label: 'Start Your Lead Blueprint', href: '/contact' },
+	primaryCtaNote: 'No commitment required. Free 30-minute consultation.',
+	columns: 2,
+	ctaLabels: {
+		'/services/pay-per-lead/exclusive': 'Explore Exclusive Leads',
+		'/services/pay-per-lead/shared': 'Explore Shared Leads',
+		'/services/pay-per-lead/real-time': 'Explore Real-Time Delivery',
+	},
+	iconKeys: {
+		'/services/pay-per-lead/exclusive': 'Users',
+		'/services/pay-per-lead/shared': 'UserCheck',
+		'/services/pay-per-lead/real-time': 'Zap',
+	},
+};

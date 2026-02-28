@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
 	ServiceHero,
 	ClientSuccessBreakdown,
@@ -10,11 +9,10 @@ import {
 	IntegrationLogos,
 } from '@/components/services';
 import type { Metadata } from 'next';
-import type { FaqItem, ProcessStep, CaseStudyItem, PricingPlan } from '@/types/services';
+import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { Smartphone, AppWindow, Shield } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 
 export const metadata: Metadata = {
 	title: 'iOS App Development Services | Native iPhone & iPad Apps | PayPerCall',
@@ -217,48 +215,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	},
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'iOS MVP',
-		description: 'Essential iOS app with core features for iPhone.',
-		priceLabel: 'From $45k',
-		features: [
-			'SwiftUI or UIKit app (iPhone)',
-			'Core features (3-5 features)',
-			'App Store submission',
-			'TestFlight beta setup',
-			'Basic backend integration',
-		],
-	},
-	{
-		name: 'iOS Growth',
-		description: 'Full-featured iOS app with iPhone and iPad support.',
-		priceLabel: 'From $75k',
-		features: [
-			'Universal app (iPhone & iPad)',
-			'Complete feature set',
-			'Apple Pay & Sign in with Apple',
-			'App Store optimization',
-			'CloudKit or Core Data',
-			'3 months post-launch support',
-		],
-		isRecommended: true,
-		badge: 'Most popular',
-	},
-	{
-		name: 'iOS Enterprise',
-		description: 'Complex iOS apps with advanced features and compliance needs.',
-		priceLabel: 'Custom',
-		features: [
-			'Advanced iOS features',
-			'Custom Apple framework integration',
-			'Enterprise security & compliance',
-			'Custom backend development',
-			'Ongoing optimization retainer',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'Should we use SwiftUI or UIKit for our iOS app?',
@@ -331,9 +287,6 @@ export default function IOSAppDevPage() {
 		<main className='space-y-0'>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<section className='py-6 md:py-8'>
-				<TechMarquee />
-			</section>
 			<ClientSuccessBreakdown
 				className='max-w-7xl mx-auto py-12 md:py-16'
 				title='iOS outcomes backed by data'
@@ -368,15 +321,6 @@ export default function IOSAppDevPage() {
 				title='Representative iOS engagements'
 				description='Every iOS build delivers measurable improvements in App Store ratings, user engagement, and business outcomes.'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='max-w-7xl mx-auto py-12 md:py-16'
-					title='iOS engagement models'
-					description='Choose the tier that matches your needs. Every project starts with a free consultation and iOS strategy session.'
-					plans={PRICING_PLANS}
-					billingNote='All plans include Swift development, App Store submission, TestFlight setup, and documentation. Apple Developer Program membership billed separately.'
-				/>
-			</div>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA

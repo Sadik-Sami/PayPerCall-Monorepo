@@ -3,20 +3,22 @@ import {
 	FAQSection,
 	ServiceHero,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
-	AnimatedServicesGrid,
+	ServiceCapabilitiesGateway,
 	TrustBanner,
 	ResultsShowcase,
 	TestimonialsSection,
 	IntegrationLogos,
 } from '@/components/services';
-import { APP_DEV_SERVICE_NAV } from '@/components/services/nav-items';
+import {
+	APP_DEV_SERVICE_NAV,
+	APP_DEV_GATEWAY_CONFIG,
+	buildGatewayCards,
+} from '@/components/services/nav-items';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Smartphone, Tablet, Code2 } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 import type { Metadata } from 'next';
-import type { ProcessStep, CaseStudyItem, PricingPlan, FaqItem } from '@/types/services';
+import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
 
 export const metadata: Metadata = {
 	title: 'Mobile App Development Services | iOS, Android & Cross-Platform | PayPerCall',
@@ -141,48 +143,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	},
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'MVP App',
-		description: 'Ideal for validating a product idea with core features.',
-		priceLabel: 'From $45k',
-		features: [
-			'Core feature set (3-5 features)',
-			'Single platform (iOS or Android)',
-			'Basic backend integration',
-			'App Store submission',
-			'Launch support',
-		],
-	},
-	{
-		name: 'Growth App',
-		description: 'Full-featured app with integrations and both platforms.',
-		priceLabel: 'From $85k',
-		features: [
-			'Complete feature set',
-			'iOS and Android (or cross-platform)',
-			'Backend API integration',
-			'Push notifications & analytics',
-			'App Store optimization',
-			'3 months post-launch support',
-		],
-		isRecommended: true,
-		badge: 'Recommended',
-	},
-	{
-		name: 'Enterprise App',
-		description: 'Complex apps with advanced security, compliance, and scalability needs.',
-		priceLabel: 'Custom',
-		features: [
-			'Advanced features & custom modules',
-			'Multi-platform support',
-			'Enterprise security & compliance',
-			'Custom backend development',
-			'Ongoing optimization retainer',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'Should we build native iOS/Android apps or use a cross-platform framework?',
@@ -270,26 +230,22 @@ export default function AppDevOverviewPage() {
 		<main className='space-y-12'>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<TechMarquee />
 			<TrustBanner />
 			<ResultsShowcase className='max-w-7xl mx-auto' variant='split' />
-			<section className='py-16 max-w-7xl mx-auto'>
-				<div className='mb-12 max-w-3xl mx-auto text-center'>
-					<h2 className='mb-4 text-foreground text-3xl md:text-4xl lg:text-5xl font-bold'>
-						App Development Capabilities
-					</h2>
-					<p className='text-muted-foreground'>
-						Each platform links to a dedicated plan so stakeholders can explore what matters most.
-					</p>
-				</div>
-				<AnimatedServicesGrid
-					services={APP_DEV_SERVICE_NAV.filter((item) => item.href !== '/services/app-dev').map(
-						// eslint-disable-next-line @typescript-eslint/no-unused-vars
-						({ icon: _icon, ...service }) => service
-					)}
-					className='grid gap-6 md:grid-cols-2'
-				/>
-			</section>
+			<ServiceCapabilitiesGateway
+				title={APP_DEV_GATEWAY_CONFIG.title}
+				subtitle={APP_DEV_GATEWAY_CONFIG.subtitle}
+				cards={buildGatewayCards(
+					APP_DEV_SERVICE_NAV,
+					'/services/app-dev',
+					APP_DEV_GATEWAY_CONFIG.ctaLabels,
+					APP_DEV_GATEWAY_CONFIG.iconKeys
+				)}
+				primaryCta={APP_DEV_GATEWAY_CONFIG.primaryCta}
+				primaryCtaNote={APP_DEV_GATEWAY_CONFIG.primaryCtaNote}
+				columns={APP_DEV_GATEWAY_CONFIG.columns}
+				className='max-w-7xl mx-auto'
+			/>
 			<ProcessSteps
 				className='max-w-7xl mx-auto'
 				steps={PROCESS_STEPS}
@@ -311,13 +267,6 @@ export default function AppDevOverviewPage() {
 				variant='grid'
 				ctaLabel='Discuss integration requirements'
 				ctaHref='/contact'
-			/>
-			<PricingTable
-				className='max-w-7xl mx-auto'
-				title='Engagement models suited to your stage'
-				description='Transparent ranges help you budget faster. Every project begins with a free planning call.'
-				plans={PRICING_PLANS}
-				billingNote='Budgets include design, engineering, QA, App Store submission, and launch support.'
 			/>
 			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='section-container pb-16 max-w-7xl mx-auto'>

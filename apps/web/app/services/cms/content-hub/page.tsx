@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ServiceHero,
 	ClientSuccessBreakdown,
 	TimelineSteps,
@@ -11,11 +10,10 @@ import {
 	TrendingUp,
 } from '@/components/services';
 import type { Metadata } from 'next';
-import type { FaqItem, CaseStudyItem, PricingPlan } from '@/types/services';
+import type { FaqItem, CaseStudyItem } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Cloud, Zap, Globe2 } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 
 export const metadata: Metadata = {
 	title: 'Headless CMS Development | Contentful, Sanity, Strapi | PayPerCall',
@@ -278,46 +276,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	},
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'Headless Starter',
-		description: 'Single-channel headless CMS (web or mobile).',
-		priceLabel: 'From $45k',
-		features: [
-			'Headless CMS setup (Contentful or Sanity)',
-			'GraphQL or REST API architecture',
-			'Next.js frontend (web)',
-			'Editor training',
-		],
-	},
-	{
-		name: 'Omnichannel Hub',
-		description: 'Multi-channel content delivery platform.',
-		priceLabel: 'From $75k',
-		features: [
-			'Advanced headless architecture',
-			'Multi-channel delivery (web + mobile)',
-			'Content preview & workflows',
-			'API documentation',
-			'Performance SLAs',
-		],
-		isRecommended: true,
-		badge: 'Most flexible',
-	},
-	{
-		name: 'Enterprise Content Platform',
-		description: 'Custom content infrastructure for complex needs.',
-		priceLabel: 'From $125k',
-		features: [
-			'Self-hosted Strapi or custom CMS',
-			'Multi-tenant architecture',
-			'Advanced permissions & workflows',
-			'Integration middleware',
-			'DevOps & monitoring',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'What is the difference between headless CMS and traditional WordPress/Drupal?',
@@ -361,9 +319,6 @@ export default function ContentHubPage() {
 		<main className='space-y-0'>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<section className='py-6 md:py-8'>
-				<TechMarquee />
-			</section>
 			<ClientSuccessBreakdown
 				className='max-w-7xl mx-auto py-12 md:py-16'
 				title='Headless CMS outcomes backed by data'
@@ -404,15 +359,6 @@ export default function ContentHubPage() {
 				title='Headless CMS transformations'
 				description='Every headless build delivers omnichannel content delivery with API-first architecture.'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='max-w-7xl mx-auto py-12 md:py-16'
-					title='Headless CMS engagement models'
-					description='Choose the tier that matches your channel requirements. Every project starts with a free platform comparison.'
-					plans={PRICING_PLANS}
-					billingNote='Budgets include CMS setup, API development, frontend integration, and documentation. Platform subscription costs (Contentful/Sanity) billed separately.'
-				/>
-			</div>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA

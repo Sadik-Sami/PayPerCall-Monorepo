@@ -2,14 +2,13 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
 	ServiceHero,
 	ClientSuccessBreakdown,
 	IntegrationLogos,
 } from '@/components/services';
 import type { Metadata } from 'next';
-import type { FaqItem, ProcessStep, CaseStudyItem, PricingPlan } from '@/types/services';
+import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { Zap, DollarSign, Clock } from 'lucide-react';
@@ -199,45 +198,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	},
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'Business Site',
-		description: 'Professional Wix site for small businesses.',
-		priceLabel: 'From $3k',
-		features: [
-			'Custom Wix Studio design (up to 7 pages)',
-			'Mobile responsive',
-			'SEO setup',
-			'Contact forms',
-			'Training session',
-		],
-		isRecommended: true,
-		badge: 'Best value',
-	},
-	{
-		name: 'Ecommerce Site',
-		description: 'Online store with Wix ecommerce.',
-		priceLabel: 'From $5k',
-		features: [
-			'Wix ecommerce setup (up to 50 products)',
-			'Payment integration',
-			'Shipping configuration',
-			'Product management training',
-		],
-	},
-	{
-		name: 'Advanced Site',
-		description: 'Custom functionality with Wix Velo.',
-		priceLabel: 'From $8k',
-		features: [
-			'Custom code (Wix Velo)',
-			'Database integrations',
-			'Advanced forms & workflows',
-			'Third-party API connections',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'Is Wix Studio suitable for professional businesses?',
@@ -304,15 +264,6 @@ export default function WixStudioPage() {
 				title='Wix Studio success stories'
 				description='Small businesses launching fast with professional Wix sites.'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='max-w-7xl mx-auto py-12 md:py-16'
-					title='Wix Studio engagement models'
-					description='Affordable professional websites for small businesses. Fast turnaround and managed hosting included.'
-					plans={PRICING_PLANS}
-					billingNote='Development fee is one-time. Wix subscription ($27-159/month) billed separately by Wix and includes hosting, SSL, and security.'
-				/>
-			</div>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA

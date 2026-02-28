@@ -114,10 +114,11 @@ const getColorClasses = (color: string) => {
 	return map[color] || map.blue;
 };
 
-export function PremiumServicesGrid() {
+export function PremiumServicesGrid({ className }: { className?: string }) {
 	return (
-		<section className="py-20 max-w-7xl mx-auto px-6 lg:px-12 xl:px-0">
-			<div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+		<section className={cn('w-full', className)}>
+			<div className="section-container">
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12">
 				<motion.div
 					initial={{ opacity: 0, x: -30 }}
 					whileInView={{ opacity: 1, x: 0 }}
@@ -125,7 +126,7 @@ export function PremiumServicesGrid() {
 					transition={{ duration: 0.6, ease: 'easeOut' }}
 					className="lg:col-span-5"
 				>
-					<h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-foreground">
+					<h2 className="font-heading text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight mb-6 text-foreground text-balance">
 						Web Development <br className="hidden lg:block" />
 						Services That <br className="hidden lg:block" />
 						Scale With You
@@ -148,7 +149,7 @@ export function PremiumServicesGrid() {
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true, margin: '-100px' }}
-				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 mt-20"
+				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 md:gap-x-8 md:gap-y-14 lg:gap-x-8 lg:gap-y-16 mt-12 md:mt-16 lg:mt-20"
 			>
 				{SERVICES.map((service, idx) => {
 					const colors = getColorClasses(service.color);
@@ -174,6 +175,7 @@ export function PremiumServicesGrid() {
 					);
 				})}
 			</motion.div>
+			</div>
 		</section>
 	);
 }

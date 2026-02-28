@@ -9,7 +9,8 @@ export function FAQSection({ items, title = 'Frequently Asked Questions', descri
 	if (!items.length) return null;
 
 	return (
-		<section className={cn('section-container py-16', className)}>
+		<section className={cn('w-full', className)}>
+			<div className="section-container">
 			<motion.div
 				variants={containerVariants}
 				initial='hidden'
@@ -18,7 +19,7 @@ export function FAQSection({ items, title = 'Frequently Asked Questions', descri
 				className='grid gap-12 lg:grid-cols-[0.4fr_0.6fr]'>
 				{/* Left column - Title */}
 				<motion.div variants={itemVariants} className='max-w-sm'>
-					<h2 className='mb-4 text-foreground text-3xl md:text-4xl lg:text-5xl font-bold'>{title}</h2>
+					<h2 className='font-heading mb-4 text-foreground text-3xl md:text-4xl lg:text-5xl font-bold text-pretty'>{title}</h2>
 					{description && <p className='text-muted-foreground text-lg md:text-xl lg:text-2xl'>{description}</p>}
 				</motion.div>
 
@@ -56,6 +57,7 @@ export function FAQSection({ items, title = 'Frequently Asked Questions', descri
 					</Accordion>
 				</motion.div>
 			</motion.div>
+			</div>
 		</section>
 	);
 }

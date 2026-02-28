@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
 	ServiceHero,
 	ClientSuccessBreakdown,
@@ -10,11 +9,10 @@ import {
 	IntegrationLogos,
 } from '@/components/services';
 import type { Metadata } from 'next';
-import type { FaqItem, ProcessStep, CaseStudyItem, PricingPlan } from '@/types/services';
+import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { Briefcase, ShoppingCart, Shield } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 
 export const metadata: Metadata = {
 	title: 'WordPress Development Services | Custom Themes, Plugins & Security | PayPerCall',
@@ -241,48 +239,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	},
 ];
 
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'Starter Site',
-		description: 'Essential WordPress site for small businesses.',
-		priceLabel: 'From $8k',
-		features: [
-			'Custom theme (up to 5 page templates)',
-			'Essential plugins (SEO, security, performance)',
-			'Content migration (up to 50 pages)',
-			'Editor training session',
-		],
-	},
-	{
-		name: 'Business Site',
-		description: 'Full-featured WordPress with custom functionality.',
-		priceLabel: 'From $18k',
-		features: [
-			'Advanced custom theme',
-			'Custom plugin development',
-			'WooCommerce setup (optional)',
-			'Security hardening + SSL',
-			'Performance optimization',
-			'Ongoing support (3 months)',
-		],
-		isRecommended: true,
-		badge: 'Most popular',
-	},
-	{
-		name: 'Enterprise Multisite',
-		description: 'WordPress Multisite for large organizations.',
-		priceLabel: 'From $45k',
-		features: [
-			'Multisite architecture',
-			'Role-based workflows',
-			'Custom admin interface',
-			'HIPAA/GDPR compliance support',
-			'Managed hosting setup',
-			'Annual support retainer',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'Do you build custom WordPress themes or use pre-made templates?',
@@ -326,9 +282,6 @@ export default function WordPressPage() {
 		<main className='space-y-0'>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<section className='py-6 md:py-8'>
-				<TechMarquee />
-			</section>
 			<ClientSuccessBreakdown
 				className='max-w-7xl mx-auto py-12 md:py-16'
 				title='WordPress outcomes backed by data'
@@ -363,15 +316,6 @@ export default function WordPressPage() {
 				title='Representative WordPress engagements'
 				description='Every WordPress build delivers measurable improvements in speed, security, and content efficiency.'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='max-w-7xl mx-auto py-12 md:py-16'
-					title='WordPress engagement models'
-					description='Choose the tier that matches your needs. Every project starts with a free consultation and security audit.'
-					plans={PRICING_PLANS}
-					billingNote='All plans include theme development, security hardening, editor training, and documentation. Hosting and premium plugins billed separately.'
-				/>
-			</div>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA

@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
 	ServiceHero,
 	ClientSuccessBreakdown,
@@ -10,11 +9,10 @@ import {
 	IntegrationLogos,
 } from '@/components/services';
 import type { Metadata } from 'next';
-import type { FaqItem, ProcessStep, CaseStudyItem, PricingPlan } from '@/types/services';
+import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage3 from '@/public/images/slider/slider-3.jpg';
 import { Tablet, Smartphone, Shield } from 'lucide-react';
-import TechMarquee from '@/components/services/Tech-Marquee';
 
 export const metadata: Metadata = {
 	title: 'Android App Development Services | Native Android Apps | PayPerCall',
@@ -216,49 +214,6 @@ const CASE_STUDIES: CaseStudyItem[] = [
 		],
 	},
 ];
-
-const PRICING_PLANS: PricingPlan[] = [
-	{
-		name: 'Android MVP',
-		description: 'Essential Android app with core features.',
-		priceLabel: 'From $45k',
-		features: [
-			'Kotlin & Jetpack Compose app',
-			'Core features (3-5 features)',
-			'Play Store submission',
-			'Device testing (5+ devices)',
-			'Basic backend integration',
-		],
-	},
-	{
-		name: 'Android Growth',
-		description: 'Full-featured Android app with comprehensive device support.',
-		priceLabel: 'From $75k',
-		features: [
-			'Complete feature set',
-			'Google Pay & Sign-In',
-			'Play Store optimization',
-			'Device testing (10+ devices)',
-			'Firebase or Room database',
-			'3 months post-launch support',
-		],
-		isRecommended: true,
-		badge: 'Most popular',
-	},
-	{
-		name: 'Android Enterprise',
-		description: 'Complex Android apps with advanced features and compliance needs.',
-		priceLabel: 'Custom',
-		features: [
-			'Advanced Android features',
-			'Custom Google service integration',
-			'Enterprise security & compliance',
-			'Custom backend development',
-			'Ongoing optimization retainer',
-		],
-	},
-];
-
 const FAQ_ITEMS: FaqItem[] = [
 	{
 		question: 'Should we use Jetpack Compose or traditional Views for our Android app?',
@@ -331,9 +286,6 @@ export default function AndroidAppDevPage() {
 		<main className='space-y-0'>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<section className='py-6 md:py-8'>
-				<TechMarquee />
-			</section>
 			<ClientSuccessBreakdown
 				className='max-w-7xl mx-auto py-12 md:py-16'
 				title='Android outcomes backed by data'
@@ -368,15 +320,6 @@ export default function AndroidAppDevPage() {
 				title='Representative Android engagements'
 				description='Every Android build delivers measurable improvements in Play Store ratings, user engagement, and business outcomes.'
 			/>
-			<div id='pricing' className='scroll-mt-24'>
-				<PricingTable
-					className='max-w-7xl mx-auto py-12 md:py-16'
-					title='Android engagement models'
-					description='Choose the tier that matches your needs. Every project starts with a free consultation and Android strategy session.'
-					plans={PRICING_PLANS}
-					billingNote='All plans include Kotlin development, Play Store submission, device testing, and documentation. Google Play Console fees billed separately.'
-				/>
-			</div>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div id='consultation' className='section-container py-12 md:py-16'>
 				<ConsultationCTA

@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ServiceHero,
 	ClientSuccessBreakdown,
 	type SuccessOutcome,
@@ -251,39 +250,6 @@ const ECOM_TIMELINE: TimelineEntry[] = [
 	},
 ];
 
-const PRICING_PLANS = [
-	{
-		name: 'Growth Storefront',
-		description: 'For scaling DTC brands ready for a custom experience layer.',
-		priceLabel: 'From $55k',
-		features: [
-			'Custom storefront with headless CMS',
-			'Optimized PDP + PLP templates',
-			'Payment + tax integration',
-			'Analytics + CRO setup',
-		],
-	},
-	{
-		name: 'B2B Commerce',
-		description: 'Complex catalogs, contract pricing, or procurement workflows.',
-		priceLabel: 'From $80k',
-		features: ['Account hierarchies', 'Punchout or EDI integration', 'Approval workflows', 'Inventory + ERP syncing'],
-		isRecommended: true,
-		badge: 'Most selected',
-	},
-	{
-		name: 'Replatform & Scale',
-		description: 'Full migration or multi-store program.',
-		priceLabel: 'Custom',
-		features: [
-			'Platform selection support',
-			'Data + SEO migration',
-			'Load + resilience testing',
-			'Runbook + team training',
-		],
-	},
-];
-
 const FAQ_ITEMS = [
 	{
 		question: "We're worried about losing sales during a platform migration.",
@@ -405,15 +371,6 @@ export default function EcommerceWebDevPage() {
 					items={CASE_STUDIES}
 					title='Commerce case studies anchored in revenue'
 				/>
-				<div id='pricing' className='scroll-mt-24'>
-					<PricingTable
-						className='py-12 md:py-16 max-w-7xl mx-auto'
-						title='Ecommerce engagement tiers'
-						description='Each tier includes launch readiness, QA, and hypercare—and starts with a free store audit.'
-						plans={PRICING_PLANS}
-						billingNote='Payment schedules are milestone-based with clear deliverable checkpoints.'
-					/>
-				</div>
 				<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />
 				<div id='consultation' className='scroll-mt-24 py-12 md:py-16 max-w-7xl mx-auto'>
 					<ConsultationCTA
