@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ServiceHero,
 	ClientSuccessBreakdown,
 	TimelineSteps,
@@ -195,39 +194,6 @@ const CASE_STUDIES = [
 	},
 ];
 
-const PRICING_PLANS = [
-	{
-		name: 'MVP Build',
-		description: 'Ideal for validating a new product with a focused scope.',
-		priceLabel: 'From $65k',
-		features: [
-			'Discovery + architecture sprint',
-			'Core feature set build',
-			'Foundational observability',
-			'Launch + stabilization window',
-		],
-	},
-	{
-		name: 'Product Extension',
-		description: 'Embed a dedicated pod to extend an existing platform.',
-		priceLabel: 'From $45k / month',
-		features: [
-			'Dedicated cross-functional squad',
-			'Backlog co-planning',
-			'Security + compliance reviews',
-			'24/7 incident escalation path',
-		],
-		isRecommended: true,
-		badge: 'Most popular',
-	},
-	{
-		name: 'Platform Rebuild',
-		description: 'For complex migrations or multi-system consolidations.',
-		priceLabel: 'Custom',
-		features: ['Legacy system audit', 'Migration roadmap', 'Parallel run support', 'Post-launch optimization budget'],
-	},
-];
-
 const FAQ_ITEMS = [
 	{
 		question: 'How do you keep timelines predictable with complex integrations?',
@@ -312,13 +278,6 @@ export default function FullStackWebDevPage() {
 				items={CASE_STUDIES}
 				title='Representative full-stack engagements'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
-			/>
-			<PricingTable
-				className='max-w-7xl mx-auto py-12 md:py-16'
-				title='Flexible engagement structures'
-				description='Pick the model that best matches your internal capacity—each starts with a free discovery call.'
-				plans={PRICING_PLANS}
-				billingNote='Budgets include senior engineering oversight, QA, and documentation. Travel or third-party licenses billed at cost.'
 			/>
 			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
 			<div className='section-container py-12 md:py-16'>
