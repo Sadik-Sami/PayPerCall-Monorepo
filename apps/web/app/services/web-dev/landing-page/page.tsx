@@ -2,7 +2,6 @@ import {
 	CaseStudyStrip,
 	FAQSection,
 	ConsultationCTA,
-	PricingTable,
 	ProcessSteps,
 	ServiceHero,
 	ClientSuccessBreakdown,
@@ -167,39 +166,6 @@ const CASE_STUDIES = [
 	},
 ];
 
-const PRICING_PLANS = [
-	{
-		name: 'Single Landing Page',
-		description: 'One campaign, high velocity.',
-		priceLabel: 'From $6k',
-		features: [
-			'Strategy + copy walkthrough',
-			'Custom design + build',
-			'Analytics + event setup',
-			'One round of refinements',
-		],
-	},
-	{
-		name: 'Landing Page Bundle',
-		description: 'Three coordinated pages or funnel steps.',
-		priceLabel: 'From $15k',
-		features: ['Shared component system', 'Per-channel optimization', 'QA across devices', 'Experiment roadmap'],
-		isRecommended: true,
-		badge: 'Most booked',
-	},
-	{
-		name: 'Optimization Retainer',
-		description: 'Ongoing testing and variant creation.',
-		priceLabel: 'From $8k / month',
-		features: [
-			'Experiment backlog management',
-			'Design + build of variants',
-			'Weekly reporting',
-			'Stakeholder reviews',
-		],
-	},
-];
-
 const FAQ_ITEMS = [
 	{
 		question: 'We need pages fast—can you keep turnarounds short without sacrificing quality?',
@@ -311,15 +277,6 @@ export default function LandingPageWebDevPage() {
 					items={CASE_STUDIES}
 					title='Conversion lifts backed by data'
 				/>
-				<div id='pricing' className='scroll-mt-24'>
-					<PricingTable
-						className='py-12 md:py-16 max-w-7xl mx-auto'
-						title='Landing page pricing'
-						description='Choose the engagement that matches your campaign cadence—every option kicks off with a free brief.'
-						plans={PRICING_PLANS}
-						billingNote='Turnarounds assume approved copy and brand assets within 48 hours of kickoff.'
-					/>
-				</div>
 				<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />
 				<div id='consultation' className='scroll-mt-24 py-12 md:py-16 max-w-7xl mx-auto'>
 					<ConsultationCTA

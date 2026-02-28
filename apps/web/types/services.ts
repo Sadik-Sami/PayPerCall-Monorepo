@@ -93,14 +93,6 @@ export interface PricingPlan {
   badge?: string;
 }
 
-export interface PricingTableProps {
-  title?: string;
-  description?: string;
-  plans: PricingPlan[];
-  billingNote?: string;
-  className?: string;
-}
-
 export interface FaqItem {
   question: string;
   answer: string;

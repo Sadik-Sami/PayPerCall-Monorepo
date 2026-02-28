@@ -90,14 +90,6 @@ export type PricingPlan = {
 	badge?: string;
 };
 
-export type PricingTableProps = {
-	title?: string;
-	description?: string;
-	plans: PricingPlan[];
-	billingNote?: string;
-	className?: string;
-};
-
 export type FaqItem = {
 	question: string;
 	answer: string;
