@@ -89,10 +89,10 @@ type MarqueeChipColor = {
 
 const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
   {
-    card: 'bg-[#D0F4DE] dark:bg-emerald-950/40',
-    border: 'border-emerald-100 dark:border-emerald-800/50',
-    text: 'text-emerald-600 dark:text-emerald-400',
-    iconBg: 'bg-white dark:bg-emerald-900',
+    card: 'bg-pastel-mint',
+    border: 'border-pastel-mint-border',
+    text: 'text-pastel-mint-ink',
+    iconBg: 'bg-white dark:bg-card',
     shape: 'rounded-[40px_12px_40px_12px]',
     height: 'h-40',
     offset: 'pt-6',
@@ -100,10 +100,10 @@ const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
     categorySize: 'text-[11px]',
   },
   {
-    card: 'bg-[#E2D9F3] dark:bg-purple-950/40',
-    border: 'border-purple-100 dark:border-purple-800/50',
-    text: 'text-purple-600 dark:text-purple-400',
-    iconBg: 'bg-white dark:bg-purple-900',
+    card: 'bg-pastel-lilac',
+    border: 'border-pastel-lilac-border',
+    text: 'text-pastel-lilac-ink',
+    iconBg: 'bg-white dark:bg-card',
     shape: 'rounded-[12px_40px_12px_40px]',
     height: 'h-44',
     offset: 'pt-0',
@@ -112,10 +112,10 @@ const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
     categorySize: 'text-[11px]',
   },
   {
-    card: 'bg-[#FFEACC] dark:bg-orange-950/40',
-    border: 'border-orange-100 dark:border-orange-800/50',
-    text: 'text-orange-600 dark:text-orange-400',
-    iconBg: 'bg-white dark:bg-orange-900',
+    card: 'bg-pastel-peach',
+    border: 'border-pastel-peach-border',
+    text: 'text-pastel-peach-ink',
+    iconBg: 'bg-white dark:bg-card',
     shape: 'rounded-[35px_35px_12px_35px]',
     height: 'h-36',
     offset: 'pt-4',
@@ -123,10 +123,10 @@ const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
     categorySize: 'text-[11px]',
   },
   {
-    card: 'bg-[#CBEBF9] dark:bg-sky-950/40',
-    border: 'border-sky-100 dark:border-sky-800/50',
-    text: 'text-sky-600 dark:text-sky-400',
-    iconBg: 'bg-white dark:bg-sky-900',
+    card: 'bg-pastel-sky',
+    border: 'border-pastel-sky-border',
+    text: 'text-pastel-sky-ink',
+    iconBg: 'bg-white dark:bg-card',
     shape: 'rounded-[12px_35px_35px_12px]',
     height: 'h-36',
     offset: 'pt-4',
@@ -134,10 +134,10 @@ const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
     categorySize: 'text-[11px]',
   },
   {
-    card: 'bg-[#FAD2E1] dark:bg-rose-950/40',
-    border: 'border-rose-100 dark:border-rose-800/50',
-    text: 'text-rose-600 dark:text-rose-400',
-    iconBg: 'bg-white dark:bg-rose-900',
+    card: 'bg-pastel-blush',
+    border: 'border-pastel-blush-border',
+    text: 'text-pastel-blush-ink',
+    iconBg: 'bg-white dark:bg-card',
     shape: 'rounded-[40px_12px_40px_12px]',
     height: 'h-48',
     offset: 'pt-2',
@@ -146,10 +146,10 @@ const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
     categorySize: 'text-[11px]',
   },
   {
-    card: 'bg-[#DDF4CC] dark:bg-lime-950/40',
-    border: 'border-lime-100 dark:border-lime-800/50',
-    text: 'text-lime-600 dark:text-lime-400',
-    iconBg: 'bg-white dark:bg-lime-900',
+    card: 'bg-pastel-lime',
+    border: 'border-pastel-lime-border',
+    text: 'text-pastel-lime-ink',
+    iconBg: 'bg-white dark:bg-card',
     shape: 'rounded-[12px_40px_12px_40px]',
     height: 'h-40',
     offset: 'pt-6',
@@ -168,10 +168,10 @@ const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
     categorySize: 'text-[10px]',
   },
   {
-    card: 'bg-blue-50 dark:bg-blue-900/25',
-    border: 'border-blue-100 dark:border-blue-800/40',
-    text: 'text-blue-600 dark:text-blue-400',
-    iconBg: 'bg-white dark:bg-blue-950',
+    card: 'bg-pastel-sky',
+    border: 'border-pastel-sky-border',
+    text: 'text-pastel-sky-ink',
+    iconBg: 'bg-white dark:bg-card',
     shape: 'rounded-[12px_35px_35px_12px]',
     height: 'h-36',
     offset: 'pt-6',
@@ -193,40 +193,40 @@ const FEATURED_CHIP_STYLES: FeaturedChipStyle[] = [
 
 const MARQUEE_CHIP_COLORS: MarqueeChipColor[] = [
   {
-    card: 'bg-[#D0F4DE] dark:bg-emerald-950/35',
-    border: 'border-emerald-100 dark:border-emerald-800/40',
-    text: 'text-emerald-700 dark:text-emerald-300',
-    icon: 'text-emerald-600 dark:text-emerald-400',
+    card: 'bg-pastel-mint',
+    border: 'border-pastel-mint-border',
+    text: 'text-pastel-mint-ink',
+    icon: 'text-pastel-mint-ink',
   },
   {
-    card: 'bg-[#E2D9F3] dark:bg-purple-950/35',
-    border: 'border-purple-100 dark:border-purple-800/40',
-    text: 'text-purple-700 dark:text-purple-300',
-    icon: 'text-purple-600 dark:text-purple-400',
+    card: 'bg-pastel-lilac',
+    border: 'border-pastel-lilac-border',
+    text: 'text-pastel-lilac-ink',
+    icon: 'text-pastel-lilac-ink',
   },
   {
-    card: 'bg-[#CBEBF9] dark:bg-sky-950/35',
-    border: 'border-sky-100 dark:border-sky-800/40',
-    text: 'text-sky-700 dark:text-sky-300',
-    icon: 'text-sky-600 dark:text-sky-400',
+    card: 'bg-pastel-sky',
+    border: 'border-pastel-sky-border',
+    text: 'text-pastel-sky-ink',
+    icon: 'text-pastel-sky-ink',
   },
   {
-    card: 'bg-[#FFEACC] dark:bg-orange-950/35',
-    border: 'border-orange-100 dark:border-orange-800/40',
-    text: 'text-orange-700 dark:text-orange-300',
-    icon: 'text-orange-600 dark:text-orange-400',
+    card: 'bg-pastel-peach',
+    border: 'border-pastel-peach-border',
+    text: 'text-pastel-peach-ink',
+    icon: 'text-pastel-peach-ink',
   },
   {
-    card: 'bg-[#FAD2E1] dark:bg-rose-950/35',
-    border: 'border-rose-100 dark:border-rose-800/40',
-    text: 'text-rose-700 dark:text-rose-300',
-    icon: 'text-rose-600 dark:text-rose-400',
+    card: 'bg-pastel-blush',
+    border: 'border-pastel-blush-border',
+    text: 'text-pastel-blush-ink',
+    icon: 'text-pastel-blush-ink',
   },
   {
-    card: 'bg-[#DDF4CC] dark:bg-lime-950/35',
-    border: 'border-lime-100 dark:border-lime-800/40',
-    text: 'text-lime-700 dark:text-lime-300',
-    icon: 'text-lime-600 dark:text-lime-400',
+    card: 'bg-pastel-lime',
+    border: 'border-pastel-lime-border',
+    text: 'text-pastel-lime-ink',
+    icon: 'text-pastel-lime-ink',
   },
 ];
 
@@ -255,7 +255,7 @@ function IntegrationHeader({
 }) {
   return (
     <div className={cn('space-y-6', center && 'mx-auto max-w-2xl text-center')}>
-      <div className='inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-100/80 px-4 py-1.5 text-sm font-semibold text-blue-600 dark:border-blue-800/60 dark:bg-blue-900/30 dark:text-blue-400'>
+      <div className='inline-flex items-center gap-2 rounded-full border border-pastel-sky-border bg-pastel-sky px-4 py-1.5 text-sm font-semibold text-pastel-sky-ink'>
         <Puzzle className='h-4 w-4' />
         <span>Integrations</span>
       </div>
@@ -607,7 +607,7 @@ export function IntegrationLogos({
           </motion.div>
 
           <motion.div variants={itemVariants} className='relative py-2 sm:py-6'>
-            <div className='absolute inset-0 rounded-[2.75rem] bg-linear-to-br from-blue-100/40 via-purple-50/30 to-rose-100/40 blur-3xl dark:from-blue-900/10 dark:via-purple-900/5 dark:to-rose-900/10' />
+            <div className='absolute inset-0 rounded-[2.75rem] bg-linear-to-br from-pastel-sky via-pastel-lilac to-pastel-blush opacity-40 blur-3xl dark:opacity-20' />
             <div className='relative grid grid-cols-2 gap-4 transform-[skewY(-2deg)] sm:grid-cols-3 sm:gap-5 lg:gap-6'>
               {featuredIntegrations.map((integration, index) => (
                 <FeaturedIntegrationChip

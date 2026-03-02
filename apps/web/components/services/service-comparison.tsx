@@ -35,10 +35,10 @@ export function ServiceComparison({
 	const getIcon = (value: boolean | string) => {
 		if (typeof value === 'boolean') {
 			return value ?
-					<Check className='h-5 w-5 text-emerald-600 dark:text-emerald-400' />
+					<Check className='h-5 w-5 text-pastel-mint-ink' />
 				:	<X className='h-5 w-5 text-muted-foreground/50' />;
 		}
-		if (value === 'Yes') return <Check className='h-5 w-5 text-emerald-600 dark:text-emerald-400' />;
+		if (value === 'Yes') return <Check className='h-5 w-5 text-pastel-mint-ink' />;
 		if (value === 'No') return <X className='h-5 w-5 text-muted-foreground/50' />;
 		return <span className='text-xs font-medium text-muted-foreground'>Optional</span>;
 	};

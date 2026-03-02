@@ -101,15 +101,15 @@ const SERVICES = [
 
 const getColorClasses = (color: string) => {
 	const map: Record<string, { bg: string; text: string }> = {
-		blue: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-600 dark:text-blue-400' },
-		pink: { bg: 'bg-pink-100 dark:bg-pink-900/30', text: 'text-pink-600 dark:text-pink-400' },
-		purple: { bg: 'bg-purple-100 dark:bg-purple-900/30', text: 'text-purple-600 dark:text-purple-400' },
-		green: { bg: 'bg-green-100 dark:bg-green-900/30', text: 'text-green-600 dark:text-green-400' },
-		sky: { bg: 'bg-sky-100 dark:bg-sky-900/30', text: 'text-sky-600 dark:text-sky-400' },
-		rose: { bg: 'bg-rose-100 dark:bg-rose-900/30', text: 'text-rose-600 dark:text-rose-400' },
-		indigo: { bg: 'bg-indigo-100 dark:bg-indigo-900/30', text: 'text-indigo-600 dark:text-indigo-400' },
-		emerald: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-600 dark:text-emerald-400' },
-		cyan: { bg: 'bg-cyan-100 dark:bg-cyan-900/30', text: 'text-cyan-600 dark:text-cyan-400' },
+		blue: { bg: 'bg-pastel-sky', text: 'text-pastel-sky-ink' },
+		pink: { bg: 'bg-pastel-blush', text: 'text-pastel-blush-ink' },
+		purple: { bg: 'bg-pastel-lilac', text: 'text-pastel-lilac-ink' },
+		green: { bg: 'bg-pastel-mint', text: 'text-pastel-mint-ink' },
+		sky: { bg: 'bg-pastel-sky', text: 'text-pastel-sky-ink' },
+		rose: { bg: 'bg-pastel-blush', text: 'text-pastel-blush-ink' },
+		indigo: { bg: 'bg-pastel-lilac', text: 'text-pastel-lilac-ink' },
+		emerald: { bg: 'bg-pastel-mint', text: 'text-pastel-mint-ink' },
+		cyan: { bg: 'bg-pastel-sky', text: 'text-pastel-sky-ink' },
 	};
 	return map[color] || map.blue;
 };

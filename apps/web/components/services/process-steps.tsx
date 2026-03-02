@@ -53,23 +53,23 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 		const cardVisuals = [
 			{
 				icon: SearchCheck,
-				iconBox: 'bg-emerald-300 text-emerald-700 dark:bg-emerald-500/25 dark:text-emerald-300',
-				number: 'text-emerald-400/40 dark:text-emerald-300/20',
+				iconBox: 'bg-pastel-mint text-pastel-mint-ink',
+				number: 'text-pastel-mint-strong/40',
 			},
 			{
 				icon: Compass,
-				iconBox: 'bg-purple-300 text-purple-700 dark:bg-purple-500/25 dark:text-purple-300',
-				number: 'text-purple-400/40 dark:text-purple-300/20',
+				iconBox: 'bg-pastel-lilac text-pastel-lilac-ink',
+				number: 'text-pastel-lilac-strong/40',
 			},
 			{
 				icon: SquareCode,
-				iconBox: 'bg-blue-300 text-blue-700 dark:bg-blue-500/25 dark:text-blue-300',
-				number: 'text-blue-400/40 dark:text-blue-300/20',
+				iconBox: 'bg-pastel-sky text-pastel-sky-ink',
+				number: 'text-pastel-sky-strong/40',
 			},
 			{
 				icon: Rocket,
-				iconBox: 'bg-orange-300 text-orange-700 dark:bg-orange-500/25 dark:text-orange-300',
-				number: 'text-orange-400/40 dark:text-orange-300/20',
+				iconBox: 'bg-pastel-peach text-pastel-peach-ink',
+				number: 'text-pastel-peach-strong/40',
 			},
 		] as const;
 
@@ -79,7 +79,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 					<div className='absolute inset-0 bg-linear-to-br from-background via-background to-primary/5' />
 					<div className='absolute -top-1/3 left-1/3 h-72 w-72 rounded-full bg-gradient-radial from-primary/10 via-primary/5 to-transparent blur-3xl' />
 					<div className='absolute -bottom-1/4 right-0 h-80 w-80 rounded-full bg-gradient-radial from-accent/12 via-accent/5 to-transparent blur-3xl' />
-					<div className='absolute bottom-0 left-0 h-64 w-64 rounded-full bg-gradient-radial from-orange-200/20 via-transparent to-transparent blur-3xl dark:from-orange-500/10' />
+					<div className='absolute bottom-0 left-0 h-64 w-64 rounded-full bg-gradient-radial from-pastel-peach via-transparent to-transparent opacity-40 blur-3xl dark:opacity-20' />
 				</div>
 
 				{(title || description) && (
@@ -92,7 +92,7 @@ export function ProcessSteps({ steps, title, description, variant = 'grid', clas
 								{title.includes('Digital Perfection') ? (
 									<>
 										{title.replace('Digital Perfection', '')}{' '}
-										<span className='bg-linear-to-r from-sky-300 to-blue-600 bg-clip-text text-transparent'>
+										<span className='bg-linear-to-r from-pastel-sky-strong to-pastel-lilac-strong bg-clip-text text-transparent'>
 											Digital Perfection
 										</span>
 									</>

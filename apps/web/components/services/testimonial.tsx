@@ -61,7 +61,12 @@ function StarRating({ rating }: { rating: number }) {
 			{Array.from({ length: 5 }).map((_, i) => (
 				<Star
 					key={i}
-					className={cn('h-4 w-4', i < rating ? 'fill-amber-400 text-amber-400' : 'fill-muted text-muted')}
+					className={cn(
+						'h-4 w-4',
+						i < rating
+							? 'fill-pastel-peach-strong text-pastel-peach-strong'
+							: 'fill-muted text-muted'
+					)}
 				/>
 			))}
 		</div>

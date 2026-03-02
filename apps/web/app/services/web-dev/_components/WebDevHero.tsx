@@ -155,7 +155,7 @@ export function WebDevHero({ className }: { className?: string }) {
 												<div className="text-[10px] uppercase tracking-wider text-muted-foreground">Total Revenue</div>
 												<div className="font-display text-2xl font-bold text-foreground">{HERO.dashboard.revenue}</div>
 											</div>
-											<span className="rounded bg-emerald-500/10 px-2 py-1 text-xs text-emerald-500">
+											<span className="rounded bg-pastel-mint px-2 py-1 text-xs text-pastel-mint-ink">
 												{HERO.dashboard.revenueChange}
 											</span>
 										</div>
@@ -265,7 +265,7 @@ export function WebDevHero({ className }: { className?: string }) {
 								<div className="space-y-2">
 									{HERO.deployCard.checks.map((text) => (
 										<div key={text} className="flex items-center gap-3 text-sm text-muted-foreground">
-											<span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-500" aria-hidden>
+											<span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-pastel-mint text-pastel-mint-ink" aria-hidden>
 												<Check className="h-2.5 w-2.5" />
 											</span>
 											<span>{text}</span>

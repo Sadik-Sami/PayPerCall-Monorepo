@@ -61,36 +61,36 @@ const getCardStyles = (theme: string) => {
 	switch (theme) {
 		case 'emerald':
 			return {
-				bg: 'bg-[var(--value-mint)] dark:bg-emerald-950/20',
-				border: 'border-emerald-100 dark:border-emerald-900/30',
-				orb: 'bg-emerald-400/20',
-				icon: 'text-emerald-600 dark:text-emerald-400',
-				accent: 'bg-emerald-500/40',
+				bg: 'bg-pastel-mint',
+				border: 'border-pastel-mint-border',
+				orb: 'bg-pastel-mint-strong opacity-20',
+				icon: 'text-pastel-mint-ink',
+				accent: 'bg-pastel-mint-strong opacity-40',
 			};
 		case 'purple':
 			return {
-				bg: 'bg-[var(--value-lilac)] dark:bg-purple-950/20',
-				border: 'border-purple-100 dark:border-purple-900/30',
-				orb: 'bg-purple-400/20',
-				icon: 'text-purple-600 dark:text-purple-400',
-				accent: 'bg-purple-500/40',
+				bg: 'bg-pastel-lilac',
+				border: 'border-pastel-lilac-border',
+				orb: 'bg-pastel-lilac-strong opacity-20',
+				icon: 'text-pastel-lilac-ink',
+				accent: 'bg-pastel-lilac-strong opacity-40',
 			};
 		case 'amber':
 			return {
-				bg: 'bg-[var(--value-soft-yellow)] dark:bg-amber-950/20',
-				border: 'border-amber-100 dark:border-amber-900/30',
-				orb: 'bg-amber-400/20',
-				icon: 'text-amber-600 dark:text-amber-400',
-				accent: 'bg-amber-500/40',
+				bg: 'bg-pastel-peach',
+				border: 'border-pastel-peach-border',
+				orb: 'bg-pastel-peach-strong opacity-20',
+				icon: 'text-pastel-peach-ink',
+				accent: 'bg-pastel-peach-strong opacity-40',
 			};
 		case 'blue':
 		default:
 			return {
-				bg: 'bg-[var(--value-pale-blue)] dark:bg-blue-950/20',
-				border: 'border-blue-100 dark:border-blue-900/30',
-				orb: 'bg-blue-400/20',
-				icon: 'text-blue-600 dark:text-blue-400',
-				accent: 'bg-blue-500/40',
+				bg: 'bg-pastel-sky',
+				border: 'border-pastel-sky-border',
+				orb: 'bg-pastel-sky-strong opacity-20',
+				icon: 'text-pastel-sky-ink',
+				accent: 'bg-pastel-sky-strong opacity-40',
 			};
 	}
 };

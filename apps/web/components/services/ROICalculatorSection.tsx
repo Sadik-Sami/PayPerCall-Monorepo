@@ -14,7 +14,7 @@ import {
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { Button } from '@workspace/ui/components/button';
 import { Input } from '@workspace/ui/components/input';
-import { Slider } from '@workspace/ui/components/ui/slider';
+import { Slider } from '@workspace/ui/components/slider';
 import {
 	ChartContainer,
 	ChartLegend,
@@ -73,11 +73,11 @@ const METRIC_FIELDS: Array<{
 	suffix?: string;
 	name: string;
 }> = [
-	{ key: 'leadCost', label: 'Current Lead Cost', prefix: '$', name: 'leadCost' },
-	{ key: 'callCapacity', label: 'Monthly Call Capacity', name: 'callCapacity' },
-	{ key: 'closeRate', label: 'Close Rate', suffix: '%', name: 'closeRate' },
-	{ key: 'dealValue', label: 'Average Deal Value', prefix: '$', name: 'dealValue' },
-];
+		{ key: 'leadCost', label: 'Current Lead Cost', prefix: '$', name: 'leadCost' },
+		{ key: 'callCapacity', label: 'Monthly Call Capacity', name: 'callCapacity' },
+		{ key: 'closeRate', label: 'Close Rate', suffix: '%', name: 'closeRate' },
+		{ key: 'dealValue', label: 'Average Deal Value', prefix: '$', name: 'dealValue' },
+	];
 
 const chartConfig = {
 	optimized: {
@@ -222,9 +222,9 @@ function RoiDualTooltip({
 						{compactCurrency.format(point.optimized)}
 					</span>
 				</div>
-				<div className='mt-1 flex items-center justify-between gap-4 rounded-lg border border-purple-200/70 bg-purple-50/70 px-2 py-1 dark:border-purple-800/40 dark:bg-purple-900/20'>
-					<span className='font-semibold text-purple-700 dark:text-purple-200'>Profit Gap</span>
-					<span className='font-mono font-bold tabular-nums text-purple-700 dark:text-purple-200'>
+				<div className='mt-1 flex items-center justify-between gap-4 rounded-lg border border-pastel-lilac-border bg-pastel-lilac px-2 py-1'>
+					<span className='font-semibold text-pastel-lilac-ink'>Profit Gap</span>
+					<span className='font-mono font-bold tabular-nums text-pastel-lilac-ink'>
 						{`${compactCurrency.format(point.profitGap)} (${gapPct >= 0 ? '+' : ''}${gapPct.toFixed(0)}%)`}
 					</span>
 				</div>
@@ -336,11 +336,11 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 
 				<motion.div
 					variants={reduceMotion ? undefined : itemVariants}
-					className='inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-amber-700'
+					className='inline-flex items-center gap-2 rounded-full border border-pastel-mint-border bg-pastel-mint px-3 py-1.5 text-xs font-semibold uppercase text-pastel-mint-ink'
 				>
 					<span className='relative flex size-2'>
-						<span className='absolute inline-flex size-full animate-ping rounded-full bg-amber-500/80' />
-						<span className='relative inline-flex size-2 rounded-full bg-amber-500' />
+						<span className='absolute inline-flex size-full animate-ping rounded-full bg-pastel-mint-strong opacity-80' />
+						<span className='relative inline-flex size-2 rounded-full bg-pastel-mint-strong' />
 					</span>
 					Engine Online
 				</motion.div>
@@ -355,7 +355,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 			>
 				<motion.div
 					variants={reduceMotion ? undefined : cardVariants}
-					className='relative overflow-hidden rounded-3xl border border-emerald-100 bg-(--value-mint) p-5 shadow-sm dark:border-emerald-900/40 dark:bg-emerald-950/20 lg:col-span-5'
+					className='relative overflow-hidden rounded-3xl border bg-pastel-mint p-5 shadow-sm lg:col-span-5'
 				>
 					<div
 						className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(16,185,129,0.7)_1px,transparent_1px)] bg-size-[14px_14px] opacity-[0.08]'
@@ -363,9 +363,9 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 					/>
 					<div className='relative z-10 space-y-5'>
 						<div className='flex flex-wrap items-center justify-between gap-3'>
-							<div className='inline-flex items-center gap-2 text-sm font-bold text-emerald-900 dark:text-emerald-100'>
+							<div className='inline-flex items-center gap-2 text-sm font-bold text-pastel-mint-ink'>
 								<span className='glass-icon inline-flex size-8 items-center justify-center rounded-lg'>
-									<Calculator className='size-4 text-emerald-600 dark:text-emerald-300' aria-hidden='true' />
+									<Calculator className='size-4 text-pastel-mint-ink' aria-hidden='true' />
 								</span>
 								Input Metrics
 							</div>
@@ -374,7 +374,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 								size='sm'
 								variant='outline'
 								onClick={resetDefaults}
-								className='h-8 border-emerald-200 bg-white/60 px-3 text-xs font-semibold text-emerald-700 hover:bg-white dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-200'
+								className='h-8 border-pastel-mint-border bg-white/70 px-3 text-xs font-semibold text-pastel-mint-ink hover:bg-white'
 							>
 								<RefreshCcw className='size-3.5' aria-hidden='true' />
 								Reset Defaults
@@ -388,17 +388,18 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 								return (
 									<div
 										key={field.key}
-										className='rounded-2xl border border-emerald-200/80 bg-white/70 p-3 dark:border-emerald-900/40 dark:bg-emerald-950/30'
+										className='rounded-2xl border border-border/70 bg-background/80 p-4 backdrop-blur-sm'
+										// className='rounded-2xl border border-border/70 bg-background/80 p-4 backdrop-blur-sm'
 									>
 										<label
 											htmlFor={field.key}
-											className='mb-3 block text-[11px] font-bold uppercase tracking-widest text-emerald-800/80 dark:text-emerald-200/80'
+											className='mb-3 block text-[11px] font-bold uppercase tracking-widest'
 										>
 											{field.label}
 										</label>
 										<div className='mb-3 flex items-center gap-2'>
 											{field.prefix ? (
-												<span className='text-sm font-bold text-emerald-700 dark:text-emerald-300'>
+												<span className='text-sm font-bold text-pastel-mint-ink'>
 													{field.prefix}
 												</span>
 											) : null}
@@ -414,16 +415,17 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 												max={bounds.max}
 												step={bounds.step}
 												aria-label={field.label}
-												className='h-9 border-emerald-200/90 bg-white text-right text-sm font-bold text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-100'
+												className='h-9 border-pastel-mint-border bg-white text-right text-sm font-bold text-pastel-mint-ink'
 											/>
 											{field.suffix ? (
-												<span className='text-sm font-bold text-emerald-700 dark:text-emerald-300'>
+												<span className='text-sm font-bold text-pastel-mint-ink'>
 													{field.suffix}
 												</span>
 											) : null}
 										</div>
 										<Slider
 											value={[value]}
+											defaultValue={[value]}
 											min={bounds.min}
 											max={bounds.max}
 											step={bounds.step}
@@ -439,7 +441,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 
 				<motion.div
 					variants={reduceMotion ? undefined : cardVariants}
-					className='relative overflow-hidden rounded-3xl border border-purple-100 bg-(--value-lilac) p-6 shadow-xl shadow-purple-200/40 dark:border-purple-900/40 dark:bg-purple-950/20 lg:col-span-7'
+					className='relative overflow-hidden rounded-3xl border bg-pastel-lilac p-6 shadow-md lg:col-span-7'
 				>
 
 					<div className='relative z-10 flex h-full flex-col gap-5'>
@@ -463,18 +465,18 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 									</span>
 								</p>
 							</div>
-							<div className='rounded-lg border border-purple-200 bg-purple-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-700 dark:border-purple-800 dark:bg-purple-900/30 dark:text-purple-200'>
+							<div className='rounded-lg border border-pastel-lilac-border bg-pastel-lilac px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-pastel-lilac-ink'>
 								{chartMode === 'industry' ? 'Industry' : 'Optimized'}
 							</div>
 						</div>
 
 						{chartMode === 'industry' ? (
-							<div className='inline-flex w-fit items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-200'>
+							<div className='inline-flex w-fit items-center gap-2 rounded-lg border border-pastel-peach-border bg-pastel-peach px-2.5 py-1 text-xs font-semibold text-pastel-peach-ink'>
 								<span className='font-semibold'>Your current path:</span>
 								<span>High waste, low scale.</span>
 							</div>
 						) : (
-							<div className='inline-flex w-fit items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-200'>
+							<div className='inline-flex w-fit items-center gap-2 rounded-lg border border-pastel-mint-border bg-pastel-mint px-2.5 py-1 text-xs font-semibold text-pastel-mint-ink'>
 								<TrendingUp className='size-3.5' aria-hidden='true' />
 								{`${metrics.vsIndustryPct >= 0 ? '+' : ''}${metrics.vsIndustryPct.toFixed(0)}% vs industry`}
 							</div>
@@ -485,7 +487,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 								<p className='text-[10px] font-bold uppercase tracking-widest text-muted-foreground'>
 									Cost Per Acquisition (CPA)
 								</p>
-								<span className='text-[10px] font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-300'>
+								<span className='text-[10px] font-bold uppercase tracking-widest text-pastel-mint-ink'>
 									{`${metrics.cpaEfficiencyPct.toFixed(0)}% lower CPA`}
 								</span>
 							</div>
@@ -546,17 +548,17 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 				initial='hidden'
 				whileInView='visible'
 				viewport={{ once: true, amount: 0.2 }}
-				className='mt-6 overflow-hidden rounded-3xl border border-blue-200/70 bg-(--value-pale-blue) p-5 shadow-sm dark:border-blue-900/50 dark:bg-blue-950/20 md:p-6'
+				className='mt-6 overflow-hidden rounded-3xl border bg-card p-5 shadow-sm md:p-6'
 			>
 				<div className='mb-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
-					<div className='inline-flex items-center gap-2 text-base font-bold text-blue-900 dark:text-blue-100'>
-						<span className='inline-flex size-8 items-center justify-center rounded-lg border border-blue-200/70 bg-white/70 shadow-xs dark:border-blue-900/40 dark:bg-blue-950/40'>
+					<div className='inline-flex items-center gap-2 text-base font-bold'>
+						<span className='inline-flex size-8 items-center justify-center rounded-lg border border-pastel-sky-border bg-white/70 shadow-xs'>
 							<TrendingUp className='size-4 text-primary' aria-hidden='true' />
 						</span>
 						12-Month Projected Scaling
 					</div>
 					<div
-						className='inline-flex w-fit rounded-full border border-blue-200 bg-white/80 p-1 shadow-xs dark:border-blue-800 dark:bg-blue-950/40'
+						className='inline-flex w-fit rounded-full border border-pastel-sky-border bg-card p-1 shadow-xs'
 						role='tablist'
 						aria-label='Chart mode toggle'
 					>
@@ -591,7 +593,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 					</div>
 				</div>
 
-				<div className='rounded-2xl border border-blue-100/90 bg-white/80 p-3 shadow-inner dark:border-blue-900/40 dark:bg-blue-950/30 md:p-4'>
+				<div className='rounded-2xl border border-pastel-sky-border bg-card p-3 md:p-4'>
 					<ChartContainer
 						config={chartConfig}
 						className='h-[280px] w-full aspect-auto'
@@ -644,7 +646,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 					</ChartContainer>
 				</div>
 
-				<div className='mt-3 flex flex-col gap-2 rounded-xl border border-blue-200/70 bg-white/70 px-4 py-3 text-xs dark:border-blue-900/50 dark:bg-blue-950/30 sm:flex-row sm:items-center sm:justify-between'>
+				<div className='mt-3 flex flex-col gap-2 rounded-xl border border-pastel-sky-border bg-card px-4 py-3 text-xs sm:flex-row sm:items-center sm:justify-between'>
 					<div className='flex items-center gap-2 text-muted-foreground'>
 						<Sparkles className='size-3.5 text-primary' aria-hidden='true' />
 						<span>
@@ -656,40 +658,40 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 					<div className='flex flex-wrap items-center gap-3 text-foreground'>
 						<span className='font-semibold'>{`Month ${activePoint.monthIndex} (${activePoint.month})`}</span>
 						<span className='tabular-nums'>{`${integerNumber.format(activePoint.volume)} calls`}</span>
-						<span className='tabular-nums text-amber-700 dark:text-amber-300'>
+						<span className='tabular-nums text-pastel-peach-ink'>
 							{compactCurrency.format(activePoint.industry)}
 						</span>
 						<span className='tabular-nums text-primary'>
 							{compactCurrency.format(activePoint.optimized)}
 						</span>
-						<span className='tabular-nums text-purple-700 dark:text-purple-200'>
+						<span className='tabular-nums text-pastel-lilac-ink'>
 							{`${compactCurrency.format(activePoint.profitGap)} gap`}
 						</span>
 					</div>
 				</div>
 
 				<div className='mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3'>
-					<div className='rounded-xl border border-amber-200/70 bg-amber-50/70 px-4 py-3 text-xs dark:border-amber-900/40 dark:bg-amber-950/20'>
-						<p className='text-[10px] font-bold uppercase tracking-widest text-amber-800/80 dark:text-amber-200/80'>
+					<div className='rounded-xl border border-pastel-peach-border bg-pastel-peach px-4 py-3 text-xs'>
+						<p className='text-[10px] font-bold uppercase tracking-widest text-pastel-peach-ink opacity-80'>
 							Industry Baseline (Month 12)
 						</p>
-						<p className='mt-1 text-base font-bold tabular-nums text-amber-900 dark:text-amber-100'>
+						<p className='mt-1 text-base font-bold tabular-nums text-pastel-peach-ink'>
 							{compactCurrency.format(metrics.industryMonthlyProfit)}
 						</p>
 					</div>
-					<div className='rounded-xl border border-blue-200/70 bg-blue-50/70 px-4 py-3 text-xs dark:border-blue-900/40 dark:bg-blue-950/20'>
-						<p className='text-[10px] font-bold uppercase tracking-widest text-blue-800/80 dark:text-blue-200/80'>
+					<div className='rounded-xl border border-pastel-sky-border bg-pastel-sky px-4 py-3 text-xs'>
+						<p className='text-[10px] font-bold uppercase tracking-widest text-pastel-sky-ink opacity-80'>
 							Optimized Curve (Month 12)
 						</p>
-						<p className='mt-1 text-base font-bold tabular-nums text-blue-900 dark:text-blue-100'>
+						<p className='mt-1 text-base font-bold tabular-nums text-pastel-sky-ink'>
 							{compactCurrency.format(metrics.projectedMonthlyProfit)}
 						</p>
 					</div>
-					<div className='rounded-xl border border-purple-200/70 bg-purple-50/70 px-4 py-3 text-xs dark:border-purple-900/40 dark:bg-purple-950/20'>
-						<p className='text-[10px] font-bold uppercase tracking-widest text-purple-800/80 dark:text-purple-200/80'>
+					<div className='rounded-xl border border-pastel-lilac-border bg-pastel-lilac px-4 py-3 text-xs'>
+						<p className='text-[10px] font-bold uppercase tracking-widest text-pastel-lilac-ink opacity-80'>
 							Profit Gap (Month 12)
 						</p>
-						<p className='mt-1 text-base font-bold tabular-nums text-purple-900 dark:text-purple-100'>
+						<p className='mt-1 text-base font-bold tabular-nums text-pastel-lilac-ink'>
 							{`${compactCurrency.format(profitGapAtMonth12)} (${profitGapPctAtMonth12 >= 0 ? '+' : ''}${profitGapPctAtMonth12.toFixed(0)}%)`}
 						</p>
 					</div>

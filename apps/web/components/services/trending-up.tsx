@@ -81,7 +81,7 @@ export function TrendingUp({ title, description, metrics, className = '' }: Tren
 									<p className='text-sm font-medium text-muted-foreground uppercase tracking-wide'>{metric.label}</p>
 									<div className='flex items-baseline gap-2'>
 										<span className='text-4xl font-bold text-foreground'>{metric.value}</span>
-										<span className='inline-flex items-center gap-1 px-2 py-1 rounded-md bg-green-500/10 text-green-700 dark:text-green-400 text-sm font-semibold'>
+										<span className='inline-flex items-center gap-1 px-2 py-1 rounded-md bg-pastel-mint text-pastel-mint-ink text-sm font-semibold'>
 											<TrendingUpIcon className='size-4' />
 											{metric.change}
 										</span>

@@ -36,28 +36,28 @@ export interface TrustBannerProps {
 }
 
 const STAT_COLORS = [
-  { border: 'border-l-emerald-500/30 border-b-emerald-500/30' },
-  { border: 'border-t-purple-500/30 border-r-purple-500/30' },
-  { border: 'border-l-blue-500/30 border-b-blue-500/30' },
-  { border: 'border-t-amber-500/30 border-r-amber-500/30' },
+  { border: 'border-l-pastel-mint-border border-b-pastel-mint-border' },
+  { border: 'border-t-pastel-lilac-border border-r-pastel-lilac-border' },
+  { border: 'border-l-pastel-sky-border border-b-pastel-sky-border' },
+  { border: 'border-t-pastel-peach-border border-r-pastel-peach-border' },
 ] as const;
 
 const GUARANTEE_COLORS = [
   {
-    iconBg: 'bg-blue-100 dark:bg-blue-500/20',
-    iconText: 'text-blue-600 dark:text-blue-400',
+    iconBg: 'bg-pastel-sky',
+    iconText: 'text-pastel-sky-ink',
   },
   {
-    iconBg: 'bg-purple-100 dark:bg-purple-500/20',
-    iconText: 'text-purple-600 dark:text-purple-400',
+    iconBg: 'bg-pastel-lilac',
+    iconText: 'text-pastel-lilac-ink',
   },
   {
-    iconBg: 'bg-emerald-100 dark:bg-emerald-500/20',
-    iconText: 'text-emerald-600 dark:text-emerald-400',
+    iconBg: 'bg-pastel-mint',
+    iconText: 'text-pastel-mint-ink',
   },
   {
-    iconBg: 'bg-amber-100 dark:bg-amber-500/20',
-    iconText: 'text-amber-600 dark:text-amber-400',
+    iconBg: 'bg-pastel-peach',
+    iconText: 'text-pastel-peach-ink',
   },
 ] as const;
 

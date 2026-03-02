@@ -53,9 +53,9 @@ export function ResultsGallery({
 							{/* Top row: improvement badge + label */}
 							<div className='mb-4 flex items-start justify-between gap-3'>
 								<h3 className='font-semibold text-foreground'>{result.label}</h3>
-								<div className='inline-flex items-center gap-1.5 rounded-full bg-emerald-600/10 px-2.5 py-1 shrink-0'>
-									<TrendingUp className='h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400' />
-									<span className='text-xs font-medium text-emerald-600 dark:text-emerald-400'>{result.improvement}</span>
+								<div className='inline-flex items-center gap-1.5 rounded-full bg-pastel-mint px-2.5 py-1 shrink-0'>
+									<TrendingUp className='h-3.5 w-3.5 text-pastel-mint-ink' />
+									<span className='text-xs font-medium text-pastel-mint-ink'>{result.improvement}</span>
 								</div>
 							</div>
 

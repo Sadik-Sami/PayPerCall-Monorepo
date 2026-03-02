@@ -86,47 +86,47 @@ const getColorStyles = (color: string) => {
 	switch (color) {
 		case 'emerald':
 			return {
-				bg: 'bg-emerald-100 dark:bg-emerald-900/30',
-				border: 'dark:border-emerald-500/20',
-				textBase: 'text-emerald-900 dark:text-emerald-100',
-				textAccent: 'text-emerald-800 dark:text-emerald-200',
-				textMuted: 'text-emerald-700/80 dark:text-emerald-300/80',
-				icon: 'text-emerald-600 dark:text-emerald-400',
-				sparkline: 'stroke-emerald-600 dark:stroke-emerald-400',
+				bg: 'bg-pastel-mint',
+				border: 'border-pastel-mint-border',
+				textBase: 'text-pastel-mint-ink',
+				textAccent: 'text-pastel-mint-ink',
+				textMuted: 'text-pastel-mint-ink opacity-80',
+				icon: 'text-pastel-mint-ink',
+				sparkline: 'stroke-pastel-mint-ink',
 				path: 'M0 25 Q 25 25, 30 15 T 60 20 T 100 5',
 			};
 		case 'purple':
 			return {
-				bg: 'bg-purple-100 dark:bg-purple-900/30',
-				border: 'dark:border-purple-500/20',
-				textBase: 'text-purple-900 dark:text-purple-100',
-				textAccent: 'text-purple-800 dark:text-purple-200',
-				textMuted: 'text-purple-700/80 dark:text-purple-300/80',
-				icon: 'text-purple-600 dark:text-purple-400',
-				sparkline: 'stroke-purple-600 dark:stroke-purple-400',
+				bg: 'bg-pastel-lilac',
+				border: 'border-pastel-lilac-border',
+				textBase: 'text-pastel-lilac-ink',
+				textAccent: 'text-pastel-lilac-ink',
+				textMuted: 'text-pastel-lilac-ink opacity-80',
+				icon: 'text-pastel-lilac-ink',
+				sparkline: 'stroke-pastel-lilac-ink',
 				path: 'M0 28 L 20 20 L 40 22 L 60 10 L 80 15 L 100 2',
 			};
 		case 'orange':
 			return {
-				bg: 'bg-orange-100 dark:bg-orange-900/30',
-				border: 'dark:border-orange-500/20',
-				textBase: 'text-orange-900 dark:text-orange-100',
-				textAccent: 'text-orange-800 dark:text-orange-200',
-				textMuted: 'text-orange-700/80 dark:text-orange-300/80',
-				icon: 'text-orange-600 dark:text-orange-400',
-				sparkline: 'stroke-orange-600 dark:stroke-orange-400',
+				bg: 'bg-pastel-peach',
+				border: 'border-pastel-peach-border',
+				textBase: 'text-pastel-peach-ink',
+				textAccent: 'text-pastel-peach-ink',
+				textMuted: 'text-pastel-peach-ink opacity-80',
+				icon: 'text-pastel-peach-ink',
+				sparkline: 'stroke-pastel-peach-ink',
 				path: 'M0 20 C 30 20, 40 10, 70 10 S 100 5, 100 5',
 			};
 		case 'blue':
 		default:
 			return {
-				bg: 'bg-blue-100 dark:bg-blue-900/30',
-				border: 'dark:border-blue-500/20',
-				textBase: 'text-blue-900 dark:text-blue-100',
-				textAccent: 'text-blue-800 dark:text-blue-200',
-				textMuted: 'text-blue-700/80 dark:text-blue-300/80',
-				icon: 'text-blue-600 dark:text-blue-400',
-				sparkline: 'stroke-blue-600 dark:stroke-blue-400',
+				bg: 'bg-pastel-sky',
+				border: 'border-pastel-sky-border',
+				textBase: 'text-pastel-sky-ink',
+				textAccent: 'text-pastel-sky-ink',
+				textMuted: 'text-pastel-sky-ink opacity-80',
+				icon: 'text-pastel-sky-ink',
+				sparkline: 'stroke-pastel-sky-ink',
 				path: 'M0 25 L 20 25 L 40 15 L 60 15 L 80 5 L 100 0',
 			};
 	}
@@ -155,13 +155,13 @@ export function ResultsShowcase({
 						viewport={{ once: true, margin: '-100px' }}
 						className="space-y-8 z-10 relative"
 					>
-						<motion.div variants={itemVariants} className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-blue-100/50 dark:bg-blue-500/20 border border-blue-500/20 backdrop-blur-sm">
-							<TrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4" />
-							<span className="text-blue-600 dark:text-blue-400 font-medium text-sm">Proven Results</span>
+						<motion.div variants={itemVariants} className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-pastel-sky border border-pastel-sky-border backdrop-blur-sm">
+							<TrendingUp className="text-pastel-sky-ink w-4 h-4" />
+							<span className="text-pastel-sky-ink font-medium text-sm">Proven Results</span>
 						</motion.div>
 						<motion.h2 variants={itemVariants} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-foreground text-balance">
 							{title.split('themselves')[0]}
-							<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+							<span className="text-transparent bg-clip-text bg-linear-to-r from-pastel-sky-strong to-pastel-lilac-strong">
 								{title.includes('themselves') ? 'themselves' : title}
 							</span>
 						</motion.h2>
@@ -176,7 +176,7 @@ export function ResultsShowcase({
 								'Seamless integration with your existing tools',
 							].map((item, i) => (
 								<div key={i} className="flex items-center gap-3">
-									<div className="flex items-center justify-center shrink-0 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+									<div className="flex items-center justify-center shrink-0 w-6 h-6 rounded-full bg-pastel-sky text-pastel-sky-ink">
 										<Check className="w-3.5 h-3.5" />
 									</div>
 									<span className="text-foreground font-medium text-sm">{item}</span>
@@ -185,7 +185,7 @@ export function ResultsShowcase({
 						</motion.div>
 
 						<motion.div variants={itemVariants} className="flex items-center space-x-2 text-muted-foreground text-sm font-medium pt-4 border-t border-border/50 max-w-md">
-							<ArrowUpRight className="text-blue-500 w-5 h-5" />
+							<ArrowUpRight className="text-pastel-sky-ink w-5 h-5" />
 							<span>Based on 120+ completed projects</span>
 						</motion.div>
 					</motion.div>
@@ -401,7 +401,7 @@ export function ResultsShowcase({
 									<div className='mb-3 flex items-center justify-between'>
 										<Icon className='h-5 w-5 text-primary' />
 										{metric.trend && (
-											<span className='flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400'>
+											<span className='flex items-center gap-1 text-xs font-medium text-pastel-mint-ink'>
 												<ArrowUpRight className='h-3 w-3' />
 												{metric.trend}
 											</span>
