@@ -7,7 +7,12 @@ import twitterIcon from '@/public/icons/twitter.svg'
 import slackIcon from '@/public/icons/slack.svg'
 import whatsappIcon from '@/public/icons/whatsapp.svg'
 import Image from "next/image";
-import { ROICalculatorSection, ServiceCapabilitiesGateway, ValuePropositionSection } from '@/components/services';
+import {
+	ROICalculatorSection,
+	ServiceCapabilitiesGateway,
+	TransformationComparisonSection,
+	ValuePropositionSection,
+} from '@/components/services';
 import {
 	PAY_PER_CALL_SERVICE_NAV,
 	PAY_PER_CALL_GATEWAY_CONFIG,
@@ -33,6 +38,7 @@ export default function PayPerCallPage() {
 				}}
 			/>
 			<ValuePropositionSection className="max-w-7xl mx-auto" />
+			<TransformationComparisonSection className="max-w-7xl mx-auto" />
 			<ROICalculatorSection className='max-w-7xl mx-auto' />
 			<InfiniteSlider gap={128} speed={50} className='max-w-7xl mx-auto py-12'>
 				<Image src={appleIcon} className='h-12 w-auto' alt="apple" width={48} height={48} />
