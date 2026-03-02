@@ -7,6 +7,8 @@ export * from './faq-section';
 export * from './consultation-CTA';
 export * from './ServicesGrid';
 export * from './ServiceCapabilitiesGateway';
+export * from './ValuePropositionSection';
+export * from './ROICalculatorSection';
 export * from './TrustBanner';
 export * from './results-showcase';
 export * from './testimonial';

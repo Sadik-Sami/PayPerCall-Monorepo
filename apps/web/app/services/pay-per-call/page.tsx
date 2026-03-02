@@ -7,7 +7,7 @@ import twitterIcon from '@/public/icons/twitter.svg'
 import slackIcon from '@/public/icons/slack.svg'
 import whatsappIcon from '@/public/icons/whatsapp.svg'
 import Image from "next/image";
-import { ServiceCapabilitiesGateway } from '@/components/services';
+import { ROICalculatorSection, ServiceCapabilitiesGateway, ValuePropositionSection } from '@/components/services';
 import {
 	PAY_PER_CALL_SERVICE_NAV,
 	PAY_PER_CALL_GATEWAY_CONFIG,
@@ -31,6 +31,8 @@ export default function PayPerCallPage() {
           address: "20555 US-19 N, Clearwater, FL 33763",
         }}
       />
+			<ValuePropositionSection className="max-w-7xl mx-auto" />
+			<ROICalculatorSection className='max-w-7xl mx-auto' />
 			<InfiniteSlider gap={128} speed={50} className='max-w-7xl mx-auto py-12'>
 				<Image src={appleIcon} className='h-12 w-auto' alt="apple" width={48} height={48} />
 				<Image src={googleIcon} className='h-12 w-auto' alt="google" width={48} height={48} />
