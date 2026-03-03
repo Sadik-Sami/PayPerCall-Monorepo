@@ -182,9 +182,10 @@ export function ServiceCapabilitiesGateway({
 							card.accentColor ?? getAccent(index);
 						const styles = ACCENT_STYLES[accent];
 						const Icon = ICON_MAP[card.iconKey];
+						const cardKey = `${card.href}-${card.label}-${index}`;
 
 						return (
-							<motion.div key={card.href} variants={cardVariants}>
+							<motion.div key={cardKey} variants={cardVariants}>
 								<Link
 									href={card.href}
 									className={cn(
@@ -226,7 +227,7 @@ export function ServiceCapabilitiesGateway({
 												)}
 											>
 												<span>{card.ctaLabel ?? 'Explore'}</span>
-												<ArrowRight className='size-[18px] transition-transform duration-300 group-hover:translate-x-0.5' />
+												<ArrowRight className='size-4.5 transition-transform duration-300 group-hover:translate-x-0.5' />
 											</div>
 										</div>
 									</div>

@@ -254,7 +254,7 @@ export default function FAQ({
 									viewport={{ once: true, amount: 0.4 }}
 									transition={{ duration: 0.7, delay: 0.05, ease: EASE_OUT }}
 									style={{ rotate: 12 }}
-									className='absolute bottom-[-20px] right-[-20px] z-30 w-24 h-24 md:w-28 md:h-28'>
+									className='absolute -bottom-5 -right-5 z-30 w-24 h-24 md:w-28 md:h-28'>
 									<motion.div
 										animate={reduceMotion ? undefined : { y: [0, -8, 0] }}
 										transition={reduceMotion ? undefined : floatTransition(8, 0.3)}
@@ -270,7 +270,7 @@ export default function FAQ({
 									viewport={{ once: true, amount: 0.4 }}
 									transition={{ duration: 0.7, delay: 0.08, ease: EASE_OUT }}
 									style={{ rotate: 8 }}
-									className='absolute top-0 right-[-10px] z-30'>
+									className='absolute top-0 -right-2.5 z-30'>
 									<motion.div
 										animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
 										transition={reduceMotion ? undefined : floatTransition(9, 0.2)}
@@ -288,7 +288,7 @@ export default function FAQ({
 									whileInView={{ opacity: 1, x: 0, y: 0 }}
 									viewport={{ once: true, amount: 0.4 }}
 									transition={{ duration: 0.7, delay: 0.12, ease: EASE_OUT }}
-									className='absolute bottom-10 left-[-40px] z-30'>
+									className='absolute bottom-10 -left-10 z-30'>
 									<motion.div
 										animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
 										transition={reduceMotion ? undefined : floatTransition(10, 0.6)}
@@ -304,7 +304,7 @@ export default function FAQ({
 									viewport={{ once: true, amount: 0.4 }}
 									transition={{ duration: 0.7, delay: 0.14, ease: EASE_OUT }}
 									style={{ rotate: -12 }}
-									className='absolute top-[-30px] left-10 z-30'>
+									className='absolute -top-7.5 left-10 z-30'>
 									<motion.div
 										animate={reduceMotion ? undefined : { y: [0, -8, 0] }}
 										transition={reduceMotion ? undefined : floatTransition(11, 0.1)}

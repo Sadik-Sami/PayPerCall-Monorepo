@@ -41,7 +41,7 @@ function CaseStudyCard({
 		<div
 			ref={cardRef}
 			className={cn(
-				'shrink-0 w-[320px] min-w-[320px] sm:w-[350px] sm:min-w-[350px] md:w-[400px] md:min-w-[400px]',
+				'shrink-0 w-[320px] min-w-[320px] sm:w-87.5 sm:min-w-87.5 md:w-100 md:min-w-100',
 				'flex flex-col justify-between rounded-3xl p-8 shadow-lg',
 				bgClass,
 				'text-foreground'

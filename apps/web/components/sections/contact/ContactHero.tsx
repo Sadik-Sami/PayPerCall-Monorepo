@@ -33,7 +33,7 @@ export function ContactHero() {
 						transition={{ duration: 0.5, delay: 0.05, ease: 'easeOut' }}
 						className='mt-6 font-heading text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl'>
 						Let&apos;s Build Your Next
-						<span className='block bg-gradient-to-r from-primary via-pastel-sky-strong to-pastel-lilac-strong bg-clip-text text-transparent'>
+						<span className='block bg-linear-to-r from-primary via-pastel-sky-strong to-pastel-lilac-strong bg-clip-text text-transparent'>
 							Revenue Growth System
 						</span>
 					</motion.h1>

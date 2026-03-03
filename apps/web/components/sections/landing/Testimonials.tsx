@@ -211,7 +211,7 @@ export default function Testimonials() {
 					</p>
 				</motion.div>
 
-				<div className="flex justify-center gap-4 mt-10 mask-[linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
+				<div className="flex justify-center gap-4 mt-10 mask-[linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-185 overflow-hidden">
 					<TestimonialsColumn testimonials={firstColumn} duration={18} />
 					<TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
 					<TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />

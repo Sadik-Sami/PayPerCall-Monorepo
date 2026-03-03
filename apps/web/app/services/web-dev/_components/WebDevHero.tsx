@@ -131,7 +131,7 @@ export function WebDevHero({ className }: { className?: string }) {
 						className="relative flex w-full items-center justify-center"
 					>
 						<div
-							className="w-full max-w-[520px] perspective-[1500px]"
+							className="w-full max-w-130 perspective-[1500px]"
 							style={{
 								transform: 'rotateX(18deg) rotateY(-8deg) rotateZ(2deg)',
 								transformStyle: 'preserve-3d',
@@ -219,7 +219,7 @@ export function WebDevHero({ className }: { className?: string }) {
 							transition={{ delay: 0.3, duration: 0.4 }}
 							className="sm:col-span-1"
 						>
-							<BentoCard className="relative overflow-hidden p-5 h-full flex flex-col items-center justify-center min-h-[140px]">
+							<BentoCard className="relative overflow-hidden p-5 h-full flex flex-col items-center justify-center min-h-35">
 								<div className="absolute inset-0 bg-primary/5 blur-2xl pointer-events-none" aria-hidden />
 								<div className="relative flex items-center gap-2 text-xs font-medium text-muted-foreground mb-3">
 									<span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" aria-hidden />
@@ -257,7 +257,7 @@ export function WebDevHero({ className }: { className?: string }) {
 							transition={{ delay: 0.45, duration: 0.4 }}
 							className="sm:col-span-2"
 						>
-							<BentoCard className="p-5 min-h-[140px] flex flex-col justify-center">
+							<BentoCard className="p-5 min-h-35 flex flex-col justify-center">
 								<div className="mb-3 flex items-center justify-between border-b border-border/80 pb-2">
 									<span className="text-sm font-medium text-foreground">{HERO.deployCard.title}</span>
 									<Rocket className="h-4 w-4 text-muted-foreground" aria-hidden />
