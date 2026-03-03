@@ -8,6 +8,7 @@ export * from './consultation-CTA';
 export * from './ServicesGrid';
 export * from './ServiceCapabilitiesGateway';
 export * from './ValuePropositionSection';
+export * from './StrategicBlueprintSection';
 export * from './TransformationComparisonSection';
 export * from './ROICalculatorSection';
 export * from './TrustBanner';

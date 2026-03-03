@@ -10,6 +10,7 @@ import {
 } from '@/components/services';
 import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
+import { mapCaseStudyToCard } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { Briefcase, ShoppingCart, Shield } from 'lucide-react';
@@ -312,7 +313,7 @@ export default function WordPressPage() {
 			/>
 			<CaseStudyStrip
 				className='max-w-7xl mx-auto py-12 md:py-16'
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Representative WordPress engagements'
 				description='Every WordPress build delivers measurable improvements in speed, security, and content efficiency.'
 			/>

@@ -19,6 +19,7 @@ import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Smartphone, Tablet, Code2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
+import { mapCaseStudyToCard } from '@/types/services';
 
 export const metadata: Metadata = {
 	title: 'Mobile App Development Services | iOS, Android & Cross-Platform | PayPerCall',
@@ -254,7 +255,7 @@ export default function AppDevOverviewPage() {
 				variant='cards'
 			/>
 			<CaseStudyStrip
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Results grounded in performance data'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
 			/>

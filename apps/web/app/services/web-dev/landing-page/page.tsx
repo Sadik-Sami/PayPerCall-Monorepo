@@ -11,6 +11,7 @@ import {
 import heroImageLanding from '@/public/images/slider/slider-2.jpg';
 import { Megaphone, MousePointer, BarChart3 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { mapCaseStudyToCard } from '@/types/services';
 
 export const revalidate = 3600;
 
@@ -274,7 +275,7 @@ export default function LandingPageWebDevPage() {
 				/>
 				<CaseStudyStrip
 					className='py-12 md:py-16 max-w-7xl mx-auto'
-					items={CASE_STUDIES}
+					items={CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Conversion lifts backed by data'
 				/>
 				<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />

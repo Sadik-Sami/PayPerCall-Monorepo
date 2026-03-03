@@ -325,10 +325,10 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 							Interactive ROI Calculator
 						</span>
 					</div>
-					<h2 className='font-heading text-3xl font-extrabold tracking-tight text-foreground text-balance md:text-5xl'>
+					<h2 className='font-heading text-4xl font-extrabold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl'>
 						Project 12-Month Pay Per Call Growth with Real Inputs
 					</h2>
-					<p className='max-w-3xl text-base text-muted-foreground md:text-lg'>
+					<p className='max-w-3xl text-lg text-muted-foreground leading-relaxed'>
 						Model call economics instantly, compare against industry benchmarks, and
 						see how optimized qualification transforms your revenue trajectory.
 					</p>

@@ -15,6 +15,7 @@ import {
 	WEB_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
 } from '@/components/services/nav-items';
+import { mapCaseStudyToCard } from '@/types/services';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import { PremiumServicesGrid } from '@/components/blocks/premium-services-grid';
 import { IndustryExpertiseSection } from '@/components/blocks/industry-expertise-section';
@@ -139,9 +140,10 @@ export default function WebDevOverviewPage() {
 			/>
 			<IntegrationLogos className={cn('w-full bg-background', SECTION_PADDING)} />
 			<CaseStudyStrip
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Results grounded in performance data'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
+				cta={{ text: 'Book a Free Consultation', href: '/contact' }}
 				className={cn('w-full bg-muted/30', SECTION_PADDING)}
 			/>
 			<TestimonialsSection className={cn('w-full bg-background', SECTION_PADDING)} variant='featured' />

@@ -10,6 +10,7 @@ import {
 } from '@/components/services';
 import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
+import { mapCaseStudyToCard } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage3 from '@/public/images/slider/slider-3.jpg';
 import { Tablet, Smartphone, Shield } from 'lucide-react';
@@ -316,7 +317,7 @@ export default function AndroidAppDevPage() {
 			/>
 			<CaseStudyStrip
 				className='max-w-7xl mx-auto py-12 md:py-16'
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Representative Android engagements'
 				description='Every Android build delivers measurable improvements in Play Store ratings, user engagement, and business outcomes.'
 			/>

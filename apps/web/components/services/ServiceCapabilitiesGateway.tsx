@@ -163,10 +163,10 @@ export function ServiceCapabilitiesGateway({
 					viewport={{ once: true }}
 					className='mx-auto max-w-3xl text-center mb-16'
 				>
-					<h2 className='font-heading mb-6 text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-balance'>
+					<h2 className='font-heading mb-6 text-foreground text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-balance'>
 						{title}
 					</h2>
-					<p className='text-xl text-muted-foreground max-w-2xl mx-auto'>{subtitle}</p>
+					<p className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'>{subtitle}</p>
 				</motion.div>
 
 				{/* Cards grid */}

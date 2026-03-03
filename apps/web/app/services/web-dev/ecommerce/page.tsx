@@ -13,6 +13,7 @@ import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeli
 import heroImageCommerce from '@/public/images/slider/slider-1.jpg';
 import { ShoppingBag, Truck, CreditCard } from 'lucide-react';
 import type { Metadata } from 'next';
+import { mapCaseStudyToCard } from '@/types/services';
 
 export const revalidate = 3600;
 
@@ -368,7 +369,7 @@ export default function EcommerceWebDevPage() {
 				/>
 				<CaseStudyStrip
 					className='py-12 md:py-16 max-w-7xl mx-auto'
-					items={CASE_STUDIES}
+					items={CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Commerce case studies anchored in revenue'
 				/>
 				<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />

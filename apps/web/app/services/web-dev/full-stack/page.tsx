@@ -10,6 +10,8 @@ import {
 } from '@/components/services';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
+import { mapCaseStudyToCard } from '@/types/services';
+
 export const revalidate = 3600;
 
 const HERO_CONTENT = {
@@ -275,7 +277,7 @@ export default function FullStackWebDevPage() {
 			/>
 			<CaseStudyStrip
 				className='max-w-7xl mx-auto py-12 md:py-16'
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Representative full-stack engagements'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
 			/>

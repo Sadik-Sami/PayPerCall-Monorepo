@@ -11,6 +11,7 @@ import {
 } from '@/components/services';
 import type { Metadata } from 'next';
 import type { FaqItem, CaseStudyItem } from '@/types/services';
+import { mapCaseStudyToCard } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage3 from '@/public/images/slider/slider-3.jpg';
 import { Shield, Building2, Lock } from 'lucide-react';
@@ -357,7 +358,7 @@ export default function DrupalPage() {
 			/>
 			<CaseStudyStrip
 				className='max-w-7xl mx-auto py-12 md:py-16'
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Enterprise Drupal engagements'
 				description='Every Drupal build delivers security, compliance, and operational efficiency for large organizations.'
 			/>

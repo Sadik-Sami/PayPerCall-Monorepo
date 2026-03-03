@@ -27,27 +27,160 @@ import { containerVariants, itemVariants } from '@/lib/animations';
 
 const INDUSTRIES = [
 	// Row 1
-	{ name: 'Finance & Banking', icon: Banknote, color: 'bg-pastel-blush', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-3xl rounded-bl-none' },
-	{ name: 'E-commerce', icon: ShoppingCart, color: 'bg-pastel-mint', shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Telecom', icon: Phone, color: 'bg-pastel-lilac', shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Real Estate', icon: Building2, color: 'bg-pastel-sky', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl' },
-	{ name: 'Software', icon: Terminal, color: 'bg-pastel-peach', shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Health & Fitness', icon: HeartPulse, color: 'bg-pastel-mint', shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Automotive', icon: Car, color: 'bg-pastel-lilac', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl' },
+	{
+		name: 'Finance & Banking',
+		icon: Banknote,
+		color: 'bg-pastel-blush',
+		border: 'border-pastel-blush-border',
+		ink: 'text-pastel-blush-ink',
+		shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-3xl rounded-bl-none',
+	},
+	{
+		name: 'E-commerce',
+		icon: ShoppingCart,
+		color: 'bg-pastel-mint',
+		border: 'border-pastel-mint-border',
+		ink: 'text-pastel-mint-ink',
+		shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Telecom',
+		icon: Phone,
+		color: 'bg-pastel-lilac',
+		border: 'border-pastel-lilac-border',
+		ink: 'text-pastel-lilac-ink',
+		shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Real Estate',
+		icon: Building2,
+		color: 'bg-pastel-sky',
+		border: 'border-pastel-sky-border',
+		ink: 'text-pastel-sky-ink',
+		shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl',
+	},
+	{
+		name: 'Software',
+		icon: Terminal,
+		color: 'bg-pastel-peach',
+		border: 'border-pastel-peach-border',
+		ink: 'text-pastel-peach-ink',
+		shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Health & Fitness',
+		icon: HeartPulse,
+		color: 'bg-pastel-mint',
+		border: 'border-pastel-mint-border',
+		ink: 'text-pastel-mint-ink',
+		shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Automotive',
+		icon: Car,
+		color: 'bg-pastel-lilac',
+		border: 'border-pastel-lilac-border',
+		ink: 'text-pastel-lilac-ink',
+		shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl',
+	},
 	// Row 2
-	{ name: 'Photo & Video', icon: Video, color: 'bg-pastel-peach', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-3xl rounded-bl-none' },
-	{ name: 'Business', icon: Briefcase, color: 'bg-pastel-peach', shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Startup', icon: Rocket, color: 'bg-pastel-sky', shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Legal Services', icon: Scale, color: 'bg-pastel-sky', shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Non-profit', icon: HeartHandshake, color: 'bg-pastel-peach', shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl' },
+	{
+		name: 'Photo & Video',
+		icon: Video,
+		color: 'bg-pastel-peach',
+		border: 'border-pastel-peach-border',
+		ink: 'text-pastel-peach-ink',
+		shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-3xl rounded-bl-none',
+	},
+	{
+		name: 'Business',
+		icon: Briefcase,
+		color: 'bg-pastel-peach',
+		border: 'border-pastel-peach-border',
+		ink: 'text-pastel-peach-ink',
+		shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Startup',
+		icon: Rocket,
+		color: 'bg-pastel-sky',
+		border: 'border-pastel-sky-border',
+		ink: 'text-pastel-sky-ink',
+		shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Legal Services',
+		icon: Scale,
+		color: 'bg-pastel-sky',
+		border: 'border-pastel-sky-border',
+		ink: 'text-pastel-sky-ink',
+		shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Non-profit',
+		icon: HeartHandshake,
+		color: 'bg-pastel-peach',
+		border: 'border-pastel-peach-border',
+		ink: 'text-pastel-peach-ink',
+		shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl',
+	},
 	// Row 3
-	{ name: 'Govt. & Public Sector', icon: Landmark, color: 'bg-pastel-sky', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-3xl rounded-bl-none' },
-	{ name: 'Sports & Fitness', icon: Dumbbell, color: 'bg-pastel-lilac', shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Gaming', icon: Gamepad2, color: 'bg-pastel-sky', shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Fashion & Apparel', icon: Shirt, color: 'bg-pastel-peach', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl' },
-	{ name: 'Energy & Utilities', icon: Zap, color: 'bg-pastel-mint', shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Agriculture', icon: Leaf, color: 'bg-pastel-mint', shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl' },
-	{ name: 'Logistics', icon: Truck, color: 'bg-pastel-sky', shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl' },
+	{
+		name: 'Govt. & Public Sector',
+		icon: Landmark,
+		color: 'bg-pastel-sky',
+		border: 'border-pastel-sky-border',
+		ink: 'text-pastel-sky-ink',
+		shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-3xl rounded-bl-none',
+	},
+	{
+		name: 'Sports & Fitness',
+		icon: Dumbbell,
+		color: 'bg-pastel-lilac',
+		border: 'border-pastel-lilac-border',
+		ink: 'text-pastel-lilac-ink',
+		shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Gaming',
+		icon: Gamepad2,
+		color: 'bg-pastel-sky',
+		border: 'border-pastel-sky-border',
+		ink: 'text-pastel-sky-ink',
+		shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Fashion & Apparel',
+		icon: Shirt,
+		color: 'bg-pastel-peach',
+		border: 'border-pastel-peach-border',
+		ink: 'text-pastel-peach-ink',
+		shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl',
+	},
+	{
+		name: 'Energy & Utilities',
+		icon: Zap,
+		color: 'bg-pastel-mint',
+		border: 'border-pastel-mint-border',
+		ink: 'text-pastel-mint-ink',
+		shape: 'rounded-tl-3xl rounded-tr-none rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Agriculture',
+		icon: Leaf,
+		color: 'bg-pastel-mint',
+		border: 'border-pastel-mint-border',
+		ink: 'text-pastel-mint-ink',
+		shape: 'rounded-tl-none rounded-tr-3xl rounded-br-3xl rounded-bl-3xl',
+	},
+	{
+		name: 'Logistics',
+		icon: Truck,
+		color: 'bg-pastel-sky',
+		border: 'border-pastel-sky-border',
+		ink: 'text-pastel-sky-ink',
+		shape: 'rounded-tl-3xl rounded-tr-3xl rounded-br-none rounded-bl-3xl',
+	},
 ];
 
 export function IndustryExpertiseSection({ className }: { className?: string }) {
@@ -124,9 +257,15 @@ function IndustryCard({ industry }: { industry: (typeof INDUSTRIES)[0] }) {
 			variants={itemVariants}
 			whileHover={{ y: -8, scale: 1.02 }}
 			transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-			className={`w-36 h-28 sm:w-40 sm:h-32 ${industry.color} text-slate-900 flex flex-col items-center justify-center ${industry.shape} shadow-sm hover:shadow-xl cursor-default border border-border/50`}
+			className={cn(
+				'w-36 h-28 sm:w-40 sm:h-32 flex flex-col items-center justify-center shadow-sm hover:shadow-xl cursor-default border',
+				industry.color,
+				industry.border,
+				industry.ink,
+				industry.shape
+			)}
 		>
-			<Icon className="w-8 h-8 mb-2" strokeWidth={1.5} />
+			<Icon className="w-8 h-8 mb-2 opacity-90" strokeWidth={1.5} aria-hidden="true" />
 			<span className="text-xs font-bold px-2 text-center tracking-tight">{nameFormatter(industry.name)}</span>
 		</motion.div>
 	);

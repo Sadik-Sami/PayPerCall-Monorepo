@@ -14,6 +14,7 @@ import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Lock, Cloud } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
+import { mapCaseStudyToCard } from '@/types/services';
 import {
 	CMS_SERVICE_NAV,
 	CMS_GATEWAY_CONFIG,
@@ -218,7 +219,7 @@ export default function CMSOverviewPage() {
 				variant='cards'
 			/>
 			<CaseStudyStrip
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='CMS transformations grounded in measurable outcomes'
 				description='Every case study highlights the security, efficiency, and editorial improvements that matter.'
 				className='max-w-7xl mx-auto'

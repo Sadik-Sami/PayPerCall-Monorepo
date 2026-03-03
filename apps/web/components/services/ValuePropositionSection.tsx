@@ -125,7 +125,7 @@ export function ValuePropositionSection({ className }: { className?: string }) {
 				</motion.div>
 				<motion.h2
 					variants={reduceMotion ? undefined : itemVariants}
-					className="text-4xl lg:text-6xl font-extrabold tracking-tight text-foreground"
+					className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground"
 				>
 					Why Industry Leaders Choose{' '}
 					<span className="text-primary">Pay Per Call</span>

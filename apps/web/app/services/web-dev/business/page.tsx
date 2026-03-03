@@ -11,6 +11,7 @@ import {
 } from '@/components/services';
 import type { Metadata } from 'next';
 import type { FaqItem } from '@/types/services';
+import { mapCaseStudyToCard } from '@/types/services';
 import heroImage3 from '@/public/images/slider/slider-3.jpg';
 import { Briefcase, Building, Target } from 'lucide-react';
 
@@ -300,7 +301,7 @@ export default function BusinessWebsitesPage() {
 			/>
 			<CaseStudyStrip
 				className='py-12 md:py-16 max-w-7xl mx-auto'
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Case studies focused on outcomes executives value'
 			/>
 			<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />

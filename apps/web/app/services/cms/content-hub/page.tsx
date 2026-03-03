@@ -11,6 +11,7 @@ import {
 } from '@/components/services';
 import type { Metadata } from 'next';
 import type { FaqItem, CaseStudyItem } from '@/types/services';
+import { mapCaseStudyToCard } from '@/types/services';
 import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Cloud, Zap, Globe2 } from 'lucide-react';
@@ -355,7 +356,7 @@ export default function ContentHubPage() {
 			/>
 			<CaseStudyStrip
 				className='max-w-7xl mx-auto py-12 md:py-16'
-				items={CASE_STUDIES}
+				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='Headless CMS transformations'
 				description='Every headless build delivers omnichannel content delivery with API-first architecture.'
 			/>
