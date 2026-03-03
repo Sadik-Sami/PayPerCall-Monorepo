@@ -23,6 +23,7 @@ import {
 	PAY_PER_CALL_GATEWAY_CONFIG,
 	buildGatewayCards,
 } from '@/components/services/nav-items';
+import Industries from "@/components/landing/Industries";
 
 const PAY_PER_CALL_CASE_STUDIES: CaseStudyCardItem[] = [
 	{
@@ -113,6 +114,9 @@ export default function PayPerCallPage() {
 			</div>
 			<div className="w-full bg-background">
 				<TransformationComparisonSection className={SECTION_PADDING} />
+			</div>
+			<div className="w-full bg-muted/30">
+				<Industries variant="pastel" className={SECTION_PADDING} />
 			</div>
 			<div className="w-full bg-muted/30">
 				<StrategicBlueprintSection className={SECTION_PADDING} />

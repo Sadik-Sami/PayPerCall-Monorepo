@@ -66,32 +66,42 @@ const INPUT_BOUNDS: Record<InputKey, { min: number; max: number; step: number }>
 	dealValue: { min: 500, max: 10000, step: 100 },
 };
 
-const METRIC_FIELDS: Array<{
+const CALL_METRIC_FIELDS: Array<{
 	key: InputKey;
 	label: string;
 	prefix?: string;
 	suffix?: string;
 	name: string;
 }> = [
-		{ key: 'leadCost', label: 'Current Lead Cost', prefix: '$', name: 'leadCost' },
-		{ key: 'callCapacity', label: 'Monthly Call Capacity', name: 'callCapacity' },
-		{ key: 'closeRate', label: 'Close Rate', suffix: '%', name: 'closeRate' },
-		{ key: 'dealValue', label: 'Average Deal Value', prefix: '$', name: 'dealValue' },
-	];
+	{ key: 'leadCost', label: 'Current Lead Cost', prefix: '$', name: 'leadCost' },
+	{ key: 'callCapacity', label: 'Monthly Call Capacity', name: 'callCapacity' },
+	{ key: 'closeRate', label: 'Close Rate', suffix: '%', name: 'closeRate' },
+	{ key: 'dealValue', label: 'Average Deal Value', prefix: '$', name: 'dealValue' },
+];
 
-const chartConfig = {
-	optimized: {
-		label: 'Pay Per Call Optimized',
-		color: 'var(--chart-1)',
-	},
-	industry: {
-		label: 'Industry Standard',
-		color: 'var(--chart-2)',
-	},
-	gap: {
-		label: 'Profit Gap',
-		color: 'var(--chart-3)',
-	},
+const LEAD_METRIC_FIELDS: Array<{
+	key: InputKey;
+	label: string;
+	prefix?: string;
+	suffix?: string;
+	name: string;
+}> = [
+	{ key: 'leadCost', label: 'Cost Per Lead (CPL)', prefix: '$', name: 'leadCost' },
+	{ key: 'callCapacity', label: 'Monthly Lead Volume', name: 'callCapacity' },
+	{ key: 'closeRate', label: 'Close Rate', suffix: '%', name: 'closeRate' },
+	{ key: 'dealValue', label: 'Average Deal Value', prefix: '$', name: 'dealValue' },
+];
+
+const CHART_CONFIG_CALL = {
+	optimized: { label: 'Pay Per Call Optimized', color: 'var(--chart-1)' },
+	industry: { label: 'Industry Standard', color: 'var(--chart-2)' },
+	gap: { label: 'Profit Gap', color: 'var(--chart-3)' },
+} satisfies ChartConfig;
+
+const CHART_CONFIG_LEAD = {
+	optimized: { label: 'Pay Per Lead Optimized', color: 'var(--chart-1)' },
+	industry: { label: 'Industry Standard', color: 'var(--chart-2)' },
+	gap: { label: 'Profit Gap', color: 'var(--chart-3)' },
 } satisfies ChartConfig;
 
 const compactCurrency = new Intl.NumberFormat('en-US', {
@@ -189,9 +199,11 @@ function calculateRoiMetrics(inputs: RoiInputs) {
 function RoiDualTooltip({
 	active,
 	payload,
+	volumeLabel = 'calls',
 }: {
 	active?: boolean;
 	payload?: Array<{ payload?: MonthlyChartPoint }>;
+	volumeLabel?: string;
 }) {
 	if (!active || !payload?.length) return null;
 	const point = payload?.[0]?.payload;
@@ -205,7 +217,7 @@ function RoiDualTooltip({
 			<div className='flex items-center justify-between gap-4 border-b border-border/60 pb-2'>
 				<span className='font-semibold'>{`Month ${point.monthIndex} (${point.month})`}</span>
 				<span className='font-mono font-semibold tabular-nums text-muted-foreground'>
-					{`${integerNumber.format(point.volume)} calls`}
+					{`${integerNumber.format(point.volume)} ${volumeLabel}`}
 				</span>
 			</div>
 
@@ -233,8 +245,26 @@ function RoiDualTooltip({
 	);
 }
 
-export function ROICalculatorSection({ className }: { className?: string }) {
+export type ROICalculatorSectionProps = {
+	className?: string;
+	mode?: 'call' | 'lead';
+};
+
+export function ROICalculatorSection({ className, mode = 'call' }: ROICalculatorSectionProps) {
 	const reduceMotion = useReducedMotion();
+	const metricFields = mode === 'lead' ? LEAD_METRIC_FIELDS : CALL_METRIC_FIELDS;
+	const chartConfig = mode === 'lead' ? CHART_CONFIG_LEAD : CHART_CONFIG_CALL;
+	const volumeLabel = mode === 'lead' ? 'leads' : 'calls';
+	const sectionTitle =
+		mode === 'lead'
+			? 'Project 12-Month Pay Per Lead Growth with Real Inputs'
+			: 'Project 12-Month Pay Per Call Growth with Real Inputs';
+	const sectionDescription =
+		mode === 'lead'
+			? 'Model lead economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.'
+			: 'Model call economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.';
+	const optimizedLabel = mode === 'lead' ? 'Pay Per Lead Optimized' : 'Pay Per Call Optimized';
+
 	const [inputs, setInputs] = useState<RoiInputs>(DEFAULT_INPUTS);
 	const [chartMode, setChartMode] = useState<ChartMode>('optimized');
 	const [activeIndex, setActiveIndex] = useState<number>(11);
@@ -326,11 +356,10 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 						</span>
 					</div>
 					<h2 className='font-heading text-4xl font-extrabold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl'>
-						Project 12-Month Pay Per Call Growth with Real Inputs
+						{sectionTitle}
 					</h2>
 					<p className='max-w-3xl text-lg text-muted-foreground leading-relaxed'>
-						Model call economics instantly, compare against industry benchmarks, and
-						see how optimized qualification transforms your revenue trajectory.
+						{sectionDescription}
 					</p>
 				</motion.div>
 
@@ -382,7 +411,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 						</div>
 
 						<div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-							{METRIC_FIELDS.map((field) => {
+							{metricFields.map((field) => {
 								const bounds = INPUT_BOUNDS[field.key];
 								const value = inputs[field.key];
 								return (
@@ -588,7 +617,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 									: 'text-muted-foreground hover:text-foreground'
 							)}
 						>
-							Pay Per Call Optimized
+							{optimizedLabel}
 						</button>
 					</div>
 				</div>
@@ -624,7 +653,10 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 								minTickGap={6}
 							/>
 							<YAxis hide />
-							<ChartTooltip cursor={false} content={<RoiDualTooltip />} />
+							<ChartTooltip
+								cursor={false}
+								content={(props) => <RoiDualTooltip {...props} volumeLabel={volumeLabel} />}
+							/>
 							<Area
 								type='natural'
 								dataKey='industry'
@@ -657,7 +689,7 @@ export function ROICalculatorSection({ className }: { className?: string }) {
 					</div>
 					<div className='flex flex-wrap items-center gap-3 text-foreground'>
 						<span className='font-semibold'>{`Month ${activePoint.monthIndex} (${activePoint.month})`}</span>
-						<span className='tabular-nums'>{`${integerNumber.format(activePoint.volume)} calls`}</span>
+						<span className='tabular-nums'>{`${integerNumber.format(activePoint.volume)} ${volumeLabel}`}</span>
 						<span className='tabular-nums text-pastel-peach-ink'>
 							{compactCurrency.format(activePoint.industry)}
 						</span>

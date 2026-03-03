@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
 import {
 	PhoneOff,
 	FileQuestion,
@@ -11,6 +12,12 @@ import {
 	TrendingUp,
 	Wallet,
 	ArrowRight,
+	Inbox,
+	Users,
+	UserCheck,
+	BarChart3,
+	Filter,
+	Zap,
 } from 'lucide-react';
 import { cn } from '@workspace/ui/lib/utils';
 import {
@@ -20,7 +27,67 @@ import {
 } from '@/lib/animations';
 import { Button } from '@workspace/ui/components/button';
 
-const BEFORE_ITEMS = [
+export type TransformationBeforeItem = {
+	title: string;
+	description: string;
+	/** Icon name (string) for Server Component compatibility; or LucideIcon for Client-side */
+	icon: string | LucideIcon;
+};
+
+export type TransformationAfterItem = {
+	title: string;
+	description: string;
+	/** Icon name (string) for Server Component compatibility; or LucideIcon for Client-side */
+	icon: string | LucideIcon;
+	pastel: 'pastel-mint' | 'pastel-sky' | 'pastel-lilac' | 'pastel-peach';
+};
+
+const TRANSFORM_ICON_MAP: Record<string, LucideIcon> = {
+	PhoneOff,
+	FileQuestion,
+	Clock,
+	PhoneCall,
+	ShieldCheck,
+	TrendingUp,
+	Wallet,
+	Inbox,
+	Users,
+	UserCheck,
+	BarChart3,
+	Filter,
+	Zap,
+};
+
+function resolveTransformIcon(icon: string | LucideIcon): LucideIcon {
+	if (typeof icon === 'string') return TRANSFORM_ICON_MAP[icon] ?? Clock;
+	return icon;
+}
+
+export type TransformationStat = {
+	value: string;
+	label: string;
+	pastel: 'pastel-mint' | 'pastel-sky' | 'pastel-lilac' | 'pastel-peach';
+};
+
+export type TransformationComparisonSectionProps = {
+	className?: string;
+	ctaHref?: string;
+	ctaLabel?: string;
+	badgeLabel?: string;
+	titleHighlight?: string;
+	description?: string;
+	beforeTitle?: string;
+	beforeDescription?: string;
+	afterTitle?: string;
+	afterDescription?: string;
+	beforeItems?: TransformationBeforeItem[];
+	afterItems?: TransformationAfterItem[];
+	stats?: TransformationStat[];
+	readyTitle?: string;
+	readyDescription?: string;
+};
+
+const DEFAULT_BEFORE_ITEMS: TransformationBeforeItem[] = [
 	{
 		title: 'High No-Answer Rates',
 		description:
@@ -39,44 +106,44 @@ const BEFORE_ITEMS = [
 			'Top closers sitting idle while waiting for qualified meetings to appear on the calendar. Revenue stalls when volume drops.',
 		icon: Clock,
 	},
-] as const;
+];
 
-const AFTER_ITEMS = [
+const DEFAULT_AFTER_ITEMS: TransformationAfterItem[] = [
 	{
 		title: '100% Pick-up',
 		description:
 			'They call you. No more outbound chasing. Every call is a hot lead with verified intent—your team spends time closing, not dialing.',
 		icon: PhoneCall,
-		pastel: 'pastel-mint' as const,
+		pastel: 'pastel-mint',
 	},
 	{
 		title: 'Pre-Qualified Callers',
 		description:
 			'Every caller passes through a strategic filter before talking to sales. Only purchase-ready prospects reach your closers.',
 		icon: ShieldCheck,
-		pastel: 'pastel-sky' as const,
+		pastel: 'pastel-sky',
 	},
 	{
 		title: 'Predictable Scaling',
 		description:
 			'Add call volume on demand. Scale your media spend with mathematical certainty and see ROI improve as call quality increases.',
 		icon: TrendingUp,
-		pastel: 'pastel-lilac' as const,
+		pastel: 'pastel-lilac',
 	},
 	{
 		title: 'Max Commissions',
 		description:
 			'Closers spend 100% of their day closing high-intent calls, leading to record-breaking payouts and sustainable team growth.',
 		icon: Wallet,
-		pastel: 'pastel-peach' as const,
+		pastel: 'pastel-peach',
 	},
-] as const;
+];
 
-const STATS = [
-	{ value: '84%', label: 'Efficiency Up', pastel: 'pastel-sky' as const },
-	{ value: '3.5x', label: 'ROI Average', pastel: 'pastel-mint' as const },
-	{ value: '0h', label: 'Cold Calling', pastel: 'pastel-lilac' as const },
-] as const;
+const DEFAULT_STATS: TransformationStat[] = [
+	{ value: '84%', label: 'Efficiency Up', pastel: 'pastel-sky' },
+	{ value: '3.5x', label: 'ROI Average', pastel: 'pastel-mint' },
+	{ value: '0h', label: 'Cold Calling', pastel: 'pastel-lilac' },
+];
 
 const getPastelClasses = (pastel: string) => {
 	switch (pastel) {
@@ -112,11 +179,19 @@ export function TransformationComparisonSection({
 	className,
 	ctaHref = '/contact',
 	ctaLabel = 'Upgrade Your Sales Engine',
-}: {
-	className?: string;
-	ctaHref?: string;
-	ctaLabel?: string;
-}) {
+	badgeLabel = 'Transformation Comparison',
+	titleHighlight = 'Call Efficiency',
+	description = 'Stop burning leads and start closing high-intent inbound calls. Pay Per Call bridges the gap between manual chaos and predictable growth.',
+	beforeTitle = 'Before Pay Per Call',
+	beforeDescription = 'The manual grind of chasing leads and surviving on low-quality cold outreach.',
+	afterTitle = 'The Pay Per Call Effect',
+	afterDescription = 'Dominating the market with a stream of high-intent inbound calls and pre-qualified closings.',
+	beforeItems = DEFAULT_BEFORE_ITEMS,
+	afterItems = DEFAULT_AFTER_ITEMS,
+	stats = DEFAULT_STATS,
+	readyTitle = 'Ready to switch?',
+	readyDescription = 'Join 200+ sales teams already using Pay Per Call to scale conversions.',
+}: TransformationComparisonSectionProps) {
 	const reduceMotion = useReducedMotion();
 	const containerAnimation = reduceMotion ? { hidden: {}, visible: {} } : containerVariants;
 	const itemAnimation = reduceMotion ? { hidden: {}, visible: {} } : itemVariants;
@@ -143,21 +218,20 @@ export function TransformationComparisonSection({
 						variants={itemAnimation}
 						className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6"
 					>
-						Transformation Comparison
+						{badgeLabel}
 					</motion.span>
 					<motion.h2
 						id="transformation-heading"
 						variants={itemAnimation}
 						className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-foreground text-balance mb-6"
 					>
-						The Evolution of <span className="text-primary">Call Efficiency</span>
+						The Evolution of <span className="text-primary">{titleHighlight}</span>
 					</motion.h2>
 					<motion.p
 						variants={itemAnimation}
 						className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
 					>
-						Stop burning leads and start closing high-intent inbound calls. Pay Per Call bridges
-						the gap between manual chaos and predictable growth.
+						{description}
 					</motion.p>
 				</motion.div>
 
@@ -193,15 +267,15 @@ export function TransformationComparisonSection({
 								The Struggle
 							</p>
 							<h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-foreground">
-								Before Pay Per Call
+								{beforeTitle}
 							</h3>
 							<p className="text-muted-foreground leading-relaxed max-w-md">
-								The manual grind of chasing leads and surviving on low-quality cold outreach.
+								{beforeDescription}
 							</p>
 						</div>
 						<div className="space-y-4">
-							{BEFORE_ITEMS.map((item) => {
-								const Icon = item.icon;
+							{beforeItems.map((item) => {
+								const Icon = resolveTransformIcon(item.icon);
 								return (
 									<motion.article
 										key={item.title}
@@ -245,16 +319,15 @@ export function TransformationComparisonSection({
 								The Solution
 							</p>
 							<h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-foreground">
-								The Pay Per Call Effect
+								{afterTitle}
 							</h3>
 							<p className="text-muted-foreground leading-relaxed max-w-md">
-								Dominating the market with a stream of high-intent inbound calls and
-								pre-qualified closings.
+								{afterDescription}
 							</p>
 						</div>
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
-							{AFTER_ITEMS.map((item) => {
-								const Icon = item.icon;
+							{afterItems.map((item) => {
+								const Icon = resolveTransformIcon(item.icon);
 								const classes = getPastelClasses(item.pastel);
 								return (
 									<motion.article
@@ -318,13 +391,13 @@ export function TransformationComparisonSection({
 						className="lg:col-span-1 rounded-3xl border border-border bg-card p-8 flex flex-col justify-center text-center lg:text-left"
 					>
 						<h4 className="font-heading text-2xl font-bold text-foreground mb-2">
-							Ready to switch?
+							{readyTitle}
 						</h4>
 						<p className="text-muted-foreground text-sm">
-							Join 200+ sales teams already using Pay Per Call to scale conversions.
+							{readyDescription}
 						</p>
 					</motion.div>
-					{STATS.map((stat, index) => {
+					{stats.map((stat, index) => {
 						const classes = getPastelClasses(stat.pastel);
 						return (
 							<motion.div

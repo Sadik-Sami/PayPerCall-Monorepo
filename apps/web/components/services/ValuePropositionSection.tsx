@@ -2,11 +2,15 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
 import {
 	ShieldCheck,
 	Shield,
 	FileCheck,
 	BarChart3,
+	UserCheck,
+	Filter,
+	Zap,
 	X,
 	Check,
 	Star,
@@ -19,38 +23,76 @@ import {
 	cardVariants,
 } from '@/lib/animations';
 
-const VALUE_CARDS = [
+export type ValuePropositionCard = {
+	title: string;
+	description: string;
+	/** Icon name (string) for Server Component compatibility; or LucideIcon for Client-side usage */
+	icon: string | LucideIcon;
+	theme: 'emerald' | 'purple' | 'amber' | 'blue';
+};
+
+const VALUE_ICON_MAP: Record<string, LucideIcon> = {
+	UserCheck,
+	Filter,
+	FileCheck,
+	Zap,
+	ShieldCheck,
+	Shield,
+	BarChart3,
+};
+
+function resolveValueIcon(icon: string | LucideIcon): LucideIcon {
+	if (typeof icon === 'string') return VALUE_ICON_MAP[icon] ?? Zap;
+	return icon;
+}
+
+export type ValueTransformationPair = {
+	before: string;
+	after: string;
+	featured?: boolean;
+};
+
+export type ValuePropositionSectionProps = {
+	className?: string;
+	badgeLabel?: string;
+	titleHighlight?: string;
+	description?: string;
+	valueCards?: ValuePropositionCard[];
+	transformationPairs?: ValueTransformationPair[];
+};
+
+const DEFAULT_VALUE_CARDS: ValuePropositionCard[] = [
 	{
 		title: 'Verified Intent',
 		description:
 			'Every caller is strictly vetted through a multi-step verification process to ensure purchase readiness.',
 		icon: ShieldCheck,
-		theme: 'emerald' as const,
+		theme: 'emerald',
 	},
 	{
 		title: 'Zero Fraud',
 		description:
 			'Our AI-driven filtering blocks 99.9% of bots and spam callers before they ever reach your team.',
 		icon: Shield,
-		theme: 'purple' as const,
+		theme: 'purple',
 	},
 	{
 		title: 'TCPA Compliant',
 		description:
 			'Full legal compliance with real-time litigator scrubbing and documented opt-ins for every call.',
 		icon: FileCheck,
-		theme: 'amber' as const,
+		theme: 'amber',
 	},
 	{
 		title: 'Real-time Analytics',
 		description:
 			'Granular data on call duration, recording analysis, and conversion pathing at your fingertips.',
 		icon: BarChart3,
-		theme: 'blue' as const,
+		theme: 'blue',
 	},
 ];
 
-const TRANSFORMATION_PAIRS = [
+const DEFAULT_TRANSFORMATION_PAIRS: ValueTransformationPair[] = [
 	{ before: 'Chasing form fills', after: 'High-Intent Calls', featured: true },
 	{ before: '< 5% Pick-up Rate', after: '100% Pick-up Rate' },
 	{ before: 'Compliance Risk', after: 'TCPA Certified' },
@@ -95,7 +137,14 @@ const getCardStyles = (theme: string) => {
 	}
 };
 
-export function ValuePropositionSection({ className }: { className?: string }) {
+export function ValuePropositionSection({
+	className,
+	badgeLabel = 'The Pay Per Call Advantage',
+	titleHighlight = 'Pay Per Call',
+	description = "We've reimagined the inbound acquisition funnel. No more chasing dead leads—just high-intent calls delivered in real-time.",
+	valueCards = DEFAULT_VALUE_CARDS,
+	transformationPairs = DEFAULT_TRANSFORMATION_PAIRS,
+}: ValuePropositionSectionProps) {
 	const reduceMotion = useReducedMotion();
 
 	return (
@@ -120,7 +169,7 @@ export function ValuePropositionSection({ className }: { className?: string }) {
 						aria-hidden
 					/>
 					<span className="text-[10px] font-bold text-primary uppercase tracking-widest">
-						The Pay Per Call Advantage
+						{badgeLabel}
 					</span>
 				</motion.div>
 				<motion.h2
@@ -128,14 +177,13 @@ export function ValuePropositionSection({ className }: { className?: string }) {
 					className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground"
 				>
 					Why Industry Leaders Choose{' '}
-					<span className="text-primary">Pay Per Call</span>
+					<span className="text-primary">{titleHighlight}</span>
 				</motion.h2>
 				<motion.p
 					variants={reduceMotion ? undefined : itemVariants}
 					className="text-lg text-muted-foreground max-w-2xl mx-auto"
 				>
-					We&apos;ve reimagined the inbound acquisition funnel. No more
-					chasing dead leads—just high-intent calls delivered in real-time.
+					{description}
 				</motion.p>
 			</motion.div>
 
@@ -147,9 +195,9 @@ export function ValuePropositionSection({ className }: { className?: string }) {
 			>
 				{/* Left column: Value cards */}
 				<div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-					{VALUE_CARDS.map((card) => {
+					{valueCards.map((card) => {
 						const styles = getCardStyles(card.theme);
-						const Icon = card.icon;
+						const Icon = resolveValueIcon(card.icon);
 						return (
 							<motion.div
 								key={card.title}
@@ -210,10 +258,10 @@ export function ValuePropositionSection({ className }: { className?: string }) {
 							</p>
 						</div>
 						<div className="grow flex flex-col p-6 gap-4">
-							{TRANSFORMATION_PAIRS.map((pair) => (
+							{transformationPairs.map((pair) => (
 								<div key={pair.before} className="grid grid-cols-2 gap-4">
 									<div className="p-4 rounded-2xl bg-muted/50 dark:bg-slate-800/50 border border-border">
-										{pair === TRANSFORMATION_PAIRS[0] && (
+										{pair === transformationPairs[0] && (
 											<span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest block mb-2">
 												Before
 											</span>
@@ -229,7 +277,7 @@ export function ValuePropositionSection({ className }: { className?: string }) {
 												<Star className="w-4 h-4 text-primary fill-primary" />
 											</div>
 										)}
-										{pair === TRANSFORMATION_PAIRS[0] && (
+										{pair === transformationPairs[0] && (
 											<span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-2">
 												After
 											</span>

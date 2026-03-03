@@ -338,7 +338,7 @@ export const PAY_PER_LEAD_GATEWAY_CONFIG: GatewaySectionConfig = {
 		'Select your lead acquisition model. Our gateway delivers qualified leads directly to your CRM or sales team.',
 	primaryCta: { label: 'Start Your Lead Blueprint', href: '/contact' },
 	primaryCtaNote: 'No commitment required. Free 30-minute consultation.',
-	columns: 2,
+	columns: 3,
 	ctaLabels: {
 		'/services/pay-per-lead/exclusive': 'Explore Exclusive Leads',
 		'/services/pay-per-lead/shared': 'Explore Shared Leads',

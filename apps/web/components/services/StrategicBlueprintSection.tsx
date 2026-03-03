@@ -1,11 +1,45 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { Target, PhoneCall, Activity, TrendingUp } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { Target, PhoneCall, Activity, TrendingUp, Filter, Database } from 'lucide-react';
 import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, cardVariants, itemVariants } from '@/lib/animations';
 
-const STEPS = [
+export type BlueprintStep = {
+	title: string;
+	description: string;
+	/** Icon name (string) for Server Component compatibility; or LucideIcon for Client-side */
+	icon: string | LucideIcon;
+	bg: string;
+	border: string;
+	iconCircle: string;
+	numberAccent: string;
+};
+
+const BLUEPRINT_ICON_MAP: Record<string, LucideIcon> = {
+	Target,
+	Filter,
+	Database,
+	TrendingUp,
+	PhoneCall,
+	Activity,
+};
+
+function resolveBlueprintIcon(icon: string | LucideIcon): LucideIcon {
+	if (typeof icon === 'string') return BLUEPRINT_ICON_MAP[icon] ?? Target;
+	return icon;
+}
+
+export type StrategicBlueprintSectionProps = {
+	className?: string;
+	badgeLabel?: string;
+	title?: string;
+	description?: string;
+	steps?: BlueprintStep[];
+};
+
+const DEFAULT_STEPS: BlueprintStep[] = [
 	{
 		title: 'Define Vertical',
 		description:
@@ -46,9 +80,15 @@ const STEPS = [
 		iconCircle: 'bg-pastel-peach-strong text-primary-foreground',
 		numberAccent: 'text-pastel-peach-strong/40',
 	},
-] as const;
+];
 
-export function StrategicBlueprintSection({ className }: { className?: string }) {
+export function StrategicBlueprintSection({
+	className,
+	badgeLabel = 'Strategic Blueprint',
+	title = 'Your Blueprint to Inbound Calls',
+	description = 'We simplify the complex world of pay-per-call into four actionable steps designed for rapid scaling and high-intent conversions.',
+	steps = DEFAULT_STEPS,
+}: StrategicBlueprintSectionProps) {
 	const reduceMotion = useReducedMotion();
 
 	return (
@@ -64,20 +104,19 @@ export function StrategicBlueprintSection({ className }: { className?: string })
 					variants={reduceMotion ? undefined : itemVariants}
 					className="inline-flex rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
 				>
-					Strategic Blueprint
+					{badgeLabel}
 				</motion.span>
 				<motion.h2
 					variants={reduceMotion ? undefined : itemVariants}
 					className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl"
 				>
-					Your Blueprint to Inbound Calls
+					{title}
 				</motion.h2>
 				<motion.p
 					variants={reduceMotion ? undefined : itemVariants}
 					className="mx-auto max-w-2xl text-lg text-muted-foreground leading-relaxed"
 				>
-					We simplify the complex world of pay-per-call into four actionable steps designed for rapid
-					scaling and high-intent conversions.
+					{description}
 				</motion.p>
 			</motion.div>
 
@@ -88,8 +127,8 @@ export function StrategicBlueprintSection({ className }: { className?: string })
 				viewport={{ once: true, margin: '-60px' }}
 				className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
 			>
-				{STEPS.map((step, index) => {
-					const Icon = step.icon;
+				{steps.map((step, index) => {
+					const Icon = resolveBlueprintIcon(step.icon);
 					return (
 						<motion.article
 							key={step.title}
