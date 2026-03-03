@@ -23,3 +23,4 @@ export * from './service-comparison';
 export * from './timeline-steps';
 export * from './deliverables-section';
 export * from './trending-up';
+export * from './pay-per-call';
