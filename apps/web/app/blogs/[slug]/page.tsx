@@ -3,9 +3,9 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Clock } from 'lucide-react';
 import { getBlogBySlug } from '@/lib/api/blogs';
-import { BlockRenderer } from '@/components/blog/BlockRenderer';
-import { ArticleJsonLd } from '@/components/blog/ArticleJsonLd';
-import { AuthorInfo } from '@/components/blog/AuthorInfo';
+import { BlockRenderer } from '@/components/domains/blog/BlockRenderer';
+import { ArticleJsonLd } from '@/components/domains/blog/ArticleJsonLd';
+import { AuthorInfo } from '@/components/domains/blog/AuthorInfo';
 
 export const revalidate = 60;
 

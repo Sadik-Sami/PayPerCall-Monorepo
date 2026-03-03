@@ -1,6 +1,6 @@
-import type { ServiceNavItem } from './types';
+import type { ServiceNavItem } from '@/components/sections/services/shared/types';
 import type { LucideIcon } from 'lucide-react';
-import type { GatewayIconKey } from './ServiceCapabilitiesGateway';
+import type { GatewayIconKey } from '@/components/sections/services/shared/ServiceCapabilitiesGateway';
 import {
 	Code2,
 	CircuitBoard,

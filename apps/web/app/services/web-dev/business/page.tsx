@@ -8,7 +8,7 @@ import {
 	type SuccessOutcome,
 	ServiceComparison,
 	TrendingUp,
-} from '@/components/services';
+} from '@/components/sections/services';
 import type { Metadata } from 'next';
 import type { FaqItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/types/services';

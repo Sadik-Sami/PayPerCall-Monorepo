@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { FooterColumn } from './footer-column';
-import { SocialLinks } from './social-links';
+import { FooterColumn } from './FooterColumn';
+import { SocialLinks } from './SocialLinks';
 import { footerData } from '../navbar/data';
 
 export function Footer() {

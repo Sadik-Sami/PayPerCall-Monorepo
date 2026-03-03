@@ -8,7 +8,7 @@ import {
 	IntegrationLogos,
 	ResultsGallery,
 	ProcessSteps,
-} from '@/components/services';
+} from '@/components/sections/services';
 import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
 import heroImageCommerce from '@/public/images/slider/slider-1.jpg';
 import { ShoppingBag, Truck, CreditCard } from 'lucide-react';

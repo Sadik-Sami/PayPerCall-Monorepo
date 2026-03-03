@@ -8,11 +8,11 @@ import {
 	DeliverablesSection,
 	IntegrationLogos,
 	ServiceComparison,
-} from '@/components/services';
+} from '@/components/sections/services';
 import type { Metadata } from 'next';
 import type { FaqItem, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/types/services';
-import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
+import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
 import heroImage3 from '@/public/images/slider/slider-3.jpg';
 import { Shield, Building2, Lock } from 'lucide-react';
 

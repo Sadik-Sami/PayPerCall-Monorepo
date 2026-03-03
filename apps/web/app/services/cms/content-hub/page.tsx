@@ -8,11 +8,11 @@ import {
 	IntegrationLogos,
 	ResultsGallery,
 	TrendingUp,
-} from '@/components/services';
+} from '@/components/sections/services';
 import type { Metadata } from 'next';
 import type { FaqItem, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/types/services';
-import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
+import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Cloud, Zap, Globe2 } from 'lucide-react';
 

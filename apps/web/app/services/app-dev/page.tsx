@@ -9,12 +9,12 @@ import {
 	ResultsShowcase,
 	TestimonialsSection,
 	IntegrationLogos,
-} from '@/components/services';
+} from '@/components/sections/services';
 import {
 	APP_DEV_SERVICE_NAV,
 	APP_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
-} from '@/components/services/nav-items';
+} from '@/lib/services/nav-items';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Smartphone, Tablet, Code2 } from 'lucide-react';
 import type { Metadata } from 'next';

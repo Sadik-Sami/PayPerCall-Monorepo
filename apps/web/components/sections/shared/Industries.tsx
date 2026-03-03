@@ -178,7 +178,7 @@ export default function Industries({
 										className={cn(
 											'mb-3 p-3 rounded-lg transition-all duration-300',
 											isPastel
-												? 'bg-white/70 dark:bg-black/10 text-primary group-hover:scale-110 group-hover:rotate-3'
+												? 'bg-white/70 dark:bg-background group-hover:scale-110 group-hover:rotate-3'
 												: 'bg-primary/10 text-primary group-hover:bg-primary/20 group-hover:scale-105'
 										)}
 									>

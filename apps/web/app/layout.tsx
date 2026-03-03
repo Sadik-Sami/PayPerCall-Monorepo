@@ -1,7 +1,7 @@
-import { Providers } from '@/components/providers';
+import { Providers } from '@/components/shared/Providers';
 import '@workspace/ui/globals.css';
-import { Navbar } from '@/components/navbar/navbar';
-import { Footer } from '@/components/footer/footer';
+import { Navbar } from '@/components/shared/navbar/Navbar';
+import { Footer } from '@/components/shared/footer/Footer';
 import { gesistSans, googleSansFlex } from './fonts';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from '@workspace/ui/components/sonner';

@@ -9,16 +9,16 @@ import {
 	ResultsShowcase,
 	TestimonialsSection,
 	IntegrationLogos,
-} from '@/components/services';
+} from '@/components/sections/services';
 import {
 	WEB_DEV_SERVICE_NAV,
 	WEB_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
-} from '@/components/services/nav-items';
+} from '@/lib/services/nav-items';
 import { mapCaseStudyToCard } from '@/types/services';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
-import { PremiumServicesGrid } from '@/components/blocks/premium-services-grid';
-import { IndustryExpertiseSection } from '@/components/blocks/industry-expertise-section';
+import { PremiumServicesGrid } from '@/components/sections/blocks/PremiumServicesGrid';
+import { IndustryExpertiseSection } from '@/components/sections/blocks/IndustryExpertiseSection';
 import { WebDevHero } from './_components';
 
 const PROCESS_STEPS = [

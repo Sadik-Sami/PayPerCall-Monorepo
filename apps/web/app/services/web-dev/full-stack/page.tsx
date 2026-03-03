@@ -7,7 +7,7 @@ import {
 	TimelineSteps,
 	IntegrationLogos,
 	DeliverablesSection,
-} from '@/components/services';
+} from '@/components/sections/services';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import { mapCaseStudyToCard } from '@/types/services';

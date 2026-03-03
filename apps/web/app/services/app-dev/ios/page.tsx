@@ -7,11 +7,11 @@ import {
 	ClientSuccessBreakdown,
 	DeliverablesSection,
 	IntegrationLogos,
-} from '@/components/services';
+} from '@/components/sections/services';
 import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/types/services';
-import type { SuccessOutcome } from '@/components/services/client-success-breakdown';
+import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
 import heroImage2 from '@/public/images/slider/slider-2.jpg';
 import { Smartphone, AppWindow, Shield } from 'lucide-react';
 

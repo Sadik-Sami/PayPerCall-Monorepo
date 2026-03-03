@@ -86,7 +86,6 @@ apps/web/
 │   │   ├── Industries.tsx
 │   │   ├── steps.tsx
 │   │   ├── testimonials.tsx
-│   │   ├── FounderInsight.tsx
 │   │   ├── FAQ.tsx
 │   │   ├── cta.tsx
 │   │   └── techSpotlight.tsx
@@ -186,7 +185,6 @@ apps/web/
 - **Industries**: Industry showcase grid
 - **HowItWorks**: Process steps visualization
 - **Testimonials**: Client testimonials carousel
-- **FounderInsight**: Founder story section
 - **FAQ**: Frequently asked questions
 - **CTA**: Call-to-action section
 

@@ -1,4 +1,4 @@
-import { HeroSection } from "@/components/blocks/hero-1";
+import { HeroSection } from "@/components/sections/blocks/HeroSection";
 import { InfiniteSlider } from "@workspace/ui/components/infinite-slider";
 import appleIcon from '@/public/icons/apple.svg'
 import googleIcon from '@/public/icons/google.svg'
@@ -15,15 +15,15 @@ import {
 	StrategicBlueprintSection,
 	TransformationComparisonSection,
 	ValuePropositionSection,
-} from '@/components/services';
-import FAQ from '@/components/landing/FAQ';
+} from '@/components/sections/services';
+import FAQ from '@/components/sections/shared/FAQ';
 import type { CaseStudyCardItem, FaqItem } from '@/types/services';
 import {
 	PAY_PER_CALL_SERVICE_NAV,
 	PAY_PER_CALL_GATEWAY_CONFIG,
 	buildGatewayCards,
-} from '@/components/services/nav-items';
-import Industries from "@/components/landing/Industries";
+} from '@/lib/services/nav-items';
+import Industries from "@/components/sections/shared/Industries";
 
 const PAY_PER_CALL_CASE_STUDIES: CaseStudyCardItem[] = [
 	{

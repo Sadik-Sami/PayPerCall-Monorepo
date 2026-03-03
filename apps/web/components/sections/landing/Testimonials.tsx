@@ -1,5 +1,5 @@
 "use client";
-import { TestimonialsColumn } from "@/components/blocks/testimonials-columns-1";
+import { TestimonialsColumn } from "@/components/sections/blocks/TestimonialsColumn";
 import { motion } from "framer-motion";
 
 const testimonials = [

@@ -7,7 +7,7 @@ import {
 	ClientSuccessBreakdown,
 	type SuccessOutcome,
 	ResultsGallery,
-} from '@/components/services';
+} from '@/components/sections/services';
 import heroImageLanding from '@/public/images/slider/slider-2.jpg';
 import { Megaphone, MousePointer, BarChart3 } from 'lucide-react';
 import type { Metadata } from 'next';

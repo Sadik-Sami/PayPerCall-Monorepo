@@ -4,11 +4,11 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { navigationData } from './data';
-import { DesktopDropdown } from './desktop-dropdown';
-import { MobileMenuItem } from './mobile-menu-item';
+import { DesktopDropdown } from './DesktopDropdown';
+import { MobileMenuItem } from './MobileMenuItem';
 import { dropdownContainerVariants, mobileMenuVariants, mobileItemVariants } from './animations';
 import Link from 'next/link';
-import { ModeToggle } from '../mode-toggle';
+import { ModeToggle } from '../ModeToggle';
 import logo from '@/public/logo.png';
 import Image from 'next/image';
 

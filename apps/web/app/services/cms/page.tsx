@@ -9,7 +9,7 @@ import {
 	ResultsShowcase,
 	TestimonialsSection,
 	IntegrationLogos,
-} from '@/components/services';
+} from '@/components/sections/services';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { ShieldCheck, Lock, Cloud } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -19,7 +19,7 @@ import {
 	CMS_SERVICE_NAV,
 	CMS_GATEWAY_CONFIG,
 	buildGatewayCards,
-} from '@/components/services/nav-items';
+} from '@/lib/services/nav-items';
 
 export const metadata: Metadata = {
 	title: 'CMS Development Services | WordPress, Drupal, Headless CMS | PayPerCall',

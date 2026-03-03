@@ -7,9 +7,9 @@ import {
 	DEFAULT_DATA_DRIVEN_FEATURES,
 	StandardVsOptimizedMicroCard,
 	SECTION_PADDING,
-} from '@/components/services';
-import FAQ from '@/components/landing/FAQ';
-import { ConsultationCTA } from '@/components/services';
+} from '@/components/sections/services';
+import FAQ from '@/components/sections/shared/FAQ';
+import { ConsultationCTA } from '@/components/sections/services';
 import type { FaqItem } from '@/types/services';
 
 export const metadata: Metadata = {
