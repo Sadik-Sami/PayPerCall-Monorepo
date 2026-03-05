@@ -46,34 +46,15 @@ export const navigationData: NavItem[] = [
 					{ label: 'App Development', href: '/services/app-dev' },
 				],
 			},
-			// {
-			// 	title: 'CMS Development',
-			// 	href: '/services/cms',
-			// 	links: [
-			// 		{ label: 'Wordpress', href: '/services/cms/wordpress' },
-			// 		{ label: 'Drupal', href: '/services/cms/drupal' },
-			// 		{ label: 'Content Hub', href: '/services/cms/content-hub' },
-			// 		{ label: 'Wix Studio', href: '/services/cms/wix-studio' },
-			// 	],
-			// },
-			// {
-			// 	title: 'App Development',
-			// 	href: '/services/app-dev',
-			// 	links: [
-			// 		{ label: 'iOS App Development', href: '/services/app-dev/ios' },
-			// 		{ label: 'Android App Development', href: '/services/app-dev/android' },
-			// 		{ label: 'Cross-Platform Apps', href: '/services/app-dev/cross-platform' },
-			// 	],
-			// },
 			{
 				title: 'Other Services',
 				links: [
-					{ label: 'Demo 1', href: '/services/digital-marketing' },
-					{ label: 'Demo 2', href: '/services/social-media-marketing' },
-					{ label: 'Demo 3', href: '/services/email-marketing' },
-					{ label: 'Demo 4', href: '/services/search-engine-optimization' }
+					{ label: 'WordPress Development', href: '/services/cms/wordpress' },
+					{ label: 'Graphics Design', href: '/services/graphics-design' },
+					{ label: 'Video Editing', href: '/services/video-editing' },
+					{ label: 'Podcast Marketing', href: '/services/podcast-marketing' },
 				],
-			}
+			},
 		],
 	},
 	{

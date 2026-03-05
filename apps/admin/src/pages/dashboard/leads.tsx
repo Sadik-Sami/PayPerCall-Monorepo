@@ -7,13 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
 	Pagination,
 	PaginationContent,
@@ -23,15 +17,8 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from '@/components/ui/pagination';
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from '@/components/ui/table';
-import { navigationData } from '../../../../web/components/navbar/data';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { navigationData } from '../../../../web/components/shared/navbar/data';
 
 type StatusFilter = 'all' | LeadStatus;
 type SortBy = 'created_at' | 'updated_at' | 'status';
@@ -117,7 +104,7 @@ export default function LeadsPage() {
 			page,
 			limit,
 		}),
-		[search, status, category, sortBy, sortOrder, page, limit]
+		[search, status, category, sortBy, sortOrder, page, limit],
 	);
 
 	const { data, isLoading, isError, error, refetch, isFetching } = useLeads(params);
@@ -125,9 +112,10 @@ export default function LeadsPage() {
 
 	const leads = data?.data ?? [];
 	const meta = data?.meta;
-	const totalLabel = meta ?
-		`${meta.total} result${meta.total === 1 ? '' : 's'}`
-	:	`${leads.length} result${leads.length === 1 ? '' : 's'}`;
+	const totalLabel =
+		meta ?
+			`${meta.total} result${meta.total === 1 ? '' : 's'}`
+		:	`${leads.length} result${leads.length === 1 ? '' : 's'}`;
 	const totalPages = meta?.totalPages ?? 1;
 	const currentPage = meta?.page ?? page;
 	const pageItems = buildPageItems(currentPage, totalPages);
@@ -301,7 +289,7 @@ export default function LeadsPage() {
 								</div>
 							))}
 						</div>
-					:	leads.length === 0 ?
+					: leads.length === 0 ?
 						<div className='rounded-lg border bg-card p-8 text-center'>
 							<p className='text-muted-foreground'>No leads match your filters.</p>
 							<div className='mt-4'>
@@ -336,9 +324,7 @@ export default function LeadsPage() {
 										<TableCell>
 											<Select
 												value={lead.status}
-												onValueChange={(value) =>
-													updateStatus.mutate({ leadId: lead.id, status: value as LeadStatus })
-												}
+												onValueChange={(value) => updateStatus.mutate({ leadId: lead.id, status: value as LeadStatus })}
 												disabled={updateStatus.isPending}>
 												<SelectTrigger className='w-full'>
 													<SelectValue />
@@ -355,13 +341,12 @@ export default function LeadsPage() {
 									</TableRow>
 								))}
 							</TableBody>
-						</Table>}
+						</Table>
+					}
 
 					<div className='mt-4 flex flex-wrap items-center justify-between gap-3 text-sm'>
 						<div className='text-muted-foreground'>
-							{meta ?
-								`Page ${meta.page} of ${meta.totalPages}`
-							:	`Page ${page}`}
+							{meta ? `Page ${meta.page} of ${meta.totalPages}` : `Page ${page}`}
 						</div>
 						<div className='flex items-center gap-2'>
 							<label className='text-sm text-muted-foreground'>Rows</label>
@@ -371,7 +356,7 @@ export default function LeadsPage() {
 									setLimit(Number(value));
 									setPage(1);
 								}}>
-								<SelectTrigger className='w-[88px]'>
+								<SelectTrigger className='w-22'>
 									<SelectValue />
 								</SelectTrigger>
 								<SelectContent>
@@ -402,10 +387,10 @@ export default function LeadsPage() {
 													onClick={(event) => {
 														event.preventDefault();
 														setPage(item);
-													}}
-												>
+													}}>
 													{item}
-												</PaginationLink>}
+												</PaginationLink>
+											}
 										</PaginationItem>
 									))}
 									<PaginationItem>

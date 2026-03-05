@@ -36,9 +36,10 @@ npm-debug.log*
 *.pem
 
 # AI
+.github
 .cursor
+.claude
+.agents
 .kombai
 .pnpm-store
-.agents
-.claude
 .opencode
