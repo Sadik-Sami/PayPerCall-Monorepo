@@ -52,7 +52,7 @@ export default function ContactPage() {
 						{CONTACT_REASSURANCE_ITEMS.map((item) => (
 							<article
 								key={item.question}
-								className='rounded-2xl border border-pastel-peach-border/90 bg-pastel-peach/60 p-5 shadow-sm dark:bg-card/85'>
+								className='rounded-2xl border border-pastel-peach-border bg-pastel-peach/60 p-5 shadow-sm dark:bg-pastel-peach'>
 								<h3 className='text-base font-semibold text-foreground'>{item.question}</h3>
 								<p className='mt-2 text-sm leading-relaxed text-muted-foreground'>{item.answer}</p>
 							</article>
