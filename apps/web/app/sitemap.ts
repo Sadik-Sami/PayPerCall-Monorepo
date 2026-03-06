@@ -60,6 +60,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: 'monthly',
 			priority: 0.6,
 		},
+		{
+			url: `${baseUrl}/services/pay-per-call/consumer-initiated`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/services/pay-per-call/live-transfer`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/services/pay-per-call/offline-media`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/services/pay-per-lead/exclusive`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/services/pay-per-lead/shared`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/services/pay-per-lead/real-time`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.7,
+		},
 	];
 
 	// Dynamic blog routes
@@ -73,4 +109,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	return [...staticRoutes, ...blogRoutes];
 }
-

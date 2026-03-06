@@ -118,7 +118,7 @@ export function DataDrivenFeaturesGrid({
 									variants={itemAnimation}
 									transition={{ delay: index * 0.05 }}
 									className={cn(
-										'group/card relative flex flex-col justify-between p-8 rounded-2xl border min-h-[240px]',
+										'group/card relative flex flex-col justify-between p-8 rounded-2xl border min-h-60',
 										'transition-shadow duration-300 hover:shadow-xl',
 										styles.cardBg,
 										styles.cardBorder
