@@ -100,7 +100,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
 
         {/* Right Side: Image with Clip Path Animation */}
         <motion.div
-          className="w-full min-h-[300px] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
+          className="w-full min-h-75 bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
           style={{
             backgroundImage: `url(${backgroundImage})`,
           }}

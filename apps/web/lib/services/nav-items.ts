@@ -224,6 +224,44 @@ export const APP_DEV_SERVICE_NAV: ServiceNavItem[] = [
 	},
 ];
 
+export const DIGITAL_MARKETING_SERVICE_NAV: ServiceNavItem[] = [
+	{
+		label: 'Overview',
+		href: '/services/digital-marketing',
+		summary: 'Integrated digital marketing systems engineered for predictable, compounding growth.',
+		capabilities: ['Cross-channel strategy', 'Attribution clarity', 'Revenue-driven optimization'],
+		icon: Globe,
+	},
+	{
+		label: 'Search & Content Authority',
+		href: '#pillar-authority',
+		summary: 'Own high-intent demand through technical SEO, content clusters, and conversion-ready landing pages.',
+		capabilities: ['Technical SEO', 'Content strategy', 'Landing architecture'],
+		icon: Sparkles,
+	},
+	{
+		label: 'Paid Media Precision',
+		href: '#pillar-precision',
+		summary: 'Scale paid search and paid social with disciplined testing, pacing, and attribution-informed bidding.',
+		capabilities: ['Paid search', 'Paid social', 'Creative experimentation'],
+		icon: Zap,
+	},
+	{
+		label: 'Lifecycle & Retention',
+		href: '#pillar-retention',
+		summary: 'Recover and monetize demand with segmented lifecycle journeys across email, SMS, and automation.',
+		capabilities: ['CRM workflows', 'Segmentation', 'Retention campaigns'],
+		icon: Users,
+	},
+	{
+		label: 'Brand Signal Amplification',
+		href: '#pillar-signal',
+		summary: 'Strengthen brand signal across social and owned channels to improve branded search and conversion lift.',
+		capabilities: ['Social strategy', 'Brand messaging', 'Content distribution'],
+		icon: Globe,
+	},
+];
+
 // Gateway section config and helper (serializable data for ServiceCapabilitiesGateway)
 export type GatewaySectionConfig = {
 	title: string;
@@ -348,5 +386,26 @@ export const PAY_PER_LEAD_GATEWAY_CONFIG: GatewaySectionConfig = {
 		'/services/pay-per-lead/exclusive': 'Users',
 		'/services/pay-per-lead/shared': 'UserCheck',
 		'/services/pay-per-lead/real-time': 'Zap',
+	},
+};
+
+export const DIGITAL_MARKETING_GATEWAY_CONFIG: GatewaySectionConfig = {
+	title: 'Digital Marketing Capabilities',
+	subtitle:
+		'Navigate each growth pillar to understand how strategy, execution, and attribution connect across your funnel.',
+	primaryCta: { label: 'Build My Growth Blueprint', href: '#contact' },
+	primaryCtaNote: 'Start with a focused strategy session and execution roadmap.',
+	columns: 2,
+	ctaLabels: {
+		'#pillar-authority': 'Explore SEO & Content',
+		'#pillar-precision': 'Explore Paid Media',
+		'#pillar-retention': 'Explore Lifecycle',
+		'#pillar-signal': 'Explore Social Signal',
+	},
+	iconKeys: {
+		'#pillar-authority': 'Sparkles',
+		'#pillar-precision': 'Zap',
+		'#pillar-retention': 'Users',
+		'#pillar-signal': 'Globe',
 	},
 };
