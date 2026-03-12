@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { type ComponentProps, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useMotionValueEvent, useReducedMotion, useSpring } from 'framer-motion';
 import { Activity, ArrowRight, BadgeDollarSign, Calculator, RefreshCcw, Sparkles, TrendingUp } from 'lucide-react';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
@@ -38,6 +38,26 @@ type MonthlyChartPoint = {
 	volume: number;
 	upliftPct: number;
 };
+
+type AreaChartMouseState = Parameters<NonNullable<ComponentProps<typeof AreaChart>['onMouseMove']>>[0];
+type RoiTooltipPayloadEntry = { payload?: unknown };
+
+function isMonthlyChartPoint(value: unknown): value is MonthlyChartPoint {
+	if (!value || typeof value !== 'object') {
+		return false;
+	}
+
+	const point = value as MonthlyChartPoint;
+	return (
+		typeof point.month === 'string' &&
+		typeof point.monthIndex === 'number' &&
+		typeof point.industry === 'number' &&
+		typeof point.optimized === 'number' &&
+		typeof point.profitGap === 'number' &&
+		typeof point.volume === 'number' &&
+		typeof point.upliftPct === 'number'
+	);
+}
 
 const MONTH_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as const;
 
@@ -326,13 +346,14 @@ function RoiDualTooltip({
 	showVolume = true,
 }: {
 	active?: boolean;
-	payload?: Array<{ payload?: MonthlyChartPoint }>;
+	payload?: ReadonlyArray<RoiTooltipPayloadEntry>;
 	volumeLabel?: string;
 	showVolume?: boolean;
 }) {
 	if (!active || !payload?.length) return null;
-	const point = payload?.[0]?.payload;
-	if (!point) return null;
+	const rawPoint = payload[0]?.payload;
+	if (!isMonthlyChartPoint(rawPoint)) return null;
+	const point = rawPoint;
 
 	const gapPct = point.industry === 0 ? 0 : (point.profitGap / Math.max(Math.abs(point.industry), 1)) * 100;
 
@@ -488,8 +509,8 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 		setInputs(isMarketing ? MARKETING_DEFAULT_INPUTS : DEFAULT_INPUTS);
 	};
 
-	const onChartHover = (state: { activeTooltipIndex?: number }) => {
-		if (typeof state.activeTooltipIndex === 'number') {
+	const onChartHover = (state: AreaChartMouseState) => {
+		if (typeof state?.activeTooltipIndex === 'number') {
 			setActiveIndex(state.activeTooltipIndex);
 		}
 	};
@@ -813,7 +834,14 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 								<YAxis hide />
 								<ChartTooltip
 									cursor={false}
-									content={(props) => <RoiDualTooltip {...props} volumeLabel={volumeLabel} showVolume={!isMarketing} />}
+									content={(props) => (
+										<RoiDualTooltip
+											active={props.active}
+											payload={props.payload}
+											volumeLabel={volumeLabel}
+											showVolume={!isMarketing}
+										/>
+									)}
 								/>
 								<Area
 									type={isMarketing ? 'monotone' : 'natural'}
@@ -834,7 +862,11 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 									isAnimationActive={!reduceMotion}
 									animationDuration={700}
 								/>
-								<ChartLegend content={<ChartLegendContent />} />
+								<ChartLegend
+									content={(props) => (
+										<ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />
+									)}
+								/>
 							</AreaChart>
 						</ChartContainer>
 					</motion.div>
