@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ConsultationCTA } from '@/components/sections/services';
 import {
 	DigitalMarketingGrowthMatrixSection,
+	EmailRoiEvolutionSection,
 	EmailRetentionHero,
 	type GrowthMatrixStep,
 } from '@/components/sections/services/digital-marketing';
@@ -77,6 +78,9 @@ export default function EmailMarketingPage() {
 	return (
 		<main className='space-y-0'>
 			<EmailRetentionHero />
+			<div className='w-full bg-background'>
+				<EmailRoiEvolutionSection className='py-12 md:py-16' />
+			</div>
 			<div className='w-full bg-muted/30'>
 				<DigitalMarketingGrowthMatrixSection
 					className='py-12 md:py-16'

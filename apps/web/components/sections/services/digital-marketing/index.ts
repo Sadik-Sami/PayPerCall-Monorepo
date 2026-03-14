@@ -10,6 +10,8 @@ export {
 	CONSULTATION_FEATURES,
 } from './content';
 export { DigitalMarketingPillarsSection } from './DigitalMarketingPillarsSection';
+export { EmailRoiEvolutionSection } from './EmailRoiEvolutionSection';
+export { SeoSearchEvolutionSection } from './SeoSearchEvolutionSection';
 export {
 	DigitalMarketingGrowthMatrixSection,
 	type GrowthMatrixStep,
