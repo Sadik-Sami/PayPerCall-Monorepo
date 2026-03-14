@@ -2,15 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import {
-	ArrowRight,
-	Calculator,
-	Eye,
-	Sparkles,
-	Target,
-	TrendingDown,
-	Users,
-} from 'lucide-react';
+import { ArrowRight, Calculator, Eye, Sparkles, Target, TrendingDown, Users } from 'lucide-react';
 import { Button } from '@workspace/ui/components/button';
 import { cn } from '@workspace/ui/lib/utils';
 import { cardVariants, containerVariants, itemVariants } from '@/lib/animations';
@@ -95,16 +87,17 @@ export function SeoSearchEvolutionSection({ className }: { className?: string })
 					</motion.p>
 					<motion.h2
 						variants={itemVariants}
-						className='mt-4 font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl'>
+						className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl'>
 						Stop Chasing Algorithms.
 						<br />
 						<span className='bg-linear-to-r from-pastel-mint-strong via-pastel-sky-strong to-pastel-lilac-strong bg-clip-text text-transparent'>
 							Start Dominating Markets.
 						</span>
 					</motion.h2>
-					<motion.p variants={itemVariants} className='mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground'>
-						Move from reactive SEO to a defensible, revenue-qualified search infrastructure built for sustained
-						growth.
+					<motion.p
+						variants={itemVariants}
+						className='mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg'>
+						Move from reactive SEO to a defensible, revenue-qualified search infrastructure built for sustained growth.
 					</motion.p>
 				</motion.div>
 
@@ -128,8 +121,10 @@ export function SeoSearchEvolutionSection({ className }: { className?: string })
 								<div className='inline-flex size-10 items-center justify-center rounded-xl border border-border bg-muted/60'>
 									<item.icon className='size-5 text-muted-foreground' aria-hidden />
 								</div>
-								<h4 className='mt-5 text-4xl font-bold tracking-tight text-foreground'>{item.title}</h4>
-								<p className='mt-3 text-lg leading-relaxed text-muted-foreground'>{item.description}</p>
+								<h4 className='mt-5 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl'>
+									{item.title}
+								</h4>
+								<p className='mt-3 text-base leading-relaxed text-muted-foreground md:text-lg'>{item.description}</p>
 							</motion.article>
 						))}
 					</div>
@@ -147,11 +142,14 @@ export function SeoSearchEvolutionSection({ className }: { className?: string })
 									key={item.title}
 									variants={cardVariants}
 									className={cn('rounded-3xl border p-7 shadow-sm', tone.card, tone.border)}>
-									<div className={cn('inline-flex size-10 items-center justify-center rounded-xl border', tone.iconWrap)}>
+									<div
+										className={cn('inline-flex size-10 items-center justify-center rounded-xl border', tone.iconWrap)}>
 										<item.icon className={cn('size-5', tone.iconText)} aria-hidden />
 									</div>
-									<h4 className='mt-5 text-4xl font-bold tracking-tight text-foreground'>{item.title}</h4>
-									<p className='mt-3 text-lg leading-relaxed text-foreground/80 dark:text-foreground/75'>
+									<h4 className='mt-5 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl'>
+										{item.title}
+									</h4>
+									<p className='mt-3 text-base leading-relaxed text-foreground/80 dark:text-foreground/75 md:text-lg'>
 										{item.description}
 									</p>
 								</motion.article>
@@ -165,17 +163,19 @@ export function SeoSearchEvolutionSection({ className }: { className?: string })
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-30px' }}
-					className='relative mt-12 overflow-hidden rounded-3xl border border-slate-800/60 bg-slate-900 p-7 md:p-10'>
+					className='relative mt-12 overflow-hidden rounded-3xl border border-slate-800/60 bg-slate-900 p-6 md:p-8 lg:p-10'>
 					<div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.16),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(167,139,250,0.15),transparent_45%)]' />
 					<div className='relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between'>
 						<div className='max-w-xl'>
-							<h4 className='text-3xl font-bold tracking-tight text-white'>The Difference Is Strategic Infrastructure</h4>
+							<h4 className='text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl'>
+								The Difference Is Strategic Infrastructure
+							</h4>
 							<p className='mt-2 text-base leading-relaxed text-slate-200'>
-								Traffic spikes come and go. Search infrastructure compounds authority, intent quality, and
-								revenue stability.
+								Traffic spikes come and go. Search infrastructure compounds authority, intent quality, and revenue
+								stability.
 							</p>
 						</div>
-						<div className='flex flex-col gap-3 sm:flex-row'>
+						<div className='flex flex-col gap-2 sm:flex-row sm:gap-3'>
 							<Button asChild size='lg' className='group gap-2'>
 								<Link href='#consultation'>
 									Build My SEO Infrastructure

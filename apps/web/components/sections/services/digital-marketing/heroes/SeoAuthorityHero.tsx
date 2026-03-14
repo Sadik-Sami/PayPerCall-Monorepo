@@ -15,9 +15,9 @@ export function SeoAuthorityHero({ className }: { className?: string }) {
 	const itemAnimation = reduceMotion ? { hidden: {}, visible: {} } : springItem;
 
 	return (
-		<section className={cn('relative overflow-hidden py-16 lg:py-24', className)}>
+		<section className={cn('relative overflow-hidden py-14 md:py-18 lg:py-24', className)}>
 			<div className='absolute inset-0 -z-10 bg-linear-to-b from-pastel-mint/35 via-background to-pastel-sky/20' />
-			<div className='absolute left-1/2 top-10 -z-10 size-[28rem] -translate-x-1/2 rounded-full border border-pastel-sky-border/50 bg-pastel-sky/30 blur-2xl' />
+			<div className='absolute left-1/2 top-10 -z-10 size-112 -translate-x-1/2 rounded-full border border-pastel-sky-border/50 bg-pastel-sky/30 blur-2xl' />
 			<div className='absolute left-1/2 top-24 -z-10 size-80 -translate-x-1/2 rounded-full border border-pastel-lilac-border/50 bg-pastel-lilac/30 blur-xl' />
 
 			<motion.div variants={containerAnimation} initial='hidden' animate='visible' className='section-container'>
@@ -31,12 +31,15 @@ export function SeoAuthorityHero({ className }: { className?: string }) {
 
 					<motion.h1
 						variants={itemAnimation}
-						className='mt-6 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl'>
+						className='mt-6 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl'>
 						Stop Renting Traffic. Build Organic Authority That Lasts
 					</motion.h1>
 
-					<motion.p variants={itemAnimation} className='mx-auto mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
-						Reference-inspired SEO architecture that aligns crawling, content depth, and buyer intent so rankings convert into qualified pipeline.
+					<motion.p
+						variants={itemAnimation}
+						className='mx-auto mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg'>
+						Reference-inspired SEO architecture that aligns crawling, content depth, and buyer intent so rankings
+						convert into qualified pipeline.
 					</motion.p>
 
 					<motion.div variants={itemAnimation} className='mt-7 flex flex-wrap justify-center gap-2.5'>
@@ -50,7 +53,7 @@ export function SeoAuthorityHero({ className }: { className?: string }) {
 						))}
 					</motion.div>
 
-					<motion.div variants={itemAnimation} className='mt-8 flex flex-wrap justify-center gap-3'>
+					<motion.div variants={itemAnimation} className='mt-8 flex flex-wrap justify-center gap-3 md:gap-4'>
 						<Button asChild size='lg' className='group gap-2'>
 							<Link href='#consultation'>
 								Claim SEO Consultation
@@ -79,14 +82,18 @@ export function SeoAuthorityHero({ className }: { className?: string }) {
 									<Search className='size-3.5' aria-hidden />
 									Search Coverage
 								</div>
-								<p className='mt-1 text-sm text-muted-foreground'>Technical fixes and content clusters prioritized by growth impact.</p>
+								<p className='mt-1 text-sm text-muted-foreground'>
+									Technical fixes and content clusters prioritized by growth impact.
+								</p>
 							</div>
 							<div className='rounded-xl border border-pastel-mint-border bg-pastel-mint/50 p-3 text-left'>
 								<div className='inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-pastel-mint-ink'>
 									<ShieldCheck className='size-3.5' aria-hidden />
 									Authority Signals
 								</div>
-								<p className='mt-1 text-sm text-muted-foreground'>SERP trust accelerates when technical and editorial quality are unified.</p>
+								<p className='mt-1 text-sm text-muted-foreground'>
+									SERP trust accelerates when technical and editorial quality are unified.
+								</p>
 							</div>
 						</div>
 					</div>

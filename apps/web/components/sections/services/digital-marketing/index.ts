@@ -11,7 +11,9 @@ export {
 } from './content';
 export { DigitalMarketingPillarsSection } from './DigitalMarketingPillarsSection';
 export { EmailRoiEvolutionSection } from './EmailRoiEvolutionSection';
+export { PpcSpendEvolutionSection } from './PpcSpendEvolutionSection';
 export { SeoSearchEvolutionSection } from './SeoSearchEvolutionSection';
+export { SocialSignalEvolutionSection } from './SocialSignalEvolutionSection';
 export {
 	DigitalMarketingGrowthMatrixSection,
 	type GrowthMatrixStep,

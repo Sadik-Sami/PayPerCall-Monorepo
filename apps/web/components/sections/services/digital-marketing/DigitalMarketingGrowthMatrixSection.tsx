@@ -95,10 +95,10 @@ export function DigitalMarketingGrowthMatrixSection({
 					</motion.span>
 					<motion.h2
 						variants={itemVariants}
-						className='mt-4 font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl'>
+						className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl'>
 						{title}
 					</motion.h2>
-					<motion.p variants={itemVariants} className='mt-5 text-lg leading-relaxed text-muted-foreground'>
+					<motion.p variants={itemVariants} className='mt-5 text-base leading-relaxed text-muted-foreground md:text-lg'>
 						{description}
 					</motion.p>
 				</motion.div>
@@ -108,7 +108,7 @@ export function DigitalMarketingGrowthMatrixSection({
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-50px' }}
-					className='grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4'>
+					className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
 					{steps.map((step, index) => {
 						const Icon = resolveIcon(step.icon);
 						const styles = THEME_STYLES[step.theme];
@@ -162,8 +162,10 @@ export function DigitalMarketingGrowthMatrixSection({
 					className='relative mt-20 overflow-hidden rounded-4xl border border-slate-800/60 bg-slate-900 px-7 py-12 text-center md:px-12 md:py-16'>
 					<div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.2),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.22),transparent_45%)]' />
 					<div className='relative z-10 mx-auto max-w-3xl'>
-						<h3 className='text-4xl font-black tracking-tight text-white md:text-5xl'>{ctaTitle}</h3>
-						<p className='mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-200'>{ctaDescription}</p>
+						<h3 className='text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl'>{ctaTitle}</h3>
+						<p className='mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-200 md:text-lg'>
+							{ctaDescription}
+						</p>
 						{primaryCta || secondaryCta ?
 							<div className='mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row'>
 								{primaryCta ?

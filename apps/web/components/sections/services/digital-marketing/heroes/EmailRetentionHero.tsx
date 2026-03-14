@@ -31,17 +31,13 @@ export function EmailRetentionHero({ className }: { className?: string }) {
 	const itemAnimation = reduceMotion ? { hidden: {}, visible: {} } : springItem;
 
 	return (
-		<section className={cn('relative overflow-hidden py-16 lg:py-24', className)}>
+		<section className={cn('relative overflow-hidden py-14 md:py-18 lg:py-24', className)}>
 			<div className='absolute inset-0 -z-10 bg-linear-to-b from-pastel-peach/60 via-background to-background' />
 			<div className='absolute -left-20 top-10 -z-10 size-80 rounded-full bg-pastel-peach/65 blur-3xl' />
 			<div className='absolute -right-20 bottom-0 -z-10 size-80 rounded-full bg-pastel-mint/55 blur-3xl' />
 
-			<motion.div
-				variants={containerAnimation}
-				initial='hidden'
-				animate='visible'
-				className='section-container'>
-				<div className='rounded-3xl border border-pastel-peach-border bg-background/55 p-6 shadow-sm backdrop-blur-sm md:p-10'>
+			<motion.div variants={containerAnimation} initial='hidden' animate='visible' className='section-container'>
+				<div className='rounded-3xl border border-pastel-peach-border bg-background/55 p-6 shadow-sm backdrop-blur-sm md:p-8 lg:p-10'>
 					<motion.div
 						variants={itemAnimation}
 						className='mx-auto inline-flex items-center gap-2 rounded-full border border-pastel-peach-border bg-background/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-pastel-peach-ink'>
@@ -51,7 +47,7 @@ export function EmailRetentionHero({ className }: { className?: string }) {
 
 					<motion.h1
 						variants={itemAnimation}
-						className='mx-auto mt-6 max-w-4xl text-center font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl'>
+						className='mx-auto mt-6 max-w-4xl text-center font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl'>
 						Turn One-Time Leads into{' '}
 						<span className='bg-linear-to-r from-pastel-peach-strong to-primary bg-clip-text text-transparent'>
 							Perpetual Assets
@@ -60,11 +56,12 @@ export function EmailRetentionHero({ className }: { className?: string }) {
 
 					<motion.p
 						variants={itemAnimation}
-						className='mx-auto mt-5 max-w-3xl text-center text-base leading-relaxed text-muted-foreground sm:text-lg'>
-						Engineered retention infrastructure that maximizes customer lifetime value through precision lifecycle automation.
+						className='mx-auto mt-5 max-w-3xl text-center text-base leading-relaxed text-muted-foreground md:text-lg'>
+						Engineered retention infrastructure that maximizes customer lifetime value through precision lifecycle
+						automation.
 					</motion.p>
 
-					<motion.div variants={itemAnimation} className='mt-8 flex flex-wrap justify-center gap-3'>
+					<motion.div variants={itemAnimation} className='mt-8 flex flex-wrap justify-center gap-3 md:gap-4'>
 						<Button asChild size='lg' className='group gap-2'>
 							<Link href='#consultation'>
 								Build My Infrastructure
@@ -76,7 +73,7 @@ export function EmailRetentionHero({ className }: { className?: string }) {
 						</Button>
 					</motion.div>
 
-					<div className='mt-10 grid gap-4 md:grid-cols-3'>
+					<div className='mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
 						{FEATURES.map((feature) => (
 							<motion.article
 								key={feature.title}

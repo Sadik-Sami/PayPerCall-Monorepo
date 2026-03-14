@@ -3,6 +3,7 @@ import { ConsultationCTA } from '@/components/sections/services';
 import {
 	DigitalMarketingGrowthMatrixSection,
 	SocialSignalHero,
+	SocialSignalEvolutionSection,
 	type GrowthMatrixStep,
 } from '@/components/sections/services/digital-marketing';
 
@@ -77,6 +78,9 @@ export default function SocialMediaMarketingPage() {
 	return (
 		<main className='space-y-0'>
 			<SocialSignalHero />
+			<div className='w-full bg-background'>
+				<SocialSignalEvolutionSection className='py-12 md:py-16' />
+			</div>
 			<div className='w-full bg-muted/30'>
 				<DigitalMarketingGrowthMatrixSection
 					className='py-12 md:py-16'
@@ -90,7 +94,7 @@ export default function SocialMediaMarketingPage() {
 					secondaryCta={{ label: 'Get Social Growth Priorities', href: '#consultation' }}
 				/>
 			</div>
-			<div id='consultation' className='section-container py-12 md:py-16'>
+			<div id='consultation' className='section-container py-12 md:py-16 lg:py-20'>
 				<ConsultationCTA
 					category='digital-marketing'
 					className='w-full'

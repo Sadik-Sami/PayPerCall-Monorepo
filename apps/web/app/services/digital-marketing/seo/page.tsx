@@ -30,7 +30,8 @@ const CONSULTATION_FEATURES = [
 	},
 	{
 		title: 'Revenue-Aligned SEO KPIs',
-		description: 'Track progress beyond rankings with qualified traffic, conversion, and pipeline contribution metrics.',
+		description:
+			'Track progress beyond rankings with qualified traffic, conversion, and pipeline contribution metrics.',
 		icon: 'TrendingUp',
 	},
 ];
@@ -94,7 +95,7 @@ export default function SearchEngineOptimizationPage() {
 					secondaryCta={{ label: 'Get SEO Priority Plan', href: '#consultation' }}
 				/>
 			</div>
-			<div id='consultation' className='section-container py-12 md:py-16'>
+			<div id='consultation' className='section-container py-12 md:py-16 lg:py-20'>
 				<ConsultationCTA
 					category='digital-marketing'
 					className='w-full'
