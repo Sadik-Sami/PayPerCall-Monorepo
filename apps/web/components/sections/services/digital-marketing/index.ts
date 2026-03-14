@@ -10,5 +10,14 @@ export {
 	CONSULTATION_FEATURES,
 } from './content';
 export { DigitalMarketingPillarsSection } from './DigitalMarketingPillarsSection';
-export { DigitalMarketingGrowthMatrixSection } from './DigitalMarketingGrowthMatrixSection';
+export {
+	DigitalMarketingGrowthMatrixSection,
+	type GrowthMatrixStep,
+} from './DigitalMarketingGrowthMatrixSection';
 export { IntegratedSuccessBlueprintsSection } from './IntegratedSuccessBlueprintsSection';
+export {
+	EmailRetentionHero,
+	PpcPerformanceHero,
+	SeoAuthorityHero,
+	SocialSignalHero,
+} from './heroes';

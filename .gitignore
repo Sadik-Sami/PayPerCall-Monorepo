@@ -43,3 +43,4 @@ npm-debug.log*
 .kombai
 .pnpm-store
 .opencode
+AGENTS.md
