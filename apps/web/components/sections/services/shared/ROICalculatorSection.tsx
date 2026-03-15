@@ -412,13 +412,13 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 		: 'cvr bps';
 	const sectionTitle =
 		mode === 'lead' ? 'Project 12-Month Pay Per Lead Growth with Real Inputs'
-		: mode === 'marketing' ? 'Project 12-Month Digital Marketing Lift with Real Inputs'
+		: mode === 'marketing' ? 'Interactive Digital Marketing ROI Calculator'
 		: 'Project 12-Month Pay Per Call Growth with Real Inputs';
 	const sectionDescription =
 		mode === 'lead' ?
-			'Model lead economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.'
+				'Model lead economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.'
 		: mode === 'marketing' ?
-			'Model media spend economics instantly, compare against a flat baseline, and see how compounding optimization changes your 12-month revenue trajectory.'
+				'Adjust spend, conversion rate, and AOV to project 12-month performance lift and benchmark your current trajectory.'
 		:	'Model call economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.';
 	const optimizedLabel =
 		mode === 'lead' ? 'Pay Per Lead Optimized'
@@ -516,25 +516,35 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 	};
 
 	return (
-		<section className={cn('max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20', className)}>
-			<motion.div
-				className='mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'
-				variants={reduceMotion ? undefined : containerVariants}
-				initial='hidden'
-				whileInView='visible'
-				viewport={{ once: true, amount: 0.3 }}>
-				<motion.div variants={reduceMotion ? undefined : itemVariants} className='space-y-3'>
-					<div className='inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5'>
-						<Activity className='size-4 text-primary' aria-hidden='true' />
-						<span className='text-[11px] font-semibold uppercase tracking-widest text-primary'>
-							Interactive ROI Calculator
-						</span>
-					</div>
-					<h2 className='font-heading text-4xl font-extrabold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl'>
-						{sectionTitle}
-					</h2>
-					<p className='max-w-3xl text-lg text-muted-foreground leading-relaxed'>{sectionDescription}</p>
-				</motion.div>
+			<section className={cn('max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 lg:py-20', className)}>
+				<motion.div
+					className='mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'
+					variants={reduceMotion ? undefined : containerVariants}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true, amount: 0.3 }}>
+					<motion.div variants={reduceMotion ? undefined : itemVariants} className='space-y-2.5'>
+						<div className='inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5'>
+							<Activity className='size-4 text-primary' aria-hidden='true' />
+							<span className='text-[11px] font-semibold uppercase tracking-widest text-primary'>
+								Interactive ROI Calculator
+							</span>
+						</div>
+						<h2
+							className={cn(
+								'font-heading font-bold tracking-tight text-foreground text-balance',
+								isMarketing ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-3xl sm:text-4xl md:text-5xl',
+							)}>
+							{sectionTitle}
+						</h2>
+						<p
+							className={cn(
+								'leading-relaxed text-muted-foreground',
+								isMarketing ? 'max-w-2xl text-sm md:text-base' : 'max-w-3xl text-base md:text-lg',
+							)}>
+							{sectionDescription}
+						</p>
+					</motion.div>
 
 				<motion.div
 					variants={reduceMotion ? undefined : itemVariants}
@@ -639,9 +649,13 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 								<p className='text-[10px] font-bold uppercase tracking-widest text-muted-foreground'>
 									{isMarketing ? 'Projected Annual Lift' : 'Projected Profit'}
 								</p>
-								<p className='font-heading mt-1 text-4xl font-extrabold tracking-tight text-foreground md:text-6xl drop-shadow-[0_0_18px_hsl(var(--primary)/0.25)]'>
-									{compactCurrency.format(displayProfit)}
-								</p>
+									<p
+										className={cn(
+											'font-heading mt-1 font-extrabold tracking-tight text-foreground',
+											isMarketing ? 'text-3xl md:text-5xl' : 'text-4xl md:text-6xl',
+										)}>
+										{compactCurrency.format(displayProfit)}
+									</p>
 								<p className='mt-1 text-xs font-medium text-muted-foreground'>
 									<span className='tabular-nums'>
 										{compactCurrency.format(
@@ -682,10 +696,10 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 										Attribution Accuracy
 									</span>
 								</div>
-								<div className='flex items-end justify-between gap-4'>
-									<p className='text-4xl font-black tabular-nums text-foreground'>
-										{`${Math.round(metrics.attributionAccuracy)}%`}
-									</p>
+									<div className='flex items-end justify-between gap-4'>
+										<p className='text-3xl font-black tabular-nums text-foreground md:text-4xl'>
+											{`${Math.round(metrics.attributionAccuracy)}%`}
+										</p>
 									<p className='text-xs font-semibold text-primary'>Zero-Fraud Tracking Active</p>
 								</div>
 								<div className='mt-3 h-2 w-full rounded-full bg-muted'>

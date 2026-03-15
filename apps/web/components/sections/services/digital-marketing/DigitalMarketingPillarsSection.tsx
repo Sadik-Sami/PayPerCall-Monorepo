@@ -109,12 +109,12 @@ export function DigitalMarketingPillarsSection({
 					</motion.span>
 					<motion.h2
 						variants={itemVariants}
-						className='mt-4 font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl'>
+						className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl'>
 						{title}
 					</motion.h2>
 					<motion.p
 						variants={itemVariants}
-						className='mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground'>
+						className='mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg'>
 						{description}
 					</motion.p>
 				</motion.div>
@@ -171,15 +171,25 @@ export function DigitalMarketingPillarsSection({
 					className='mt-10'>
 					<motion.div
 						variants={cardVariants}
-						className='relative overflow-hidden rounded-3xl border border-slate-800/60 bg-slate-900 px-7 py-10 md:px-10 md:py-12'>
-						<div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.2),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.22),transparent_45%)]' />
-						<div className='relative z-10 max-w-2xl'>
-							<h3 className='text-3xl font-bold tracking-tight text-white'>{whyItWorksTitle}</h3>
-							<p className='mt-4 text-base leading-relaxed text-slate-200'>{whyItWorksDescription}</p>
+						className='relative overflow-hidden rounded-4xl border border-pastel-sky-border bg-linear-to-br from-card via-background to-pastel-sky/20 px-6 py-8 md:px-8 md:py-10'>
+						<div className='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-pastel-sky-strong/60 to-transparent' />
+						<div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.12),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(167,139,250,0.1),transparent_45%)]' />
+						<div className='relative z-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
+							<div className='max-w-2xl'>
+								<p className='text-xs font-semibold uppercase tracking-[0.18em] text-pastel-sky-ink'>
+									Why this model works
+								</p>
+								<h3 className='mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl'>
+									{whyItWorksTitle}
+								</h3>
+								<p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
+									{whyItWorksDescription}
+								</p>
+							</div>
 							{whyItWorksCta ?
 								<Link
 									href={whyItWorksCta.href}
-									className='mt-7 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5'>
+									className='inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'>
 									{whyItWorksCta.label}
 									<ArrowRight className='size-4' aria-hidden />
 								</Link>
@@ -187,7 +197,7 @@ export function DigitalMarketingPillarsSection({
 						</div>
 					</motion.div>
 
-					<motion.div variants={containerVariants} className='mt-6 grid grid-cols-1 gap-4 md:grid-cols-3'>
+					<motion.div variants={containerVariants} className='mt-5 grid grid-cols-1 gap-4 md:grid-cols-3'>
 						{proofItems.map((item) => {
 							const Icon = resolveIcon(item.icon);
 							return (

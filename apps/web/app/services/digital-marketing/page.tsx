@@ -191,7 +191,19 @@ export default function DigitalMarketingPage() {
 			</div>
 
 			<div id='roi-optimizer' className='w-full bg-background'>
-				<ROICalculatorSection className={SECTION_PADDING} mode='marketing' />
+				<div className='section-container pt-20 pb-8 text-center md:pt-24 md:pb-10'>
+					<span className='inline-flex rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary'>
+						ROI Modeling
+					</span>
+					<h2 className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl'>
+						Forecast Marketing Efficiency Before You Scale Spend
+					</h2>
+					<p className='mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg'>
+						Use your current spend and conversion inputs to estimate annual lift, CAC movement, and efficiency
+						gains before expanding budget.
+					</p>
+				</div>
+				<ROICalculatorSection className='max-w-7xl mx-auto pt-0 pb-20 md:pb-24' mode='marketing' />
 			</div>
 
 			<div id='case-studies' className='w-full bg-muted/30'>

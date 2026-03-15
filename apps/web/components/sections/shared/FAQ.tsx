@@ -89,12 +89,12 @@ export default function FAQ({
 	const accordionItemClass = (index: number) =>
 		isPastel
 			? cn(
-				'group rounded-2xl overflow-hidden transition-all duration-300',
+				'group rounded-2xl overflow-hidden border-b last:border-b transition-all duration-300',
 				index % 3 === 0 && 'border border-pastel-peach-border bg-pastel-peach/30 hover:border-pastel-peach-strong',
 				index % 3 === 1 && 'border border-pastel-lilac-border bg-pastel-lilac/20 hover:border-pastel-lilac-strong',
 				index % 3 === 2 && 'border border-pastel-sky-border bg-pastel-sky/20 hover:border-pastel-sky-strong'
 			)
-			: 'group rounded-2xl border border-border bg-card shadow-sm overflow-hidden transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/50';
+			: 'group rounded-2xl border border-border border-b last:border-b bg-card shadow-sm overflow-hidden transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/50';
 
 	const accordionTriggerClass = isPastel
 		? 'p-6 hover:no-underline text-left'

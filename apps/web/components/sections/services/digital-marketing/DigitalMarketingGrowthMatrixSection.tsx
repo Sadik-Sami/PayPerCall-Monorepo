@@ -95,7 +95,7 @@ export function DigitalMarketingGrowthMatrixSection({
 					</motion.span>
 					<motion.h2
 						variants={itemVariants}
-						className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl'>
+						className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl'>
 						{title}
 					</motion.h2>
 					<motion.p variants={itemVariants} className='mt-5 text-base leading-relaxed text-muted-foreground md:text-lg'>
@@ -159,19 +159,25 @@ export function DigitalMarketingGrowthMatrixSection({
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-30px' }}
-					className='relative mt-20 overflow-hidden rounded-4xl border border-slate-800/60 bg-slate-900 px-7 py-12 text-center md:px-12 md:py-16'>
-					<div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.2),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.22),transparent_45%)]' />
-					<div className='relative z-10 mx-auto max-w-3xl'>
-						<h3 className='text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl'>{ctaTitle}</h3>
-						<p className='mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-200 md:text-lg'>
+					className='relative mt-16 overflow-hidden rounded-4xl border border-pastel-lilac-border bg-linear-to-br from-card via-background to-pastel-lilac/20 px-6 py-8 md:px-8 md:py-10'>
+					<div className='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-pastel-lilac-strong/60 to-transparent' />
+					<div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(167,139,250,0.12),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.1),transparent_45%)]' />
+					<div className='relative z-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
+						<div className='max-w-2xl'>
+							<p className='text-xs font-semibold uppercase tracking-[0.18em] text-pastel-lilac-ink'>
+								Growth Sprint CTA
+							</p>
+							<h3 className='mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl'>{ctaTitle}</h3>
+							<p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
 							{ctaDescription}
-						</p>
+							</p>
+						</div>
 						{primaryCta || secondaryCta ?
-							<div className='mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row'>
+							<div className='flex flex-col gap-3 sm:flex-row'>
 								{primaryCta ?
 									<Link
 										href={primaryCta.href}
-										className='inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-bold text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5'>
+										className='inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'>
 										{primaryCta.label}
 										<ArrowRight className='size-4' aria-hidden />
 									</Link>
@@ -179,7 +185,7 @@ export function DigitalMarketingGrowthMatrixSection({
 								{secondaryCta ?
 									<Link
 										href={secondaryCta.href}
-										className='inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-white/15'>
+										className='inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border bg-card/70 px-7 py-3 text-sm font-medium text-foreground/85 transition-colors duration-300 hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'>
 										{secondaryCta.label}
 									</Link>
 								:	null}

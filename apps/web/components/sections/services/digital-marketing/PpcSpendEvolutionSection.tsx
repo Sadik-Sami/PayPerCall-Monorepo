@@ -1,99 +1,137 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
+import { ArrowDownRight, ArrowRight, Clock3, EyeOff, Gauge, Target, Zap } from 'lucide-react';
 import Link from 'next/link';
-import { ArrowDownRight, ArrowRight, CheckCircle2, Clock3, EyeOff, Gauge, Target, Zap } from 'lucide-react';
 import { Button } from '@workspace/ui/components/button';
 import { cn } from '@workspace/ui/lib/utils';
 import { cardVariants, containerVariants, itemVariants } from '@/lib/animations';
 
-type ComparisonRow = {
-	focus: string;
-	focusHint: string;
-	manual: {
-		title: string;
-		description: string;
-		icon: typeof ArrowDownRight;
-	};
-	automated: {
-		title: string;
-		description: string;
-		icon: typeof CheckCircle2;
-		tone: 'lilac' | 'sky' | 'mint';
-	};
+type EvolutionItem = {
+	title: string;
+	description: string;
+	icon: LucideIcon;
 };
 
-const ROWS: ComparisonRow[] = [
+const MANUAL_ITEMS: EvolutionItem[] = [
 	{
-		focus: 'Efficiency',
-		focusHint: 'Capital allocation strategy',
-		manual: {
-			title: 'Budget Bleed',
-			description: 'Unoptimized spend across low-intent keywords and overlapping campaign clusters.',
-			icon: ArrowDownRight,
-		},
-		automated: {
-			title: 'Zero-Waste Spend',
-			description: 'Dynamic budget shifting toward profitable segments based on real-time signal quality.',
-			icon: CheckCircle2,
-			tone: 'lilac',
-		},
+		title: 'Budget bleed',
+		description: 'Spend drifts into low-intent queries, weak audiences, and campaign overlap that hides waste.',
+		icon: ArrowDownRight,
 	},
 	{
-		focus: 'Intelligence',
-		focusHint: 'Data clarity and attribution',
-		manual: {
-			title: 'Tracking Blindness',
-			description: 'Fragmented measurement leaves critical conversion touchpoints unattributed or delayed.',
-			icon: EyeOff,
-		},
-		automated: {
-			title: 'Cookieless Attribution',
-			description: 'First-party modeling captures full-funnel influence and improves optimization confidence.',
-			icon: Target,
-			tone: 'sky',
-		},
+		title: 'Attribution blind spots',
+		description: 'Fragmented tracking makes it hard to separate high-quality opportunities from noisy conversions.',
+		icon: EyeOff,
 	},
 	{
-		focus: 'Workflow',
-		focusHint: 'Operational velocity',
-		manual: {
-			title: 'Reactive Adjustments',
-			description: 'Manual bid changes lag behind market movement and miss high-intent windows.',
-			icon: Clock3,
-		},
-		automated: {
-			title: 'Predictive Scaling',
-			description: 'AI-assisted bidding anticipates demand shifts before cost spikes and conversion decay.',
-			icon: Zap,
-			tone: 'mint',
-		},
+		title: 'Reactive bid changes',
+		description: 'Manual optimization lags behind live market shifts, causing missed windows and unstable efficiency.',
+		icon: Clock3,
 	},
 ];
 
-const AUTOMATED_TONES: Record<
-	ComparisonRow['automated']['tone'],
-	{ cellBg: string; iconWrap: string; iconColor: string; titleColor: string }
-> = {
-	lilac: {
-		cellBg: 'bg-pastel-lilac/35',
-		iconWrap: 'bg-pastel-lilac border-pastel-lilac-border',
-		iconColor: 'text-pastel-lilac-ink',
-		titleColor: 'text-pastel-lilac-ink',
+const STRATEGIC_ITEMS: EvolutionItem[] = [
+	{
+		title: 'Signal-led budget control',
+		description: 'Capital allocation follows intent quality and margin logic, not default platform automation.',
+		icon: Target,
 	},
-	sky: {
-		cellBg: 'bg-pastel-sky/35',
-		iconWrap: 'bg-pastel-sky border-pastel-sky-border',
-		iconColor: 'text-pastel-sky-ink',
-		titleColor: 'text-pastel-sky-ink',
+	{
+		title: 'Clean performance visibility',
+		description: 'First-party data and reliable conversion mapping improve confidence in optimization decisions.',
+		icon: Gauge,
 	},
-	mint: {
-		cellBg: 'bg-pastel-mint/35',
-		iconWrap: 'bg-pastel-mint border-pastel-mint-border',
-		iconColor: 'text-pastel-mint-ink',
-		titleColor: 'text-pastel-mint-ink',
+	{
+		title: 'Predictive scaling rhythm',
+		description: 'Testing and bidding systems identify profitable pockets earlier and scale with tighter guardrails.',
+		icon: Zap,
 	},
-};
+];
+
+const PANEL_STYLES = {
+	manual: {
+		shell: 'border-border/70 bg-card/95',
+		eyebrow: 'text-muted-foreground',
+		accent: 'bg-muted',
+		iconWrap: 'border-border bg-background',
+		iconText: 'text-muted-foreground',
+	},
+	strategic: {
+		shell: 'border-pastel-lilac-border bg-linear-to-br from-pastel-lilac/30 via-background to-pastel-sky/20',
+		eyebrow: 'text-pastel-lilac-ink',
+		accent: 'bg-linear-to-r from-pastel-lilac-strong/80 to-pastel-sky-strong/80',
+		iconWrap: 'border-pastel-lilac-border bg-white/80 dark:bg-background/70',
+		iconText: 'text-pastel-lilac-ink',
+	},
+} as const;
+
+function EvolutionPanel({
+	title,
+	eyebrow,
+	description,
+	items,
+	tone,
+	resultLabel,
+	resultTitle,
+	resultDescription,
+}: {
+	title: string;
+	eyebrow: string;
+	description: string;
+	items: EvolutionItem[];
+	tone: keyof typeof PANEL_STYLES;
+	resultLabel: string;
+	resultTitle: string;
+	resultDescription: string;
+}) {
+	const styles = PANEL_STYLES[tone];
+
+	return (
+		<motion.article
+			variants={cardVariants}
+			className={cn('rounded-4xl border p-5 shadow-sm md:p-7', styles.shell)}>
+			<div className='flex flex-col gap-4'>
+				<div>
+					<p className={cn('text-xs font-semibold uppercase tracking-[0.18em]', styles.eyebrow)}>{eyebrow}</p>
+					<h3 className='mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl'>{title}</h3>
+					<p className='mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base'>{description}</p>
+				</div>
+
+				<div className={cn('h-1 w-20 rounded-full', styles.accent)} aria-hidden />
+
+				<div className='grid gap-3'>
+					{items.map((item) => (
+						<div
+							key={item.title}
+							className='rounded-2xl border border-border/70 bg-background/80 p-4 backdrop-blur-sm dark:bg-card/80'>
+							<div className='flex items-start gap-3'>
+								<div
+									className={cn(
+										'inline-flex size-10 shrink-0 items-center justify-center rounded-xl border',
+										styles.iconWrap,
+									)}>
+									<item.icon className={cn('size-4.5', styles.iconText)} aria-hidden />
+								</div>
+								<div>
+									<h4 className='text-base font-semibold tracking-tight text-foreground md:text-lg'>{item.title}</h4>
+									<p className='mt-1.5 text-sm leading-relaxed text-muted-foreground'>{item.description}</p>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div className='rounded-2xl border border-border/70 bg-background/90 p-5 dark:bg-card/85'>
+					<p className='text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground'>{resultLabel}</p>
+					<h4 className='mt-2 text-xl font-bold tracking-tight text-foreground md:text-2xl'>{resultTitle}</h4>
+					<p className='mt-2 text-sm leading-relaxed text-muted-foreground md:text-base'>{resultDescription}</p>
+				</div>
+			</div>
+		</motion.article>
+	);
+}
 
 export function PpcSpendEvolutionSection({ className }: { className?: string }) {
 	return (
@@ -104,130 +142,84 @@ export function PpcSpendEvolutionSection({ className }: { className?: string }) 
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-80px' }}
-					className='mx-auto max-w-4xl text-center'>
-					<motion.span
+					className='mx-auto max-w-3xl text-center'>
+					<motion.p
 						variants={itemVariants}
-						className='inline-flex rounded-full border border-pastel-lilac-border bg-pastel-lilac/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-pastel-lilac-ink'>
-						Performance Comparison
-					</motion.span>
+						className='text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground'>
+						PPC Spend Evolution
+					</motion.p>
 					<motion.h2
 						variants={itemVariants}
-						className='mt-5 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl'>
-						PPC Spend{' '}
-						<span className='bg-linear-to-r from-pastel-lilac-strong via-pastel-sky-strong to-pastel-mint-strong bg-clip-text text-transparent'>
-							Evolution
-						</span>
+						className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl'>
+						Shift paid media from manual friction to controlled scale
 					</motion.h2>
 					<motion.p
 						variants={itemVariants}
-						className='mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg'>
-						Analyze the shift from manual performance friction to automated efficiency. Stop spend leakage and scale
-						with precision.
+						className='mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg'>
+						High-performance PPC depends on tighter spend controls, cleaner attribution, and a repeatable
+						experiment loop that protects margin while improving volume.
 					</motion.p>
 				</motion.div>
 
-				<motion.section
-					variants={cardVariants}
+				<motion.div
+					variants={containerVariants}
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-60px' }}
-					className='mt-12 overflow-hidden rounded-3xl border border-border bg-card/80 shadow-sm'>
-					<div className='hidden grid-cols-[0.27fr_0.365fr_0.365fr] border-b border-border/70 md:grid'>
-						<div className='px-8 py-7'>
-							<p className='text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground'>Metric Focus</p>
-						</div>
-						<div className='border-l border-border/60 px-8 py-7'>
-							<div className='inline-flex items-center gap-2'>
-								<span className='size-2 rounded-full bg-destructive/75' />
-								<p className='text-2xl font-bold tracking-tight text-foreground'>Manual Grind</p>
-							</div>
-							<p className='mt-1 text-sm text-muted-foreground'>Legacy Logic (Inefficient)</p>
-						</div>
-						<div className='border-l border-border/60 bg-pastel-lilac/30 px-8 py-7'>
-							<div className='inline-flex items-center gap-2'>
-								<span className='size-2 rounded-full bg-pastel-lilac-strong' />
-								<p className='text-2xl font-bold tracking-tight text-pastel-lilac-ink'>Automated Scale</p>
-							</div>
-							<p className='mt-1 text-sm text-muted-foreground'>Modern Logic (Optimized)</p>
-						</div>
-					</div>
+					className='mt-12 grid grid-cols-1 gap-6 xl:grid-cols-2'>
+					<EvolutionPanel
+						title='Manual PPC operations'
+						eyebrow='Low efficiency'
+						description='This model creates constant optimization activity, but budget discipline and decision confidence remain fragile.'
+						items={MANUAL_ITEMS}
+						tone='manual'
+						resultLabel='Typical outcome'
+						resultTitle='Higher spend variance and weaker CAC control'
+						resultDescription='Performance swings are harder to stabilize, and it becomes difficult to defend where paid media is creating true commercial value.'
+					/>
 
-					<div className='divide-y divide-border/60'>
-						{ROWS.map((row) => {
-							const tone = AUTOMATED_TONES[row.automated.tone];
-							return (
-								<div key={row.focus} className='grid grid-cols-1 md:grid-cols-[0.27fr_0.365fr_0.365fr]'>
-									<div className='px-6 py-6 md:px-8 md:py-8'>
-										<p className='text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl'>
-											{row.focus}
-										</p>
-										<p className='mt-1 text-sm text-muted-foreground'>{row.focusHint}</p>
-									</div>
-									<div className='border-t border-border/60 px-6 py-6 md:border-l md:border-t-0 md:px-8 md:py-8'>
-										<div className='flex items-start gap-3'>
-											<div className='mt-0.5 inline-flex size-9 items-center justify-center rounded-lg border border-destructive/25 bg-destructive/10'>
-												<row.manual.icon className='size-4 text-destructive' aria-hidden />
-											</div>
-											<div>
-												<p className='text-xl font-semibold tracking-tight text-foreground'>{row.manual.title}</p>
-												<p className='mt-2 text-base leading-relaxed text-muted-foreground md:text-lg'>
-													{row.manual.description}
-												</p>
-											</div>
-										</div>
-									</div>
-									<div
-										className={cn(
-											'border-t border-border/60 px-6 py-6 md:border-l md:border-t-0 md:px-8 md:py-8',
-											tone.cellBg,
-										)}>
-										<div className='flex items-start gap-3'>
-											<div
-												className={cn(
-													'mt-0.5 inline-flex size-9 items-center justify-center rounded-lg border',
-													tone.iconWrap,
-												)}>
-												<row.automated.icon className={cn('size-4', tone.iconColor)} aria-hidden />
-											</div>
-											<div>
-												<p className={cn('text-xl font-semibold tracking-tight', tone.titleColor)}>
-													{row.automated.title}
-												</p>
-												<p className='mt-2 text-base leading-relaxed text-foreground/75 dark:text-foreground/70 md:text-lg'>
-													{row.automated.description}
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							);
-						})}
-					</div>
-				</motion.section>
+					<EvolutionPanel
+						title='Strategic PPC system'
+						eyebrow='High control'
+						description='This model aligns targeting, bidding, and creative testing around measurable intent and profitable growth thresholds.'
+						items={STRATEGIC_ITEMS}
+						tone='strategic'
+						resultLabel='Typical outcome'
+						resultTitle='More predictable efficiency and scalable demand'
+						resultDescription='Spend decisions stay grounded in signal quality, helping teams scale the segments that improve pipeline economics.'
+					/>
+				</motion.div>
 
 				<motion.div
 					variants={cardVariants}
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-30px' }}
-					className='mx-auto mt-10 max-w-3xl rounded-2xl border border-pastel-lilac-border bg-card p-6 shadow-sm'>
-					<div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
-						<p className='text-base text-muted-foreground md:text-lg'>
-							Ready to transition from <span className='font-semibold text-foreground'>Grind</span> to{' '}
-							<span className='font-semibold text-pastel-lilac-ink'>Scale</span>?
-						</p>
+					className='relative mt-12 overflow-hidden rounded-4xl border border-pastel-lilac-border bg-linear-to-br from-card via-background to-pastel-lilac/20 p-6 shadow-sm md:p-8'>
+					<div className='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-pastel-lilac-strong/60 to-transparent' />
+					<div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
+						<div className='max-w-2xl'>
+							<p className='text-xs font-semibold uppercase tracking-[0.18em] text-pastel-lilac-ink'>
+								Strategic next step
+							</p>
+							<h3 className='mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl'>
+								Build PPC around signal quality, not manual firefighting
+							</h3>
+							<p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
+								Tighten conversion tracking, prioritize high-value segments, and scale with guardrails that protect
+								margins as demand grows.
+							</p>
+						</div>
+
 						<div className='flex flex-col gap-3 sm:flex-row'>
 							<Button asChild size='lg' className='group gap-2'>
 								<Link href='#consultation'>
-									Build My PPC Infrastructure
+									Plan My PPC Strategy
 									<ArrowRight className='size-4 transition-transform group-hover:translate-x-1' aria-hidden />
 								</Link>
 							</Button>
 							<Button asChild size='lg' variant='outline'>
-								<Link href='/services/digital-marketing#case-studies'>
-									<Gauge className='size-4' aria-hidden />
-									View Case Studies
-								</Link>
+								<Link href='/services/digital-marketing#case-studies'>View Case Studies</Link>
 							</Button>
 						</div>
 					</div>
