@@ -2,8 +2,11 @@ import type { Metadata } from 'next';
 import { ConsultationCTA } from '@/components/sections/services';
 import {
 	DigitalMarketingGrowthMatrixSection,
+	DigitalMarketingPillarsSection,
 	EmailRoiEvolutionSection,
 	EmailRetentionHero,
+	EMAIL_PILLARS,
+	EMAIL_PILLAR_PROOF_ITEMS,
 	type GrowthMatrixStep,
 } from '@/components/sections/services/digital-marketing';
 
@@ -80,6 +83,19 @@ export default function EmailMarketingPage() {
 			<EmailRetentionHero />
 			<div className='w-full bg-background'>
 				<EmailRoiEvolutionSection className='py-12 md:py-16' />
+			</div>
+			<div className='w-full bg-background'>
+				<DigitalMarketingPillarsSection
+					className='py-12 md:py-16'
+					badgeLabel='Lifecycle Growth Pillars'
+					title='The Email Systems That Protect Retention Revenue'
+					description='Strong email performance comes from coordinated lifecycle architecture, smarter segmentation, inbox discipline, and revenue reporting that shows what actually compounds.'
+					pillars={EMAIL_PILLARS}
+					whyItWorksTitle='Why lifecycle email keeps compounding'
+					whyItWorksDescription='When automation logic, segmentation rules, and deliverability controls work together, every campaign learns from customer behavior and pushes more subscribers toward repeat purchase.'
+					whyItWorksCta={{ label: 'Book Email Strategy Session', href: '#consultation' }}
+					proofItems={EMAIL_PILLAR_PROOF_ITEMS}
+				/>
 			</div>
 			<div className='w-full bg-muted/30'>
 				<DigitalMarketingGrowthMatrixSection

@@ -87,6 +87,234 @@ export const PILLAR_PROOF_ITEMS: DigitalMarketingProofItem[] = [
 	},
 ];
 
+export const EMAIL_PILLARS: DigitalMarketingPillar[] = [
+	{
+		id: 'email-automation',
+		title: 'Automation',
+		description:
+			'Build lifecycle flows for welcome, browse recovery, cart recovery, post-purchase, and winback so revenue is not dependent on one-off campaigns.',
+		ctaLabel: 'FLOW ARCHITECTURE',
+		icon: 'Sparkles',
+		theme: 'mint',
+	},
+	{
+		id: 'email-segmentation',
+		title: 'Segmentation',
+		description:
+			'Group subscribers by intent, purchase behavior, and engagement signals to increase message relevance and protect sender reputation.',
+		ctaLabel: 'AUDIENCE LOGIC',
+		icon: 'Users',
+		theme: 'sky',
+	},
+	{
+		id: 'email-deliverability',
+		title: 'Deliverability',
+		description:
+			'Strengthen list hygiene, frequency control, and domain trust so your best sequences consistently reach the inbox.',
+		ctaLabel: 'INBOX HEALTH',
+		icon: 'ShieldCheck',
+		theme: 'lilac',
+	},
+	{
+		id: 'email-retention',
+		title: 'Retention',
+		description:
+			'Turn lifecycle messaging into repeat purchases, stronger customer value, and clearer revenue visibility across the funnel.',
+		ctaLabel: 'REPEAT REVENUE',
+		icon: 'BarChart3',
+		theme: 'peach',
+	},
+];
+
+export const EMAIL_PILLAR_PROOF_ITEMS: DigitalMarketingProofItem[] = [
+	{
+		title: 'Sequence Coverage',
+		description: 'Priority flows mapped across first purchase, replenishment windows, and churn-risk moments.',
+		icon: 'Sparkles',
+	},
+	{
+		title: 'Subscriber Quality Control',
+		description: 'List growth, engagement decay, and suppression logic monitored to keep lifecycle performance durable.',
+		icon: 'ShieldCheck',
+	},
+	{
+		title: 'Revenue Visibility',
+		description: 'Performance reviews tied to assisted revenue, repeat-order rate, and reactivation contribution.',
+		icon: 'BarChart3',
+	},
+];
+
+export const PPC_PILLARS: DigitalMarketingPillar[] = [
+	{
+		id: 'ppc-intent',
+		title: 'Intent',
+		description:
+			'Align keywords, audiences, and placements to high-value buying signals so spend is directed at real commercial demand.',
+		ctaLabel: 'DEMAND CAPTURE',
+		icon: 'Search',
+		theme: 'mint',
+	},
+	{
+		id: 'ppc-control',
+		title: 'Control',
+		description:
+			'Structure campaigns, budgets, and conversion actions around margin and sales quality instead of platform defaults.',
+		ctaLabel: 'BUDGET GUARDRAILS',
+		icon: 'ShieldCheck',
+		theme: 'sky',
+	},
+	{
+		id: 'ppc-testing',
+		title: 'Testing',
+		description:
+			'Run disciplined experiments across ads, landing pages, offers, and audiences so optimization compounds instead of drifting.',
+		ctaLabel: 'EXPERIMENT CADENCE',
+		icon: 'Sparkles',
+		theme: 'lilac',
+	},
+	{
+		id: 'ppc-efficiency',
+		title: 'Efficiency',
+		description:
+			'Scale only the segments that improve conversion rate, CAC discipline, and pipeline quality with defensible economics.',
+		ctaLabel: 'PROFITABLE SCALE',
+		icon: 'BarChart3',
+		theme: 'peach',
+	},
+];
+
+export const PPC_PILLAR_PROOF_ITEMS: DigitalMarketingProofItem[] = [
+	{
+		title: 'Spend Protection',
+		description: 'Search term control, pacing reviews, and conversion QA reduce leakage before more budget is deployed.',
+		icon: 'ShieldCheck',
+	},
+	{
+		title: 'Weekly Test Backlog',
+		description: 'Creative, offer, and landing page experiments prioritized by expected impact and implementation speed.',
+		icon: 'Sparkles',
+	},
+	{
+		title: 'Pipeline Accountability',
+		description: 'Optimization decisions tied to qualified leads, cost per opportunity, and downstream revenue performance.',
+		icon: 'BarChart3',
+	},
+];
+
+export const SEO_PILLARS: DigitalMarketingPillar[] = [
+	{
+		id: 'seo-technical',
+		title: 'Technical Health',
+		description:
+			'Resolve crawl, indexation, site structure, and performance issues that suppress visibility before content scale begins.',
+		ctaLabel: 'FOUNDATION FIRST',
+		icon: 'ShieldCheck',
+		theme: 'mint',
+	},
+	{
+		id: 'seo-authority',
+		title: 'Authority',
+		description:
+			'Build topic clusters and expert-led content assets that expand SERP ownership across your highest-intent themes.',
+		ctaLabel: 'CLUSTER STRATEGY',
+		icon: 'Search',
+		theme: 'sky',
+	},
+	{
+		id: 'seo-architecture',
+		title: 'Architecture',
+		description:
+			'Improve internal linking, page hierarchy, and template structure so relevance and equity flow toward priority pages.',
+		ctaLabel: 'SITE SIGNALS',
+		icon: 'Sparkles',
+		theme: 'lilac',
+	},
+	{
+		id: 'seo-pipeline',
+		title: 'Pipeline',
+		description:
+			'Translate organic visibility into qualified sessions, conversion lift, and measurable pipeline contribution over time.',
+		ctaLabel: 'REVENUE IMPACT',
+		icon: 'BarChart3',
+		theme: 'peach',
+	},
+];
+
+export const SEO_PILLAR_PROOF_ITEMS: DigitalMarketingProofItem[] = [
+	{
+		title: 'Technical Prioritization',
+		description: 'High-impact crawl, speed, and indexation fixes sequenced before lower-value cleanup work.',
+		icon: 'ShieldCheck',
+	},
+	{
+		title: 'Intent Coverage',
+		description: 'Content plans mapped to commercial, comparison, and problem-aware queries that move buyers forward.',
+		icon: 'Search',
+	},
+	{
+		title: 'Organic Revenue Tracking',
+		description: 'Reporting connects rankings and traffic changes to conversion quality and pipeline creation.',
+		icon: 'BarChart3',
+	},
+];
+
+export const SOCIAL_PILLARS: DigitalMarketingPillar[] = [
+	{
+		id: 'social-signal',
+		title: 'Brand Signal',
+		description:
+			'Shape a clear narrative across channels so audiences recognize your expertise quickly and trust builds through repetition.',
+		ctaLabel: 'POSITIONING SYSTEM',
+		icon: 'Megaphone',
+		theme: 'mint',
+	},
+	{
+		id: 'social-creative',
+		title: 'Creative System',
+		description:
+			'Develop platform-native hooks, visual formats, and messaging angles that improve retention, reach quality, and action.',
+		ctaLabel: 'FORMAT STRATEGY',
+		icon: 'Sparkles',
+		theme: 'sky',
+	},
+	{
+		id: 'social-community',
+		title: 'Engagement',
+		description:
+			'Turn comments, shares, and responses into feedback loops that sharpen offers and create stronger buying intent.',
+		ctaLabel: 'AUDIENCE MOMENTUM',
+		icon: 'Users',
+		theme: 'lilac',
+	},
+	{
+		id: 'social-demand',
+		title: 'Demand Capture',
+		description:
+			'Connect organic and paid distribution to landing pages, lead magnets, and follow-up systems that convert attention into pipeline.',
+		ctaLabel: 'PIPELINE LINKAGE',
+		icon: 'BarChart3',
+		theme: 'peach',
+	},
+];
+
+export const SOCIAL_PILLAR_PROOF_ITEMS: DigitalMarketingProofItem[] = [
+	{
+		title: 'Channel Role Clarity',
+		description: 'Each platform gets a defined job across awareness, consideration, response, and retargeting.',
+		icon: 'Megaphone',
+	},
+	{
+		title: 'Creative Iteration',
+		description: 'Hooks, visuals, and offers are refined from live audience response instead of guesswork.',
+		icon: 'Sparkles',
+	},
+	{
+		title: 'Business Outcome Mapping',
+		description: 'Social reporting connects engagement quality to lead capture, branded demand, and assisted pipeline.',
+		icon: 'BarChart3',
+	},
+];
+
 export const GROWTH_SPRINT_STEPS: GrowthMatrixStep[] = [
 	{
 		step: '01',

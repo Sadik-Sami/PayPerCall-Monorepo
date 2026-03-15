@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { ConsultationCTA } from '@/components/sections/services';
 import {
 	DigitalMarketingGrowthMatrixSection,
+	DigitalMarketingPillarsSection,
+	SOCIAL_PILLARS,
+	SOCIAL_PILLAR_PROOF_ITEMS,
 	SocialSignalHero,
 	SocialSignalEvolutionSection,
 	type GrowthMatrixStep,
@@ -80,6 +83,19 @@ export default function SocialMediaMarketingPage() {
 			<SocialSignalHero />
 			<div className='w-full bg-background'>
 				<SocialSignalEvolutionSection className='py-12 md:py-16' />
+			</div>
+			<div className='w-full bg-background'>
+				<DigitalMarketingPillarsSection
+					className='py-12 md:py-16'
+					badgeLabel='Social Demand Pillars'
+					title='The Social Systems That Turn Attention Into Demand'
+					description='Social growth requires more than posting consistency. It depends on a clear brand signal, repeatable creative systems, active audience engagement, and conversion paths that capture intent.'
+					pillars={SOCIAL_PILLARS}
+					whyItWorksTitle='Why social performance needs a system'
+					whyItWorksDescription='When narrative, format testing, audience feedback, and demand capture are connected, social stops acting like an awareness-only channel and starts contributing measurable commercial value.'
+					whyItWorksCta={{ label: 'Book Social Strategy Session', href: '#consultation' }}
+					proofItems={SOCIAL_PILLAR_PROOF_ITEMS}
+				/>
 			</div>
 			<div className='w-full bg-muted/30'>
 				<DigitalMarketingGrowthMatrixSection

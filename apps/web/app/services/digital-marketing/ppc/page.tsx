@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { ConsultationCTA } from '@/components/sections/services';
 import {
 	DigitalMarketingGrowthMatrixSection,
+	DigitalMarketingPillarsSection,
+	PPC_PILLARS,
+	PPC_PILLAR_PROOF_ITEMS,
 	PpcSpendEvolutionSection,
 	PpcPerformanceHero,
 	type GrowthMatrixStep,
@@ -80,6 +83,19 @@ export default function PaidAdvertisingPage() {
 			<PpcPerformanceHero />
 			<div className='w-full bg-background'>
 				<PpcSpendEvolutionSection className='py-12 md:py-16' />
+			</div>
+			<div className='w-full bg-background'>
+				<DigitalMarketingPillarsSection
+					className='py-12 md:py-16'
+					badgeLabel='Paid Media Pillars'
+					title='The PPC Levers That Make Spend Accountable'
+					description='Paid search and paid social scale when intent quality, budget controls, testing cadence, and profitability standards are managed as one operating system.'
+					pillars={PPC_PILLARS}
+					whyItWorksTitle='Why disciplined PPC outperforms reactive management'
+					whyItWorksDescription='The best accounts do more than chase platform recommendations. They protect budget, validate new ideas with controlled tests, and scale only the demand segments that improve pipeline economics.'
+					whyItWorksCta={{ label: 'Book PPC Strategy Session', href: '#consultation' }}
+					proofItems={PPC_PILLAR_PROOF_ITEMS}
+				/>
 			</div>
 			<div className='w-full bg-muted/30'>
 				<DigitalMarketingGrowthMatrixSection

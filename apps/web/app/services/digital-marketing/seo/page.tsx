@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { ConsultationCTA } from '@/components/sections/services';
 import {
 	DigitalMarketingGrowthMatrixSection,
+	DigitalMarketingPillarsSection,
+	SEO_PILLARS,
+	SEO_PILLAR_PROOF_ITEMS,
 	SeoSearchEvolutionSection,
 	SeoAuthorityHero,
 	type GrowthMatrixStep,
@@ -81,6 +84,19 @@ export default function SearchEngineOptimizationPage() {
 			<SeoAuthorityHero />
 			<div className='w-full bg-background'>
 				<SeoSearchEvolutionSection className='py-12 md:py-16' />
+			</div>
+			<div className='w-full bg-background'>
+				<DigitalMarketingPillarsSection
+					className='py-12 md:py-16'
+					badgeLabel='Organic Growth Pillars'
+					title='The SEO Foundations Behind Durable Search Growth'
+					description='Organic performance compounds when technical readiness, authority-building content, information architecture, and conversion intent are managed together instead of in isolation.'
+					pillars={SEO_PILLARS}
+					whyItWorksTitle='Why strong SEO compounds beyond rankings'
+					whyItWorksDescription='Technical fixes remove friction, authority assets expand search coverage, and better site structure channels relevance toward your highest-value pages. That is how visibility turns into qualified pipeline.'
+					whyItWorksCta={{ label: 'Book SEO Strategy Session', href: '#consultation' }}
+					proofItems={SEO_PILLAR_PROOF_ITEMS}
+				/>
 			</div>
 			<div className='w-full bg-muted/30'>
 				<DigitalMarketingGrowthMatrixSection

@@ -1,97 +1,137 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowRight, Database, Globe, HeartPulse, Radar, Target, TrendingDown, TrendingUp } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { ArrowRight, Database, Globe, HeartPulse, Radar, TrendingDown, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 import { Button } from '@workspace/ui/components/button';
 import { cn } from '@workspace/ui/lib/utils';
 import { cardVariants, containerVariants, itemVariants } from '@/lib/animations';
 
-type VanityItem = {
+type EvolutionItem = {
 	title: string;
 	description: string;
-	variant: 'full' | 'half';
-	icon?: LucideIcon;
+	icon: LucideIcon;
 };
 
-const VANITY_ITEMS: VanityItem[] = [
+const VANITY_ITEMS: EvolutionItem[] = [
 	{
-		title: 'Random Posting Schedule',
-		description: 'Post-and-pray execution with no narrative arc or buyer-stage alignment.',
-		variant: 'full',
+		title: 'Random posting cadence',
+		description: 'Content goes live without a strategic role, buyer-stage context, or a defined conversion path.',
+		icon: TrendingDown,
 	},
 	{
-		title: 'Empty Likes',
-		description: 'Engagement signals without meaningful business impact.',
+		title: 'Shallow engagement',
+		description: 'Likes and passive reach create activity on the dashboard but do not strengthen revenue visibility.',
 		icon: HeartPulse,
-		variant: 'half',
 	},
 	{
-		title: 'Broad Reach',
-		description: 'Visible to everyone, relevant to too few high-intent buyers.',
+		title: 'Broad but unfocused reach',
+		description: 'Messages travel widely, but too little of that attention comes from high-intent buyers.',
 		icon: Globe,
-		variant: 'half',
 	},
 ];
 
-type StrategicItem = {
-	title: string;
-	description: string;
-	variant: 'full' | 'half';
-	tone: 'lilac' | 'sky' | 'mint';
-	icon?: LucideIcon;
-};
-
-const STRATEGIC_ITEMS: StrategicItem[] = [
+const STRATEGIC_ITEMS: EvolutionItem[] = [
 	{
-		title: 'Intent-Based Content Clusters',
-		description: 'Narratives engineered to move prospects from awareness to booking-ready signals.',
-		variant: 'full',
-		tone: 'sky',
-	},
-	{
-		title: 'First-Party Data',
-		description: 'Identify high-value decision-makers engaging with strategic content touchpoints.',
-		icon: Database,
-		variant: 'half',
-		tone: 'lilac',
-	},
-	{
-		title: 'Omnipresence',
-		description: 'Stay top-of-mind across LinkedIn, X, and Instagram with consistent strategic signal.',
+		title: 'Intent-shaped content systems',
+		description: 'Themes, offers, and formats are planned around awareness, consideration, and response behavior.',
 		icon: Radar,
-		variant: 'half',
-		tone: 'mint',
+	},
+	{
+		title: 'First-party signal capture',
+		description: 'High-value audience actions are tracked so content decisions improve with every campaign cycle.',
+		icon: Database,
+	},
+	{
+		title: 'Consistent market presence',
+		description: 'A repeatable publishing system keeps your brand credible and visible across the channels that matter.',
+		icon: TrendingUp,
 	},
 ];
 
-const STRATEGIC_TONES: Record<
-	StrategicItem['tone'],
-	{ card: string; border: string; iconWrap: string; iconColor: string; textColor: string }
-> = {
-	sky: {
-		card: 'bg-pastel-sky/55',
-		border: 'border-pastel-sky-border',
-		iconWrap: 'bg-pastel-sky border-pastel-sky-border',
-		iconColor: 'text-pastel-sky-ink',
-		textColor: 'text-pastel-sky-ink',
+const PANEL_STYLES = {
+	vanity: {
+		shell: 'border-border/70 bg-card/95',
+		eyebrow: 'text-muted-foreground',
+		accent: 'bg-muted',
+		iconWrap: 'border-border bg-background',
+		iconText: 'text-muted-foreground',
 	},
-	lilac: {
-		card: 'bg-pastel-lilac/55',
-		border: 'border-pastel-lilac-border',
-		iconWrap: 'bg-pastel-lilac border-pastel-lilac-border',
-		iconColor: 'text-pastel-lilac-ink',
-		textColor: 'text-pastel-lilac-ink',
+	strategic: {
+		shell: 'border-pastel-sky-border bg-linear-to-br from-pastel-sky/30 via-background to-pastel-mint/25',
+		eyebrow: 'text-pastel-sky-ink',
+		accent: 'bg-linear-to-r from-pastel-sky-strong/80 to-pastel-mint-strong/80',
+		iconWrap: 'border-pastel-sky-border bg-white/80 dark:bg-background/70',
+		iconText: 'text-pastel-sky-ink',
 	},
-	mint: {
-		card: 'bg-pastel-mint/55',
-		border: 'border-pastel-mint-border',
-		iconWrap: 'bg-pastel-mint border-pastel-mint-border',
-		iconColor: 'text-pastel-mint-ink',
-		textColor: 'text-pastel-mint-ink',
-	},
-};
+} as const;
+
+function EvolutionPanel({
+	title,
+	eyebrow,
+	description,
+	items,
+	tone,
+	resultLabel,
+	resultTitle,
+	resultDescription,
+}: {
+	title: string;
+	eyebrow: string;
+	description: string;
+	items: EvolutionItem[];
+	tone: keyof typeof PANEL_STYLES;
+	resultLabel: string;
+	resultTitle: string;
+	resultDescription: string;
+}) {
+	const styles = PANEL_STYLES[tone];
+
+	return (
+		<motion.article
+			variants={cardVariants}
+			className={cn('rounded-4xl border p-5 shadow-sm md:p-7', styles.shell)}>
+			<div className='flex flex-col gap-4'>
+				<div>
+					<p className={cn('text-xs font-semibold uppercase tracking-[0.18em]', styles.eyebrow)}>{eyebrow}</p>
+					<h3 className='mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl'>{title}</h3>
+					<p className='mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base'>{description}</p>
+				</div>
+
+				<div className={cn('h-1 w-20 rounded-full', styles.accent)} aria-hidden />
+
+				<div className='grid gap-3'>
+					{items.map((item) => (
+						<div
+							key={item.title}
+							className='rounded-2xl border border-border/70 bg-background/80 p-4 backdrop-blur-sm dark:bg-card/80'>
+							<div className='flex items-start gap-3'>
+								<div
+									className={cn(
+										'inline-flex size-10 shrink-0 items-center justify-center rounded-xl border',
+										styles.iconWrap,
+									)}>
+									<item.icon className={cn('size-4.5', styles.iconText)} aria-hidden />
+								</div>
+								<div>
+									<h4 className='text-base font-semibold tracking-tight text-foreground md:text-lg'>{item.title}</h4>
+									<p className='mt-1.5 text-sm leading-relaxed text-muted-foreground'>{item.description}</p>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div className='rounded-2xl border border-border/70 bg-background/90 p-5 dark:bg-card/85'>
+					<p className='text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground'>{resultLabel}</p>
+					<h4 className='mt-2 text-xl font-bold tracking-tight text-foreground md:text-2xl'>{resultTitle}</h4>
+					<p className='mt-2 text-sm leading-relaxed text-muted-foreground md:text-base'>{resultDescription}</p>
+				</div>
+			</div>
+		</motion.article>
+	);
+}
 
 export function SocialSignalEvolutionSection({ className }: { className?: string }) {
 	return (
@@ -102,20 +142,22 @@ export function SocialSignalEvolutionSection({ className }: { className?: string
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-80px' }}
-					className='mx-auto max-w-4xl text-center'>
+					className='mx-auto max-w-3xl text-center'>
+					<motion.p
+						variants={itemVariants}
+						className='text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground'>
+						Social Signal Evolution
+					</motion.p>
 					<motion.h2
 						variants={itemVariants}
-						className='font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl'>
-						Social Media{' '}
-						<span className='bg-linear-to-r from-pastel-sky-strong via-primary to-pastel-lilac-strong bg-clip-text text-transparent'>
-							Signal Evolution
-						</span>
+						className='mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl'>
+						Turn social activity into a system buyers actually respond to
 					</motion.h2>
 					<motion.p
 						variants={itemVariants}
-						className='mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg'>
-						Transform digital noise into attributable revenue through strategic omnipresence and intent-led content
-						systems.
+						className='mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg'>
+						The gap is not posting frequency. It is whether your social presence creates useful market signal,
+						captures intent, and supports measurable demand generation.
 					</motion.p>
 				</motion.div>
 
@@ -124,113 +166,28 @@ export function SocialSignalEvolutionSection({ className }: { className?: string
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-60px' }}
-					className='mt-12 grid grid-cols-1 gap-8 md:grid-cols-2'>
-					<div className='flex h-full flex-col gap-5'>
-						<motion.div variants={itemVariants} className='flex items-center gap-3'>
-							<div className='inline-flex size-10 items-center justify-center rounded-xl border border-destructive/20 bg-destructive/10'>
-								<TrendingDown className='size-5 text-destructive' aria-hidden />
-							</div>
-							<h3 className='text-2xl font-bold tracking-tight text-foreground sm:text-3xl'>
-								Vanity Posting <span className='ml-1 text-lg font-medium text-destructive'>(Low ROI)</span>
-							</h3>
-						</motion.div>
-						<div className='grid h-full flex-1 grid-cols-1 gap-4 sm:grid-cols-2'>
-							{VANITY_ITEMS.map((item) => (
-								<motion.article
-									key={item.title}
-									variants={cardVariants}
-									className={cn(
-										'rounded-2xl border border-border bg-card p-5 shadow-sm',
-										item.variant === 'full' && 'sm:col-span-2',
-									)}>
-									{item.icon ?
-										<div className='inline-flex size-10 items-center justify-center rounded-xl border border-border bg-muted/60'>
-											<item.icon className='size-5 text-muted-foreground' aria-hidden />
-										</div>
-									:	null}
-									<h4
-										className={cn(
-											'text-2xl font-bold tracking-tight text-foreground sm:text-3xl',
-											item.icon ? 'mt-4' : '',
-										)}>
-										{item.title}
-									</h4>
-									<p className='mt-2 text-base leading-relaxed text-muted-foreground'>{item.description}</p>
-								</motion.article>
-							))}
-							<motion.article
-								variants={cardVariants}
-								className='flex h-full min-h-52 flex-col justify-center rounded-2xl border border-pastel-blush-border bg-pastel-blush/30 p-6 text-center shadow-sm sm:col-span-2'>
-								<p className='text-xs font-bold uppercase tracking-[0.18em] text-destructive'>The Result</p>
-								<h4 className='mt-3 text-3xl font-bold tracking-tight text-destructive sm:text-4xl md:text-5xl'>
-									Unattributed Spend
-								</h4>
-								<p className='mt-2 text-base leading-relaxed text-destructive/85'>
-									CAC rises, pipeline clarity drops, and social investment becomes difficult to justify in revenue
-									reviews.
-								</p>
-							</motion.article>
-						</div>
-					</div>
+					className='mt-12 grid grid-cols-1 gap-6 xl:grid-cols-2'>
+					<EvolutionPanel
+						title='Vanity-led social activity'
+						eyebrow='Low clarity'
+						description='This model creates motion, but it rarely gives operators a reliable explanation for what social is contributing to pipeline.'
+						items={VANITY_ITEMS}
+						tone='vanity'
+						resultLabel='Typical outcome'
+						resultTitle='Higher effort, weaker attribution'
+						resultDescription='Teams stay busy, reporting stays noisy, and social is treated like an awareness cost instead of a demand asset.'
+					/>
 
-					<div className='space-y-5'>
-						<motion.div variants={itemVariants} className='flex items-center gap-3'>
-							<div className='inline-flex size-10 items-center justify-center rounded-xl border border-pastel-mint-border bg-pastel-mint/60'>
-								<TrendingUp className='size-5 text-pastel-mint-ink' aria-hidden />
-							</div>
-							<h3 className='text-2xl font-bold tracking-tight text-foreground sm:text-3xl'>
-								Strategic Omnipresence{' '}
-								<span className='ml-1 text-lg font-medium text-pastel-mint-ink'>(High Intent)</span>
-							</h3>
-						</motion.div>
-						<div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-							{STRATEGIC_ITEMS.map((item) => {
-								const tone = STRATEGIC_TONES[item.tone];
-								return (
-									<motion.article
-										key={item.title}
-										variants={cardVariants}
-										className={cn(
-											'rounded-2xl border p-5 shadow-sm',
-											tone.card,
-											tone.border,
-											item.variant === 'full' && 'sm:col-span-2',
-										)}>
-										{item.icon ?
-											<div
-												className={cn(
-													'inline-flex size-10 items-center justify-center rounded-xl border',
-													tone.iconWrap,
-												)}>
-												<item.icon className={cn('size-5', tone.iconColor)} aria-hidden />
-											</div>
-										:	<div className='h-1.5 w-16 rounded-full bg-primary/55' aria-hidden />}
-										<h4
-											className={cn(
-												'text-2xl font-bold tracking-tight text-foreground sm:text-3xl',
-												item.icon ? 'mt-4' : 'mt-5',
-											)}>
-											{item.title}
-										</h4>
-										<p className='mt-2 text-base leading-relaxed text-foreground/80 dark:text-foreground/75'>
-											{item.description}
-										</p>
-									</motion.article>
-								);
-							})}
-							<motion.article
-								variants={cardVariants}
-								className='rounded-2xl border border-pastel-mint-border bg-pastel-mint/85 p-6 text-center shadow-sm sm:col-span-2'>
-								<p className='text-xs font-bold uppercase tracking-[0.18em] text-pastel-mint-ink'>The Result</p>
-								<h4 className='mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl'>
-									Attributable Revenue
-								</h4>
-								<p className='mt-2 text-base leading-relaxed text-foreground/80'>
-									Predictable pipeline growth powered by strategic signal capture.
-								</p>
-							</motion.article>
-						</div>
-					</div>
+					<EvolutionPanel
+						title='Strategic social signal'
+						eyebrow='High intent'
+						description='This model turns channel presence into an operating system for narrative consistency, audience learning, and downstream conversion.'
+						items={STRATEGIC_ITEMS}
+						tone='strategic'
+						resultLabel='Typical outcome'
+						resultTitle='Clearer contribution to pipeline'
+						resultDescription='Content performance becomes easier to learn from, easier to optimize, and easier to defend in revenue reviews.'
+					/>
 				</motion.div>
 
 				<motion.div
@@ -238,16 +195,26 @@ export function SocialSignalEvolutionSection({ className }: { className?: string
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-30px' }}
-					className='mx-auto mt-12 max-w-3xl rounded-3xl border border-border bg-card p-7 shadow-sm'>
-					<div className='flex flex-col items-center justify-between gap-5 sm:flex-row'>
-						<div>
-							<p className='text-lg text-muted-foreground'>Ready to evolve your signals?</p>
-							<p className='text-3xl font-bold tracking-tight text-foreground'>Bridge Signal to Revenue</p>
+					className='relative mt-12 overflow-hidden rounded-4xl border border-pastel-lilac-border bg-linear-to-br from-card via-background to-pastel-lilac/20 p-6 shadow-sm md:p-8'>
+					<div className='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-pastel-lilac-strong/60 to-transparent' />
+					<div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
+						<div className='max-w-2xl'>
+							<p className='text-xs font-semibold uppercase tracking-[0.18em] text-pastel-lilac-ink'>
+								Strategic next step
+							</p>
+							<h3 className='mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl'>
+								Build a social engine that creates signal, not just surface activity
+							</h3>
+							<p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
+								Map channel roles, tighten the content system, and connect engagement patterns to the actions that
+								actually move demand forward.
+							</p>
 						</div>
+
 						<div className='flex flex-col gap-3 sm:flex-row'>
 							<Button asChild size='lg' className='group gap-2'>
 								<Link href='#consultation'>
-									Bridge Signal to Revenue
+									Plan My Social Strategy
 									<ArrowRight className='size-4 transition-transform group-hover:translate-x-1' aria-hidden />
 								</Link>
 							</Button>
