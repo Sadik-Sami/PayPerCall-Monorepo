@@ -1,12 +1,19 @@
-import { HeroSection } from "@/components/sections/blocks/HeroSection";
-import { InfiniteSlider } from "@workspace/ui/components/infinite-slider";
-import appleIcon from '@/public/icons/apple.svg'
-import googleIcon from '@/public/icons/google.svg'
-import facebookIcon from '@/public/icons/facebook.svg'
-import twitterIcon from '@/public/icons/twitter.svg'
-import slackIcon from '@/public/icons/slack.svg'
-import whatsappIcon from '@/public/icons/whatsapp.svg'
-import Image from "next/image";
+import { HeroSection } from '@/components/sections/blocks/HeroSection';
+import { InfiniteSlider } from '@workspace/ui/components/infinite-slider';
+import appleIcon from '@/public/icons/apple.svg';
+import googleIcon from '@/public/icons/google.svg';
+import facebookIcon from '@/public/icons/facebook.svg';
+import twitterIcon from '@/public/icons/twitter.svg';
+import slackIcon from '@/public/icons/slack.svg';
+import whatsappIcon from '@/public/icons/whatsapp.svg';
+import astroIcon from '@/public/icons/astro-dark.png';
+import cloudflareIcon from '@/public/icons/cloudflare.svg';
+import reactIcon from '@/public/icons/reactjs.png';
+import svelteIcon from '@/public/icons/svelte.svg';
+import swiftIcon from '@/public/icons/swiftui-og.png';
+import tanstackIcon from '@/public/icons/tanstack.png';
+import xcodeIcon from '@/public/icons/xcode.png';
+import Image from 'next/image';
 import {
 	CaseStudyStrip,
 	ConsultationCTA,
@@ -18,12 +25,8 @@ import {
 } from '@/components/sections/services';
 import FAQ from '@/components/sections/shared/FAQ';
 import type { CaseStudyCardItem, FaqItem } from '@/types/services';
-import {
-	PAY_PER_CALL_SERVICE_NAV,
-	PAY_PER_CALL_GATEWAY_CONFIG,
-	buildGatewayCards,
-} from '@/lib/services/nav-items';
-import Industries from "@/components/sections/shared/Industries";
+import { PAY_PER_CALL_SERVICE_NAV, PAY_PER_CALL_GATEWAY_CONFIG, buildGatewayCards } from '@/lib/services/nav-items';
+import Industries from '@/components/sections/shared/Industries';
 
 const PAY_PER_CALL_CASE_STUDIES: CaseStudyCardItem[] = [
 	{
@@ -85,55 +88,62 @@ export default function PayPerCallPage() {
 	return (
 		<main className='min-h-screen'>
 			<HeroSection
-				className="mt-12 md:mt-0"
-				title="Pay Per Call"
-				subtitle="Pay Per Call is a marketing service that allows you to pay for each call you receive. It is a great way to get more leads and sales."
+				className='mt-12 md:mt-0'
+				title='Pay Per Call'
+				subtitle='Pay Per Call is a marketing service that allows you to pay for each call you receive. It is a great way to get more leads and sales.'
 				callToAction={{
-					text: "Get a Free Consultation",
-					href: "/contact",
+					text: 'Get a Free Consultation',
+					href: '/contact',
 				}}
-				backgroundImage="https://plus.unsplash.com/premium_photo-1687362298502-1881385c786f?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				backgroundImage='https://plus.unsplash.com/premium_photo-1687362298502-1881385c786f?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 				contactInfo={{
-					website: "https://corecloser.com",
-					phone: "+1 (855) 330-2777",
-					address: "20555 US-19 N, Clearwater, FL 33763",
+					website: 'https://corecloser.com',
+					phone: '+1 (855) 330-2777',
+					address: '20555 US-19 N, Clearwater, FL 33763',
 				}}
 			/>
-			<div className="w-full bg-background">
-				<InfiniteSlider gap={128} speed={50} className={SECTION_PADDING}>
-					<Image src={appleIcon} className='h-12 w-auto' alt="apple" width={48} height={48} />
-					<Image src={googleIcon} className='h-12 w-auto' alt="google" width={48} height={48} />
-					<Image src={facebookIcon} className='h-12 w-auto' alt="facebook" width={48} height={48} />
-					<Image src={twitterIcon} className='h-12 w-auto' alt="twitter" width={48} height={48} />
-					<Image src={slackIcon} className='h-12 w-auto' alt="slack" width={48} height={48} />
-					<Image src={whatsappIcon} className='h-12 w-auto' alt="whatsapp" width={48} height={48} />
+			<div className='w-full bg-background'>
+				<InfiniteSlider gap={120} speed={60} className={SECTION_PADDING}>
+					<Image src={appleIcon} className='h-12 w-auto' alt='apple' width={48} height={48} />
+					<Image src={googleIcon} className='h-12 w-auto' alt='google' width={48} height={48} />
+					<Image src={facebookIcon} className='h-12 w-auto' alt='facebook' width={48} height={48} />
+					<Image src={twitterIcon} className='h-12 w-auto' alt='twitter' width={48} height={48} />
+					<Image src={slackIcon} className='h-12 w-auto' alt='slack' width={96} height={96} />
+					<Image src={whatsappIcon} className='h-12 w-auto' alt='whatsapp' width={48} height={48} />
+					<Image src={astroIcon} className='h-12 w-auto' alt='astro' width={100} height={100} />
+					<Image src={cloudflareIcon} className='h-12 w-auto' alt='cloudflare' width={48} height={48} />
+					<Image src={reactIcon} className='h-12 w-auto' alt='react' width={96} height={96} />
+					<Image src={svelteIcon} className='h-12 w-auto' alt='svelte' width={48} height={48} />
+					<Image src={swiftIcon} className='h-12 w-auto' alt='swift' width={48} height={48} />
+					<Image src={tanstackIcon} className='h-12 w-auto' alt='tanstack' width={48} height={48} />
+					<Image src={xcodeIcon} className='h-12 w-auto' alt='xcode' width={48} height={48} />
 				</InfiniteSlider>
 			</div>
-			<div className="w-full bg-muted/30">
+			<div className='w-full bg-muted/30'>
 				<ValuePropositionSection className={SECTION_PADDING} />
 			</div>
-			<div className="w-full bg-background">
+			<div className='w-full bg-background'>
 				<TransformationComparisonSection className={SECTION_PADDING} />
 			</div>
-			<div className="w-full bg-muted/30">
-				<Industries variant="pastel" className={SECTION_PADDING} />
+			<div className='w-full bg-muted/30'>
+				<Industries variant='pastel' className={SECTION_PADDING} />
 			</div>
-			<div className="w-full bg-muted/30">
+			<div className='w-full bg-muted/30'>
 				<StrategicBlueprintSection className={SECTION_PADDING} />
 			</div>
-			<div className="w-full bg-background">
+			<div className='w-full bg-background'>
 				<ROICalculatorSection className={SECTION_PADDING} />
 			</div>
-			<div className="w-full bg-muted/30">
+			<div className='w-full bg-muted/30'>
 				<CaseStudyStrip
 					items={PAY_PER_CALL_CASE_STUDIES}
-					title="Success Stories"
+					title='Success Stories'
 					description="See how we've helped businesses scale their operations and achieve unprecedented growth with our strategic blueprint."
 					cta={{ text: 'Get a Free Consultation', href: '/contact' }}
 					className={SECTION_PADDING}
 				/>
 			</div>
-			<div className="w-full bg-background">
+			<div className='w-full bg-background'>
 				<ServiceCapabilitiesGateway
 					title={PAY_PER_CALL_GATEWAY_CONFIG.title}
 					subtitle={PAY_PER_CALL_GATEWAY_CONFIG.subtitle}
@@ -141,7 +151,7 @@ export default function PayPerCallPage() {
 						PAY_PER_CALL_SERVICE_NAV,
 						'/services/pay-per-call',
 						PAY_PER_CALL_GATEWAY_CONFIG.ctaLabels,
-						PAY_PER_CALL_GATEWAY_CONFIG.iconKeys
+						PAY_PER_CALL_GATEWAY_CONFIG.iconKeys,
 					)}
 					primaryCta={PAY_PER_CALL_GATEWAY_CONFIG.primaryCta}
 					primaryCtaNote={PAY_PER_CALL_GATEWAY_CONFIG.primaryCtaNote}
@@ -149,16 +159,16 @@ export default function PayPerCallPage() {
 					className={SECTION_PADDING}
 				/>
 			</div>
-			<div className="w-full bg-muted/30">
+			<div className='w-full bg-muted/30'>
 				<FAQ
 					items={PAY_PER_CALL_FAQS}
-					variant="pastel"
-					badge="Pay Per Call FAQ"
+					variant='pastel'
+					badge='Pay Per Call FAQ'
 					description="Everything you need to know about Pay Per Call—billing, quality, tracking, and how to get started. We're here to help you scale."
 					className={SECTION_PADDING}
 				/>
 			</div>
-			<div className="w-full bg-background">
+			<div className='w-full bg-background'>
 				<ConsultationCTA
 					className={SECTION_PADDING}
 					category='pay-per-call'
