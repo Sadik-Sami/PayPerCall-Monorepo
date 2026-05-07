@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import { userServices } from '../../modules/users/user.service';
-import { publicUserSelectSchema } from '../../db/validator/user.validator';
+import { publicUserSelectSchema } from '../../validators/user.validator';
 import { NewUser } from '../../db/schema/users.schema';
-import { LoginRequest } from '../../db/validator/auth.validator';
+import { LoginRequest } from '../../validators/auth.validator';
 import { authService } from './auth.service';
 import { refreshCookieOptions } from '../../utils/token.util';
 import { ConflictError, UnauthorizedError } from '../../utils/error.util';

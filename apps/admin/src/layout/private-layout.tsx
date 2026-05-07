@@ -6,7 +6,7 @@ import Loading from '@/components/common/loading';
 import InsufficientPermissions from '@/components/common/insufficient-permissions';
 import AppSidebar from '@/components/dashboard/app-sidebar';
 import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@workspace/ui/components/separator';
 
 export default function PrivateLayout() {
 	const { isAuthenticated, isLoading: authLoading } = useAuth();

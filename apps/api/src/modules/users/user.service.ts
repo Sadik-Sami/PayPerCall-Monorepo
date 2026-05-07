@@ -3,7 +3,7 @@ import { db } from '../../db';
 import { usersTable, User, NewUser } from '../../db/schema/users.schema';
 import { sessionsTable } from '../../db/schema';
 import { eq } from 'drizzle-orm';
-import { AppError } from '../../middlewares/errorHandler';
+import { AppError } from '../../utils/error.util';
 import { Role } from '../../utils/validation.util';
 
 export const userServices = {

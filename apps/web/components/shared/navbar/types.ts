@@ -1,18 +1,2 @@
-export interface NavLink {
-	label: string;
-	href: string;
-	description?: string;
-}
-
-export interface NavColumn {
-	title: string;
-	href?: string;
-	links: NavLink[];
-}
-
-export interface NavItem {
-	id: string;
-	label: string;
-	columns?: NavColumn[];
-	href?: string;
-}
+// Re-export navigation types from shared package
+export type { NavLink, NavColumn, NavItem } from '@workspace/ui/data/navigation';

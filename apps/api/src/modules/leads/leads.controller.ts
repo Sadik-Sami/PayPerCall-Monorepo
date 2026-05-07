@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from 'express';
 import { leadsService } from './leads.service';
-import { AppError } from '../../middlewares/errorHandler';
+import { AppError } from '../../utils/error.util';
 import { isValidUUID } from '../../utils/validation.util';
-import type { LeadCreateInput } from '../../db/validator/lead.validator';
-import { leadListQuerySchema } from '../../db/validator/lead.validator';
+import type { LeadCreateInput } from '../../validators/lead.validator';
+import { leadListQuerySchema } from '../../validators/lead.validator';
 import type { NewLead } from '../../db/schema';
 
 export const leadsController = {

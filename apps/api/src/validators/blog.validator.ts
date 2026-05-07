@@ -1,6 +1,6 @@
 import { createInsertSchema, createUpdateSchema } from 'drizzle-zod';
 import { z } from 'zod';
-import { blogsTable } from '../schema/blogs.schema';
+import { blogsTable } from '../db/schema/blogs.schema';
 
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 

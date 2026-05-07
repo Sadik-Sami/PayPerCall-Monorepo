@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { LayoutDashboard, FileText, Newspaper, Package, Users, User, LogOut, Shield, ChevronUp } from 'lucide-react';
+import { LayoutDashboard, FileText, Users, User, LogOut, Shield, ChevronUp } from 'lucide-react';
 import { ROUTES } from '@/utils/constants';
 import { useAuth } from '@/hooks/use-auth';
 import {
@@ -15,14 +15,14 @@ import {
 	SidebarMenuItem,
 	SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/avatar';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@workspace/ui/components/dropdown-menu';
 
 const navigationItems = [
 	{
@@ -34,16 +34,6 @@ const navigationItems = [
 		title: 'Blogs',
 		href: ROUTES.DASHBOARD_BLOGS,
 		icon: FileText,
-	},
-	{
-		title: 'News',
-		href: ROUTES.DASHBOARD_NEWS,
-		icon: Newspaper,
-	},
-	{
-		title: 'Packages',
-		href: ROUTES.DASHBOARD_PACKAGES,
-		icon: Package,
 	},
 	{
 		title: 'Leads',

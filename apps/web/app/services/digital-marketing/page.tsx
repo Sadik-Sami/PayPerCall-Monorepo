@@ -21,7 +21,7 @@ import {
 	DIGITAL_MARKETING_GATEWAY_CONFIG,
 	DIGITAL_MARKETING_SERVICE_NAV,
 	buildGatewayCards,
-} from '@/lib/services/nav-items';
+} from '@/lib/data/service-navigation';
 import {
 	CASE_STUDIES,
 	CONSULTATION_FEATURES,

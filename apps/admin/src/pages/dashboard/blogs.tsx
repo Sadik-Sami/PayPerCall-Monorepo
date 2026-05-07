@@ -4,9 +4,9 @@ import { toast } from 'sonner';
 import { ROUTES } from '@/utils/constants';
 import type { Blog, BlogStatus } from '@/types/blog.types';
 import { useBlogs, useDeleteBlog } from '@/hooks/use-blogs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card';
+import { Button } from '@workspace/ui/components/button';
+import { Input } from '@workspace/ui/components/input';
 import { Badge } from '@/components/ui/badge';
 import { Loader2, Plus, RefreshCw, Trash2, Pencil } from 'lucide-react';
 

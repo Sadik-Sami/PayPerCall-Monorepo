@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { blockServices } from './blocks.service';
-import { AppError } from '../../middlewares/errorHandler';
+import { AppError } from '../../utils/error.util';
 import { isValidUUID } from '../../utils/validation.util';
 
 export const blocksController = {

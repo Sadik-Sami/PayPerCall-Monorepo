@@ -8,13 +8,12 @@ import DashboardPage from '@/pages/dashboard/index';
 import BlogsPage from '@/pages/dashboard/blogs';
 import BlogCreatePage from '@/pages/dashboard/blog-create';
 import BlogEditPage from '@/pages/dashboard/blog-edit';
-import NewsPage from '@/pages/dashboard/news';
-import PackagesPage from '@/pages/dashboard/packages';
+
 import LeadsPage from '@/pages/dashboard/leads';
 import NotFoundPage from '@/pages/not-found';
-import { Toaster } from '@/components/ui/sonner';
+import { Toaster } from '@workspace/ui/components/sonner';
 import { ROUTES } from '@/utils/constants';
-import { TooltipProvider } from '@/components/ui/tooltip';
+import { TooltipProvider } from '@workspace/ui/components/tooltip';
 import SignupPage from './pages/auth/signup';
 import ProfilePage from './pages/dashboard/profile';
 import { ThemeProvider } from './providers/theme.provider';
@@ -44,8 +43,7 @@ function App() {
 								<Route path={ROUTES.DASHBOARD_BLOGS} element={<BlogsPage />} />
 								<Route path={ROUTES.DASHBOARD_BLOG_CREATE} element={<BlogCreatePage />} />
 								<Route path={ROUTES.DASHBOARD_BLOG_EDIT_PATTERN} element={<BlogEditPage />} />
-								<Route path={ROUTES.DASHBOARD_NEWS} element={<NewsPage />} />
-								<Route path={ROUTES.DASHBOARD_PACKAGES} element={<PackagesPage />} />
+
 								<Route path={ROUTES.DASHBOARD_LEADS} element={<LeadsPage />} />
 								</Route>
 

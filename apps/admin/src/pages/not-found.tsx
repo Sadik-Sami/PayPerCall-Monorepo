@@ -1,5 +1,5 @@
 import { FileQuestion, Home } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@workspace/ui/components/button';
 import { Link } from 'react-router';
 
 export default function NotFoundPage() {

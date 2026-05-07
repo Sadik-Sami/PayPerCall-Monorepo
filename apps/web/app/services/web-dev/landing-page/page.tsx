@@ -11,7 +11,7 @@ import {
 import heroImageLanding from '@/public/images/slider/slider-2.jpg';
 import { Megaphone, MousePointer, BarChart3 } from 'lucide-react';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/types/services';
+import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 
 export const revalidate = 3600;
 

@@ -25,7 +25,7 @@ import {
 } from '@/components/sections/services';
 import FAQ from '@/components/sections/shared/FAQ';
 import type { CaseStudyCardItem, FaqItem } from '@/types/services';
-import { PAY_PER_CALL_SERVICE_NAV, PAY_PER_CALL_GATEWAY_CONFIG, buildGatewayCards } from '@/lib/services/nav-items';
+import { PAY_PER_CALL_SERVICE_NAV, PAY_PER_CALL_GATEWAY_CONFIG, buildGatewayCards } from '@/lib/data/service-navigation';
 import Industries from '@/components/sections/shared/Industries';
 
 const PAY_PER_CALL_CASE_STUDIES: CaseStudyCardItem[] = [

@@ -6,6 +6,8 @@ import type {
 import type { GrowthMatrixStep } from './DigitalMarketingGrowthMatrixSection';
 import type { IntegratedSuccessBlueprintsData } from './IntegratedSuccessBlueprintsSection';
 
+export const SECTION_PADDING = 'max-w-7xl mx-auto py-20 md:py-24';
+
 export const TRUST_INDICATORS = [
 	{
 		title: 'Bank-Grade Security',

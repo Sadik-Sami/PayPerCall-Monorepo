@@ -1,5 +1,5 @@
 import { ShieldX } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@workspace/ui/components/button';
 import { useNavigate } from 'react-router';
 import { ROUTES } from '@/utils/constants';
 

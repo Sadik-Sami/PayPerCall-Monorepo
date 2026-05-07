@@ -13,7 +13,7 @@ import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeli
 import heroImageCommerce from '@/public/images/slider/slider-1.jpg';
 import { ShoppingBag, Truck, CreditCard } from 'lucide-react';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/types/services';
+import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 
 export const revalidate = 3600;
 

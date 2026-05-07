@@ -1,6 +1,6 @@
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
-import { leadsTable } from '../schema/leads.schema';
+import { leadsTable } from '../db/schema/leads.schema';
 
 export const leadStatusSchema = z.enum(['pending', 'processing', 'replied', 'won', 'lost']);
 

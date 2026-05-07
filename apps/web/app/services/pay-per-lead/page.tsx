@@ -22,7 +22,7 @@ import {
 	PAY_PER_LEAD_SERVICE_NAV,
 	PAY_PER_LEAD_GATEWAY_CONFIG,
 	buildGatewayCards,
-} from '@/lib/services/nav-items';
+} from '@/lib/data/service-navigation';
 import {
 	SECTION_PADDING,
 	VALUE_CARDS,

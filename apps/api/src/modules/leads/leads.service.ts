@@ -1,8 +1,8 @@
 import { and, asc, desc, eq, ilike, inArray, or, sql } from 'drizzle-orm';
 import { db } from '../../db';
 import { leadsTable, type Lead, type NewLead } from '../../db/schema';
-import { AppError } from '../../middlewares/errorHandler';
-import type { LeadListQueryInput, LeadStatusUpdateInput } from '../../db/validator/lead.validator';
+import { AppError } from '../../utils/error.util';
+import type { LeadListQueryInput, LeadStatusUpdateInput } from '../../validators/lead.validator';
 
 type LeadListResult = {
 	data: Lead[];

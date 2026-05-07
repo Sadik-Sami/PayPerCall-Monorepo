@@ -1,3 +1,15 @@
+export class AppError extends Error {
+  statusCode: number;
+  details?: Record<string, string[]>;
+
+  constructor(message: string, statusCode = 500, details?: Record<string, string[]>) {
+    super(message);
+    this.statusCode = statusCode;
+    this.details = details;
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
 export class ValidationError extends Error {
   readonly statusCode = 400
   constructor(

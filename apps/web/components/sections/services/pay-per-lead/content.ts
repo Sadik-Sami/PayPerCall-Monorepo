@@ -7,6 +7,8 @@ import type {
 import type { BlueprintStep } from '../shared/StrategicBlueprintSection';
 import type { CaseStudyCardItem, FaqItem } from '@/types/services';
 
+export const SECTION_PADDING = 'max-w-7xl mx-auto py-20 md:py-24';
+
 export const VALUE_CARDS: ValuePropositionCard[] = [
 	{
 		title: 'Verified Intent',

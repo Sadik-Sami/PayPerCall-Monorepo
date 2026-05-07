@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react';
 import { useDebouncedCallback } from '@/hooks/use-debounced-callback';
 import { useLeads, useUpdateLeadStatus } from '@/hooks/use-leads';
 import type { LeadStatus } from '@/types/lead.types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card';
+import { Input } from '@workspace/ui/components/input';
+import { Button } from '@workspace/ui/components/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@workspace/ui/components/select';
 import {
 	Pagination,
 	PaginationContent,
@@ -18,7 +18,7 @@ import {
 	PaginationPrevious,
 } from '@/components/ui/pagination';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { navigationData } from '../../../../web/components/shared/navbar/data';
+import { navigationData } from '@workspace/ui/data/navigation';
 
 type StatusFilter = 'all' | LeadStatus;
 type SortBy = 'created_at' | 'updated_at' | 'status';

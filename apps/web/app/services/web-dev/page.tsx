@@ -14,8 +14,8 @@ import {
 	WEB_DEV_SERVICE_NAV,
 	WEB_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
-} from '@/lib/services/nav-items';
-import { mapCaseStudyToCard } from '@/types/services';
+} from '@/lib/data/service-navigation';
+import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import { PremiumServicesGrid } from '@/components/sections/blocks/PremiumServicesGrid';
 import { IndustryExpertiseSection } from '@/components/sections/blocks/IndustryExpertiseSection';

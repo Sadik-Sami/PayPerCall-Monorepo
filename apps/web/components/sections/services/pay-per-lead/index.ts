@@ -1,4 +1,4 @@
-export { SECTION_PADDING } from './constants';
+export { SECTION_PADDING } from './content';
 export {
 	VALUE_CARDS,
 	TRANSFORMATION_PAIRS,

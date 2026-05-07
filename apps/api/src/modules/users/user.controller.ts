@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { userServices } from './user.service';
-import { changePasswordSchema, changeRoleSchema, publicUserSelectSchema } from '../../db/validator/user.validator';
-import { AppError } from '../../middlewares/errorHandler';
-import { ForbiddenError } from '../../utils/error.util';
+import { changePasswordSchema, changeRoleSchema, publicUserSelectSchema } from '../../validators/user.validator';
+import { AppError, ForbiddenError } from '../../utils/error.util';
 import { isValidUUID } from '../../utils/validation.util';
 
 export const userController = {

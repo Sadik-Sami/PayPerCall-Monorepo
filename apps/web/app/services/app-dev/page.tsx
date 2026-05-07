@@ -14,12 +14,12 @@ import {
 	APP_DEV_SERVICE_NAV,
 	APP_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
-} from '@/lib/services/nav-items';
+} from '@/lib/data/service-navigation';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Smartphone, Tablet, Code2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
-import { mapCaseStudyToCard } from '@/types/services';
+import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 
 export const metadata: Metadata = {
 	title: 'Mobile App Development Services | iOS, Android & Cross-Platform | PayPerCall',

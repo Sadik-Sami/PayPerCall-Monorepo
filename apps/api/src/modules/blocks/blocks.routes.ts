@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { blocksController } from './blocks.controller';
 import { authenticate, authorize } from '../../middlewares/auth.middleware';
 import { validateData } from '../../middlewares/validation.middleware';
-import { blockReorderSchema, blockUpdateSchema } from '../../db/validator/blogBlock.validator';
+import { blockReorderSchema, blockUpdateSchema } from '../../validators/blogBlock.validator';
 
 export const adminBlocksRouter: Router = Router();
 

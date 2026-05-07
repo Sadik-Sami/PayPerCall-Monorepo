@@ -11,7 +11,7 @@ import {
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
 import type { FaqItem } from '@/types/services';
-import { mapCaseStudyToCard } from '@/types/services';
+import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import heroImage3 from '@/public/images/slider/slider-3.jpg';
 import { Briefcase, Building, Target } from 'lucide-react';
 

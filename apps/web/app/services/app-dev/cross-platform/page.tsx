@@ -11,7 +11,7 @@ import {
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
-import { mapCaseStudyToCard } from '@/types/services';
+import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
 import heroImage1 from '@/public/images/slider/slider-1.jpg';
 import { Code2, Smartphone, Tablet } from 'lucide-react';

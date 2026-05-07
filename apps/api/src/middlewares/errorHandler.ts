@@ -2,6 +2,7 @@ import type { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { config } from '../config/env';
 import {
+	AppError,
 	TooManyRequestsError,
 	ValidationError,
 	UnauthorizedError,
@@ -10,23 +11,24 @@ import {
 	ConflictError,
 } from '../utils/error.util';
 
-export class AppError extends Error {
-	statusCode: number;
-	details?: any;
-
-	constructor(message: string, statusCode = 500, details?: any) {
-		super(message);
-		this.statusCode = statusCode;
-		this.details = details;
-		Error.captureStackTrace(this, this.constructor);
-	}
+// Express error middleware requires `err: unknown` but we need property access
+interface ErrorWithMeta {
+	name?: string;
+	message?: string;
+	statusCode?: number;
+	details?: Record<string, string[]>;
+	cause?: { code?: string };
+	code?: string;
+	stack?: string;
 }
 
-export function errorHandler(err: any, req: Request, res: Response, next: NextFunction): void {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Express ErrorRequestHandler signature requires any
+export function errorHandler(err: any, req: Request, res: Response, _next: NextFunction): void {
+	const error = err as ErrorWithMeta;
 	console.error('[Error]', {
-		name: err?.name,
-		message: err?.message,
-		statusCode: err?.statusCode || 500,
+		name: error.name,
+		message: error.message,
+		statusCode: error.statusCode || 500,
 		timestamp: new Date().toISOString(),
 		path: req.path,
 		method: req.method,
@@ -107,7 +109,7 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
 	}
 
 	// Drizzle/postgres unique violation
-	const pgCode = err?.cause?.code ?? err?.code;
+	const pgCode = error.cause?.code ?? error.code;
 	if (pgCode === '23505') {
 		res.status(409).json({
 			success: false,
@@ -135,7 +137,7 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
 		statusCode: 500,
 		message: 'Internal server error',
 		// Only expose error details in development
-		...(isDev ? { error: err?.message, stack: err?.stack } : {}),
+		...(isDev ? { error: error.message, stack: error.stack } : {}),
 	});
 	return;
 }

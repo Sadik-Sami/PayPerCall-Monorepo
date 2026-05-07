@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { leadsController } from './leads.controller';
 import { authenticate, authorize } from '../../middlewares/auth.middleware';
 import { validateData } from '../../middlewares/validation.middleware';
-import { leadCreateSchema, leadStatusUpdateSchema } from '../../db/validator/lead.validator';
+import { leadCreateSchema, leadStatusUpdateSchema } from '../../validators/lead.validator';
 
 export const publicLeadsRouter: Router = Router();
 export const adminLeadsRouter: Router = Router();

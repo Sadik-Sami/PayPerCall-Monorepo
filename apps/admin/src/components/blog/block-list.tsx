@@ -10,7 +10,7 @@ import {
 import { SortableContext, arrayMove, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useSortable } from '@dnd-kit/sortable';
-import { Button } from '@/components/ui/button';
+import { Button } from '@workspace/ui/components/button';
 import type { BlogBlock, BlogBlockType } from '@/types/blog.types';
 import { BLOCK_TYPE_LABELS, extractTextFromNode } from './block-utils';
 import { GripVertical } from 'lucide-react';

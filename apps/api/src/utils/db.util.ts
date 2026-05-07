@@ -1,4 +1,4 @@
-import { AppError } from '../middlewares/errorHandler'
+import { AppError } from './error.util'
 
 /**
  * Helper function to get first result from query or throw error

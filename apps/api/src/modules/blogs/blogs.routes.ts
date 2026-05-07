@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { blogsController } from './blogs.controller';
 import { authenticate, authorize } from '../../middlewares/auth.middleware';
 import { validateData } from '../../middlewares/validation.middleware';
-import { blogCreateSchema, blogUpdateSchema } from '../../db/validator/blog.validator';
-import { blockCreateSchema } from '../../db/validator/blogBlock.validator';
+import { blogCreateSchema, blogUpdateSchema } from '../../validators/blog.validator';
+import { blockCreateSchema } from '../../validators/blogBlock.validator';
 
 export const publicBlogsRouter: Router = Router();
 export const adminBlogsRouter: Router = Router();

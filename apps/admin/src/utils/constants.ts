@@ -10,8 +10,6 @@ export const ROUTES = {
 	DASHBOARD_BLOG_CREATE: '/dashboard/blogs/new',
 	DASHBOARD_BLOG_EDIT_PATTERN: '/dashboard/blogs/:id/edit',
 	DASHBOARD_BLOG_EDIT: (id: string) => `/dashboard/blogs/${id}/edit`,
-	DASHBOARD_NEWS: '/dashboard/news',
-	DASHBOARD_PACKAGES: '/dashboard/packages',
 	DASHBOARD_LEADS: '/dashboard/leads',
 } as const;
 
