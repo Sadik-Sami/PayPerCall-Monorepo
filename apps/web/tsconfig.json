@@ -1,29 +1,30 @@
 {
-  "extends": "@workspace/typescript-config/nextjs.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"],
-      "@workspace/ui/*": ["../../packages/ui/src/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "next-env.d.ts",
-    "next.config.ts",
-    "app/**/*.ts",
-    "app/**/*.tsx",
-    "components/**/*.ts",
-    "components/**/*.tsx",
-    "lib/**/*.ts",
-    "lib/**/*.tsx",
-    "types/**/*.ts",
-    "types/**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+	"extends": "@workspace/typescript-config/nextjs.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"ignoreDeprecations": "6.0",
+		"paths": {
+			"@/*": ["./*"],
+			"@workspace/ui/*": ["../../packages/ui/src/*"]
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
+	},
+	"include": [
+		"next-env.d.ts",
+		"next.config.ts",
+		"app/**/*.ts",
+		"app/**/*.tsx",
+		"components/**/*.ts",
+		"components/**/*.tsx",
+		"lib/**/*.ts",
+		"lib/**/*.tsx",
+		"types/**/*.ts",
+		"types/**/*.tsx",
+		".next/types/**/*.ts"
+	],
+	"exclude": ["node_modules"]
 }

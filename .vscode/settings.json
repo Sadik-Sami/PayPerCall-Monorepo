@@ -1,9 +1,0 @@
-{
-	"tailwindCSS.experimental.configFile": "packages/ui/src/styles/globals.css",
-	"github.copilot.chat.experimental.useInstructionFiles": true,
-
-	// Ensure VS Code scans workspace instruction locations (default includes .github/instructions).
-	"chat.instructionsFilesLocations": {
-		".github/instructions": true
-	}
-}

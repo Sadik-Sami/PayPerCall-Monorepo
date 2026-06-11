@@ -1,19 +1,6 @@
 import { HeroSection } from '@/components/sections/blocks/HeroSection';
-import { InfiniteSlider } from '@workspace/ui/components/infinite-slider';
-import appleIcon from '@/public/icons/apple.svg';
-import googleIcon from '@/public/icons/google.svg';
-import facebookIcon from '@/public/icons/facebook.svg';
-import twitterIcon from '@/public/icons/twitter.svg';
-import slackIcon from '@/public/icons/slack.svg';
-import whatsappIcon from '@/public/icons/whatsapp.svg';
-import astroIcon from '@/public/icons/astro-dark.png';
-import cloudflareIcon from '@/public/icons/cloudflare.svg';
-import reactIcon from '@/public/icons/reactjs.png';
-import svelteIcon from '@/public/icons/svelte.svg';
-import swiftIcon from '@/public/icons/swiftui-og.png';
-import tanstackIcon from '@/public/icons/tanstack.png';
-import xcodeIcon from '@/public/icons/xcode.png';
-import Image from 'next/image';
+import { IndustryTrustSlider } from '@/components/sections/shared/trust/IndustryTrustSlider';
+import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 import {
 	CaseStudyStrip,
 	ConsultationCTA,
@@ -90,9 +77,9 @@ export default function PayPerCallPage() {
 			<HeroSection
 				className='mt-12 md:mt-0'
 				title='Pay Per Call'
-				subtitle='Pay Per Call is a marketing service that allows you to pay for each call you receive. It is a great way to get more leads and sales.'
+				subtitle='Pay only for qualified inbound calls from high-intent prospects. Predictable volume, proven ROI, and zero wasted ad spend.'
 				callToAction={{
-					text: 'Get a Free Consultation',
+					text: 'Check Call Capacity',
 					href: '/contact',
 				}}
 				backgroundImage='https://plus.unsplash.com/premium_photo-1687362298502-1881385c786f?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
@@ -102,39 +89,23 @@ export default function PayPerCallPage() {
 					address: '20555 US-19 N, Clearwater, FL 33763',
 				}}
 			/>
-			<div className='w-full bg-background'>
-				<InfiniteSlider gap={120} speed={60} className={SECTION_PADDING}>
-					<Image src={appleIcon} className='h-12 w-auto' alt='apple' width={48} height={48} />
-					<Image src={googleIcon} className='h-12 w-auto' alt='google' width={48} height={48} />
-					<Image src={facebookIcon} className='h-12 w-auto' alt='facebook' width={48} height={48} />
-					<Image src={twitterIcon} className='h-12 w-auto' alt='twitter' width={48} height={48} />
-					<Image src={slackIcon} className='h-12 w-auto' alt='slack' width={96} height={96} />
-					<Image src={whatsappIcon} className='h-12 w-auto' alt='whatsapp' width={48} height={48} />
-					<Image src={astroIcon} className='h-12 w-auto' alt='astro' width={100} height={100} />
-					<Image src={cloudflareIcon} className='h-12 w-auto' alt='cloudflare' width={48} height={48} />
-					<Image src={reactIcon} className='h-12 w-auto' alt='react' width={96} height={96} />
-					<Image src={svelteIcon} className='h-12 w-auto' alt='svelte' width={48} height={48} />
-					<Image src={swiftIcon} className='h-12 w-auto' alt='swift' width={48} height={48} />
-					<Image src={tanstackIcon} className='h-12 w-auto' alt='tanstack' width={48} height={48} />
-					<Image src={xcodeIcon} className='h-12 w-auto' alt='xcode' width={48} height={48} />
-				</InfiniteSlider>
+            <IndustryTrustSlider />
+            <div className='w-full bg-muted/30'>
+				<ROICalculatorSection className={SECTION_PADDING} />
 			</div>
-			<div className='w-full bg-muted/30'>
+			<div className='w-full bg-background'>
 				<ValuePropositionSection className={SECTION_PADDING} />
 			</div>
-			<div className='w-full bg-background'>
+			<div className='w-full bg-muted/30'>
 				<TransformationComparisonSection className={SECTION_PADDING} />
 			</div>
-			<div className='w-full bg-muted/30'>
+			<div className='w-full bg-background'>
 				<Industries variant='pastel' className={SECTION_PADDING} />
 			</div>
 			<div className='w-full bg-muted/30'>
 				<StrategicBlueprintSection className={SECTION_PADDING} />
 			</div>
 			<div className='w-full bg-background'>
-				<ROICalculatorSection className={SECTION_PADDING} />
-			</div>
-			<div className='w-full bg-muted/30'>
 				<CaseStudyStrip
 					items={PAY_PER_CALL_CASE_STUDIES}
 					title='Success Stories'
@@ -143,7 +114,7 @@ export default function PayPerCallPage() {
 					className={SECTION_PADDING}
 				/>
 			</div>
-			<div className='w-full bg-background'>
+			<div className='w-full bg-muted/30'>
 				<ServiceCapabilitiesGateway
 					title={PAY_PER_CALL_GATEWAY_CONFIG.title}
 					subtitle={PAY_PER_CALL_GATEWAY_CONFIG.subtitle}
@@ -159,7 +130,7 @@ export default function PayPerCallPage() {
 					className={SECTION_PADDING}
 				/>
 			</div>
-			<div className='w-full bg-muted/30'>
+			<div className='w-full bg-background'>
 				<FAQ
 					items={PAY_PER_CALL_FAQS}
 					variant='pastel'
@@ -168,7 +139,7 @@ export default function PayPerCallPage() {
 					className={SECTION_PADDING}
 				/>
 			</div>
-			<div className='w-full bg-background'>
+			<div className='w-full bg-muted/30'>
 				<ConsultationCTA
 					className={SECTION_PADDING}
 					category='pay-per-call'
@@ -198,6 +169,7 @@ export default function PayPerCallPage() {
 					formVariant='detailed'
 				/>
 			</div>
+            <StickyCTA title="Ready for more inbound calls?" ctaText="Check Call Capacity" href="/contact" />
 		</main>
 	);
 }
