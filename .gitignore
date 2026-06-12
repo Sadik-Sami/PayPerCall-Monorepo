@@ -43,4 +43,5 @@ npm-debug.log*
 .kombai
 .pnpm-store
 .opencode
+.kilo
 AGENTS.md
