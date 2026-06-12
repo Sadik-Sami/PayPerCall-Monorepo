@@ -148,7 +148,7 @@ function renderOrderedList(node: TiptapNode): React.ReactNode {
 		return null;
 	}
 
-	const start = node.attrs?.start || 1;
+	const start = typeof node.attrs?.start === 'number' ? node.attrs.start : 1;
 
 	return (
 		<ol className='list-decimal list-inside space-y-2 my-4' start={start}>
@@ -172,9 +172,9 @@ function renderImage(node: TiptapNode): React.ReactNode {
 		return null;
 	}
 
-	const src = node.attrs?.src;
-	const alt = node.attrs?.alt || '';
-	const title = node.attrs?.title;
+	const src = typeof node.attrs?.src === 'string' ? node.attrs.src : undefined;
+	const alt = typeof node.attrs?.alt === 'string' ? node.attrs.alt : '';
+	const title = typeof node.attrs?.title === 'string' ? node.attrs.title : undefined;
 
 	if (!src) {
 		console.warn('Image node missing src attribute');

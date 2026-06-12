@@ -1,5 +1,3 @@
-// Shared navigation types and data used across apps (web navbar, admin leads filter, etc.)
-
 export interface NavLink {
 	label: string;
 	href: string;

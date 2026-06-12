@@ -43,9 +43,9 @@ function renderTextWithMarks(text: string, marks: TiptapMark[] | undefined, key:
 
 	// Check for link first (outermost)
 	const linkMark = marks.find((m) => m.type === 'link');
-	if (linkMark && linkMark.attrs?.href) {
+	if (linkMark && typeof linkMark.attrs?.href === 'string') {
 		const href = linkMark.attrs.href;
-		const target = linkMark.attrs.target;
+		const target = typeof linkMark.attrs.target === 'string' ? linkMark.attrs.target : undefined;
 		const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
 
 		result = (
