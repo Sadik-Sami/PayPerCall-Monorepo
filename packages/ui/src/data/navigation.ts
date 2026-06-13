@@ -87,6 +87,7 @@ export const navigationData: NavItem[] = [
 				title: 'Our Company',
 				links: [
 					{ label: 'Team Members', href: '/about/team' },
+					{ label: 'Clients', href: '/about/clients' },
 					{ label: 'Why Us', href: '/about/why-us' },
 					{ label: 'Portfolio', href: '/about/portfolio' },
 					{ label: 'Testimonials', href: '/about/testimonials' },
