@@ -89,8 +89,8 @@ export default function PayPerCallPage() {
 					address: '20555 US-19 N, Clearwater, FL 33763',
 				}}
 			/>
-            <IndustryTrustSlider />
-            <div className='w-full bg-muted/30'>
+			<IndustryTrustSlider />
+			<div className='w-full bg-muted/30'>
 				<ROICalculatorSection className={SECTION_PADDING} />
 			</div>
 			<div className='w-full bg-background'>
@@ -169,7 +169,7 @@ export default function PayPerCallPage() {
 					formVariant='detailed'
 				/>
 			</div>
-            <StickyCTA title="Ready for more inbound calls?" ctaText="Check Call Capacity" href="/contact" />
+			<StickyCTA title="Ready for more inbound calls?" ctaText="Check Call Capacity" href="/contact" />
 		</main>
 	);
 }

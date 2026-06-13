@@ -20,6 +20,7 @@ import { Smartphone, Tablet, Code2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 
 export const metadata: Metadata = {
 	title: 'Mobile App Development Services | iOS, Android & Cross-Platform | PayPerCall',
@@ -281,6 +282,7 @@ export default function AppDevOverviewPage() {
 					]}
 				/>
 			</div>
+			<StickyCTA title="Ready to launch your app?" ctaText="Schedule Strategy Session" href="/contact" />
 		</main>
 	);
 }

@@ -20,6 +20,7 @@ import {
 	CMS_GATEWAY_CONFIG,
 	buildGatewayCards,
 } from '@/lib/data/service-navigation';
+import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 
 export const metadata: Metadata = {
 	title: 'CMS Development Services | WordPress, Drupal, Headless CMS | PayPerCall',
@@ -246,6 +247,7 @@ export default function CMSOverviewPage() {
 					]}
 				/>
 			</div>
+			<StickyCTA title="Ready to optimize your CMS?" ctaText="Book Platform Assessment" href="/contact" />
 		</main>
 	);
 }

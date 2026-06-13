@@ -20,6 +20,7 @@ import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import { PremiumServicesGrid } from '@/components/sections/blocks/PremiumServicesGrid';
 import { IndustryExpertiseSection } from '@/components/sections/blocks/IndustryExpertiseSection';
 import { WebDevHero } from './_components';
+import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 
 const PROCESS_STEPS = [
 	{
@@ -161,6 +162,7 @@ export default function WebDevOverviewPage() {
 					/>
 				</div>
 			</div>
+			<StickyCTA title="Ready to plan your next digital experience?" ctaText="Launch Your Project" href="/contact" />
 		</main>
 	);
 }
