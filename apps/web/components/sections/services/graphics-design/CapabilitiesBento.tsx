@@ -14,6 +14,11 @@ import {
 	Camera,
 	Film,
 	PenTool,
+	Mic,
+	AudioLines,
+	Radio,
+	Scissors,
+	Briefcase,
 } from 'lucide-react';
 import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, itemVariants } from '@/lib/animations';
@@ -33,7 +38,12 @@ export type BentoIcon =
 	| 'Brush'
 	| 'Camera'
 	| 'Film'
-	| 'PenTool';
+	| 'PenTool'
+	| 'Mic'
+	| 'AudioLines'
+	| 'Radio'
+	| 'Scissors'
+	| 'Briefcase';
 
 export interface BentoTile {
 	title: string;
@@ -65,6 +75,11 @@ const ICON_MAP: Record<BentoIcon, LucideIcon> = {
 	Camera,
 	Film,
 	PenTool,
+	Mic,
+	AudioLines,
+	Radio,
+	Scissors,
+	Briefcase,
 };
 
 const CARD_BG: Record<Accent, string> = {

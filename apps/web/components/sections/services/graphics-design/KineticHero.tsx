@@ -13,6 +13,8 @@ import { Button } from '@workspace/ui/components/button';
 import { InfiniteSlider } from '@workspace/ui/components/infinite-slider';
 import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, itemVariants } from '@/lib/animations';
+import { EqualiserBars } from '@/components/sections/services/podcast-marketing/EqualiserBars';
+import { NowPlayingChip } from '@/components/sections/services/podcast-marketing/NowPlayingChip';
 
 type Accent = 'mint' | 'sky' | 'lilac' | 'peach' | 'blush' | 'lime';
 
@@ -29,6 +31,8 @@ interface KineticHeroProps {
 	badges?: Array<{ icon: BadgeIcon; label: string }>;
 	marqueeTokens?: string[];
 	haloAccents?: Accent[];
+	stickerKind?: 'design' | 'audio';
+	nowPlaying?: { eyebrow?: string; title: string; meta?: string; accent?: Accent };
 }
 
 const ACCENT_TEXT: Record<Accent, string> = {
@@ -119,6 +123,8 @@ export function KineticHero({
 	badges,
 	marqueeTokens,
 	haloAccents = ['lilac', 'sky'],
+	stickerKind = 'design',
+	nowPlaying,
 }: KineticHeroProps) {
 	const reduceMotion = useReducedMotion();
 	const sectionRef = useRef<HTMLElement | null>(null);
@@ -184,50 +190,117 @@ export function KineticHero({
 				}}
 			/>
 
-			<Sticker className='left-[6%] top-[18%] text-pastel-lilac-strong' mouseX={mouseX} mouseY={mouseY}>
-				<svg width='44' height='44' viewBox='0 0 24 24' fill='none'>
-					<path d='M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z' fill='currentColor' />
-				</svg>
-			</Sticker>
-			<Sticker
-				className='right-[8%] top-[22%] text-pastel-peach-strong'
-				xRange={26}
-				yRange={20}
-				duration={7.5}
-				mouseX={mouseX}
-				mouseY={mouseY}
-			>
-				<svg width='52' height='52' viewBox='0 0 24 24' fill='none'>
-					<circle cx='12' cy='12' r='3' fill='currentColor' />
-					<circle cx='12' cy='12' r='8' stroke='currentColor' strokeWidth='1.5' strokeDasharray='2 3' />
-				</svg>
-			</Sticker>
-			<Sticker
-				className='left-[10%] bottom-[18%] text-pastel-sky-strong'
-				xRange={22}
-				yRange={18}
-				duration={8}
-				mouseX={mouseX}
-				mouseY={mouseY}
-			>
-				<svg width='40' height='40' viewBox='0 0 24 24' fill='none'>
-					<path d='M3 12 Q 8 4, 14 12 T 21 12' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
-				</svg>
-			</Sticker>
-			<Sticker
-				className='right-[10%] bottom-[22%] text-pastel-mint-strong'
-				xRange={20}
-				yRange={16}
-				duration={6.5}
-				mouseX={mouseX}
-				mouseY={mouseY}
-			>
-				<div className='grid grid-cols-3 gap-1.5'>
-					{Array.from({ length: 9 }).map((_, i) => (
-						<span key={i} className='block size-1.5 rounded-full bg-current' />
-					))}
-				</div>
-			</Sticker>
+			{stickerKind === 'design' ? (
+				<>
+					<Sticker className='left-[6%] top-[18%] text-pastel-lilac-strong' mouseX={mouseX} mouseY={mouseY}>
+						<svg width='44' height='44' viewBox='0 0 24 24' fill='none'>
+							<path d='M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z' fill='currentColor' />
+						</svg>
+					</Sticker>
+					<Sticker
+						className='right-[8%] top-[22%] text-pastel-peach-strong'
+						xRange={26}
+						yRange={20}
+						duration={7.5}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<svg width='52' height='52' viewBox='0 0 24 24' fill='none'>
+							<circle cx='12' cy='12' r='3' fill='currentColor' />
+							<circle cx='12' cy='12' r='8' stroke='currentColor' strokeWidth='1.5' strokeDasharray='2 3' />
+						</svg>
+					</Sticker>
+					<Sticker
+						className='left-[10%] bottom-[18%] text-pastel-sky-strong'
+						xRange={22}
+						yRange={18}
+						duration={8}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<svg width='40' height='40' viewBox='0 0 24 24' fill='none'>
+							<path d='M3 12 Q 8 4, 14 12 T 21 12' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
+						</svg>
+					</Sticker>
+					<Sticker
+						className='right-[10%] bottom-[22%] text-pastel-mint-strong'
+						xRange={20}
+						yRange={16}
+						duration={6.5}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<div className='grid grid-cols-3 gap-1.5'>
+							{Array.from({ length: 9 }).map((_, i) => (
+								<span key={i} className='block size-1.5 rounded-full bg-current' />
+							))}
+						</div>
+					</Sticker>
+				</>
+			) : (
+				<>
+					<Sticker className='left-[6%] top-[18%]' xRange={20} yRange={16} duration={7} mouseX={mouseX} mouseY={mouseY}>
+						<EqualiserBars accent='peach' size='lg' />
+					</Sticker>
+					<Sticker
+						className='right-[8%] top-[22%] text-pastel-mint-strong'
+						xRange={26}
+						yRange={20}
+						duration={7.5}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<svg width='72' height='40' viewBox='0 0 72 40' fill='none'>
+							<path
+								d='M2 20 Q 10 4, 18 20 T 34 20 T 50 20 T 70 20'
+								stroke='currentColor'
+								strokeWidth='2.5'
+								strokeLinecap='round'
+							/>
+							<path
+								d='M2 28 Q 10 12, 18 28 T 34 28 T 50 28 T 70 28'
+								stroke='currentColor'
+								strokeWidth='1.5'
+								strokeLinecap='round'
+								opacity='0.5'
+							/>
+						</svg>
+					</Sticker>
+					<Sticker
+						className='left-[10%] bottom-[18%] text-pastel-lilac-strong'
+						xRange={22}
+						yRange={18}
+						duration={8}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<div className='flex flex-col items-center gap-1.5'>
+							<span className='block size-2 rounded-full bg-current opacity-50' />
+							<span className='block size-2.5 rounded-full bg-current opacity-80' />
+							<span className='block size-3 rounded-full bg-current' />
+							<span className='block size-2.5 rounded-full bg-current opacity-80' />
+							<span className='block size-2 rounded-full bg-current opacity-50' />
+						</div>
+					</Sticker>
+					{nowPlaying && (
+						<Sticker
+							className='right-[5%] bottom-[14%] w-64 sm:w-72'
+							xRange={14}
+							yRange={10}
+							duration={9}
+							mouseX={mouseX}
+							mouseY={mouseY}
+						>
+							<NowPlayingChip
+								eyebrow={nowPlaying.eyebrow}
+								title={nowPlaying.title}
+								meta={nowPlaying.meta}
+								accent={nowPlaying.accent ?? 'peach'}
+							/>
+						</Sticker>
+					)}
+				</>
+			)}
 
 			<div className='section-container relative z-10'>
 				{marqueeTokens && marqueeTokens.length > 0 && (
