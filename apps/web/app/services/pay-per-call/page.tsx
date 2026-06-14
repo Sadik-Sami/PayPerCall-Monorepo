@@ -12,8 +12,13 @@ import {
 } from '@/components/sections/services';
 import FAQ from '@/components/sections/shared/FAQ';
 import type { CaseStudyCardItem, FaqItem } from '@/types/services';
-import { PAY_PER_CALL_SERVICE_NAV, PAY_PER_CALL_GATEWAY_CONFIG, buildGatewayCards } from '@/lib/data/service-navigation';
+import {
+	PAY_PER_CALL_SERVICE_NAV,
+	PAY_PER_CALL_GATEWAY_CONFIG,
+	buildGatewayCards,
+} from '@/lib/data/service-navigation';
 import Industries from '@/components/sections/shared/Industries';
+import { ImageContentSplit } from '@/components/sections/services/shared/ImageContentSplit';
 
 const PAY_PER_CALL_CASE_STUDIES: CaseStudyCardItem[] = [
 	{
@@ -100,6 +105,72 @@ export default function PayPerCallPage() {
 				<TransformationComparisonSection className={SECTION_PADDING} />
 			</div>
 			<div className='w-full bg-background'>
+				<ImageContentSplit
+					className={SECTION_PADDING}
+					kicker='Intelligent Routing'
+					kickerAccent='sky'
+					haloAccent='sky'
+					headline='Connect instantly with high-intent buyers.'
+					description='Stop relying on stale form fills and delayed outreach. The Core Closer platform uses real-time, logic-based routing to connect highly motivated callers directly to your sales floor the exact moment they are looking for your service.'
+					bullets={[
+						{
+							title: 'Vertical-Specific Matching',
+							description:
+								'Calls are dynamically routed based on your exact industry — Home Services, Legal, or Healthcare.',
+						},
+						{
+							title: 'Zero-Latency Transfers',
+							description:
+								'Our cloud infrastructure ensures calls hit your reps’ headsets without drop-offs or frustrating delays.',
+						},
+						{
+							title: '100% Exclusivity',
+							description:
+								'Every inbound call is yours alone. We never syndicate or sell the same prospect to your competitors.',
+						},
+					]}
+					primaryCta={{ label: 'Start Routing Calls', href: '/contact' }}
+					image={{
+						src: '/images/ppc/ppc1.jpg',
+						alt: 'Inbound call routed in real time through an intelligent connection hub',
+					}}
+				/>
+			</div>
+			<div className='w-full bg-muted/30'>
+				<ImageContentSplit
+					reverse
+					className={SECTION_PADDING}
+					kicker='Quality Assurance'
+					kickerAccent='lilac'
+					haloAccent='lilac'
+					headline='We filter the noise. You pay for results.'
+					description='Protect your acquisition budget from bots, spam, and tire-kickers. Our proprietary screening funnel aggressively blocks unqualified traffic, ensuring that the only calls making it to your team are purchase-ready prospects. If they don’t meet your criteria, you don’t pay.'
+					bullets={[
+						{
+							title: 'AI-Powered Fraud Blocking',
+							description:
+								'Advanced carrier-level screening automatically drops spam and robo-callers before they ever ring.',
+						},
+						{
+							title: 'Custom Buffer Times',
+							description:
+								'Set your own qualification thresholds (60 or 90 seconds). Only pay for calls with meaningful duration.',
+						},
+						{
+							title: 'Maximized Profitability',
+							description:
+								'By eliminating wasted time on dead leads, your closers spend 100% of their day actually closing — driving your CPA down.',
+						},
+					]}
+					primaryCta={{ label: 'View Qualification Process', href: '/contact' }}
+					primaryCtaVariant='lilac'
+					image={{
+						src: '/images/ppc/ppc2.jpg',
+						alt: 'Qualified leads filtered through a funnel converting into revenue',
+					}}
+				/>
+			</div>
+			<div className='w-full bg-background'>
 				<Industries variant='pastel' className={SECTION_PADDING} />
 			</div>
 			<div className='w-full bg-muted/30'>
@@ -169,7 +240,7 @@ export default function PayPerCallPage() {
 					formVariant='detailed'
 				/>
 			</div>
-			<StickyCTA title="Ready for more inbound calls?" ctaText="Check Call Capacity" href="/contact" />
+			<StickyCTA title='Ready for more inbound calls?' ctaText='Check Call Capacity' href='/contact' />
 		</main>
 	);
 }

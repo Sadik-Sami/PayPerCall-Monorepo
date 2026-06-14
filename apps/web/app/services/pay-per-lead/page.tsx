@@ -12,6 +12,7 @@ import {
 } from '@/components/sections/services';
 import FAQ from '@/components/sections/shared/FAQ';
 import Industries from '@/components/sections/shared/Industries';
+import { ImageContentSplit } from '@/components/sections/services/shared/ImageContentSplit';
 import {
 	PAY_PER_LEAD_SERVICE_NAV,
 	PAY_PER_LEAD_GATEWAY_CONFIG,
@@ -88,6 +89,71 @@ export default function PayPerLeadPage() {
 					stats={STATS}
 					readyTitle="Ready to switch?"
 					readyDescription="Join 200+ teams already using Pay Per Lead to scale conversions and cut CPL waste."
+				/>
+			</div>
+			<div className="w-full bg-background">
+				<ImageContentSplit
+					className={SECTION_PADDING}
+					kicker="Real-Time Delivery"
+					kickerAccent="sky"
+					haloAccent="sky"
+					headline="Exclusive leads, delivered the second they convert."
+					description="Forget about aged data or shared lists that your competitors are already dialing. The Core Closer platform captures high-intent prospects and pushes their verified data directly into your CRM via API in milliseconds. When your sales team reaches out, the prospect is still actively looking for your solution."
+					bullets={[
+						{
+							title: '100% Exclusive Data',
+							description: 'We never recycle or syndicate leads. If you buy it, it’s yours alone.',
+						},
+						{
+							title: 'Zero-Latency API Integration',
+							description:
+								'Seamlessly push lead data into Salesforce, HubSpot, GoHighLevel, or any custom CRM.',
+						},
+						{
+							title: 'Vertical-Specific Targeting',
+							description:
+								'Granular filtering to ensure the lead matches your exact ideal customer profile (ICP).',
+						},
+					]}
+					primaryCta={{ label: 'Explore API Integrations', href: '/contact' }}
+					image={{
+						src: '/images/ppl/ppl1.jpg',
+						alt: 'Verified lead data flowing through the Core Closer hub into a CRM in real time',
+					}}
+				/>
+			</div>
+			<div className="w-full bg-muted/30">
+				<ImageContentSplit
+					reverse
+					className={SECTION_PADDING}
+					kicker="Verified Intent"
+					kickerAccent="lilac"
+					haloAccent="lilac"
+					headline="Pristine data. You only pay for contactable leads."
+					description="Your closers shouldn't spend their day chasing fake numbers and bounced emails. Our rigorous multi-step verification process instantly scrubs every lead in real-time. We validate contact details, verify intent, and block duplicate submissions before the lead ever hits your pipeline."
+					bullets={[
+						{
+							title: 'Automated Verification',
+							description:
+								'Real-time phone and email pinging ensures the contact information is 100% active.',
+						},
+						{
+							title: 'Strictly TCPA Compliant',
+							description:
+								'Every lead comes with documented, bulletproof opt-in records to protect your business.',
+						},
+						{
+							title: 'Zero Fraud Guarantee',
+							description:
+								'Our AI actively blocks bot submissions and fraudulent form fills, protecting your budget.',
+						},
+					]}
+					primaryCta={{ label: 'See Our Quality Standards', href: '/contact' }}
+					primaryCtaVariant="lilac"
+					image={{
+						src: '/images/ppc/ppc2.jpg',
+						alt: 'Verification funnel filtering invalid leads while clean data flows through to revenue',
+					}}
 				/>
 			</div>
 			<div className="w-full bg-background">
