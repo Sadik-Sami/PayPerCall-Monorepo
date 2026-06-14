@@ -138,9 +138,9 @@ export const footerData = {
 		{ label: 'Financial', href: '/industries/financial' },
 	],
 	legal: [
-		{ label: 'Privacy Policy', href: '/privacy' },
-		{ label: 'Terms of Service', href: '/terms' },
-		{ label: 'Cookie Policy', href: '/cookies' },
-		{ label: 'GDPR Compliance', href: '/gdpr' },
+		{ label: 'Privacy Policy', href: '/legal/privacy-policy' },
+		{ label: 'Terms of Service', href: '/legal/terms-of-service' },
+		{ label: 'Cookie Policy', href: '/legal/cookie-policy' },
+		{ label: 'GDPR Compliance', href: '/legal/gdpr-compliance' },
 	],
 };

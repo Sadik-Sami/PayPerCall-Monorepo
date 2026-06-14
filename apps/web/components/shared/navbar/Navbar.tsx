@@ -140,7 +140,8 @@ export function Navbar() {
 			<div className='hidden md:block'>
 				<nav
 					ref={navbarRef}
-					className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border py-2'
+					className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 border-b border-border py-2 ${activeDropdown ? 'bg-background' : 'bg-background/80 backdrop-blur-sm'
+						}`}
 					onMouseLeave={handleNavLeave}>
 					<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 						<div className='flex items-center justify-between h-10 sm:h-14 lg:h-16'>
@@ -200,10 +201,12 @@ export function Navbar() {
 								initial='hidden'
 								animate='visible'
 								exit='hidden'
-								className='absolute left-0 right-0 z-40'
+								className='absolute top-full left-0 right-0 z-40'
 								onMouseEnter={handleDropdownEnter}
 								onMouseLeave={handleDropdownLeave}>
-								<DesktopDropdown navItem={activeNavItem} />
+								<div className="shadow-xl">
+									<DesktopDropdown navItem={activeNavItem} />
+								</div>
 							</motion.div>
 						)}
 					</AnimatePresence>

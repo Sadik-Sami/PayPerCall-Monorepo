@@ -19,7 +19,7 @@ export const MobileMenuItem = memo(function MobileMenuItem({ item, isActive, onT
 		return (
 			<a
 				href={item.href}
-				className='font-utility flex items-center justify-between py-3 sm:py-4 text-sm sm:text-base font-medium text-foreground hover:text-primary transition-colors'
+				className='font-utility flex items-center justify-between py-6 sm:py-8 text-base sm:text-lg font-medium text-foreground hover:text-primary transition-colors'
 				onClick={onClose}>
 				{item.label}
 			</a>
@@ -30,11 +30,11 @@ export const MobileMenuItem = memo(function MobileMenuItem({ item, isActive, onT
 		<>
 			<button
 				onClick={onToggle}
-				className='font-utility flex items-center justify-between w-full py-3 sm:py-4 text-sm sm:text-base font-medium text-foreground hover:text-primary transition-colors'
+				className='font-utility flex items-center justify-between w-full py-6 sm:py-8 text-base sm:text-lg font-medium text-foreground hover:text-primary transition-colors'
 				aria-expanded={isActive}>
 				{item.label}
 				<motion.div animate={{ rotate: isActive ? 180 : 0 }} transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}>
-					<ChevronDown size={18} className='text-muted-foreground shrink-0' />
+					<ChevronDown size={18} className='text-primary shrink-0' />
 				</motion.div>
 			</button>
 
@@ -53,12 +53,12 @@ export const MobileMenuItem = memo(function MobileMenuItem({ item, isActive, onT
 										<Link
 											href={column.href}
 											onClick={onClose}
-											className='font-utility text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-4 block hover:text-primary transition-colors'
+											className='font-utility text-sm sm:text-base font-semibold text-foreground uppercase tracking-wider mb-2 px-4 block hover:text-primary transition-colors'
 										>
 											{column.title}
 										</Link>
 									) : (
-										<h4 className='font-utility text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-4'>
+										<h4 className='font-utility text-sm sm:text-base font-semibold text-foreground uppercase tracking-wider mb-2 px-4'>
 											{column.title}
 										</h4>
 									)}
@@ -67,7 +67,7 @@ export const MobileMenuItem = memo(function MobileMenuItem({ item, isActive, onT
 											<motion.li key={linkIndex} variants={mobileSubItemVariants}>
 												<a
 													href={link.href}
-													className='font-utility block px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-muted-foreground hover:text-primary hover:bg-accent/50 transition-colors'
+													className='font-utility block px-4 py-3 sm:py-4 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors'
 													onClick={onClose}>
 													<div className='font-medium'>{link.label}</div>
 													{link.description && (

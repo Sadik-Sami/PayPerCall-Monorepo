@@ -19,4 +19,5 @@ export * from './shared/ServiceComparison';
 export * from './shared/TimelineSteps';
 export * from './shared/DeliverablesSection';
 export * from './shared/TrendingUp';
+export * from './shared/ImageContentSplit';
 export * from './pay-per-call';
