@@ -131,7 +131,7 @@ export default function PayPerCallPage() {
 					]}
 					primaryCta={{ label: 'Start Routing Calls', href: '/contact' }}
 					image={{
-						src: '/images/ppc/ppc1.jpg',
+						src: '/images/ppc/ppc1.png',
 						alt: 'Inbound call routed in real time through an intelligent connection hub',
 					}}
 				/>
@@ -165,7 +165,7 @@ export default function PayPerCallPage() {
 					primaryCta={{ label: 'View Qualification Process', href: '/contact' }}
 					primaryCtaVariant='lilac'
 					image={{
-						src: '/images/ppc/ppc2.jpg',
+						src: '/images/ppc/ppc2.png',
 						alt: 'Qualified leads filtered through a funnel converting into revenue',
 					}}
 				/>

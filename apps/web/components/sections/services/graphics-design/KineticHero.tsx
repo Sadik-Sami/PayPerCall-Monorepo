@@ -15,6 +15,7 @@ import { cn } from '@workspace/ui/lib/utils';
 import { containerVariants, itemVariants } from '@/lib/animations';
 import { EqualiserBars } from '@/components/sections/services/podcast-marketing/EqualiserBars';
 import { NowPlayingChip } from '@/components/sections/services/podcast-marketing/NowPlayingChip';
+import { VideoPreviewChip } from '@/components/sections/services/video-editing/VideoPreviewChip';
 
 type Accent = 'mint' | 'sky' | 'lilac' | 'peach' | 'blush' | 'lime';
 
@@ -31,7 +32,7 @@ interface KineticHeroProps {
 	badges?: Array<{ icon: BadgeIcon; label: string }>;
 	marqueeTokens?: string[];
 	haloAccents?: Accent[];
-	stickerKind?: 'design' | 'audio';
+	stickerKind?: 'design' | 'audio' | 'video';
 	nowPlaying?: { eyebrow?: string; title: string; meta?: string; accent?: Accent };
 }
 
@@ -190,7 +191,7 @@ export function KineticHero({
 				}}
 			/>
 
-			{stickerKind === 'design' ? (
+			{stickerKind === 'design' && (
 				<>
 					<Sticker className='left-[6%] top-[18%] text-pastel-lilac-strong' mouseX={mouseX} mouseY={mouseY}>
 						<svg width='44' height='44' viewBox='0 0 24 24' fill='none'>
@@ -237,7 +238,9 @@ export function KineticHero({
 						</div>
 					</Sticker>
 				</>
-			) : (
+			)}
+
+			{stickerKind === 'audio' && (
 				<>
 					<Sticker className='left-[6%] top-[18%]' xRange={20} yRange={16} duration={7} mouseX={mouseX} mouseY={mouseY}>
 						<EqualiserBars accent='peach' size='lg' />
@@ -292,6 +295,81 @@ export function KineticHero({
 							mouseY={mouseY}
 						>
 							<NowPlayingChip
+								eyebrow={nowPlaying.eyebrow}
+								title={nowPlaying.title}
+								meta={nowPlaying.meta}
+								accent={nowPlaying.accent ?? 'peach'}
+							/>
+						</Sticker>
+					)}
+				</>
+			)}
+
+			{stickerKind === 'video' && (
+				<>
+					<Sticker className='left-[6%] top-[18%] text-pastel-peach-strong' xRange={20} yRange={16} duration={7} mouseX={mouseX} mouseY={mouseY}>
+						<svg width='56' height='44' viewBox='0 0 56 44' fill='none'>
+							<rect x='2' y='10' width='52' height='30' rx='4' stroke='currentColor' strokeWidth='2' />
+							<path d='M2 18 H54' stroke='currentColor' strokeWidth='1.5' />
+							<path d='M6 10 L10 4 L18 4 L14 10 Z' fill='currentColor' />
+							<path d='M22 10 L26 4 L34 4 L30 10 Z' fill='currentColor' />
+							<path d='M38 10 L42 4 L50 4 L46 10 Z' fill='currentColor' />
+						</svg>
+					</Sticker>
+					<Sticker
+						className='right-[8%] top-[22%] text-pastel-lilac-strong'
+						xRange={26}
+						yRange={20}
+						duration={7.5}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<svg width='52' height='52' viewBox='0 0 24 24' fill='none'>
+							<circle cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='1.5' />
+							<path d='M10 8.5 L16 12 L10 15.5 Z' fill='currentColor' />
+						</svg>
+					</Sticker>
+					<Sticker
+						className='left-[10%] bottom-[18%] text-pastel-sky-strong'
+						xRange={22}
+						yRange={18}
+						duration={8}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<svg width='64' height='40' viewBox='0 0 64 40' fill='none'>
+							<path d='M2 6 L2 34' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
+							<path d='M62 6 L62 34' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
+							<path d='M2 6 L10 6' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
+							<path d='M54 6 L62 6' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
+							<path d='M2 34 L10 34' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
+							<path d='M54 34 L62 34' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' />
+						</svg>
+					</Sticker>
+					<Sticker
+						className='right-[12%] bottom-[28%] text-pastel-mint-strong'
+						xRange={18}
+						yRange={14}
+						duration={6.5}
+						mouseX={mouseX}
+						mouseY={mouseY}
+					>
+						<div className='flex items-end gap-1'>
+							{[10, 18, 14, 22, 12, 20, 16].map((h, i) => (
+								<span key={i} className='block w-1 rounded-sm bg-current' style={{ height: `${h}px` }} />
+							))}
+						</div>
+					</Sticker>
+					{nowPlaying && (
+						<Sticker
+							className='right-[5%] bottom-[10%] w-64 sm:w-72'
+							xRange={14}
+							yRange={10}
+							duration={9}
+							mouseX={mouseX}
+							mouseY={mouseY}
+						>
+							<VideoPreviewChip
 								eyebrow={nowPlaying.eyebrow}
 								title={nowPlaying.title}
 								meta={nowPlaying.meta}

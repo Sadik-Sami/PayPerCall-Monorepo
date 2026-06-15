@@ -37,11 +37,7 @@ npm-debug.log*
 
 # AI
 .github
-.cursor
 .claude
 .agents
-.kombai
 .pnpm-store
-.opencode
-.kilo
 AGENTS.md

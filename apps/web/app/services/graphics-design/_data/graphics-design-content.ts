@@ -161,7 +161,7 @@ export const STORY_ONE = {
 		{ title: 'Ad-platform-ready source files', description: 'Cuts, ratios, and naming conventions built for Meta, Google, TikTok intake.' },
 	],
 	primaryCta: { label: 'See the framework', href: '/contact' },
-	image: { src: '/images/ppc/ppc1.jpg', alt: 'Conversion-engineered creative system shipping into a paid-media funnel' },
+	image: { src: '/images/ppc/ppc1.png', alt: 'Conversion-engineered creative system shipping into a paid-media funnel' },
 };
 
 export const STORY_TWO = {
@@ -175,7 +175,7 @@ export const STORY_TWO = {
 		{ title: 'Faster iterations week over week', description: 'Throughput goes up while quality holds because the system is doing the heavy lifting.' },
 	],
 	primaryCta: { label: 'Build my design system', href: '/contact' },
-	image: { src: '/images/ppc/ppc2.jpg', alt: 'A modular design system feeding consistent creative output across channels' },
+	image: { src: '/images/ppc/ppc2.png', alt: 'A modular design system feeding consistent creative output across channels' },
 };
 
 export const PRINCIPLES = {

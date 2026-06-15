@@ -207,7 +207,7 @@ export const STORY_ONE = {
 		},
 	],
 	primaryCta: { label: 'See the framework', href: '/contact' },
-	image: { src: '/images/ppc/ppc1.jpg', alt: 'A podcast strategy framework feeding a paid-acquisition funnel' },
+	image: { src: '/images/ppc/ppc1.png', alt: 'A podcast strategy framework feeding a paid-acquisition funnel' },
 };
 
 export const STORY_TWO = {
@@ -230,7 +230,7 @@ export const STORY_TWO = {
 		},
 	],
 	primaryCta: { label: 'Build my clip engine', href: '/contact' },
-	image: { src: '/images/ppc/ppc2.jpg', alt: 'Clips, audiograms, and assets compounding from a single episode' },
+	image: { src: '/images/ppc/ppc2.png', alt: 'Clips, audiograms, and assets compounding from a single episode' },
 };
 
 export const PRINCIPLES = {

@@ -117,7 +117,7 @@ export default function PayPerLeadPage() {
 					]}
 					primaryCta={{ label: 'Explore API Integrations', href: '/contact' }}
 					image={{
-						src: '/images/ppl/ppl1.jpg',
+						src: '/images/ppl/ppl1.png',
 						alt: 'Verified lead data flowing through the Core Closer hub into a CRM in real time',
 					}}
 				/>
@@ -151,7 +151,7 @@ export default function PayPerLeadPage() {
 					primaryCta={{ label: 'See Our Quality Standards', href: '/contact' }}
 					primaryCtaVariant="lilac"
 					image={{
-						src: '/images/ppc/ppc2.jpg',
+						src: '/images/ppc/ppc2.png',
 						alt: 'Verification funnel filtering invalid leads while clean data flows through to revenue',
 					}}
 				/>
