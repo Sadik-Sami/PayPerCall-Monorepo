@@ -18,15 +18,10 @@ type ImagesSliderProps = {
 	overlayClassName?: string;
 	className?: string;
 	autoplay?: boolean;
-	/** Direction the image exits (visual), not the keyboard mapping. */
 	direction?: 'up' | 'down';
-	/** Enable focus-scoped keyboard navigation (ArrowUp/ArrowDown by default). */
 	keyboard?: boolean;
-	/** Which arrow keys should control next/prev. */
 	keyboardKeys?: 'vertical' | 'horizontal';
-	/** Accessible label for the slider region. */
 	ariaLabel?: string;
-	/** Pause autoplay while the slider is focused (keyboard users). */
 	pauseOnFocus?: boolean;
 };
 
@@ -183,7 +178,7 @@ export const ImagesSlider = ({
 							alt=''
 							aria-hidden='true'
 							fill
-							sizes='100vw'
+							// sizes='100vw'
 							priority={currentIndex === 0}
 							draggable={false}
 							className='object-cover select-none'

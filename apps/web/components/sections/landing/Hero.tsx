@@ -5,8 +5,8 @@ import { ImagesSlider } from './ImagesSlider';
 import { Button } from '@workspace/ui/components/button';
 import { ArrowRight, Phone } from 'lucide-react';
 import Link from 'next/link';
-import sliderImage5 from '@/public/images/slider/slider-8.png';
-import sliderImage6 from '@/public/images/slider/slider-9.png';
+import sliderImage5 from '@/public/images/slider/slider-8.webp';
+import sliderImage6 from '@/public/images/slider/slider-9.webp';
 
 const SLIDES = [
 	{
