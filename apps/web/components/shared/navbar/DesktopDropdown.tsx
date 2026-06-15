@@ -39,12 +39,12 @@ export const DesktopDropdown = memo(function DesktopDropdown({ navItem }: Deskto
 							{column.href ? (
 								<Link
 									href={column.href}
-									className='font-utility text-base sm:text-lg lg:text-xl font-bold text-foreground uppercase tracking-tight hover:text-primary transition-colors block'
+									className='text-base sm:text-lg lg:text-xl font-bold text-foreground uppercase tracking-tight hover:text-primary transition-colors block'
 								>
 									{column.title}
 								</Link>
 							) : (
-								<h3 className='font-utility text-base sm:text-lg lg:text-xl font-bold text-foreground uppercase tracking-tight'>
+								<h3 className='text-base sm:text-lg lg:text-xl font-bold text-foreground uppercase tracking-tight'>
 									{column.title}
 								</h3>
 							)}
@@ -53,7 +53,7 @@ export const DesktopDropdown = memo(function DesktopDropdown({ navItem }: Deskto
 									<motion.li key={linkIndex} variants={linkVariants}>
 										<Link
 											href={link.href}
-											className='font-utility text-sm sm:text-sm lg:text-base text-muted-foreground hover:text-primary transition-colors duration-200 block py-1'>
+											className='text-sm sm:text-sm lg:text-base text-muted-foreground hover:text-primary transition-colors duration-200 block py-1'>
 											{link.label}
 										</Link>
 									</motion.li>

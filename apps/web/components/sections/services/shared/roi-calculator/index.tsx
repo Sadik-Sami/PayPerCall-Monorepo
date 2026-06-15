@@ -1,41 +1,44 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, useMotionValueEvent, useReducedMotion, useSpring } from 'framer-motion';
-import { Activity, ArrowRight, BadgeDollarSign, Calculator, RefreshCcw, Sparkles, TrendingUp, Mail } from 'lucide-react';
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import {
+	Activity,
+	ArrowRight,
+	BadgeDollarSign,
+	Calculator,
+	RefreshCcw,
+	Sparkles,
+	TrendingUp,
+	Mail,
+} from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@workspace/ui/components/button';
 import { Input } from '@workspace/ui/components/input';
 import { Slider } from '@workspace/ui/components/slider';
-import {
-	ChartContainer,
-	ChartLegend,
-	ChartLegendContent,
-	ChartTooltip,
-} from '@workspace/ui/components/chart';
 import { cn } from '@workspace/ui/lib/utils';
+
+const RoiChart = dynamic(() => import('./RoiChart').then((m) => m.RoiChart), {
+	ssr: false,
+	loading: () => <div className='h-70 w-full animate-pulse rounded-2xl bg-muted/40' aria-hidden />,
+});
 import { containerVariants, itemVariants, cardVariants } from '@/lib/animations';
 
-import { 
-    type ChartMode, 
-    type InputKey, 
-    type RoiInputs 
-} from './types';
-import { 
-    DEFAULT_INPUTS, 
-    MARKETING_DEFAULT_INPUTS, 
-    INPUT_BOUNDS, 
-    CALL_METRIC_FIELDS, 
-    LEAD_METRIC_FIELDS, 
-    MARKETING_METRIC_FIELDS, 
-    CHART_CONFIG_CALL, 
-    CHART_CONFIG_LEAD, 
-    CHART_CONFIG_MARKETING 
+import { type ChartMode, type InputKey, type RoiInputs } from './types';
+import {
+	DEFAULT_INPUTS,
+	MARKETING_DEFAULT_INPUTS,
+	INPUT_BOUNDS,
+	CALL_METRIC_FIELDS,
+	LEAD_METRIC_FIELDS,
+	MARKETING_METRIC_FIELDS,
+	CHART_CONFIG_CALL,
+	CHART_CONFIG_LEAD,
+	CHART_CONFIG_MARKETING,
 } from './constants';
 import { compactCurrency, preciseCurrency, integerNumber, clamp } from './utils';
 import { calculateDefaultRoiMetrics, calculateMarketingRoiMetrics } from './logic';
-import { RoiDualTooltip } from './RoiDualTooltip';
 
 export type ROICalculatorSectionProps = {
 	className?: string;
@@ -63,9 +66,9 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 		: 'Project 12-Month Pay Per Call Growth with Real Inputs';
 	const sectionDescription =
 		mode === 'lead' ?
-				'Model lead economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.'
+			'Model lead economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.'
 		: mode === 'marketing' ?
-				'Adjust spend, conversion rate, and AOV to project 12-month performance lift and benchmark your current trajectory.'
+			'Adjust spend, conversion rate, and AOV to project 12-month performance lift and benchmark your current trajectory.'
 		:	'Model call economics instantly, compare against industry benchmarks, and see how optimized qualification transforms your revenue trajectory.';
 	const optimizedLabel =
 		mode === 'lead' ? 'Pay Per Lead Optimized'
@@ -163,35 +166,35 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 	};
 
 	return (
-			<section className={cn('max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 lg:py-20', className)}>
-				<motion.div
-					className='mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'
-					variants={reduceMotion ? undefined : containerVariants}
-					initial='hidden'
-					whileInView='visible'
-					viewport={{ once: true, amount: 0.3 }}>
-					<motion.div variants={reduceMotion ? undefined : itemVariants} className='space-y-2.5'>
-						<div className='inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5'>
-							<Activity className='size-4 text-primary' aria-hidden='true' />
-							<span className='text-[11px] font-semibold uppercase tracking-widest text-primary'>
-								Interactive ROI Calculator
-							</span>
-						</div>
-						<h2
-							className={cn(
-								'font-heading font-bold tracking-tight text-foreground text-balance',
-								isMarketing ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-3xl sm:text-4xl md:text-5xl',
-							)}>
-							{sectionTitle}
-						</h2>
-						<p
-							className={cn(
-								'leading-relaxed text-muted-foreground',
-								isMarketing ? 'max-w-2xl text-sm md:text-base' : 'max-w-3xl text-base md:text-lg',
-							)}>
-							{sectionDescription}
-						</p>
-					</motion.div>
+		<section className={cn('max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 lg:py-20', className)}>
+			<motion.div
+				className='mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'
+				variants={reduceMotion ? undefined : containerVariants}
+				initial='hidden'
+				whileInView='visible'
+				viewport={{ once: true, amount: 0.3 }}>
+				<motion.div variants={reduceMotion ? undefined : itemVariants} className='space-y-2.5'>
+					<div className='inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5'>
+						<Activity className='size-4 text-primary' aria-hidden='true' />
+						<span className='text-[11px] font-semibold uppercase tracking-widest text-primary'>
+							Interactive ROI Calculator
+						</span>
+					</div>
+					<h2
+						className={cn(
+							'font-heading font-bold tracking-tight text-foreground text-balance',
+							isMarketing ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-3xl sm:text-4xl md:text-5xl',
+						)}>
+						{sectionTitle}
+					</h2>
+					<p
+						className={cn(
+							'leading-relaxed text-muted-foreground',
+							isMarketing ? 'max-w-2xl text-sm md:text-base' : 'max-w-3xl text-base md:text-lg',
+						)}>
+						{sectionDescription}
+					</p>
+				</motion.div>
 
 				<motion.div
 					variants={reduceMotion ? undefined : itemVariants}
@@ -296,13 +299,13 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 								<p className='text-[10px] font-bold uppercase tracking-widest text-muted-foreground'>
 									{isMarketing ? 'Projected Annual Lift' : 'Projected Profit'}
 								</p>
-									<p
-										className={cn(
-											'font-heading mt-1 font-extrabold tracking-tight text-foreground',
-											isMarketing ? 'text-3xl md:text-5xl' : 'text-4xl md:text-6xl',
-										)}>
-										{compactCurrency.format(displayProfit)}
-									</p>
+								<p
+									className={cn(
+										'font-heading mt-1 font-extrabold tracking-tight text-foreground',
+										isMarketing ? 'text-3xl md:text-5xl' : 'text-4xl md:text-6xl',
+									)}>
+									{compactCurrency.format(displayProfit)}
+								</p>
 								<p className='mt-1 text-xs font-medium text-muted-foreground'>
 									<span className='tabular-nums'>
 										{compactCurrency.format(
@@ -343,10 +346,10 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 										Attribution Accuracy
 									</span>
 								</div>
-									<div className='flex items-end justify-between gap-4'>
-										<p className='text-3xl font-black tabular-nums text-foreground md:text-4xl'>
-											{`${Math.round(metrics.attributionAccuracy)}%`}
-										</p>
+								<div className='flex items-end justify-between gap-4'>
+									<p className='text-3xl font-black tabular-nums text-foreground md:text-4xl'>
+										{`${Math.round(metrics.attributionAccuracy)}%`}
+									</p>
 									<p className='text-xs font-semibold text-primary'>Zero-Fraud Tracking Active</p>
 								</div>
 								<div className='mt-3 h-2 w-full rounded-full bg-muted'>
@@ -414,30 +417,31 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 							</div>
 						</div>
 
-						<div className="flex flex-col gap-2 mt-1">
-						<Button
-							type='button'
-							size='lg'
-                            asChild
-							className='h-11 w-full rounded-xl text-sm font-bold transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lg'>
-                            <a href={`/contact?leadCost=${inputs.leadCost}&capacity=${inputs.callCapacity}&dealValue=${inputs.dealValue}&roi=${metrics.projectedMonthlyProfit}`}>
-							    <BadgeDollarSign className='size-4' aria-hidden='true' />
-							    Get My Custom Scaling Plan
-                            </a>
-						</Button>
-                        <Button
-                            type="button"
-                            size="lg"
-                            variant="outline"
-                            asChild
-                            className="h-11 w-full rounded-xl text-sm font-bold transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lg border-pastel-lilac-border text-pastel-lilac-ink"
-                        >
-                            <a href={`/contact?leadCost=${inputs.leadCost}&capacity=${inputs.callCapacity}&dealValue=${inputs.dealValue}&roi=${metrics.projectedMonthlyProfit}&requestReport=true`}>
-                                <Mail className='size-4 mr-2' aria-hidden='true' />
-                                Email Me This ROI Report
-                            </a>
-                        </Button>
-                        </div>
+						<div className='flex flex-col gap-2 mt-1'>
+							<Button
+								type='button'
+								size='lg'
+								asChild
+								className='h-11 w-full rounded-xl text-sm font-bold transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lg'>
+								<a
+									href={`/contact?leadCost=${inputs.leadCost}&capacity=${inputs.callCapacity}&dealValue=${inputs.dealValue}&roi=${metrics.projectedMonthlyProfit}`}>
+									<BadgeDollarSign className='size-4' aria-hidden='true' />
+									Get My Custom Scaling Plan
+								</a>
+							</Button>
+							<Button
+								type='button'
+								size='lg'
+								variant='outline'
+								asChild
+								className='h-11 w-full rounded-xl text-sm font-bold transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lg border-pastel-lilac-border text-pastel-lilac-ink'>
+								<a
+									href={`/contact?leadCost=${inputs.leadCost}&capacity=${inputs.callCapacity}&dealValue=${inputs.dealValue}&roi=${metrics.projectedMonthlyProfit}&requestReport=true`}>
+									<Mail className='size-4 mr-2' aria-hidden='true' />
+									Email Me This ROI Report
+								</a>
+							</Button>
+						</div>
 					</div>
 				</motion.div>
 			</motion.div>
@@ -487,67 +491,14 @@ export function ROICalculatorSection({ className, mode = 'call' }: ROICalculator
 				</div>
 
 				<div className='rounded-2xl border border-pastel-sky-border bg-card p-3 md:p-4'>
-					<motion.div layout transition={{ type: 'spring', stiffness: 260, damping: 26, mass: 0.7 }}>
-						<ChartContainer
-							config={chartConfig}
-							className='h-70 w-full aspect-auto'
-							role='img'
-							aria-label='12-month profit projection chart'>
-							<AreaChart
-								data={metrics.chartData}
-								margin={{ top: 14, right: 12, left: 12, bottom: 4 }}
-								onMouseMove={onChartHover}>
-								<defs>
-									<linearGradient id='fillOptimized' x1='0' y1='0' x2='0' y2='1'>
-										<stop offset='5%' stopColor='var(--color-optimized)' stopOpacity={isMarketing ? 0.64 : 0.8} />
-										<stop offset='95%' stopColor='var(--color-optimized)' stopOpacity={isMarketing ? 0.08 : 0.1} />
-									</linearGradient>
-									<linearGradient id='fillIndustry' x1='0' y1='0' x2='0' y2='1'>
-										<stop offset='5%' stopColor='var(--color-industry)' stopOpacity={isMarketing ? 0.3 : 0.8} />
-										<stop offset='95%' stopColor='var(--color-industry)' stopOpacity={isMarketing ? 0.04 : 0.1} />
-									</linearGradient>
-								</defs>
-								<CartesianGrid vertical={false} />
-								<XAxis dataKey='month' tickLine={false} axisLine={false} tickMargin={8} minTickGap={6} />
-								<YAxis hide />
-								<ChartTooltip
-									cursor={false}
-									content={(props) => (
-										<RoiDualTooltip
-											active={props.active}
-											payload={props.payload}
-											volumeLabel={volumeLabel}
-											showVolume={!isMarketing}
-										/>
-									)}
-								/>
-								<Area
-									type={isMarketing ? 'monotone' : 'natural'}
-									dataKey='industry'
-									stroke='var(--color-industry)'
-									fill='url(#fillIndustry)'
-									strokeDasharray={isMarketing ? '6 6' : undefined}
-									strokeWidth={isMarketing ? 2.5 : 2}
-									fillOpacity={isMarketing ? 0.55 : 1}
-									isAnimationActive={!reduceMotion}
-									animationDuration={650}
-								/>
-								<Area
-									type={isMarketing ? 'monotone' : 'natural'}
-									dataKey='optimized'
-									stroke='var(--color-optimized)'
-									fill='url(#fillOptimized)'
-									isAnimationActive={!reduceMotion}
-									animationDuration={700}
-								/>
-								<ChartLegend
-									content={(props) => (
-										<ChartLegendContent payload={props.payload} verticalAlign={props.verticalAlign} />
-									)}
-								/>
-							</AreaChart>
-						</ChartContainer>
-					</motion.div>
+					<RoiChart
+						chartData={metrics.chartData}
+						chartConfig={chartConfig}
+						isMarketing={isMarketing}
+						reduceMotion={!!reduceMotion}
+						volumeLabel={volumeLabel}
+						onChartHover={onChartHover}
+					/>
 				</div>
 
 				<div className='mt-3 flex flex-col gap-2 rounded-xl border border-pastel-sky-border bg-card px-4 py-3 text-xs sm:flex-row sm:items-center sm:justify-between'>

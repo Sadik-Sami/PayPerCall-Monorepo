@@ -13,7 +13,7 @@ interface FooterColumnProps {
 export function FooterColumn({ title, links }: FooterColumnProps) {
 	return (
 		<div className='space-y-4'>
-			<h3 className='font-utility text-sm font-semibold text-foreground uppercase tracking-wider'>{title}</h3>
+			<h3 className='text-sm font-semibold text-foreground uppercase tracking-wider'>{title}</h3>
 			<ul className='space-y-3'>
 				{links.map((link, index) => (
 					<li key={index}>

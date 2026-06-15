@@ -212,7 +212,7 @@ export function AdvertiserSignupForm() {
 						setSelectedMarketNiches([]);
 					}}
 					variant='outline'
-					className='font-utility'>
+					className=''>
 					Submit Another Application
 				</Button>
 			</div>
@@ -420,7 +420,7 @@ export function AdvertiserSignupForm() {
 							</div>
 
 							<div className='flex justify-end pt-4 border-t border-border'>
-								<Button type='button' onClick={handleNext} className='font-utility px-8'>
+								<Button type='button' onClick={handleNext} className='px-8'>
 									Next
 								</Button>
 							</div>
@@ -609,10 +609,10 @@ export function AdvertiserSignupForm() {
 									type='button'
 									variant='outline'
 									onClick={() => setActiveTab('account')}
-									className='font-utility bg-transparent'>
+									className='bg-transparent'>
 									Previous
 								</Button>
-								<Button type='submit' className='font-utility px-8'>
+								<Button type='submit' className='px-8'>
 									Submit Application
 								</Button>
 							</div>

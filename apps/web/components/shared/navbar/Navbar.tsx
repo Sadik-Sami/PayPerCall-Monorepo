@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { navigationData } from './data';
@@ -17,20 +17,15 @@ export function Navbar() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null);
 	const [dropdownHeight, setDropdownHeight] = useState(0);
-	const [navbarHeight, setNavbarHeight] = useState(56);
 	const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
 	const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const dropdownRef = useRef<HTMLDivElement>(null);
-	const navbarRef = useRef<HTMLElement>(null);
 
-	// Memoize active nav item to avoid recalculation
 	const activeNavItem = useMemo(() => navigationData.find((item) => item.id === activeDropdown), [activeDropdown]);
 
-	// Derive effective dropdown height to avoid setState in effect (fixes cascading render warning)
 	const effectiveDropdownHeight = activeDropdown ? dropdownHeight : 0;
 
-	// Optimize height calculation with ResizeObserver
 	useEffect(() => {
 		if (!activeDropdown || !dropdownRef.current) return;
 
@@ -46,24 +41,6 @@ export function Navbar() {
 			resizeObserver.disconnect();
 		};
 	}, [activeDropdown]);
-
-	// Track navbar height for responsive spacer
-	useEffect(() => {
-		if (!navbarRef.current) return;
-
-		const updateNavbarHeight = () => {
-			if (navbarRef.current) {
-				setNavbarHeight(navbarRef.current.offsetHeight);
-			}
-		};
-
-		updateNavbarHeight();
-		window.addEventListener('resize', updateNavbarHeight);
-
-		return () => {
-			window.removeEventListener('resize', updateNavbarHeight);
-		};
-	}, []);
 
 	// Clear all timeouts helper
 	const clearAllTimeouts = useCallback(() => {
@@ -139,16 +116,15 @@ export function Navbar() {
 			{/* Desktop Navigation */}
 			<div className='hidden md:block'>
 				<nav
-					ref={navbarRef}
-					className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 border-b border-border py-2 ${activeDropdown ? 'bg-background' : 'bg-background/80 backdrop-blur-sm'
+					className={`fixed top-0 left-0 right-0 z-50 h-20 transition-colors duration-200 border-b border-border ${activeDropdown ? 'bg-background' : 'bg-background/80 backdrop-blur-sm'
 						}`}
 					onMouseLeave={handleNavLeave}>
-					<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-						<div className='flex items-center justify-between h-10 sm:h-14 lg:h-16'>
+					<div className='max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8'>
+						<div className='flex items-center justify-between h-full'>
 							{/* Logo */}
 							<Link
 								href='/'
-								className='flex flex-row items-end gap-0.5 font-utility text-foreground hover:text-muted-foreground transition-colors'
+								className='flex flex-row items-end gap-0.5 text-foreground hover:text-muted-foreground transition-colors'
 								onMouseEnter={handleNonDropdownItemEnter}>
 								<Image src={logo} alt='Core Closer Logo' height={64} width={64} />
 								<div className='flex flex-col'>
@@ -165,12 +141,12 @@ export function Navbar() {
 											<Link
 												href={item.href}
 												onMouseEnter={handleNonDropdownItemEnter}
-												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap'>
+												className='text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap'>
 												{item.label}
 											</Link>
 											: <button
 												onMouseEnter={() => handleNavItemEnter(item.id)}
-												className='font-utility text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1 relative whitespace-nowrap'
+												className='text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1 relative whitespace-nowrap'
 												aria-expanded={activeDropdown === item.id}
 												aria-controls={`dropdown-${item.id}`}>
 												{item.label}
@@ -212,12 +188,14 @@ export function Navbar() {
 					</AnimatePresence>
 				</nav>
 
-				{/* Spacer to push content down */}
+				{/* Spacer matches fixed nav height; dropdown panel overlays content, no extra reservation needed for first paint */}
 				<div
-					style={{
-						height: effectiveDropdownHeight > 0 ? `${navbarHeight + effectiveDropdownHeight}px` : `${navbarHeight}px`,
-						transition: 'height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
-					}}
+					className='h-20'
+					style={
+						effectiveDropdownHeight > 0
+							? { height: `${80 + effectiveDropdownHeight}px`, transition: 'height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)' }
+							: undefined
+					}
 				/>
 			</div>
 
@@ -225,7 +203,7 @@ export function Navbar() {
 			<div className='md:hidden'>
 				<nav className='fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border'>
 					<div className='flex items-center justify-between h-14 px-4 sm:px-6'>
-						<Link href='/' className='flex items-center gap-2 font-utility text-foreground hover:text-muted-foreground transition-colors'>
+						<Link href='/' className='flex items-center gap-2 text-foreground hover:text-muted-foreground transition-colors'>
 							<Image src={logo} alt='Core Closer Logo' height={32} width={32} />
 							<div className='flex flex-col'>
 								<span className='text-base sm:text-lg tracking-tight text-foreground hover:text-muted-foreground transition-colors font-bold'><span className='text-primary '>Core</span> Closer</span>

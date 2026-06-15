@@ -46,7 +46,7 @@ export const TestimonialsColumn = (props: {
                         <AvatarImage src={image} alt={name} />
                         <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                       </Avatar>
-                      <div className="flex flex-col font-utility">
+                      <div className="flex flex-col">
                         <p className="text-xs font-bold">{name}</p>
                         <p className="text-xs text-muted-foreground">{role}</p>
                       </div>

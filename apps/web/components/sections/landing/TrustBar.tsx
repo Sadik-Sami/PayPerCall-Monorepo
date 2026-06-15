@@ -1,5 +1,3 @@
-'use client';
-
 import { Shield, TrendingUp, Zap, Puzzle } from 'lucide-react';
 
 const trustPoints = [

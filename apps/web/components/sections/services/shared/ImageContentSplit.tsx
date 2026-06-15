@@ -96,8 +96,7 @@ export function ImageContentSplit({
 						initial='hidden'
 						whileInView='visible'
 						viewport={{ once: true, margin: '-80px' }}
-						className={cn('relative isolate flex justify-center', reverse && 'lg:order-2')}
-					>
+						className={cn('relative isolate flex justify-center', reverse && 'lg:order-2')}>
 						<div className='relative aspect-square w-full max-w-[460px] lg:max-w-[520px]'>
 							<div
 								aria-hidden
@@ -106,10 +105,8 @@ export function ImageContentSplit({
 									HALO[halo],
 								)}
 								style={{
-									maskImage:
-										'radial-gradient(circle at center, black 35%, transparent 78%)',
-									WebkitMaskImage:
-										'radial-gradient(circle at center, black 35%, transparent 78%)',
+									maskImage: 'radial-gradient(circle at center, black 35%, transparent 78%)',
+									WebkitMaskImage: 'radial-gradient(circle at center, black 35%, transparent 78%)',
 								}}
 							/>
 							<div
@@ -128,14 +125,13 @@ export function ImageContentSplit({
 							<motion.div
 								animate={reduceMotion ? undefined : { y: [0, -10, 0], rotate: [0, 0.6, 0] }}
 								transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
-								className='absolute inset-0'
-							>
+								className='absolute inset-0'>
 								<Image
 									src={image.src}
 									alt={image.alt}
-									fill
 									sizes='(max-width: 1024px) 90vw, 45vw'
-									className='object-contain rounded-xl drop-shadow-[0_30px_60px_rgba(15,23,42,0.10)]'
+									className='object-contain drop-shadow-[0_30px_60px_rgba(15,23,42,0.10)]'
+									fill
 								/>
 							</motion.div>
 						</div>
@@ -146,29 +142,25 @@ export function ImageContentSplit({
 						initial='hidden'
 						whileInView='visible'
 						viewport={{ once: true, margin: '-80px' }}
-						className={cn('flex flex-col gap-6', reverse && 'lg:order-1')}
-					>
+						className={cn('flex flex-col gap-6', reverse && 'lg:order-1')}>
 						<motion.span
 							variants={itemVariants}
 							className={cn(
 								'inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]',
 								KICKER[kickerAccent],
-							)}
-						>
+							)}>
 							{kicker}
 						</motion.span>
 
 						<motion.h2
 							variants={itemVariants}
-							className='font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]'
-						>
+							className='font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]'>
 							{headline}
 						</motion.h2>
 
 						<motion.p
 							variants={itemVariants}
-							className='max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'
-						>
+							className='max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
 							{description}
 						</motion.p>
 
@@ -179,8 +171,7 @@ export function ImageContentSplit({
 										className={cn(
 											'mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border',
 											CHIP[kickerAccent],
-										)}
-									>
+										)}>
 										<Check className='size-4' strokeWidth={2.5} />
 									</span>
 									<div>
@@ -192,11 +183,7 @@ export function ImageContentSplit({
 						</motion.ul>
 
 						<motion.div variants={itemVariants} className='mt-4 flex flex-wrap items-center gap-3'>
-							<Button
-								asChild
-								size='lg'
-								className={cn('rounded-xl px-7', primaryCtaVariant === 'lilac' && LILAC_CTA)}
-							>
+							<Button asChild size='lg' className={cn('rounded-xl px-7', primaryCtaVariant === 'lilac' && LILAC_CTA)}>
 								<Link href={primaryCta.href}>
 									{primaryCta.label}
 									<ArrowRight className='size-4' />

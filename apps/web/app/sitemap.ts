@@ -4,7 +4,6 @@ import { getBlogsList } from '@/lib/api/blogs';
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://paypercall.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	// Static routes
 	const staticRoutes: MetadataRoute.Sitemap = [
 		{
 			url: baseUrl,
@@ -110,7 +109,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		},
 	];
 
-	// Dynamic blog routes
 	const blogs = await getBlogsList();
 	const blogRoutes: MetadataRoute.Sitemap = blogs.map((blog) => ({
 		url: `${baseUrl}/blogs/${blog.slug}`,

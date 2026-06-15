@@ -1,15 +1,18 @@
 'use client';
 import { cn } from '@workspace/ui/lib/utils';
 import { AnimatePresence, motion, useReducedMotion, Variants } from 'framer-motion';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Image, { type StaticImageData } from 'next/image';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 type ImagesSliderRenderContext = {
 	activeIndex: number;
 	total: number;
 };
 
+type SliderImage = string | StaticImageData;
+
 type ImagesSliderProps = {
-	images: string[];
+	images: SliderImage[];
 	children: React.ReactNode | ((ctx: ImagesSliderRenderContext) => React.ReactNode);
 	overlay?: boolean | React.ReactNode;
 	overlayClassName?: string;
@@ -43,7 +46,6 @@ export const ImagesSlider = ({
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isFocused, setIsFocused] = useState(false);
 	const shouldReduceMotion = useReducedMotion();
-	const preloaded = useRef<Set<string>>(new Set());
 
 	const total = images.length;
 
@@ -61,7 +63,6 @@ export const ImagesSlider = ({
 	}, [total]);
 
 	useEffect(() => {
-		// autoplay (disabled for reduced motion, focus, or single-slide)
 		const effectiveAutoplay = autoplay && !shouldReduceMotion && !(pauseOnFocus && isFocused) && total > 1;
 		if (!effectiveAutoplay) return;
 
@@ -71,28 +72,6 @@ export const ImagesSlider = ({
 
 		return () => clearInterval(interval);
 	}, [autoplay, goNext, isFocused, pauseOnFocus, shouldReduceMotion, total]);
-
-	useEffect(() => {
-		// Opportunistically preload only the next slide image.
-		if (total <= 1) return;
-		const nextIndex = (currentIndex + 1) % total;
-		const nextSrc = images[nextIndex];
-		if (!nextSrc || preloaded.current.has(nextSrc)) return;
-
-		const enqueue = (fn: () => void) => {
-			if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-				window.requestIdleCallback(fn, { timeout: 1500 });
-			} else {
-				setTimeout(fn, 0);
-			}
-		};
-
-		enqueue(() => {
-			const img = new Image();
-			img.src = nextSrc;
-			preloaded.current.add(nextSrc);
-		});
-	}, [currentIndex, images, total]);
 
 	const slideVariants: Variants = useMemo(() => {
 		if (shouldReduceMotion) {
@@ -164,8 +143,10 @@ export const ImagesSlider = ({
 				goPrevious();
 			}
 		},
-		[keyboard, keyboardKeys, goNext, goPrevious, total]
+		[keyboard, keyboardKeys, goNext, goPrevious, total],
 	);
+
+	const activeImage = images[currentIndex];
 
 	return (
 		<div
@@ -180,7 +161,7 @@ export const ImagesSlider = ({
 			className={cn(
 				'overflow-hidden h-full w-full relative flex items-center justify-center bg-black',
 				'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-				className
+				className,
 			)}
 			style={{
 				perspective: shouldReduceMotion ? undefined : '1000px',
@@ -188,23 +169,26 @@ export const ImagesSlider = ({
 			{resolvedChildren}
 			{resolvedOverlay}
 
-			{total > 0 && (
+			{activeImage && (
 				<AnimatePresence>
-					<motion.img
+					<motion.div
 						key={currentIndex}
-						src={images[currentIndex]}
-						alt=''
-						aria-hidden='true'
-						decoding='async'
-						loading={currentIndex === 0 ? 'eager' : undefined}
-						fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
 						initial='initial'
 						animate='visible'
 						exit={direction === 'up' ? 'upExit' : 'downExit'}
 						variants={slideVariants}
-						draggable={false}
-						className='image h-full w-full absolute inset-0 object-cover select-none'
-					/>
+						className='absolute inset-0'>
+						<Image
+							src={activeImage}
+							alt=''
+							aria-hidden='true'
+							fill
+							sizes='100vw'
+							priority={currentIndex === 0}
+							draggable={false}
+							className='object-cover select-none'
+						/>
+					</motion.div>
 				</AnimatePresence>
 			)}
 		</div>

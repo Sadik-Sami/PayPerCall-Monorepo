@@ -2,7 +2,6 @@ import { Providers } from '@/components/shared/Providers';
 import '@workspace/ui/globals.css';
 import { Navbar } from '@/components/shared/navbar/Navbar';
 import { Footer } from '@/components/shared/footer/Footer';
-import { gesistSans, googleSansFlex } from './fonts';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from '@workspace/ui/components/sonner';
 import { Metadata } from 'next';
@@ -40,6 +39,25 @@ export const metadata: Metadata = {
 	},
 };
 
+import { Google_Sans_Flex, Inter } from 'next/font/google';
+
+const headingFont = Google_Sans_Flex({
+	subsets: ['latin'],
+	weight: 'variable',
+	variable: '--font-heading',
+	display: 'optional',
+	fallback: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+	adjustFontFallback: false,
+});
+
+const bodyFont = Inter({
+	subsets: ['latin'],
+	weight: 'variable',
+	variable: '--font-body',
+	display: 'swap',
+	fallback: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+});
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -47,7 +65,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' suppressHydrationWarning>
-			<body className={`${googleSansFlex.variable} ${gesistSans.variable} antialiased`}>
+			<body className={`${headingFont.variable} ${bodyFont.variable} font-body antialiased`}>
 				<Providers>
 					<Navbar />
 					{children}

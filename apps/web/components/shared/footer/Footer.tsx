@@ -12,7 +12,7 @@ export function Footer() {
 					{/* Brand Column */}
 					<div className='col-span-2 space-y-6'>
 						<div>
-							<Link href='/' className='font-utility text-2xl font-bold text-foreground'>
+							<Link href='/' className='text-2xl font-bold text-foreground'>
 								Core Closer
 							</Link>
 							<p className='font-body mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs'>
@@ -21,7 +21,7 @@ export function Footer() {
 							</p>
 						</div>
 						<div>
-							<h4 className='font-utility text-sm font-semibold text-foreground mb-3'>Connect With Us</h4>
+							<h4 className='text-sm font-semibold text-foreground mb-3'>Connect With Us</h4>
 							<SocialLinks />
 						</div>
 					</div>
@@ -54,7 +54,7 @@ export function Footer() {
 								placeholder='Enter your email'
 								className='font-body flex-1 px-4 py-3 bg-muted border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent'
 							/>
-							<button className='font-utility px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap'>
+							<button className='px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap'>
 								Subscribe
 							</button>
 						</div>
@@ -64,19 +64,19 @@ export function Footer() {
 				{/* Bottom Bar */}
 				<div className='border-t border-border pt-8'>
 					<div className='flex flex-col md:flex-row justify-between items-center gap-4'>
-						<p className='font-utility text-sm text-muted-foreground'>
+						<p className='text-sm text-muted-foreground'>
 							© {new Date().getFullYear()} Premium Digital Services. All rights reserved.
 						</p>
 						<div className='flex items-center gap-6'>
-							<span className='font-utility text-xs text-muted-foreground uppercase tracking-wider'>
+							<span className='text-xs text-muted-foreground uppercase tracking-wider'>
 								Trusted by Industry Leaders
 							</span>
 							<div className='flex items-center gap-2'>
-								<span className='font-utility text-xs font-semibold text-foreground'>ISO 27001</span>
+								<span className='text-xs font-semibold text-foreground'>ISO 27001</span>
 								<span className='text-border'>|</span>
-								<span className='font-utility text-xs font-semibold text-foreground'>SOC 2</span>
+								<span className='text-xs font-semibold text-foreground'>SOC 2</span>
 								<span className='text-border'>|</span>
-								<span className='font-utility text-xs font-semibold text-foreground'>GDPR</span>
+								<span className='text-xs font-semibold text-foreground'>GDPR</span>
 							</div>
 						</div>
 					</div>
