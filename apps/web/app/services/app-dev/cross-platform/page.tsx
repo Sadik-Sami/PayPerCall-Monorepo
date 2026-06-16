@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage1 from '@/public/images/slider/slider-1.jpg';
+import heroImage1 from '@/public/images/slider/slider-1.webp';
 import { Code2, Smartphone, Tablet } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 		url: '/services/app-dev/cross-platform',
 		images: [
 			{
-				url: '/images/slider/slider-1.jpg',
+				url: '/images/slider/slider-1.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Cross-platform app development services',
@@ -147,17 +147,32 @@ const DELIVERABLES = [
 	{
 		title: 'Cross-Platform App',
 		description: 'React Native or Flutter app running on iOS and Android.',
-		bulletPoints: ['React Native or Flutter', 'iOS & Android support', 'Shared codebase', 'Platform-specific UI when needed'],
+		bulletPoints: [
+			'React Native or Flutter',
+			'iOS & Android support',
+			'Shared codebase',
+			'Platform-specific UI when needed',
+		],
 	},
 	{
 		title: 'Native Module Integration',
 		description: 'Platform-specific native modules for advanced features.',
-		bulletPoints: ['Custom native modules', 'Platform APIs integration', 'Performance optimization', 'Bridge implementation'],
+		bulletPoints: [
+			'Custom native modules',
+			'Platform APIs integration',
+			'Performance optimization',
+			'Bridge implementation',
+		],
 	},
 	{
 		title: 'Dual Store Submission',
 		description: 'Complete submission to both App Store and Play Store.',
-		bulletPoints: ['App Store listing', 'Play Store listing', 'Platform-specific optimization', 'Review process management'],
+		bulletPoints: [
+			'App Store listing',
+			'Play Store listing',
+			'Platform-specific optimization',
+			'Review process management',
+		],
 	},
 	{
 		title: 'Backend Integration',
@@ -195,10 +210,12 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	{
 		client: 'RetailFlow Cross-Platform',
 		industry: 'Retail',
-		problem: 'E-commerce company needed to reach iOS and Android users quickly with shared codebase and faster time-to-market.',
+		problem:
+			'E-commerce company needed to reach iOS and Android users quickly with shared codebase and faster time-to-market.',
 		solution:
 			'Developed React Native app with native payment modules, push notifications, and deep linking. Integrated with existing e-commerce backend.',
-		outcome: 'Launched on both platforms simultaneously, reducing development time by 40% and achieving 85% code reuse.',
+		outcome:
+			'Launched on both platforms simultaneously, reducing development time by 40% and achieving 85% code reuse.',
 		icon: <Code2 className='h-5 w-5' />,
 		metrics: [
 			{ label: 'Code reuse', value: '85%' },
@@ -208,7 +225,8 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	{
 		client: 'HealthTrack Cross-Platform',
 		industry: 'Healthcare',
-		problem: 'Healthcare provider needed HIPAA-compliant apps for both iOS and Android with real-time sync and offline capabilities.',
+		problem:
+			'Healthcare provider needed HIPAA-compliant apps for both iOS and Android with real-time sync and offline capabilities.',
 		solution:
 			'Built Flutter app with native encryption modules, offline-first architecture, and secure API integration for both platforms.',
 		outcome: 'Launched on both stores in 11 weeks with 4.8-star ratings and 90% code reuse.',
@@ -221,7 +239,8 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	{
 		client: 'FinanceHub Cross-Platform',
 		industry: 'Financial Services',
-		problem: 'Financial services firm required secure cross-platform app with payment processing and real-time transactions.',
+		problem:
+			'Financial services firm required secure cross-platform app with payment processing and real-time transactions.',
 		solution:
 			'Developed React Native app with native payment modules (Apple Pay, Google Pay), biometric authentication, and real-time API integration.',
 		outcome: 'Processed $3.2M in transactions across both platforms in first quarter with 99.9% uptime.',
@@ -363,4 +382,3 @@ export default function CrossPlatformAppDevPage() {
 		</main>
 	);
 }
-

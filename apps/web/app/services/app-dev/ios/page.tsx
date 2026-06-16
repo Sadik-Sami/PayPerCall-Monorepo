@@ -12,7 +12,7 @@ import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage2 from '@/public/images/slider/slider-2.jpg';
+import heroImage2 from '@/public/images/slider/slider-2.webp';
 import { Smartphone, AppWindow, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		url: '/services/app-dev/ios',
 		images: [
 			{
-				url: '/images/slider/slider-2.jpg',
+				url: '/images/slider/slider-2.webp',
 				width: 1200,
 				height: 630,
 				alt: 'iOS app development services',

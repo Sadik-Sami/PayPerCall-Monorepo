@@ -12,7 +12,7 @@ import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage3 from '@/public/images/slider/slider-3.jpg';
+import heroImage3 from '@/public/images/slider/slider-3.webp';
 import { Tablet, Smartphone, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		url: '/services/app-dev/android',
 		images: [
 			{
-				url: '/images/slider/slider-3.jpg',
+				url: '/images/slider/slider-3.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Android app development services',
@@ -135,12 +135,22 @@ const DELIVERABLES = [
 	{
 		title: 'Play Store Submission',
 		description: 'Complete Play Store listing and submission process.',
-		bulletPoints: ['Play Console setup', 'Metadata & screenshots', 'Privacy policy integration', 'Review process management'],
+		bulletPoints: [
+			'Play Console setup',
+			'Metadata & screenshots',
+			'Privacy policy integration',
+			'Review process management',
+		],
 	},
 	{
 		title: 'Device Testing',
 		description: 'Comprehensive testing across Android devices and versions.',
-		bulletPoints: ['Multiple device testing', 'OS version compatibility', 'Screen size adaptation', 'Performance profiling'],
+		bulletPoints: [
+			'Multiple device testing',
+			'OS version compatibility',
+			'Screen size adaptation',
+			'Performance profiling',
+		],
 	},
 	{
 		title: 'Google Services Integration',
@@ -178,7 +188,8 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	{
 		client: 'DeliveryPro Android',
 		industry: 'Logistics',
-		problem: 'Logistics company needed Android app with real-time tracking, offline capabilities, and Google Maps integration.',
+		problem:
+			'Logistics company needed Android app with real-time tracking, offline capabilities, and Google Maps integration.',
 		solution:
 			'Built Kotlin app with Jetpack Compose, Google Maps SDK, Room database for offline mode, and Firebase for real-time updates.',
 		outcome: 'Launched in 10 weeks with 4.8-star rating and 25k downloads in first month.',
@@ -191,7 +202,8 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	{
 		client: 'FinanceHub Android',
 		industry: 'Financial Services',
-		problem: 'Financial services firm required secure Android app with Google Pay integration and real-time transaction processing.',
+		problem:
+			'Financial services firm required secure Android app with Google Pay integration and real-time transaction processing.',
 		solution:
 			'Developed Kotlin app with Jetpack Compose, Google Pay, biometric authentication, encrypted storage, and real-time API integration.',
 		outcome: 'Processed $2.3M in transactions in first quarter with 99.9% uptime and 4.7-star rating.',
@@ -204,7 +216,8 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	{
 		client: 'RetailFlow Android',
 		industry: 'Retail',
-		problem: 'Retail company needed Android app with offline shopping cart, inventory sync, and support for multiple screen sizes.',
+		problem:
+			'Retail company needed Android app with offline shopping cart, inventory sync, and support for multiple screen sizes.',
 		solution:
 			'Built Kotlin app with Jetpack Compose, Room database, responsive layouts, and Firebase sync for inventory updates.',
 		outcome: 'Launched with 95% device compatibility and 4.6-star rating with 80% user retention after 30 days.',
@@ -338,4 +351,3 @@ export default function AndroidAppDevPage() {
 		</main>
 	);
 }
-

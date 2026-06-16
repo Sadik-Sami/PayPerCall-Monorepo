@@ -15,7 +15,7 @@ import {
 	APP_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
 } from '@/lib/data/service-navigation';
-import heroImage1 from '@/public/images/slider/slider-1.jpg';
+import heroImage1 from '@/public/images/slider/slider-1.webp';
 import { Smartphone, Tablet, Code2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 		url: '/services/app-dev',
 		images: [
 			{
-				url: '/images/slider/slider-1.jpg',
+				url: '/images/slider/slider-1.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Mobile app development services',

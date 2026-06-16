@@ -8,7 +8,7 @@ import {
 	type SuccessOutcome,
 	ResultsGallery,
 } from '@/components/sections/services';
-import heroImageLanding from '@/public/images/slider/slider-2.jpg';
+import heroImageLanding from '@/public/images/slider/slider-2.webp';
 import { Megaphone, MousePointer, BarChart3 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		url: '/services/web-dev/landing-page',
 		images: [
 			{
-				url: '/images/slider/slider-2.jpg',
+				url: '/images/slider/slider-2.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Landing page development and measurement',

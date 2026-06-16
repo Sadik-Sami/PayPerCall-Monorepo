@@ -12,7 +12,7 @@ import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage2 from '@/public/images/slider/slider-2.jpg';
+import heroImage2 from '@/public/images/slider/slider-2.webp';
 import { Briefcase, ShoppingCart, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 		url: '/services/cms/wordpress',
 		images: [
 			{
-				url: '/images/slider/slider-2.jpg',
+				url: '/images/slider/slider-2.webp',
 				width: 1200,
 				height: 630,
 				alt: 'WordPress development services',
@@ -203,8 +203,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
 		client: 'Cascade Marketing Group',
 		industry: 'Marketing',
 		problem: 'Outdated WordPress site with slow load times and security vulnerabilities.',
-		solution:
-			'Rebuilt with custom Genesis child theme, WP Rocket caching, and Wordfence security hardening.',
+		solution: 'Rebuilt with custom Genesis child theme, WP Rocket caching, and Wordfence security hardening.',
 		outcome: 'Page load time reduced from 4.2s to 1.6s and passed all security audits.',
 		icon: <Briefcase className='h-5 w-5' />,
 		metrics: [

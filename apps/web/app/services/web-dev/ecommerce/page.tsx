@@ -10,7 +10,7 @@ import {
 	ProcessSteps,
 } from '@/components/sections/services';
 import { Timeline, type TimelineEntry } from '@workspace/ui/components/ui/timeline';
-import heroImageCommerce from '@/public/images/slider/slider-1.jpg';
+import heroImageCommerce from '@/public/images/slider/slider-1.webp';
 import { ShoppingBag, Truck, CreditCard } from 'lucide-react';
 import type { Metadata } from 'next';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 		url: '/services/web-dev/ecommerce',
 		images: [
 			{
-				url: '/images/slider/slider-1.jpg',
+				url: '/images/slider/slider-1.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Ecommerce website development and operations',

@@ -11,7 +11,7 @@ import type { Metadata } from 'next';
 import type { FaqItem, ProcessStep, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage2 from '@/public/images/slider/slider-2.jpg';
+import heroImage2 from '@/public/images/slider/slider-2.webp';
 import { Zap, DollarSign, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 		url: '/services/cms/wix-studio',
 		images: [
 			{
-				url: '/images/slider/slider-2.jpg',
+				url: '/images/slider/slider-2.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Wix Studio development',

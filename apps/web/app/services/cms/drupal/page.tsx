@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
 import type { FaqItem, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage3 from '@/public/images/slider/slider-3.jpg';
+import heroImage3 from '@/public/images/slider/slider-3.webp';
 import { Shield, Building2, Lock } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 		url: '/services/cms/drupal',
 		images: [
 			{
-				url: '/images/slider/slider-3.jpg',
+				url: '/images/slider/slider-3.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Drupal enterprise development',

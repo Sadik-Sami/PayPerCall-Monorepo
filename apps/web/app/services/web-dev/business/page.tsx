@@ -12,7 +12,7 @@ import {
 import type { Metadata } from 'next';
 import type { FaqItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
-import heroImage3 from '@/public/images/slider/slider-3.jpg';
+import heroImage3 from '@/public/images/slider/slider-3.webp';
 import { Briefcase, Building, Target } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		url: '/services/web-dev/business',
 		images: [
 			{
-				url: '/images/slider/slider-3.jpg',
+				url: '/images/slider/slider-3.webp',
 				width: 1200,
 				height: 630,
 				alt: 'B2B business website development',

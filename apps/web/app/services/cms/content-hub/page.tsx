@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
 import type { FaqItem, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
 import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage1 from '@/public/images/slider/slider-1.jpg';
+import heroImage1 from '@/public/images/slider/slider-1.webp';
 import { Cloud, Zap, Globe2 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 		url: '/services/cms/content-hub',
 		images: [
 			{
-				url: '/images/slider/slider-1.jpg',
+				url: '/images/slider/slider-1.webp',
 				width: 1200,
 				height: 630,
 				alt: 'Headless CMS development',
