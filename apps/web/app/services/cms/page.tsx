@@ -10,16 +10,12 @@ import {
 	TestimonialsSection,
 	IntegrationLogos,
 } from '@/components/sections/services';
-import heroImage1 from '@/public/images/slider/slider-1.jpg';
+import heroImage1 from '@/public/images/slider/slider-1.webp';
 import { ShieldCheck, Lock, Cloud } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
-import {
-	CMS_SERVICE_NAV,
-	CMS_GATEWAY_CONFIG,
-	buildGatewayCards,
-} from '@/lib/data/service-navigation';
+import { CMS_SERVICE_NAV, CMS_GATEWAY_CONFIG, buildGatewayCards } from '@/lib/data/service-navigation';
 import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 
 export const metadata: Metadata = {
@@ -31,12 +27,11 @@ export const metadata: Metadata = {
 	openGraph: {
 		type: 'website',
 		title: 'CMS Development Services | WordPress, Drupal, Headless CMS',
-		description:
-			'WordPress, Drupal, and headless CMS development for secure, performant content systems.',
+		description: 'WordPress, Drupal, and headless CMS development for secure, performant content systems.',
 		url: '/services/cms',
 		images: [
 			{
-				url: '/images/slider/slider-1.jpg',
+				url: '/images/slider/slider-1.webp',
 				width: 1200,
 				height: 630,
 				alt: 'CMS development services',
@@ -89,8 +84,7 @@ const PROCESS_STEPS: ProcessStep[] = [
 	},
 	{
 		title: 'Architecture & Content Modeling',
-		description:
-			'Design content types, taxonomies, user roles, and editorial workflows before development starts.',
+		description: 'Design content types, taxonomies, user roles, and editorial workflows before development starts.',
 	},
 	{
 		title: 'Build & Integrate',
@@ -126,8 +120,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
 		problem: 'Legacy WordPress site had security vulnerabilities and could not handle multi-site needs.',
 		solution:
 			'Migrated to WordPress Multisite with custom security hardening, HIPAA-aligned controls, and centralized content management.',
-		outcome:
-			'0 security incidents in 18 months and 60% reduction in content publishing time across 12 regional sites.',
+		outcome: '0 security incidents in 18 months and 60% reduction in content publishing time across 12 regional sites.',
 		icon: <ShieldCheck className='size-5' />,
 		metrics: [
 			{ label: 'Security incidents', value: '0' },
@@ -137,12 +130,10 @@ const CASE_STUDIES: CaseStudyItem[] = [
 	{
 		client: 'Summit Financial Services',
 		industry: 'Financial Services',
-		problem:
-			'Needed enterprise-grade Drupal platform for complex compliance workflows and multi-language support.',
+		problem: 'Needed enterprise-grade Drupal platform for complex compliance workflows and multi-language support.',
 		solution:
 			'Built custom Drupal 10 platform with role-based publishing, audit logging, and GDPR compliance features.',
-		outcome:
-			'Passed SOC 2 audit on first attempt and reduced compliance review cycles from 14 days to 3 days.',
+		outcome: 'Passed SOC 2 audit on first attempt and reduced compliance review cycles from 14 days to 3 days.',
 		icon: <Lock className='size-5' />,
 		metrics: [
 			{ label: 'Review cycle', value: '-79%' },
@@ -205,7 +196,7 @@ export default function CMSOverviewPage() {
 					CMS_SERVICE_NAV,
 					'/services/cms',
 					CMS_GATEWAY_CONFIG.ctaLabels,
-					CMS_GATEWAY_CONFIG.iconKeys
+					CMS_GATEWAY_CONFIG.iconKeys,
 				)}
 				primaryCta={CMS_GATEWAY_CONFIG.primaryCta}
 				primaryCtaNote={CMS_GATEWAY_CONFIG.primaryCtaNote}
@@ -247,7 +238,7 @@ export default function CMSOverviewPage() {
 					]}
 				/>
 			</div>
-			<StickyCTA title="Ready to optimize your CMS?" ctaText="Book Platform Assessment" href="/contact" />
+			<StickyCTA title='Ready to optimize your CMS?' ctaText='Book Platform Assessment' href='/contact' />
 		</main>
 	);
 }
