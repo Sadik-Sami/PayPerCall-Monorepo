@@ -7,10 +7,13 @@ import {
 	TimelineSteps,
 	IntegrationLogos,
 	DeliverablesSection,
+	SECTION_PADDING,
 } from '@/components/sections/services';
 import heroImage2 from '@/public/images/slider/slider-2.webp';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { cn } from '@workspace/ui/lib/utils';
+import FAQ from '@/components/sections/shared/FAQ';
 
 const HERO_CONTENT = {
 	pill: 'Web Development',
@@ -199,25 +202,14 @@ const FAQ_ITEMS = [
 		question: 'How do you keep timelines predictable with complex integrations?',
 		answer:
 			'We start every project with a technical blueprint that maps integrations, data flows, and dependencies before development begins.',
-		bulletPoints: [
-			'Architecture documented before development starts',
-			'Risk assessment for third-party systems',
-			'Milestone-based delivery with 24-48 hour demos',
-		],
 	},
 	{
 		question: 'What about security and compliance? Do you handle GDPR, HIPAA, etc.?',
 		answer: 'Yes. We build security into the foundation and can align controls to SOC 2, HIPAA, and GDPR requirements.',
-		bulletPoints: [
-			'Security reviews built into each sprint',
-			'Encrypted handling for sensitive fields',
-			'Automated vulnerability scanning and patching',
-		],
 	},
 	{
 		question: 'Do you help with the transition after launch? What about handoff?',
 		answer: 'Handoff is part of every engagement. We provide runbooks, documentation, and optional training sessions.',
-		bulletPoints: ['Runbooks with operational checklists', 'System walkthroughs', '1-2 week hypercare window'],
 	},
 	{
 		question: 'How do you keep full-stack projects type-safe?',
@@ -279,7 +271,13 @@ export default function FullStackWebDevPage() {
 				title='Representative full-stack engagements'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
 			/>
-			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
+			<FAQ
+				items={FAQ_ITEMS}
+				variant='pastel'
+				badge='Full Stack Development FAQ'
+				description="Everything you need to know about Web Development, planning, development, and how to get started. We're here to help you scale."
+				className={SECTION_PADDING}
+			/>
 			<div className='section-container py-12 md:py-16'>
 				<ConsultationCTA
 					category='web-dev'
