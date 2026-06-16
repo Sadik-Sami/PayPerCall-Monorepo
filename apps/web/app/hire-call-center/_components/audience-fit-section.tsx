@@ -40,17 +40,17 @@ const AUDIENCE_SEGMENTS = [
 	},
 ] as const;
 
-function getCardTone(pastel: (typeof AUDIENCE_SEGMENTS)[number]['pastel']) {
+function getTone(pastel: (typeof AUDIENCE_SEGMENTS)[number]['pastel']) {
 	switch (pastel) {
 		case 'pastel-mint':
-			return 'bg-pastel-mint border-pastel-mint-border';
+			return { card: 'bg-pastel-mint border-pastel-mint-border', ink: 'text-pastel-mint-ink' };
 		case 'pastel-sky':
-			return 'bg-pastel-sky border-pastel-sky-border';
+			return { card: 'bg-pastel-sky border-pastel-sky-border', ink: 'text-pastel-sky-ink' };
 		case 'pastel-lilac':
-			return 'bg-pastel-lilac border-pastel-lilac-border';
+			return { card: 'bg-pastel-lilac border-pastel-lilac-border', ink: 'text-pastel-lilac-ink' };
 		case 'pastel-peach':
 		default:
-			return 'bg-pastel-peach border-pastel-peach-border';
+			return { card: 'bg-pastel-peach border-pastel-peach-border', ink: 'text-pastel-peach-ink' };
 	}
 }
 
@@ -91,6 +91,7 @@ export function AudienceFitSection({ className }: { className?: string }) {
 					className='mt-10 grid gap-6 md:grid-cols-2'>
 					{AUDIENCE_SEGMENTS.map((segment) => {
 						const Icon = segment.icon;
+						const tone = getTone(segment.pastel);
 						return (
 							<motion.article
 								key={segment.title}
@@ -98,14 +99,14 @@ export function AudienceFitSection({ className }: { className?: string }) {
 								whileHover={shouldReduceMotion ? undefined : { y: -4, transition: { duration: 0.2 } }}
 								className={cn(
 									'relative overflow-hidden rounded-3xl border p-6 shadow-sm transition-shadow hover:shadow-lg',
-									getCardTone(segment.pastel),
+									tone.card,
 								)}>
-								<div className='mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/60 bg-white/40 text-foreground backdrop-blur-sm'>
-									<Icon className='size-6' />
+								<div className='glass-icon mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl'>
+									<Icon className={cn('size-6', tone.ink)} />
 								</div>
 								<h3 className='text-xl font-semibold text-foreground'>{segment.title}</h3>
 								<p className='mt-3 text-sm leading-relaxed text-foreground/80'>{segment.description}</p>
-								<p className='mt-5 inline-flex rounded-full border border-white/70 bg-white/45 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-foreground/90'>
+								<p className='mt-5 inline-flex rounded-full border border-white/80 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-foreground dark:border-white/15 dark:bg-white/10'>
 									{segment.outcome}
 								</p>
 							</motion.article>
@@ -118,19 +119,24 @@ export function AudienceFitSection({ className }: { className?: string }) {
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, margin: '-120px' }}
-					className='mt-10 flex flex-wrap items-center justify-center gap-4'>
-					<Button asChild size='lg' className='group gap-2'>
-						<Link href='/contact'>
-							Book a Free Consultation
-							<ArrowRight className='size-4 transition-transform group-hover:translate-x-1' />
-						</Link>
-					</Button>
-					<Button asChild size='lg' variant='outline' className='gap-2'>
-						<a href='tel:+18553302777'>
-							<Phone className='size-4' />
-							Call +1 (855) 330-2777
-						</a>
-					</Button>
+					className='mt-10 flex flex-col items-center gap-3'>
+					<div className='flex flex-wrap items-center justify-center gap-4'>
+						<Button asChild size='lg' className='group gap-2'>
+							<Link href='/contact'>
+								Book a Free Consultation
+								<ArrowRight className='size-4 transition-transform group-hover:translate-x-1' />
+							</Link>
+						</Button>
+						<Button asChild size='lg' variant='outline' className='gap-2'>
+							<a href='tel:+18553302777'>
+								<Phone className='size-4' />
+								Call +1 (855) 330-2777
+							</a>
+						</Button>
+					</div>
+					<p className='text-sm text-muted-foreground'>
+						Free 30-minute consultation • No long-term contract • Launch in 2–3 weeks
+					</p>
 				</motion.div>
 			</div>
 		</section>

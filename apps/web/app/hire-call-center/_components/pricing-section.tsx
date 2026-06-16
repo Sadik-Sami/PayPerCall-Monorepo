@@ -48,9 +48,9 @@ const pricingModels = [
 ];
 
 const CARD_TONES = [
-	'bg-pastel-peach border-pastel-peach-border',
-	'bg-pastel-sky border-pastel-sky-border',
-	'bg-pastel-lilac border-pastel-lilac-border',
+	{ card: 'bg-pastel-peach border-pastel-peach-border', ink: 'text-pastel-peach-ink' },
+	{ card: 'bg-pastel-sky border-pastel-sky-border', ink: 'text-pastel-sky-ink' },
+	{ card: 'bg-pastel-lilac border-pastel-lilac-border', ink: 'text-pastel-lilac-ink' },
 ] as const;
 
 export default function PricingSection() {
@@ -70,6 +70,7 @@ export default function PricingSection() {
 				<div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
 					{pricingModels.map((model, idx) => {
 						const Icon = model.icon;
+						const tone = CARD_TONES[idx % CARD_TONES.length]!;
 						return (
 							<motion.div
 								key={model.title}
@@ -81,15 +82,15 @@ export default function PricingSection() {
 								<Card
 									className={cn(
 										'h-full rounded-3xl border shadow-sm transition-shadow hover:shadow-md',
-										CARD_TONES[idx % CARD_TONES.length],
+										tone.card,
 									)}>
 									<CardHeader className='pb-2'>
-										<div className='mb-2 inline-flex size-11 items-center justify-center rounded-xl border border-white/70 bg-white/45'>
-											<Icon className='size-5 text-primary' />
+										<div className='glass-icon mb-2 inline-flex size-11 items-center justify-center rounded-xl'>
+											<Icon className={cn('size-5', tone.ink)} />
 										</div>
 										<CardTitle className='text-xl'>{model.title}</CardTitle>
 										<p className='text-sm text-foreground/80'>{model.description}</p>
-										<div className='mt-2 inline-flex w-fit rounded-full border border-white/70 bg-white/45 px-3 py-1 text-xs font-semibold text-foreground/80'>
+										<div className='mt-2 inline-flex w-fit rounded-full border border-white/80 bg-white/70 px-3 py-1 text-xs font-semibold text-foreground dark:border-white/15 dark:bg-white/10'>
 											Best for: {model.bestFor}
 										</div>
 									</CardHeader>
@@ -98,7 +99,7 @@ export default function PricingSection() {
 										<ul className='space-y-2.5'>
 											{model.features.map((feature) => (
 												<li key={feature} className='flex items-start gap-2 text-sm text-foreground/85'>
-													<Check className='mt-0.5 size-4 shrink-0 text-primary' />
+													<Check className={cn('mt-0.5 size-4 shrink-0', tone.ink)} />
 													<span>{feature}</span>
 												</li>
 											))}

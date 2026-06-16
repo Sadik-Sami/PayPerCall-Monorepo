@@ -13,16 +13,18 @@ import { PhoneIncoming, PhoneOutgoing, Sparkles } from 'lucide-react';
 
 type ServiceTab = 'inbound' | 'outbound';
 
-const TAB_META: Record<ServiceTab, { label: string; icon: typeof PhoneIncoming; tone: string }> = {
+const TAB_META: Record<ServiceTab, { label: string; icon: typeof PhoneIncoming; tone: string; ink: string }> = {
 	inbound: {
 		label: 'Inbound Services',
 		icon: PhoneIncoming,
 		tone: 'bg-pastel-sky border-pastel-sky-border',
+		ink: 'text-pastel-sky-ink',
 	},
 	outbound: {
 		label: 'Outbound Services',
 		icon: PhoneOutgoing,
 		tone: 'bg-pastel-mint border-pastel-mint-border',
+		ink: 'text-pastel-mint-ink',
 	},
 };
 
@@ -90,7 +92,7 @@ export default function ServicesBreakdown() {
 											)}>
 											<CardHeader className='gap-3 pb-3'>
 												<div className='flex items-center gap-3'>
-													<div className='inline-flex size-10 items-center justify-center rounded-xl border border-white/70 bg-white/50 text-foreground'>
+													<div className={cn('glass-icon inline-flex size-10 items-center justify-center rounded-xl', TAB_META[tab].ink)}>
 														{service.icon}
 													</div>
 													<CardTitle className='text-lg leading-tight'>{service.title}</CardTitle>
@@ -101,7 +103,7 @@ export default function ServicesBreakdown() {
 												<ul className='space-y-2.5'>
 													{service.features.map((feature) => (
 														<li key={feature} className='flex items-start gap-2 text-sm text-foreground/85'>
-															<Sparkles className='mt-0.5 size-4 shrink-0 text-primary' />
+															<Sparkles className={cn('mt-0.5 size-4 shrink-0', TAB_META[tab].ink)} />
 															<span>{feature}</span>
 														</li>
 													))}

@@ -1,4 +1,4 @@
-import { Phone, Headphones, BarChart3, Users, Calendar, ClipboardCheck, Search, MessageSquare, RefreshCw, Database } from 'lucide-react';
+import { Phone, Headphones, Users, Calendar, ClipboardCheck, Search, MessageSquare, RefreshCw, Database } from 'lucide-react';
 import { createElement } from 'react';
 import type { ServiceItem } from '@workspace/ui/components/sections/service-cards';
 
@@ -14,7 +14,7 @@ export const inboundServices: ServiceItem[] = [
 			'Quality assurance monitoring',
 			'Real-time escalation protocols',
 		],
-		icon: createElement(Headphones, { className: 'size-5 text-primary' }),
+		icon: createElement(Headphones, { className: 'size-5' }),
 	},
 	{
 		title: 'Order Processing & Tracking',
@@ -27,7 +27,7 @@ export const inboundServices: ServiceItem[] = [
 			'Returns and exchanges handling',
 			'Inventory status updates',
 		],
-		icon: createElement(ClipboardCheck, { className: 'size-5 text-primary' }),
+		icon: createElement(ClipboardCheck, { className: 'size-5' }),
 	},
 	{
 		title: 'Technical Support (Tier 1 & 2)',
@@ -40,7 +40,7 @@ export const inboundServices: ServiceItem[] = [
 			'Ticket creation and tracking',
 			'Knowledge base documentation',
 		],
-		icon: createElement(Phone, { className: 'size-5 text-primary' }),
+		icon: createElement(Phone, { className: 'size-5' }),
 	},
 	{
 		title: 'After-Hours & Overflow Support',
@@ -53,7 +53,7 @@ export const inboundServices: ServiceItem[] = [
 			'Message taking and dispatch',
 			'Emergency escalation protocols',
 		],
-		icon: createElement(MessageSquare, { className: 'size-5 text-primary' }),
+		icon: createElement(MessageSquare, { className: 'size-5' }),
 	},
 ];
 
@@ -69,7 +69,7 @@ export const outboundServices: ServiceItem[] = [
 			'CRM integration and updates',
 			'Lead scoring and prioritization',
 		],
-		icon: createElement(Users, { className: 'size-5 text-primary' }),
+		icon: createElement(Users, { className: 'size-5' }),
 	},
 	{
 		title: 'Appointment Setting',
@@ -82,7 +82,7 @@ export const outboundServices: ServiceItem[] = [
 			'Rescheduling management',
 			'Meeting preparation notes',
 		],
-		icon: createElement(Calendar, { className: 'size-5 text-primary' }),
+		icon: createElement(Calendar, { className: 'size-5' }),
 	},
 	{
 		title: 'Market Research & Surveys',
@@ -95,7 +95,7 @@ export const outboundServices: ServiceItem[] = [
 			'Product feedback collection',
 			'Data analysis and reporting',
 		],
-		icon: createElement(Search, { className: 'size-5 text-primary' }),
+		icon: createElement(Search, { className: 'size-5' }),
 	},
 	{
 		title: 'Customer Win-Back Campaigns',
@@ -108,7 +108,7 @@ export const outboundServices: ServiceItem[] = [
 			'Objection handling',
 			'Win-back success tracking',
 		],
-		icon: createElement(RefreshCw, { className: 'size-5 text-primary' }),
+		icon: createElement(RefreshCw, { className: 'size-5' }),
 	},
 	{
 		title: 'Data Verification & Enrichment',
@@ -121,6 +121,6 @@ export const outboundServices: ServiceItem[] = [
 			'Company information enrichment',
 			'Duplicate record resolution',
 		],
-		icon: createElement(Database, { className: 'size-5 text-primary' }),
+		icon: createElement(Database, { className: 'size-5' }),
 	},
 ];

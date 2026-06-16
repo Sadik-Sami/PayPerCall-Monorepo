@@ -68,7 +68,7 @@ export default function WhyChooseUs() {
 					</motion.div>
 
 					<div className='space-y-4'>
-						<div className='mb-2 inline-flex items-center gap-2 rounded-full border border-pastel-mint-border bg-pastel-mint px-3 py-1 text-xs font-semibold uppercase tracking-wide text-foreground/85'>
+						<div className='mb-2 inline-flex items-center gap-2 rounded-full border border-pastel-mint-border bg-pastel-mint px-3 py-1 text-xs font-semibold uppercase tracking-wide text-pastel-mint-ink'>
 							<ShieldCheck className='size-3.5' />
 							{guaranteedWins}+ provable vendor advantages
 						</div>
@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
 								<Card className='rounded-2xl border-border/70 bg-card/75 shadow-sm transition-shadow hover:shadow-md'>
 									<CardContent className='flex items-start gap-3 pt-6'>
 										<div className='mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg border border-pastel-lilac-border bg-pastel-lilac'>
-											<CheckCircle2 className='size-4 text-primary' />
+											<CheckCircle2 className='size-4 text-pastel-lilac-ink' />
 										</div>
 										<div>
 											<h3 className='text-base font-semibold text-foreground'>{item.title}</h3>
