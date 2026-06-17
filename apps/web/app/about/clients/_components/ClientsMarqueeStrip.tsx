@@ -21,7 +21,7 @@ function MarqueeChip({ client }: { client: ClientBrand }) {
   );
 }
 
-export function ClientsMarqueeStrip() {
+export function ClientsMarqueeStrip({ fadeClassName = "from-background via-background/80" }: { fadeClassName?: string } = {}) {
   const reduceMotion = useReducedMotion();
   const midpoint = Math.ceil(ALL_CLIENTS.length / 2);
   const firstRow = ALL_CLIENTS;
@@ -50,8 +50,8 @@ export function ClientsMarqueeStrip() {
         </div>
       ) : (
         <div className='relative space-y-4'>
-          <div className='pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-background via-background/80 to-transparent sm:w-32' />
-          <div className='pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-background via-background/80 to-transparent sm:w-32' />
+          <div className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r ${fadeClassName} to-transparent sm:w-32`} />
+          <div className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l ${fadeClassName} to-transparent sm:w-32`} />
 
           <div className='flex overflow-hidden' aria-label='Scrolling list of partner brands, row one'>
             <motion.div

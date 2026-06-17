@@ -1,19 +1,17 @@
+import FAQ from '@/components/sections/shared/FAQ';
 import {
 	CaseStudyStrip,
-	FAQSection,
 	ConsultationCTA,
-	ProcessSteps,
-	ServiceHero,
-	ClientSuccessBreakdown,
-	type SuccessOutcome,
 	ServiceComparison,
 	TrendingUp,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import type { FaqItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
-import heroImage3 from '@/public/images/slider/slider-3.webp';
-import { Briefcase, Building, Target } from 'lucide-react';
+import { PastelFunnelHero, PastelBentoGrid } from '../_components';
+import { BUSINESS_DATA } from '@/lib/data/services/web-dev-subpages';
+import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
+import { Timeline } from '@workspace/ui/components/ui/timeline';
+import { cn } from '@workspace/ui/lib/utils';
 
 export const metadata: Metadata = {
 	title: 'Business Website Development for B2B Companies | PayPerCall',
@@ -26,297 +24,101 @@ export const metadata: Metadata = {
 		title: 'Business Website Development for B2B Companies',
 		description: 'Websites designed to support sales with trust signals, search visibility, and measurable funnels.',
 		url: '/services/web-dev/business',
-		images: [
-			{
-				url: '/images/slider/slider-3.webp',
-				width: 1200,
-				height: 630,
-				alt: 'B2B business website development',
-			},
-		],
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Business Website Development for B2B Companies',
-		description: 'SEO-ready, CMS-driven B2B sites with analytics and CRM routing for lead quality.',
-		images: ['/images/slider/slider-3.jpg'],
-	},
-	keywords: [
-		'B2B website development',
-		'business website design and development',
-		'Next.js B2B website',
-		'technical SEO and schema',
-		'CRM lead routing',
-		'headless CMS development',
-	],
-};
-
-export const revalidate = 3600;
-
-const HERO_CONTENT = {
-	pill: 'Business Websites',
-	title: 'B2B websites that back up your revenue goals',
-	subtitle: 'Streamlined messaging, trust signals, and measurement so sales teams get cleaner leads.',
-	features: ['Headless CMS', 'SEO + schema', 'Lead routing'],
-	stat: { value: 'Free audit', label: 'Includes action plan + budget ranges' },
-	primaryCta: { label: 'Request a Free Website Review', href: '/contact' },
-	secondaryCta: { label: 'See Comparison Table', href: '/services/web-dev/business#pricing' },
-	footnote: 'We follow up within one business day with the recorded findings.',
-	media: {
-		src: heroImage3,
-		alt: 'Marketing leaders reviewing brand messaging',
-		caption: 'Clear positioning, measurable funnels, confident governance.',
 	},
 };
-
-const SUCCESS_OUTCOMES = [
-	{
-		icon: 'default',
-		metric: '+32%',
-		label: 'Average organic lift',
-		description: 'Three months after launch across B2B sites',
-		context: 'Through better SEO, schema markup, and content organization.',
-	},
-	{
-		icon: 'database',
-		metric: '4.6%',
-		label: 'Median form completion rate',
-		description: "Across all lead generation forms we've deployed",
-		context: 'Industry average is 2-3%. We reduce friction and add trust.',
-	},
-	{
-		icon: 'clock',
-		metric: '48',
-		label: 'Business sites launched',
-		description: 'In insurance, legal, logistics, finance, and other B2B sectors',
-		context: 'Each one measurably improved lead quality and sales conversation quality.',
-	},
-] satisfies SuccessOutcome[];
-
-const OBJECTION_FAQ = [
-	{
-		question: 'Our internal team changes content frequently—how do we manage that without developer help?',
-		answer:
-			'We build with a headless CMS so your team can publish pages, change layouts, and add content without needing engineering. We provide training and operational docs so you stay confident and independent.',
-		bulletPoints: [
-			'Intuitive CMS interface (Contentful, Sanity, etc.)',
-			'Reusable content blocks and page templates',
-			'Video training and operations runbooks included',
-		],
-	},
-	{
-		question: "We're regulated (finance/legal/healthcare)—can you handle compliance requirements?",
-		answer:
-			"Yes. We've built compliant sites for financial advisors, law firms, and healthcare practices. We document all changes for audit trails, implement access controls, and ensure GDPR/HIPAA handling where required.",
-		bulletPoints: [
-			'Audit-ready change logs and version history',
-			'Role-based access controls for sensitive content',
-			'Compliance checklist reviewed before launch',
-		],
-	},
-	{
-		question: 'How do we measure whether the new site is actually driving better leads?',
-		answer:
-			'Every site ships with full attribution tracking. We configure your CRM integration so lead source is tracked through the entire pipeline. Weekly dashboards show which pages drive SQLs.',
-		bulletPoints: [
-			'CRM integration with lead scoring',
-			'Page-to-opportunity attribution dashboards',
-			'Weekly reporting to marketing and sales leadership',
-		],
-	},
-] satisfies FaqItem[];
-
-const COMPARISON_TIERS = [
-	{ name: 'Essential', description: 'Focused positioning sites' },
-	{ name: 'Growth', description: 'Multi-offer businesses' },
-	{ name: 'Enterprise', description: 'Complex governance needs', recommended: true },
-];
-
-const COMPARISON_FEATURES = [
-	{ name: 'Core page templates', included: ['Up to 6', '10+', '20+'] },
-	{ name: 'Case study system', included: [false, true, true] },
-	{ name: 'CRM integration', included: [false, true, true] },
-	{ name: 'Testimonial management', included: [false, true, true] },
-	{ name: 'Content automation', included: [false, 'Yes', 'Yes'] },
-	{ name: 'Multi-region support', included: [false, false, true] },
-	{ name: 'Advanced security reviews', included: [false, false, true] },
-	{ name: 'Compliance audit trail', included: [false, 'Optional', true] },
-];
-
-const PROCESS_STEPS = [
-	{
-		title: 'Audience & Message Alignment',
-		description: 'Work with stakeholders to clarify offers, proof points, and calls-to-action per audience.',
-	},
-	{
-		title: 'Architecture & Content Planning',
-		description: 'Define page types, modular sections, and metadata so content teams can scale confidently.',
-	},
-	{
-		title: 'Design & Build',
-		description: 'Produce accessible layouts, then ship them as reusable components managed via CMS.',
-	},
-	{
-		title: 'Launch & Iterate',
-		description: 'Deploy via ISR, validate analytics, and plan optimization sprints based on live data.',
-	},
-];
-
-const CASE_STUDIES = [
-	{
-		client: 'Meridian Legal',
-		industry: 'Legal',
-		problem: 'Practice areas were buried and not mapped to regional search intent.',
-		solution: 'Re-architected site navigation, added localized schema, and introduced evidence-driven testimonials.',
-		outcome: 'Qualified consultation requests increased 52% with consistent first-response SLAs.',
-		icon: <Briefcase className='size-5' />,
-		metrics: [
-			{ label: 'Consultations', value: '+52%' },
-			{ label: 'First response', value: '<2 hrs' },
-		],
-	},
-	{
-		client: 'Waypoint Logistics',
-		industry: 'Supply Chain',
-		problem: 'Site failed to articulate service tiers and lacked conversion tracking.',
-		solution: 'Built a modular services catalog, ROI snapshots, and integrated HubSpot workflows.',
-		outcome: 'Sales accepted opportunities rose 34%, and marketing gained full-funnel attribution.',
-		icon: <Building className='size-5' />,
-		metrics: [
-			{ label: 'SAOs', value: '+34%' },
-			{ label: 'Attribution', value: 'Full-funnel' },
-		],
-	},
-	{
-		client: 'Everest Advisory',
-		industry: 'Finance',
-		problem: 'Needed a modern site that satisfied compliance reviews without sacrificing messaging.',
-		solution: 'Established a compliant component library, audit-ready change logs, and encrypted form routing.',
-		outcome: 'Passed regulatory review on the first attempt and doubled inbound RFP volume.',
-		icon: <Target className='size-5' />,
-		metrics: [
-			{ label: 'RFP volume', value: '2x' },
-			{ label: 'Audit issues', value: '0' },
-		],
-	},
-];
-
-const FAQ_ITEMS = [
-	...OBJECTION_FAQ,
-	{
-		question: 'Do you provide copywriting?',
-		answer:
-			'We collaborate with your subject matter experts and can supply B2B copy partners upon request. Every layout includes content guidance to keep messaging consistent.',
-	},
-	{
-		question: 'Can you integrate our preferred CMS?',
-		answer:
-			'Yes. We work with headless CMS platforms and can provide guidance on governance, workflows, and author experience.',
-	},
-	{
-		question: 'How do you measure success for business sites?',
-		answer:
-			'We track Core Web Vitals, conversion rates, SQLs, and engagement metrics defined during discovery so you can see improvement clearly.',
-	},
-	{
-		question: 'Is the website review complimentary?',
-		answer: 'Yes. The review and follow-up brief are free—we only start billing if you approve a scoped build.',
-	},
-];
-
-const TRENDING_METRICS = [
-	{
-		label: 'B2B buyers researching digitally',
-		value: '94%',
-		change: 'Up 23%',
-		context: 'Decision-makers now prefer self-service research before talking to sales.',
-	},
-	{
-		label: 'CMS adoption in enterprise',
-		value: '78%',
-		change: 'Up 18%',
-		context: 'Content teams increasingly manage sites independently without developers.',
-	},
-	{
-		label: 'Lead quality improvement',
-		value: '+41%',
-		change: 'Average',
-		context: 'When B2B sites have clear messaging and trust signals.',
-	},
-	{
-		label: 'Conversion rate uplift',
-		value: '+35%',
-		change: 'Typical',
-		context: 'After implementing dynamic CTA routing and better funnel visibility.',
-	},
-];
+const SECTION_PADDING = 'py-12 md:py-16';
 
 export default function BusinessWebsitesPage() {
-	const structuredData = {
-		'@context': 'https://schema.org',
-		'@type': 'Service',
-		name: 'Business Website Development',
-		serviceType: 'B2B website design and development',
-		provider: {
-			'@type': 'Organization',
-			name: 'PayPerCall',
-			url: 'https://paypercall.com',
-		},
-		areaServed: {
-			'@type': 'Country',
-			name: 'United States',
-		},
-		description:
-			'B2B websites built for measurable lead quality with SEO, schema, CMS governance, analytics, and CRM routing.',
-	};
-
 	return (
 		<main className='space-y-0'>
-			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<ClientSuccessBreakdown
-				className='py-12 md:py-16 max-w-7xl mx-auto'
-				title='B2B website results in clean leads'
-				subtitle='Measured through lead quality and sales engagement rates.'
-				outcomes={SUCCESS_OUTCOMES}
-			/>
-			<TrendingUp
-				className='py-12 md:py-16 max-w-7xl mx-auto'
-				title='How B2B buying behavior is shifting'
-				description='The digital-first B2B buyer is now the norm. Sites that adapt to self-directed research and clear proof points win.'
-				metrics={TRENDING_METRICS}
-			/>
-			<ProcessSteps
-				className='py-12 md:py-16 max-w-7xl mx-auto'
-				steps={PROCESS_STEPS}
-				title='Structured delivery for corporate sites'
-				variant='cards'
-			/>
-			<ServiceComparison
-				className='py-12 md:py-16 max-w-7xl mx-auto'
-				title='Choose your business website tier'
-				subtitle='All tiers include strategy consultation, launch support, and ongoing CMS training.'
-				tiers={COMPARISON_TIERS}
-				features={COMPARISON_FEATURES}
-			/>
-			<CaseStudyStrip
-				className='py-12 md:py-16 max-w-7xl mx-auto'
-				items={CASE_STUDIES.map(mapCaseStudyToCard)}
-				title='Case studies focused on outcomes executives value'
-			/>
-			<FAQSection className='py-12 md:py-16 max-w-7xl mx-auto' items={FAQ_ITEMS} />
-			<div className='py-12 md:py-16 max-w-7xl mx-auto'>
-				<ConsultationCTA
-					category='web-dev'
-					className='max-w-7xl mx-auto'
-					title='Request an evidence-based website review'
-					bullets={[
-						'Get a quick audit across UX, SEO, and trust signals.',
-						'See the top fixes to schedule next release.',
-						'Walk away with timeline and budget ranges.',
-					]}
-					formVariant='detailed'
+			<PastelFunnelHero {...BUSINESS_DATA.HERO} />
+
+			<div className={cn("w-full bg-background pt-8 pb-16")}>
+				<ClientsMarqueeStrip />
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<div className="max-w-7xl mx-auto px-4 md:px-8">
+					<div className="mb-10 md:mb-16">
+						<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+							B2B website results in clean leads
+						</h2>
+						<p className="mt-4 text-lg text-muted-foreground max-w-2xl">
+							Measured through lead quality and sales engagement rates.
+						</p>
+					</div>
+					<PastelBentoGrid outcomes={BUSINESS_DATA.OUTCOMES} />
+				</div>
+			</div>
+
+			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
+				<TrendingUp
+					className="max-w-7xl mx-auto"
+					title='How B2B buying behavior is shifting'
+					description='The digital-first B2B buyer is now the norm. Sites that adapt to self-directed research and clear proof points win.'
+					metrics={BUSINESS_DATA.TRENDING_METRICS}
 				/>
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<Timeline
+					className="max-w-7xl mx-auto"
+					title="Structured delivery for corporate sites"
+					data={BUSINESS_DATA.PROCESS_STEPS.map((s, i) => ({
+						title: `0${i + 1} · ${s.title}`,
+						content: (
+							<p className="font-medium text-foreground leading-relaxed">{s.description}</p>
+						)
+					}))}
+				/>
+			</div>
+
+			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
+				<ServiceComparison
+					className="max-w-7xl mx-auto"
+					title='Choose your business website tier'
+					subtitle='All tiers include strategy consultation, launch support, and ongoing CMS training.'
+					tiers={BUSINESS_DATA.COMPARISON_TIERS}
+					features={BUSINESS_DATA.COMPARISON_FEATURES}
+				/>
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<CaseStudyStrip
+					className="max-w-7xl mx-auto"
+					items={BUSINESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					title='Case studies focused on outcomes executives value'
+				/>
+			</div>
+
+			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
+				<FAQ
+					variant="pastel"
+					badge="Business Websites FAQ"
+					description="Common questions about our B2B website development process and capabilities."
+					className="max-w-7xl mx-auto"
+					items={BUSINESS_DATA.FAQ_ITEMS}
+				/>
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<div className="max-w-7xl mx-auto px-4 md:px-8">
+					<ConsultationCTA
+						category='web-dev'
+						className='w-full'
+						title='Request an evidence-based website review'
+						bullets={[
+							'Get a quick audit across UX, SEO, and trust signals.',
+							'See the top fixes to schedule next release.',
+							'Walk away with timeline and budget ranges.',
+						]}
+						formVariant='detailed'
+					/>
+				</div>
 			</div>
 		</main>
 	);

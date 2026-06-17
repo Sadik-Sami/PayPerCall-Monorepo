@@ -1,6 +1,6 @@
 'use client';
-import { useScroll, useTransform, motion } from 'motion/react';
-import React, { useEffect, useRef, useState } from 'react';
+
+import React from 'react';
 import { cn } from '@workspace/ui/lib/utils';
 
 export interface TimelineEntry {
@@ -15,67 +15,145 @@ interface TimelineProps {
 	className?: string;
 }
 
+const PASTEL_THEMES = [
+	{
+		name: 'mint',
+		bg: 'bg-pastel-mint border-pastel-mint-border',
+		text: 'text-slate-700 dark:text-slate-300',
+		accent: 'text-slate-900 dark:text-slate-50',
+		watermark: 'text-pastel-mint-strong',
+	},
+	{
+		name: 'sky',
+		bg: 'bg-pastel-sky border-pastel-sky-border',
+		text: 'text-slate-700 dark:text-slate-300',
+		accent: 'text-slate-900 dark:text-slate-50',
+		watermark: 'text-pastel-sky-strong',
+	},
+	{
+		name: 'lilac',
+		bg: 'bg-pastel-lilac border-pastel-lilac-border',
+		text: 'text-slate-700 dark:text-slate-300',
+		accent: 'text-slate-900 dark:text-slate-50',
+		watermark: 'text-pastel-lilac-strong',
+	},
+	{
+		name: 'peach',
+		bg: 'bg-pastel-peach border-pastel-peach-border',
+		text: 'text-slate-700 dark:text-slate-300',
+		accent: 'text-slate-900 dark:text-slate-50',
+		watermark: 'text-pastel-peach-strong',
+	},
+	{
+		name: 'blush',
+		bg: 'bg-pastel-blush border-pastel-blush-border',
+		text: 'text-slate-700 dark:text-slate-300',
+		accent: 'text-slate-900 dark:text-slate-50',
+		watermark: 'text-pastel-blush-strong',
+	},
+	{
+		name: 'lime',
+		bg: 'bg-pastel-lime border-pastel-lime-border',
+		text: 'text-slate-700 dark:text-slate-300',
+		accent: 'text-slate-900 dark:text-slate-50',
+		watermark: 'text-pastel-lime-strong',
+	},
+];
+
+const colSpanClasses: Record<number, string> = {
+	4: 'md:col-span-4',
+	5: 'md:col-span-5',
+	7: 'md:col-span-7',
+	8: 'md:col-span-8',
+	12: 'md:col-span-12',
+};
+
+const getColSpan = (idx: number, total: number) => {
+	if (total === 1) return 12;
+	if (idx === total - 1 && total % 2 !== 0) {
+		return 12;
+	}
+	const patternIndex = idx % 4;
+	if (patternIndex === 0) return 7;
+	if (patternIndex === 1) return 5;
+	if (patternIndex === 2) return 8;
+	return 4;
+};
+
 export const Timeline = ({ title, description, data, className }: TimelineProps) => {
-	const ref = useRef<HTMLDivElement>(null);
-	const containerRef = useRef<HTMLDivElement>(null);
-	const [height, setHeight] = useState(0);
-
-	useEffect(() => {
-		if (ref.current) {
-			const rect = ref.current.getBoundingClientRect();
-			setHeight(rect.height);
-		}
-	}, []);
-
-	const { scrollYProgress } = useScroll({
-		target: containerRef,
-		offset: ['start 10%', 'end 50%'],
-	});
-
-	const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-	const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
-
 	return (
-		<div
-			className={cn('w-full rounded-3xl border border-border/50 bg-background font-body', className)}
-			ref={containerRef}>
-			<div className='mx-auto max-w-5xl px-6 py-12 md:px-12'>
-				<h2 className='text-4xl font-semibold text-foreground md:text-4xl'>{title}</h2>
-				{description ?
-					<p className='mt-3 max-w-3xl text-base text-muted-foreground md:text-base'>{description}</p>
-				:	null}
+		<div className={cn('w-full rounded-3xl bg-background font-body', className)}>
+			{/* Title and Header Section */}
+			<div className='mx-auto max-w-3xl px-6 py-12 md:py-16 text-center'>
+				<h2 className='text-3xl md:text-5xl font-heading font-extrabold tracking-tight text-foreground mb-4'>
+					{title}
+				</h2>
+				{description && (
+					<p className='text-lg text-muted-foreground font-body max-w-2xl mx-auto'>
+						{description}
+					</p>
+				)}
 			</div>
 
-			<div ref={ref} className='relative mx-auto max-w-5xl pb-16'>
-				{data.map((item) => (
-					<div key={item.title} className='flex justify-start pt-10 md:gap-10 md:pt-24'>
-						<div className='sticky top-32 z-30 flex max-w-xs flex-col items-center self-start md:max-w-sm md:flex-row'>
-							<div className='absolute left-2 h-10 w-10 rounded-full bg-background flex items-center justify-center'>
-								<div className='h-3.5 w-3.5 rounded-full border border-muted-foreground/40 bg-primary/30' />
-							</div>
-							<h3 className='hidden text-3xl font-semibold text-muted-foreground md:block md:pl-16'>{item.title}</h3>
-						</div>
+			{/* Bento Grid */}
+			<div className='mx-auto max-w-7xl px-6 pb-16 md:px-12'>
+				<div className='grid grid-cols-1 md:grid-cols-12 gap-6'>
+					{data.map((item, idx) => {
+						const theme = PASTEL_THEMES[idx % PASTEL_THEMES.length] || PASTEL_THEMES[0]!;
+						const span = getColSpan(idx, data.length);
+						const colSpanClass = colSpanClasses[span] || 'md:col-span-6';
+						const formattedNumber = String(idx + 1).padStart(2, '0');
 
-						<div className='relative w-full pl-16 pr-4 md:pl-4'>
-							<h3 className='mb-3 text-2xl font-semibold text-muted-foreground md:hidden'>{item.title}</h3>
-							<div className='rounded-2xl border border-border/40 bg-card/70 p-6 text-sm md:text-base text-muted-foreground'>
-								{item.content}
+						return (
+							<div
+								key={item.title + idx}
+								style={{
+									'--bullet-color': `var(--pastel-${theme.name}-strong)`,
+								} as React.CSSProperties}
+								className={cn(
+									'relative overflow-hidden rounded-3xl border p-8 md:p-10 shadow-sm transition-all duration-300',
+									'hover:shadow-lg hover:-translate-y-1 group flex flex-col justify-between min-h-[300px]',
+									theme.bg,
+									colSpanClass
+								)}
+							>
+								{/* Massive Background Number Watermark */}
+								<span
+									className={cn(
+										'absolute -bottom-10 -right-4 font-heading text-[10rem] font-extrabold opacity-[0.06] select-none pointer-events-none transition-transform duration-500 group-hover:scale-105',
+										theme.watermark
+									)}
+								>
+									{formattedNumber}
+								</span>
+
+								<div className='relative z-10 w-full h-full flex flex-col justify-between gap-6'>
+									<div className='w-full'>
+										<h3 className={cn('text-xl md:text-2xl font-heading font-bold mb-4', theme.accent)}>
+											{item.title}
+										</h3>
+
+										{/* Content Wrapper */}
+										<div
+											className={cn(
+												'font-body text-foreground/80 text-sm leading-relaxed',
+												theme.text,
+												// Typography and layout constraints for sub-elements
+												'[&_p]:font-medium [&_p]:text-foreground/90 [&_p]:text-base [&_p]:leading-relaxed',
+												'[&_ul]:mt-4 [&_ul]:space-y-3',
+												'[&_li]:flex [&_li]:items-start [&_li]:gap-3 [&_li]:text-foreground/80 [&_li]:text-sm [&_li]:mt-2',
+												// Custom bullet style overriding default dots
+												'[&_li_span]:w-1.5 [&_li_span]:h-1.5 [&_li_span]:rounded-full [&_li_span]:mt-1.5 [&_li_span]:shrink-0 [&_li_span]:block',
+												'[&_li_span]:bg-(--bullet-color)!'
+											)}
+										>
+											{item.content}
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				))}
-				<div
-					style={{
-						height: height + 'px',
-					}}
-					className='absolute left-6 top-0 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent via-border/70 to-transparent mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8'>
-					<motion.div
-						style={{
-							height: heightTransform,
-							opacity: opacityTransform,
-						}}
-						className='absolute inset-x-0 top-0 w-[2px] rounded-full bg-linear-to-b from-primary via-primary/70 to-transparent'
-					/>
+						);
+					})}
 				</div>
 			</div>
 		</div>
