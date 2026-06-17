@@ -1,20 +1,18 @@
+import FAQ from '@/components/sections/shared/FAQ';
 import {
 	CaseStudyStrip,
-	FAQSection,
 	ConsultationCTA,
-	ServiceHero,
-	ClientSuccessBreakdown,
-	TimelineSteps,
-	IntegrationLogos,
-	ResultsGallery,
+	ServiceComparison,
 	TrendingUp,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import type { FaqItem, CaseStudyItem } from '@/types/services';
 import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
-import type { SuccessOutcome } from '@/components/sections/services/shared/ClientSuccessBreakdown';
-import heroImage1 from '@/public/images/slider/slider-1.webp';
-import { Cloud, Zap, Globe2 } from 'lucide-react';
+import { PastelFunnelHero, PastelBentoGrid } from '../../web-dev/_components';
+import { HEADLESS_DATA } from '@/lib/data/services/cms-subpages';
+import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
+import { Timeline } from '@workspace/ui/components/ui/timeline';
+import { PastelIntegrationsGrid } from '@workspace/ui/components/ui/pastel-integrations-grid';
+import { cn } from '@workspace/ui/lib/utils';
 
 export const metadata: Metadata = {
 	title: 'Headless CMS Development | Contentful, Sanity, Strapi | PayPerCall',
@@ -54,325 +52,116 @@ export const metadata: Metadata = {
 	],
 };
 
-export const revalidate = 3600;
-
-const structuredData = {
-	'@context': 'https://schema.org',
-	'@type': 'Service',
-	serviceType: 'Headless CMS Development',
-	provider: {
-		'@type': 'Organization',
-		name: 'PayPerCall',
-		url: 'https://paypercall.com',
-	},
-	description:
-		'API-first headless CMS architecture with Contentful, Sanity, or Strapi for omnichannel content delivery across web, mobile, and IoT.',
-	areaServed: { '@type': 'Country', name: 'United States' },
-	offers: {
-		'@type': 'Offer',
-		availability: 'https://schema.org/InStock',
-		priceSpecification: {
-			'@type': 'PriceSpecification',
-			priceCurrency: 'USD',
-			price: '45000',
-			description: 'Starting from $45k',
-		},
-	},
-};
-
-const HERO_CONTENT = {
-	pill: 'Headless CMS',
-	eyebrow: 'CMS Services',
-	title: 'API-first content hubs for omnichannel delivery',
-	subtitle:
-		'We architect headless CMS solutions with Contentful, Sanity, or Strapi that power web, mobile, and IoT experiences from a single content source. Built for developer teams and modern stacks.',
-	features: ['API-first', 'GraphQL + REST', 'Framework agnostic'],
-	stat: { value: '3+ channels', label: 'Average content delivery endpoints' },
-	primaryCta: { label: 'Discuss Headless Project', href: '/contact' },
-	secondaryCta: { label: 'Compare Platforms', href: '#comparison' },
-	footnote: 'Free platform comparison guide for qualified headless CMS projects.',
-	media: {
-		src: heroImage1,
-		alt: 'Headless CMS architecture diagram',
-		caption: 'Every headless build includes API documentation and developer onboarding.',
-	},
-};
-
-const SUCCESS_OUTCOMES: SuccessOutcome[] = [
-	{
-		icon: 'clock' as const,
-		metric: '200ms',
-		label: 'Average API response time',
-		description: 'Median content API latency across headless deployments',
-		context: 'Through edge caching and optimized queries.',
-	},
-	{
-		icon: 'gitBranch' as const,
-		metric: '5+',
-		label: 'Channels per content source',
-		description: 'Web, mobile app, kiosks, email, and voice from single CMS',
-		context: 'Real-time content sync across all touchpoints.',
-	},
-	{
-		icon: 'database' as const,
-		metric: '-70%',
-		label: 'Content publishing overhead reduction',
-		description: 'Less time spent on multi-channel content updates',
-		context: 'Measured against previous multi-CMS architecture.',
-	},
-];
-
-const TIMELINE_STEPS = [
-	{
-		number: '01',
-		title: 'Platform Selection & Architecture',
-		description: 'Evaluate headless CMS platforms and design API architecture.',
-		details: [
-			'Contentful vs Sanity vs Strapi comparison',
-			'Content model design',
-			'API endpoint planning',
-			'Caching strategy',
-		],
-	},
-	{
-		number: '02',
-		title: 'CMS Setup & Content Modeling',
-		description: 'Configure headless CMS and build content schemas.',
-		details: [
-			'Content type definitions',
-			'Field validation rules',
-			'Media asset configuration',
-			'Preview environment setup',
-		],
-	},
-	{
-		number: '03',
-		title: 'API Development & Integration',
-		description: 'Build GraphQL/REST APIs and integrate with frontends.',
-		details: [
-			'GraphQL schema design',
-			'REST endpoint development',
-			'Frontend integration (Next.js, React Native)',
-			'Real-time webhook configuration',
-		],
-	},
-	{
-		number: '04',
-		title: 'Launch & Documentation',
-		description: 'Deploy to production with comprehensive developer docs.',
-		details: [
-			'Production deployment',
-			'API documentation (Postman, GraphQL Playground)',
-			'Editor training',
-			'Developer onboarding guide',
-		],
-	},
-];
-
-const TRENDING_METRICS = [
-	{
-		label: 'Headless CMS adoption growth',
-		value: '+156%',
-		change: '+156%',
-		context: 'Year-over-year increase in enterprise headless CMS adoption',
-	},
-	{
-		label: 'Prefer API-first approach',
-		value: '68%',
-		change: '+68%',
-		context: 'Developer teams choosing headless over traditional CMS',
-	},
-	{
-		label: 'Faster content updates',
-		value: '3.2x',
-		change: '+220%',
-		context: 'Speed improvement for multi-channel content publishing',
-	},
-	{
-		label: 'Infrastructure costs',
-		value: '-45%',
-		change: '-45%',
-		context: 'Savings through serverless architecture and edge caching',
-	},
-];
-
-const INTEGRATIONS = [
-	{ name: 'Contentful', category: 'Headless CMS' },
-	{ name: 'Sanity', category: 'Headless CMS' },
-	{ name: 'Strapi', category: 'Headless CMS' },
-	{ name: 'Hygraph', category: 'Headless CMS' },
-	{ name: 'Next.js', category: 'Frontend Framework' },
-	{ name: 'React', category: 'Frontend Framework' },
-	{ name: 'Vue.js', category: 'Frontend Framework' },
-	{ name: 'GraphQL', category: 'API Layer' },
-	{ name: 'REST', category: 'API Layer' },
-	{ name: 'Vercel', category: 'Hosting' },
-	{ name: 'Netlify', category: 'Hosting' },
-	{ name: 'AWS', category: 'Cloud Infrastructure' },
-];
-
-const RESULTS = [
-	{
-		label: 'Page Load Time',
-		before: '3.8s',
-		after: '1.2s',
-		improvement: '-68%',
-		context: 'Faster page loads through edge caching and optimized API queries.',
-	},
-	{
-		label: 'API Response',
-		before: 'N/A',
-		after: '200ms',
-		improvement: 'New capability',
-		context: 'API-first architecture enables real-time content delivery across channels.',
-	},
-	{
-		label: 'Channels Supported',
-		before: '1-2',
-		after: '5+',
-		improvement: '+150%',
-		context: 'Single content source powers web, mobile, kiosks, email, and voice.',
-	},
-];
-
-const CASE_STUDIES: CaseStudyItem[] = [
-	{
-		client: 'Omni Retail Corp',
-		industry: 'Retail',
-		problem: 'Managing separate content for web, mobile app, and in-store kiosks was inefficient.',
-		solution:
-			'Implemented Contentful headless CMS with GraphQL API feeding Next.js web, React Native app, and kiosk displays.',
-		outcome: 'Unified content across 3 channels with real-time updates and 70% reduction in publishing time.',
-		icon: <Cloud className='h-5 w-5' />,
-		metrics: [
-			{ label: 'Channels unified', value: '3' },
-			{ label: 'Publishing time', value: '-70%' },
-		],
-	},
-	{
-		client: 'Modern Media Group',
-		industry: 'Media & Publishing',
-		problem: 'Needed to deliver content to web, mobile apps, email newsletters, and smart speakers.',
-		solution:
-			'Built Sanity headless CMS with custom webhooks, GraphQL APIs, and multi-channel delivery pipeline.',
-		outcome: 'Content now reaches 5 channels simultaneously with zero duplication and 200ms API response time.',
-		icon: <Zap className='h-5 w-5' />,
-		metrics: [
-			{ label: 'Channels', value: '5' },
-			{ label: 'API latency', value: '200ms' },
-		],
-	},
-	{
-		client: 'TechFlow SaaS',
-		industry: 'SaaS',
-		problem: 'Product documentation needed to power web docs, in-app help, and API reference from one source.',
-		solution:
-			'Deployed self-hosted Strapi with custom GraphQL schema, versioning, and Next.js documentation site.',
-		outcome: 'Developer-friendly CMS with API-first architecture and 90% faster doc updates.',
-		icon: <Globe2 className='h-5 w-5' />,
-		metrics: [
-			{ label: 'Doc update time', value: '-90%' },
-			{ label: 'API response', value: '150ms' },
-		],
-	},
-];
-
-const FAQ_ITEMS: FaqItem[] = [
-	{
-		question: 'What is the difference between headless CMS and traditional WordPress/Drupal?',
-		answer:
-			'Headless CMS separates content management from presentation. Content is accessed via APIs (GraphQL or REST) and can power any frontend: web, mobile apps, kiosks, IoT devices. Traditional CMS couples content and presentation in one system.',
-	},
-	{
-		question: 'Should we choose Contentful, Sanity, or Strapi?',
-		answer:
-			'Contentful is enterprise SaaS with great UI and scalability. Sanity offers more flexibility and real-time collaboration. Strapi is open-source and self-hosted for maximum control. We help you choose based on budget, team skills, and control requirements.',
-	},
-	{
-		question: 'Can headless CMS content be previewed before publishing?',
-		answer:
-			'Yes. We set up preview environments where editors can see how content will appear across all channels (web, mobile, etc.) before publishing. Most headless CMS platforms support draft/preview modes.',
-	},
-	{
-		question: 'How do you handle SEO with a headless CMS?',
-		answer:
-			'We use Next.js with SSG/ISR to pre-render pages, ensuring search engines can crawl your content. All metadata, schema markup, and sitemaps are generated automatically from your headless CMS content.',
-	},
-	{
-		question: 'What about costs for headless CMS platforms?',
-		answer:
-			'Contentful and Sanity have monthly subscription costs based on users and API calls (typically $500-2000/month). Strapi is free and self-hosted (you pay for hosting infrastructure). We include platform cost estimates in every proposal.',
-	},
-	{
-		question: 'Can we migrate from WordPress/Drupal to headless CMS?',
-		answer:
-			'Yes. We export your existing content, map it to the new headless CMS content model, and migrate with all metadata and media assets. SEO rankings are preserved through proper redirects and metadata migration.',
-	},
-	{
-		question: 'Do you provide developer documentation for the headless CMS APIs?',
-		answer:
-			'Every headless engagement includes comprehensive API documentation: GraphQL playground, Postman collections, code examples, and onboarding guides for your development team.',
-	},
-];
+const SECTION_PADDING = 'py-12 md:py-16';
 
 export default function ContentHubPage() {
 	return (
 		<main className='space-y-0'>
-			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
-			<ClientSuccessBreakdown
-				className='max-w-7xl mx-auto py-12 md:py-16'
-				title='Headless CMS outcomes backed by data'
-				subtitle='Metrics that matter for API-first content platforms.'
-				outcomes={SUCCESS_OUTCOMES}
-			/>
-			<TimelineSteps
-				className='max-w-7xl mx-auto py-12 md:py-16'
-				title='Headless CMS implementation timeline'
-				subtitle='From platform selection to production APIs.'
-				steps={TIMELINE_STEPS}
-				orientation='horizontal'
-			/>
-			<TrendingUp
-				className='max-w-7xl mx-auto py-12 md:py-16'
-				title='Headless CMS adoption trends'
-				description='The shift to API-first content infrastructure is accelerating across enterprises.'
-				metrics={TRENDING_METRICS}
-			/>
-			<IntegrationLogos
-				className='max-w-7xl mx-auto py-12 md:py-16'
-				title='Headless CMS platforms and tech stack'
-				description='From Contentful to Next.js, we build with modern APIs and frameworks.'
-				integrations={INTEGRATIONS}
-				variant='grid'
-				ctaLabel='Discuss platform selection'
-				ctaHref='/contact'
-			/>
-			<ResultsGallery
-				className='max-w-7xl mx-auto py-12 md:py-16'
-				title='Headless CMS vs Traditional CMS performance'
-				subtitle='Measurable improvements in speed, flexibility, and channel support.'
-				results={RESULTS}
-			/>
-			<CaseStudyStrip
-				className='max-w-7xl mx-auto py-12 md:py-16'
-				items={CASE_STUDIES.map(mapCaseStudyToCard)}
-				title='Headless CMS transformations'
-				description='Every headless build delivers omnichannel content delivery with API-first architecture.'
-			/>
-			<FAQSection className='max-w-7xl mx-auto py-12 md:py-16' items={FAQ_ITEMS} />
-			<div id='consultation' className='section-container py-12 md:py-16'>
-				<ConsultationCTA
-					category='cms'
-					className='w-full'
-					title='Start your headless CMS project with a free platform comparison'
-					bullets={[
-						'Compare Contentful, Sanity, and Strapi for your use case.',
-						'Review content model and channel requirements.',
-						'Budget estimate with platform subscription costs included.',
-					]}
-					formVariant='detailed'
+			<PastelFunnelHero {...HEADLESS_DATA.HERO} />
+
+			<div className={cn("w-full bg-background pt-8 pb-16")}>
+				<ClientsMarqueeStrip />
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<div className="max-w-7xl mx-auto">
+					<div className="flex flex-col items-center text-center mb-12 md:mb-16">
+						<h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-slate-50 tracking-tight mb-4">
+							Headless outcomes backed by data
+						</h2>
+						<p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-body max-w-2xl">
+							Metrics that matter for API-first content platforms.
+						</p>
+					</div>
+					<PastelBentoGrid outcomes={HEADLESS_DATA.OUTCOMES} />
+				</div>
+			</div>
+
+			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
+				<TrendingUp
+					className="max-w-7xl mx-auto"
+					title="Headless CMS adoption trends"
+					description="The shift to API-first content infrastructure is accelerating across enterprises."
+					metrics={HEADLESS_DATA.TRENDING_METRICS}
 				/>
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<Timeline
+					className="max-w-7xl mx-auto"
+					title='Headless CMS implementation timeline'
+					description='From platform selection to production APIs.'
+					data={HEADLESS_DATA.TIMELINE_STEPS.map((s) => ({
+						title: s.title,
+						content: (
+							<div className='space-y-4'>
+								<p className='font-medium text-foreground'>{s.description}</p>
+								<ul className='space-y-2'>
+									{s.details.map((detail, idx) => (
+										<li key={idx} className='flex items-center text-muted-foreground'>
+											<span className='w-1.5 h-1.5 rounded-full bg-primary/60 mr-3' />
+											{detail}
+										</li>
+									))}
+								</ul>
+							</div>
+						),
+					}))}
+				/>
+			</div>
+
+			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
+				<PastelIntegrationsGrid
+					className="max-w-7xl mx-auto"
+					title="Headless ecosystem"
+					description="Leading platforms, frontend frameworks, and API technologies we implement."
+					integrations={HEADLESS_DATA.INTEGRATIONS}
+				/>
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<ServiceComparison
+					className="max-w-7xl mx-auto"
+					title="Headless CMS advantages"
+					subtitle="Why leading development teams are choosing API-first content architectures."
+					tiers={HEADLESS_DATA.COMPARISON_TIERS}
+					features={HEADLESS_DATA.COMPARISON_FEATURES}
+				/>
+			</div>
+
+			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
+				<CaseStudyStrip
+					className="max-w-7xl mx-auto"
+					items={HEADLESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					title='Headless CMS transformations'
+					description='Omnichannel content delivery with API-first architecture.'
+				/>
+			</div>
+
+			<div className={cn("w-full bg-background", SECTION_PADDING)}>
+				<FAQ
+					variant="pastel"
+					title="Headless CMS FAQ"
+					description="Common questions about our headless CMS implementation services."
+					className="max-w-7xl mx-auto"
+					items={HEADLESS_DATA.FAQ_ITEMS}
+				/>
+			</div>
+
+			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
+				<div className="max-w-7xl mx-auto px-4 md:px-8">
+					<ConsultationCTA
+						category='cms'
+						className='w-full'
+						title='Start your headless CMS project with a free platform comparison'
+						bullets={[
+							'Compare Contentful, Sanity, and Strapi for your use case.',
+							'Review content model and channel requirements.',
+							'Budget estimate with platform subscription costs included.',
+						]}
+						formVariant='detailed'
+					/>
+				</div>
 			</div>
 		</main>
 	);
