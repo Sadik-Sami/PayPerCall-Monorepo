@@ -72,7 +72,7 @@ export default function EcommerceWebDevPage() {
 				</div>
 
 				<div className={cn("w-full bg-background", SECTION_PADDING)}>
-					<div className="max-w-7xl mx-auto px-4 md:px-8">
+					<div className="section-container">
 						<div className="mb-10 md:mb-16">
 							<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
 								Ecommerce results that drive revenue
@@ -86,7 +86,7 @@ export default function EcommerceWebDevPage() {
 				</div>
 				
 				<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
-					<div className="max-w-7xl mx-auto px-4 md:px-8">
+					<div className="section-container">
 						<div className="mb-10 md:mb-16">
 							<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
 								How we deliver ecommerce projects
@@ -108,7 +108,7 @@ export default function EcommerceWebDevPage() {
 				
 				<div className={cn("w-full bg-background", SECTION_PADDING)}>
 					<Timeline
-						className='max-w-7xl mx-auto'
+						className='section-container'
 						title='Commerce program timeline'
 						description='Each commerce build follows four checkpoints so ops, marketing, and engineering stay aligned.'
 						data={ECOMMERCE_DATA.TIMELINE}
@@ -116,7 +116,7 @@ export default function EcommerceWebDevPage() {
 				</div>
 				
 				<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
-					<div className="max-w-7xl mx-auto px-4 md:px-8">
+					<div className="section-container">
 						<div className="mb-10 md:mb-16">
 							<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
 								Ecommerce performance gains
@@ -151,7 +151,7 @@ export default function EcommerceWebDevPage() {
 				/>
 				
 				<div id='consultation' className={cn("w-full bg-background scroll-mt-24", SECTION_PADDING)}>
-					<div className="max-w-7xl mx-auto">
+					<div className="section-container">
 						<ConsultationCTA
 							category='web-dev'
 							className='w-full'

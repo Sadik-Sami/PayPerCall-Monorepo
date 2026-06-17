@@ -42,7 +42,7 @@ export default function BusinessWebsitesPage() {
 			</div>
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto px-4 md:px-8">
+				<div className="section-container">
 					<div className="mb-10 md:mb-16">
 						<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
 							B2B website results in clean leads
@@ -57,7 +57,7 @@ export default function BusinessWebsitesPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<TrendingUp
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title='How B2B buying behavior is shifting'
 					description='The digital-first B2B buyer is now the norm. Sites that adapt to self-directed research and clear proof points win.'
 					metrics={BUSINESS_DATA.TRENDING_METRICS}
@@ -66,7 +66,7 @@ export default function BusinessWebsitesPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<Timeline
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Structured delivery for corporate sites"
 					data={BUSINESS_DATA.PROCESS_STEPS.map((s, i) => ({
 						title: `0${i + 1} · ${s.title}`,
@@ -79,7 +79,7 @@ export default function BusinessWebsitesPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<ServiceComparison
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title='Choose your business website tier'
 					subtitle='All tiers include strategy consultation, launch support, and ongoing CMS training.'
 					tiers={BUSINESS_DATA.COMPARISON_TIERS}
@@ -89,7 +89,7 @@ export default function BusinessWebsitesPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<CaseStudyStrip
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={BUSINESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Case studies focused on outcomes executives value'
 				/>
@@ -100,13 +100,13 @@ export default function BusinessWebsitesPage() {
 					variant="pastel"
 					badge="Business Websites FAQ"
 					description="Common questions about our B2B website development process and capabilities."
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={BUSINESS_DATA.FAQ_ITEMS}
 				/>
 			</div>
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto px-4 md:px-8">
+				<div className="section-container">
 					<ConsultationCTA
 						category='web-dev'
 						className='w-full'

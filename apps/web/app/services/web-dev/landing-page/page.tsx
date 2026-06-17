@@ -34,7 +34,7 @@ export default function LandingPageWebDevPage() {
 			</div>
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto px-4 md:px-8">
+				<div className="section-container">
 					<div className="mb-10 md:mb-16">
 						<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
 							Landing page results that drive campaigns
@@ -49,7 +49,7 @@ export default function LandingPageWebDevPage() {
 			
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<Timeline
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Landing page delivery model"
 					data={LANDING_PAGE_DATA.PROCESS_STEPS.map((s, i) => ({
 						title: `0${i + 1} · ${s.title}`,
@@ -61,7 +61,7 @@ export default function LandingPageWebDevPage() {
 			</div>
 			
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto px-4 md:px-8">
+				<div className="section-container">
 					<div className="mb-10 md:mb-16">
 						<h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
 							Conversion improvements across campaign types
@@ -83,7 +83,7 @@ export default function LandingPageWebDevPage() {
 			
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={LANDING_PAGE_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Conversion lifts backed by data'
 				/>
@@ -94,13 +94,13 @@ export default function LandingPageWebDevPage() {
 					variant="pastel"
 					badge="Landing Pages FAQ"
 					description="Common questions about our landing page development and optimization."
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={LANDING_PAGE_DATA.FAQ_ITEMS} 
 				/>
 			</div>
 			
 			<div id='consultation' className={cn("w-full bg-muted/30 scroll-mt-24", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto">
+				<div className="section-container">
 					<ConsultationCTA
 						category='web-dev'
 						className='w-full'

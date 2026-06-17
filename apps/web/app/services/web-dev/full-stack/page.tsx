@@ -36,7 +36,7 @@ export default function FullStackWebDevPage() {
 			</div>
 
 			<div className={cn('w-full bg-background', SECTION_PADDING)}>
-				<div className='max-w-7xl mx-auto px-4 md:px-8'>
+				<div className='section-container'>
 					<div className='mb-10 md:mb-16'>
 						<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
 							Full-stack outcomes backed by data
@@ -48,7 +48,7 @@ export default function FullStackWebDevPage() {
 			</div>
 
 			<div className={cn('w-full bg-muted/30', SECTION_PADDING)}>
-				<div className='max-w-7xl mx-auto px-4 md:px-8'>
+				<div className='section-container'>
 					<div className='mb-10 md:mb-16'>
 						<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
 							Deliverables that keep programs on track
@@ -70,7 +70,7 @@ export default function FullStackWebDevPage() {
 
 			<div className={cn('w-full bg-background', SECTION_PADDING)}>
 				<Timeline
-					className='max-w-7xl mx-auto'
+					className='section-container'
 					title='Full-stack project timeline'
 					description='Clear milestones from blueprint to launch.'
 					data={FULL_STACK_DATA.TIMELINE_STEPS.map((s) => ({
@@ -94,7 +94,7 @@ export default function FullStackWebDevPage() {
 
 			<div className={cn('w-full bg-muted/30', SECTION_PADDING)}>
 				<CaseStudyStrip
-					className='max-w-7xl mx-auto'
+					className='section-container'
 					items={FULL_STACK_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Representative full-stack engagements'
 					description='Every case study highlights the measurable outcomes stakeholders care about.'
@@ -107,7 +107,7 @@ export default function FullStackWebDevPage() {
 					variant='pastel'
 					badge='Full Stack Development FAQ'
 					description="Everything you need to know about Web Development, planning, development, and how to get started. We're here to help you scale."
-					className='max-w-7xl mx-auto'
+					className='section-container'
 				/>
 			</div>
 
