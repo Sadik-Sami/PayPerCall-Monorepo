@@ -43,7 +43,7 @@ const itemVariants = {
 
 export function TrendingUp({ title, description, metrics, className = '' }: TrendingUpProps) {
 	return (
-		<section className={cn('py-16 md:py-24 overflow-hidden relative', className)}>
+		<section className={cn('py-16 md:py-24 overflow-hidden relative ', className)}>
 			<div className='section-container'>
 				<div className='grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start'>
 

@@ -64,7 +64,7 @@ export default function ContentHubPage() {
 			</div>
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto">
+				<div className="section-container">
 					<div className="flex flex-col items-center text-center mb-12 md:mb-16">
 						<h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-slate-50 tracking-tight mb-4">
 							Headless outcomes backed by data
@@ -79,7 +79,7 @@ export default function ContentHubPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<TrendingUp
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Headless CMS adoption trends"
 					description="The shift to API-first content infrastructure is accelerating across enterprises."
 					metrics={HEADLESS_DATA.TRENDING_METRICS}
@@ -88,7 +88,7 @@ export default function ContentHubPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<Timeline
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title='Headless CMS implementation timeline'
 					description='From platform selection to production APIs.'
 					data={HEADLESS_DATA.TIMELINE_STEPS.map((s) => ({
@@ -112,7 +112,7 @@ export default function ContentHubPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<PastelIntegrationsGrid
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Headless ecosystem"
 					description="Leading platforms, frontend frameworks, and API technologies we implement."
 					integrations={HEADLESS_DATA.INTEGRATIONS}
@@ -121,7 +121,7 @@ export default function ContentHubPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<ServiceComparison
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Headless CMS advantages"
 					subtitle="Why leading development teams are choosing API-first content architectures."
 					tiers={HEADLESS_DATA.COMPARISON_TIERS}
@@ -131,7 +131,7 @@ export default function ContentHubPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={HEADLESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Headless CMS transformations'
 					description='Omnichannel content delivery with API-first architecture.'
@@ -143,7 +143,7 @@ export default function ContentHubPage() {
 					variant="pastel"
 					title="Headless CMS FAQ"
 					description="Common questions about our headless CMS implementation services."
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={HEADLESS_DATA.FAQ_ITEMS}
 				/>
 			</div>

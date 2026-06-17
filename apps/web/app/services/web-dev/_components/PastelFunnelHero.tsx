@@ -25,7 +25,7 @@ export function PastelFunnelHero({
 	return (
 		<section
 			className={cn(
-				'relative overflow-hidden bg-background pt-24 pb-16 md:pt-32 md:pb-24 flex items-center justify-center min-h-[70vh]',
+				'relative overflow-hidden bg-background pt-44 pb-16 md:pt-52 md:pb-24 flex items-center justify-center min-h-screen -mt-20',
 				className
 			)}
 		>
@@ -33,14 +33,14 @@ export function PastelFunnelHero({
 			<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
 				{/* Ambient Glows */}
 				<div className="absolute top-0 right-0 w-[70vw] h-[70vw] md:w-[800px] md:h-[800px] bg-pastel-mint/10 dark:bg-pastel-mint-ink/20 blur-[100px] -translate-y-1/2 translate-x-1/4 rounded-full" />
-				<div className="absolute bottom-0 left-0 w-[60vw] h-[60vw] md:w-[600px] md:h-[600px] bg-pastel-sky/10 dark:bg-pastel-sky-ink/20 blur-[100px] translate-y-1/3 -translate-x-1/4 rounded-[100%]" />
+				<div className="absolute bottom-30 left-0 w-[60vw] h-[60vw] md:w-[600px] md:h-[600px] bg-pastel-sky/10 dark:bg-pastel-sky-ink/20 blur-[100px] translate-y-1/3 -translate-x-1/4 rounded-[100%]" />
 
-				{/* Asymmetric Glass Shapes (Static, 0 CLS, 0 JS) */}
-				<div className="absolute top-[10%] left-[2%] md:left-[8%] w-32 h-32 md:w-48 md:h-48 -rotate-12 rounded-[2.5rem] bg-linear-to-br from-pastel-mint/30 to-pastel-sky/10 dark:from-pastel-mint-ink/40 dark:to-pastel-sky-ink/10 border border-white/40 dark:border-white/10 backdrop-blur-2xl shadow-xl" />
+				{/* Asymmetric Glass Shapes */}
+				<div className="absolute bottom-[20%] left-[2%] md:left-[15%] w-32 h-32 md:w-48 md:h-48 -rotate-12 rounded-[2.5rem] bg-linear-to-br from-pastel-mint/30 to-pastel-sky/10 dark:from-pastel-mint-ink/40 dark:to-pastel-sky-ink/10 border border-white/40 dark:border-white/10 backdrop-blur-2xl shadow-xl" />
 				<div className="absolute bottom-[15%] right-[2%] md:right-[10%] w-40 h-40 md:w-64 md:h-64 rotate-12 rounded-full bg-linear-to-tl from-pastel-peach/30 to-pastel-blush/10 dark:from-pastel-peach-ink/40 dark:to-pastel-blush-ink/10 border border-white/40 dark:border-white/10 backdrop-blur-2xl shadow-2xl" />
 
-				<div className="absolute top-[25%] right-[8%] md:right-[20%] w-20 h-20 md:w-28 md:h-28 rotate-[35deg] rounded-[1.5rem] bg-linear-to-b from-pastel-lilac/40 to-transparent dark:from-pastel-lilac-ink/50 border border-white/40 dark:border-white/10 backdrop-blur-2xl shadow-lg" />
-				<div className="absolute bottom-[20%] left-[8%] md:left-[22%] w-16 h-16 md:w-20 md:h-20 -rotate-[25deg] rounded-[1rem] bg-linear-to-tr from-pastel-sky/40 to-transparent dark:from-pastel-sky-ink/50 border border-white/40 dark:border-white/10 backdrop-blur-2xl shadow-md" />
+				<div className="absolute top-[35%] right-[8%] md:right-[20%] w-20 h-20 md:w-28 md:h-28 rotate-[35deg] rounded-[1.5rem] bg-linear-to-b from-pastel-lilac/40 to-transparent dark:from-pastel-lilac-ink/50 border border-white/40 dark:border-white/10 backdrop-blur-2xl shadow-lg" />
+				<div className="absolute top-[35%] left-[8%] md:left-[22%] w-16 h-16 md:w-20 md:h-20 -rotate-[25deg] rounded-[1rem] bg-linear-to-tr from-pastel-sky/40 to-transparent dark:from-pastel-sky-ink/50 border border-white/40 dark:border-white/10 backdrop-blur-2xl shadow-md" />
 
 				{/* Subtle Dot Pattern */}
 				<svg className="absolute inset-0 w-full h-full opacity-[0.015] dark:opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
@@ -60,11 +60,11 @@ export function PastelFunnelHero({
 				</div>
 
 				<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground text-balance">
-						{title}
+					{title}
 				</h1>
 
 				<div className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground text-balance leading-relaxed">
-						{subtitle}
+					{subtitle}
 				</div>
 
 				<div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4 text-sm font-medium text-muted-foreground">

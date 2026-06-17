@@ -64,7 +64,7 @@ export default function DrupalPage() {
 			</div>
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto">
+				<div className="section-container">
 					<div className="flex flex-col items-center text-center mb-12 md:mb-16">
 						<h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-slate-50 tracking-tight mb-4">
 							Enterprise Drupal outcomes backed by data
@@ -79,7 +79,7 @@ export default function DrupalPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<TrendingUp
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Drupal adoption trends"
 					description="Why Drupal remains the standard for complex data structures and strict compliance."
 					metrics={DRUPAL_DATA.TRENDING_METRICS}
@@ -88,7 +88,7 @@ export default function DrupalPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<Timeline
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title='Enterprise Drupal implementation timeline'
 					description='Clear milestones from requirements to production launch.'
 					data={DRUPAL_DATA.TIMELINE_STEPS.map((s) => ({
@@ -112,7 +112,7 @@ export default function DrupalPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<PastelIntegrationsGrid
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Drupal integrations"
 					description="From Acquia to SAML authentication, we connect Drupal to enterprise systems."
 					integrations={DRUPAL_DATA.INTEGRATIONS}
@@ -121,7 +121,7 @@ export default function DrupalPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<ServiceComparison
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Drupal vs alternatives"
 					subtitle="Comparing Drupal's architecture against standard CMS constraints."
 					tiers={DRUPAL_DATA.COMPARISON_TIERS}
@@ -131,7 +131,7 @@ export default function DrupalPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={DRUPAL_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Enterprise Drupal engagements'
 					description='Every Drupal build delivers security, compliance, and operational efficiency.'
@@ -143,7 +143,7 @@ export default function DrupalPage() {
 					variant="pastel"
 					title="Drupal FAQ"
 					description="Common questions about our enterprise Drupal services."
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={DRUPAL_DATA.FAQ_ITEMS}
 				/>
 			</div>

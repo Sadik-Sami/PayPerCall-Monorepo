@@ -186,9 +186,9 @@ const FAQ_ITEMS: FaqItem[] = [
 export default function CMSOverviewPage() {
 	return (
 		<main className='space-y-12'>
-			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+			<ServiceHero className='section-container' {...HERO_CONTENT} />
 			<TrustBanner />
-			<ResultsShowcase className='max-w-7xl mx-auto' variant='split' />
+			<ResultsShowcase className='section-container' variant='split' />
 			<ServiceCapabilitiesGateway
 				title={CMS_GATEWAY_CONFIG.title}
 				subtitle={CMS_GATEWAY_CONFIG.subtitle}
@@ -201,10 +201,10 @@ export default function CMSOverviewPage() {
 				primaryCta={CMS_GATEWAY_CONFIG.primaryCta}
 				primaryCtaNote={CMS_GATEWAY_CONFIG.primaryCtaNote}
 				columns={CMS_GATEWAY_CONFIG.columns}
-				className='max-w-7xl mx-auto'
+				className='section-container'
 			/>
 			<ProcessSteps
-				className='max-w-7xl mx-auto'
+				className='section-container'
 				steps={PROCESS_STEPS}
 				title='How we deliver CMS projects'
 				description='Every engagement follows a predictable arc so stakeholders always know what is happening next.'
@@ -214,11 +214,11 @@ export default function CMSOverviewPage() {
 				items={CASE_STUDIES.map(mapCaseStudyToCard)}
 				title='CMS transformations grounded in measurable outcomes'
 				description='Every case study highlights the security, efficiency, and editorial improvements that matter.'
-				className='max-w-7xl mx-auto'
+				className='section-container'
 			/>
-			<TestimonialsSection className='max-w-7xl mx-auto' variant='featured' />
+			<TestimonialsSection className='section-container' variant='featured' />
 			<IntegrationLogos
-				className='max-w-7xl mx-auto'
+				className='section-container'
 				title='CMS platforms and integrations we work with'
 				description='From WordPress to headless CMS, we connect your content to the systems your teams rely on.'
 				integrations={CMS_INTEGRATIONS}
@@ -226,7 +226,7 @@ export default function CMSOverviewPage() {
 				ctaLabel='Discuss platform requirements'
 				ctaHref='/contact'
 			/>
-			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
+			<FAQSection className='section-container' items={FAQ_ITEMS} />
 			<div className='section-container pb-16 max-w-7xl mx-auto'>
 				<ConsultationCTA
 					category='cms'

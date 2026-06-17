@@ -63,7 +63,7 @@ export default function WordPressPage() {
 			</div>
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto">
+				<div className="section-container">
 					<div className="flex flex-col items-center text-center mb-12 md:mb-16">
 						<h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-slate-50 tracking-tight mb-4">
 							WordPress outcomes backed by data
@@ -78,7 +78,7 @@ export default function WordPressPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<TrendingUp
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="WordPress adoption trends"
 					description="Why the majority of the web still relies on the open-source power of WordPress."
 					metrics={WORDPRESS_DATA.TRENDING_METRICS}
@@ -87,7 +87,7 @@ export default function WordPressPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<Timeline
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title='WordPress development workflow'
 					description='Clear milestones from blueprint to production launch.'
 					data={WORDPRESS_DATA.TIMELINE_STEPS.map((s) => ({
@@ -111,7 +111,7 @@ export default function WordPressPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<PastelIntegrationsGrid
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="WordPress ecosystem"
 					description="Leading plugins, optimization tools, and integrations we implement."
 					integrations={WORDPRESS_DATA.INTEGRATIONS}
@@ -120,7 +120,7 @@ export default function WordPressPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<ServiceComparison
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Custom WordPress advantages"
 					subtitle="Why custom development beats pre-built theme templates."
 					tiers={WORDPRESS_DATA.COMPARISON_TIERS}
@@ -130,7 +130,7 @@ export default function WordPressPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={WORDPRESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='WordPress development success stories'
 					description='Brands achieving scale and speed with our custom themes and security hardening.'
@@ -142,7 +142,7 @@ export default function WordPressPage() {
 					variant="pastel"
 					title="WordPress FAQ"
 					description="Common questions about our custom WordPress development process."
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={WORDPRESS_DATA.FAQ_ITEMS}
 				/>
 			</div>

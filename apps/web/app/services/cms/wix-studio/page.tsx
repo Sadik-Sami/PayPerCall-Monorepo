@@ -63,7 +63,7 @@ export default function WixStudioPage() {
 			</div>
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
-				<div className="max-w-7xl mx-auto">
+				<div className="section-container">
 					<div className="flex flex-col items-center text-center mb-12 md:mb-16">
 						<h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-slate-50 tracking-tight mb-4">
 							Wix Studio outcomes backed by data
@@ -78,7 +78,7 @@ export default function WixStudioPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<TrendingUp
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Wix Studio performance trends"
 					description="Why agencies and brands are moving to high-end visual development."
 					metrics={WIX_STUDIO_DATA.TRENDING_METRICS}
@@ -87,7 +87,7 @@ export default function WixStudioPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<Timeline
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title='Fast Wix Studio workflow'
 					description='Streamlined process from design to launch in just weeks.'
 					data={WIX_STUDIO_DATA.TIMELINE_STEPS.map((s) => ({
@@ -111,7 +111,7 @@ export default function WixStudioPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<PastelIntegrationsGrid
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Wix apps and integrations"
 					description="Extend your Wix site with apps from the Wix marketplace and custom Velo integrations."
 					integrations={WIX_STUDIO_DATA.INTEGRATIONS}
@@ -120,7 +120,7 @@ export default function WixStudioPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<ServiceComparison
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					title="Wix Studio advantages"
 					subtitle="Comparing Wix Studio's capabilities against standard web builders."
 					tiers={WIX_STUDIO_DATA.COMPARISON_TIERS}
@@ -130,7 +130,7 @@ export default function WixStudioPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={WIX_STUDIO_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
 					title='Wix Studio success stories'
 					description='Brands launching fast with professional, animated Wix sites.'
@@ -142,7 +142,7 @@ export default function WixStudioPage() {
 					variant="pastel"
 					title="Wix Studio FAQ"
 					description="Common questions about our agile Wix Studio development services."
-					className="max-w-7xl mx-auto"
+					className="section-container"
 					items={WIX_STUDIO_DATA.FAQ_ITEMS}
 				/>
 			</div>
