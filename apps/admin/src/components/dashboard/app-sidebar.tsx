@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { LayoutDashboard, FileText, Users, MessageSquare, User, LogOut, Shield, ChevronUp } from 'lucide-react';
+import { LayoutDashboard, FileText, Users, MessageSquare, User, LogOut, Shield, ChevronUp, BookOpenCheck } from 'lucide-react';
 import { ROUTES } from '@/utils/constants';
 import { useAuth } from '@/hooks/use-auth';
 import {
@@ -44,6 +44,11 @@ const navigationItems = [
 		title: 'Contact Submissions',
 		href: ROUTES.DASHBOARD_CONTACT_SUBMISSIONS,
 		icon: MessageSquare,
+	},
+	{
+		title: 'Case Studies',
+		href: ROUTES.DASHBOARD_CASE_STUDIES,
+		icon: BookOpenCheck,
 	},
 ];
 

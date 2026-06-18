@@ -5,18 +5,9 @@ import { and, asc, desc, eq, sql } from 'drizzle-orm';
 import type { BlogCreateInput, BlogUpdateInput } from '../../validators/blog.validator';
 import type { BlockCreateInput } from '../../validators/blogBlock.validator';
 import { validateBlockContentType } from '../../utils/blogBlocks.util';
+import { slugify } from '../../utils/slug.util';
 
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-
-function slugifyTitle(input: string): string {
-	const base = input
-		.trim()
-		.toLowerCase()
-		.replace(/[^a-z0-9]+/g, '-')
-		.replace(/^-+|-+$/g, '')
-		.replace(/-+/g, '-');
-	return base.length > 0 ? base : 'blog';
-}
 
 export const blogServices = {
 	async listAdmin(): Promise<Blog[]> {
@@ -53,7 +44,7 @@ export const blogServices = {
 			if (existing[0]) throw new AppError('Slug already exists', 409);
 		}
 
-		const base = requestedSlug.length > 0 ? requestedSlug : slugifyTitle(title);
+		const base = requestedSlug.length > 0 ? requestedSlug : slugify(title);
 		let slug = base;
 		for (let i = 2; i < 1000; i += 1) {
 			const exists = await db.select({ id: blogsTable.id }).from(blogsTable).where(eq(blogsTable.slug, slug)).limit(1);

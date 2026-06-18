@@ -12,6 +12,10 @@ export const ROUTES = {
 	DASHBOARD_BLOG_EDIT: (id: string) => `/dashboard/blogs/${id}/edit`,
 	DASHBOARD_LEADS: '/dashboard/leads',
 	DASHBOARD_CONTACT_SUBMISSIONS: '/dashboard/contact-submissions',
+	DASHBOARD_CASE_STUDIES: '/dashboard/case-studies',
+	DASHBOARD_CASE_STUDY_CREATE: '/dashboard/case-studies/new',
+	DASHBOARD_CASE_STUDY_EDIT_PATTERN: '/dashboard/case-studies/:id/edit',
+	DASHBOARD_CASE_STUDY_EDIT: (id: string) => `/dashboard/case-studies/${id}/edit`,
 } as const;
 
 export const ROLE = {

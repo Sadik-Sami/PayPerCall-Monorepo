@@ -27,6 +27,10 @@ export const API_CONFIG = {
 			CONTACT_SUBMISSIONS: '/api/admin/contact-submissions',
 			CONTACT_SUBMISSION_BY_ID: (id: string) => `/api/admin/contact-submissions/${id}`,
 			CONTACT_SUBMISSION_STATUS: (id: string) => `/api/admin/contact-submissions/${id}/status`,
+			CASE_STUDIES: '/api/admin/case-studies',
+			CASE_STUDY_BY_ID: (id: string) => `/api/admin/case-studies/${id}`,
+			CASE_STUDY_STATUS: (id: string) => `/api/admin/case-studies/${id}/status`,
+			CASE_STUDIES_REORDER: '/api/admin/case-studies/reorder',
 		},
 		UPLOADS: {
 			CLOUDINARY_SIGNATURE: '/api/admin/uploads/cloudinary-signature',

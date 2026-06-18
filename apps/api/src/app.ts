@@ -13,6 +13,7 @@ import {
 	adminContactSubmissionsRouter,
 	publicContactSubmissionsRouter,
 } from './modules/contact-submissions/contact-submissions.routes';
+import { adminCaseStudiesRouter, publicCaseStudiesRouter } from './modules/case-studies/case-studies.routes';
 import { uploadsRouter } from './modules/uploads/uploads.routes';
 import cookieParser from 'cookie-parser';
 import { loggingMiddleware } from './middlewares/logging.middleware';
@@ -70,6 +71,8 @@ app.use('/api/leads', publicLeadsRouter);
 app.use('/api/admin/leads', adminLeadsRouter);
 app.use('/api/contact-submissions', publicContactSubmissionsRouter);
 app.use('/api/admin/contact-submissions', adminContactSubmissionsRouter);
+app.use('/api/case-studies', publicCaseStudiesRouter);
+app.use('/api/admin/case-studies', adminCaseStudiesRouter);
 app.use('/api/admin/uploads', uploadsRouter);
 
 // Error Handling Middlewares

@@ -8,6 +8,9 @@ import DashboardPage from '@/pages/dashboard/index';
 import BlogsPage from '@/pages/dashboard/blogs';
 import BlogCreatePage from '@/pages/dashboard/blog-create';
 import BlogEditPage from '@/pages/dashboard/blog-edit';
+import CaseStudiesPage from '@/pages/dashboard/case-studies';
+import CaseStudyCreatePage from '@/pages/dashboard/case-study-create';
+import CaseStudyEditPage from '@/pages/dashboard/case-study-edit';
 
 import LeadsPage from '@/pages/dashboard/leads';
 import ContactSubmissionsPage from '@/pages/dashboard/contact-submissions';
@@ -23,7 +26,7 @@ function App() {
 	return (
 		<QueryProvider>
 			<TooltipProvider>
-				<Toaster richColors />
+				<Toaster richColors position='top-right' />
 				<BrowserRouter>
 					<AuthProvider>
 						<ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
@@ -39,17 +42,20 @@ function App() {
 
 								{/* Protected routes */}
 								<Route element={<PrivateLayout />}>
-								<Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
-								<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
-								<Route path={ROUTES.DASHBOARD_BLOGS} element={<BlogsPage />} />
-								<Route path={ROUTES.DASHBOARD_BLOG_CREATE} element={<BlogCreatePage />} />
-								<Route path={ROUTES.DASHBOARD_BLOG_EDIT_PATTERN} element={<BlogEditPage />} />
+									<Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+									<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+									<Route path={ROUTES.DASHBOARD_BLOGS} element={<BlogsPage />} />
+									<Route path={ROUTES.DASHBOARD_BLOG_CREATE} element={<BlogCreatePage />} />
+									<Route path={ROUTES.DASHBOARD_BLOG_EDIT_PATTERN} element={<BlogEditPage />} />
+									<Route path={ROUTES.DASHBOARD_CASE_STUDIES} element={<CaseStudiesPage />} />
+									<Route path={ROUTES.DASHBOARD_CASE_STUDY_CREATE} element={<CaseStudyCreatePage />} />
+									<Route path={ROUTES.DASHBOARD_CASE_STUDY_EDIT_PATTERN} element={<CaseStudyEditPage />} />
 
-								<Route path={ROUTES.DASHBOARD_LEADS} element={<LeadsPage />} />
-								<Route
-									path={ROUTES.DASHBOARD_CONTACT_SUBMISSIONS}
-									element={<ContactSubmissionsPage />}
-								/>
+									<Route path={ROUTES.DASHBOARD_LEADS} element={<LeadsPage />} />
+									<Route
+										path={ROUTES.DASHBOARD_CONTACT_SUBMISSIONS}
+										element={<ContactSubmissionsPage />}
+									/>
 								</Route>
 
 								{/* 404 */}
