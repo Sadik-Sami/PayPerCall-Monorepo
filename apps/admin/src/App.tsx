@@ -10,6 +10,7 @@ import BlogCreatePage from '@/pages/dashboard/blog-create';
 import BlogEditPage from '@/pages/dashboard/blog-edit';
 
 import LeadsPage from '@/pages/dashboard/leads';
+import ContactSubmissionsPage from '@/pages/dashboard/contact-submissions';
 import NotFoundPage from '@/pages/not-found';
 import { Toaster } from '@workspace/ui/components/sonner';
 import { ROUTES } from '@/utils/constants';
@@ -45,6 +46,10 @@ function App() {
 								<Route path={ROUTES.DASHBOARD_BLOG_EDIT_PATTERN} element={<BlogEditPage />} />
 
 								<Route path={ROUTES.DASHBOARD_LEADS} element={<LeadsPage />} />
+								<Route
+									path={ROUTES.DASHBOARD_CONTACT_SUBMISSIONS}
+									element={<ContactSubmissionsPage />}
+								/>
 								</Route>
 
 								{/* 404 */}

@@ -11,6 +11,7 @@ export const ROUTES = {
 	DASHBOARD_BLOG_EDIT_PATTERN: '/dashboard/blogs/:id/edit',
 	DASHBOARD_BLOG_EDIT: (id: string) => `/dashboard/blogs/${id}/edit`,
 	DASHBOARD_LEADS: '/dashboard/leads',
+	DASHBOARD_CONTACT_SUBMISSIONS: '/dashboard/contact-submissions',
 } as const;
 
 export const ROLE = {

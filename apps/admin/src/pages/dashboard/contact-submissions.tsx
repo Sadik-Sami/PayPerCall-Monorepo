@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Eye } from 'lucide-react';
 import { useDebouncedCallback } from '@/hooks/use-debounced-callback';
-import { useLeads, useUpdateLeadStatus } from '@/hooks/use-leads';
-import type { LeadStatus } from '@/types/lead.types';
+import { useContactSubmissions, useUpdateContactSubmissionStatus } from '@/hooks/use-contact-submissions';
+import type { ContactSubmissionStatus } from '@/types/contact-submission.types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card';
 import { Input } from '@workspace/ui/components/input';
 import { Button } from '@workspace/ui/components/button';
@@ -19,21 +19,21 @@ import {
 } from '@/components/ui/pagination';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { navigationData } from '@workspace/ui/data/navigation';
-import { LeadDetailSheet } from '@/components/leads/lead-detail-sheet';
-import { StatusBadge } from '@/components/leads/status-badge';
+import { ContactSubmissionDetailSheet } from '@/components/contact-submissions/contact-submission-detail-sheet';
+import { ContactStatusBadge } from '@/components/contact-submissions/contact-status-badge';
 
-type StatusFilter = 'all' | LeadStatus;
-type SortBy = 'created_at' | 'updated_at' | 'status';
+type StatusFilter = 'all' | ContactSubmissionStatus;
+type SortBy = 'created_at' | 'updated_at' | 'desired_date' | 'status';
 type SortOrder = 'asc' | 'desc';
 type PageItem = number | 'ellipsis';
 
 const STATUS_OPTIONS: Array<{ value: StatusFilter; label: string }> = [
 	{ value: 'all', label: 'All' },
 	{ value: 'pending', label: 'Pending' },
-	{ value: 'processing', label: 'Processing' },
-	{ value: 'replied', label: 'Replied' },
-	{ value: 'won', label: 'Won' },
-	{ value: 'lost', label: 'Lost' },
+	{ value: 'contacted', label: 'Contacted' },
+	{ value: 'scheduled', label: 'Scheduled' },
+	{ value: 'completed', label: 'Completed' },
+	{ value: 'declined', label: 'Declined' },
 ];
 
 function getCategoryFromHref(href: string): string | undefined {
@@ -66,7 +66,7 @@ function formatDate(value?: string | null) {
 	return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
-export default function LeadsPage() {
+export default function ContactSubmissionsPage() {
 	const [searchInput, setSearchInput] = useState('');
 	const [search, setSearch] = useState('');
 	const [status, setStatus] = useState<StatusFilter>('all');
@@ -75,7 +75,7 @@ export default function LeadsPage() {
 	const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
 	const [page, setPage] = useState(1);
 	const [limit, setLimit] = useState(20);
-	const [selectedLeadId, setSelectedLeadId] = useState<string | null>(null);
+	const [selectedSubmissionId, setSelectedSubmissionId] = useState<string | null>(null);
 
 	const { debounced } = useDebouncedCallback((value: string) => {
 		setSearch(value.trim());
@@ -86,7 +86,7 @@ export default function LeadsPage() {
 		() => ({
 			search: search || undefined,
 			status: status === 'all' ? undefined : status,
-			category: category === 'all' ? undefined : category,
+			serviceCategory: category === 'all' ? undefined : category,
 			sortBy,
 			sortOrder,
 			page,
@@ -95,15 +95,15 @@ export default function LeadsPage() {
 		[search, status, category, sortBy, sortOrder, page, limit],
 	);
 
-	const { data, isLoading, isError, error, refetch, isFetching } = useLeads(params);
-	const updateStatus = useUpdateLeadStatus();
+	const { data, isLoading, isError, error, refetch, isFetching } = useContactSubmissions(params);
+	const updateStatus = useUpdateContactSubmissionStatus();
 
-	const leads = data?.data ?? [];
+	const submissions = data?.data ?? [];
 	const meta = data?.meta;
 	const totalLabel =
 		meta ?
 			`${meta.total} result${meta.total === 1 ? '' : 's'}`
-		:	`${leads.length} result${leads.length === 1 ? '' : 's'}`;
+		:	`${submissions.length} result${submissions.length === 1 ? '' : 's'}`;
 	const totalPages = meta?.totalPages ?? 1;
 	const currentPage = meta?.page ?? page;
 	const pageItems = buildPageItems(currentPage, totalPages);
@@ -137,16 +137,18 @@ export default function LeadsPage() {
 	return (
 		<div className='space-y-6'>
 			<div className='flex flex-col gap-2'>
-				<h1 className='text-3xl font-bold tracking-tight'>Lead Management</h1>
-				<p className='text-muted-foreground'>Track, filter, and update inbound leads.</p>
+				<h1 className='text-3xl font-bold tracking-tight'>Contact Submissions</h1>
+				<p className='text-muted-foreground'>Triage consultation requests from the marketing site.</p>
 			</div>
 
 			<Card className='p-4'>
 				<CardHeader className='space-y-3'>
 					<div className='flex flex-col gap-2 md:flex-row md:items-center md:justify-between'>
 						<div>
-							<CardTitle>Lead list</CardTitle>
-							<CardDescription>Includes all captured consultations and contact requests.</CardDescription>
+							<CardTitle>Submission list</CardTitle>
+							<CardDescription>
+								Multi-step contact form responses including preferred meeting time.
+							</CardDescription>
 						</div>
 						<div className='text-sm text-muted-foreground'>{isLoading ? 'Loading…' : totalLabel}</div>
 					</div>
@@ -160,7 +162,7 @@ export default function LeadsPage() {
 									setSearchInput(e.target.value);
 									debounced(e.target.value);
 								}}
-								placeholder='Search name, email, company, summary…'
+								placeholder='Search name, email, company, context…'
 								className='mt-2'
 							/>
 						</div>
@@ -223,6 +225,7 @@ export default function LeadsPage() {
 									<SelectContent>
 										<SelectItem value='created_at'>Created</SelectItem>
 										<SelectItem value='updated_at'>Updated</SelectItem>
+										<SelectItem value='desired_date'>Desired date</SelectItem>
 										<SelectItem value='status'>Status</SelectItem>
 									</SelectContent>
 								</Select>
@@ -260,7 +263,7 @@ export default function LeadsPage() {
 				<CardContent>
 					{isError && (
 						<div className='rounded-md border border-destructive/40 bg-destructive/5 p-4 text-sm'>
-							<div className='font-medium'>Failed to load leads</div>
+							<div className='font-medium'>Failed to load contact submissions</div>
 							<div className='text-muted-foreground'>{(error as Error)?.message || 'Unknown error'}</div>
 						</div>
 					)}
@@ -268,7 +271,8 @@ export default function LeadsPage() {
 					{isLoading ?
 						<div className='space-y-3'>
 							{Array.from({ length: 6 }).map((_, idx) => (
-								<div key={idx} className='grid grid-cols-5 gap-3'>
+								<div key={idx} className='grid grid-cols-6 gap-3'>
+									<Skeleton className='h-6' />
 									<Skeleton className='h-6' />
 									<Skeleton className='h-6' />
 									<Skeleton className='h-6' />
@@ -277,9 +281,9 @@ export default function LeadsPage() {
 								</div>
 							))}
 						</div>
-					: leads.length === 0 ?
+					: submissions.length === 0 ?
 						<div className='rounded-lg border bg-card p-8 text-center'>
-							<p className='text-muted-foreground'>No leads match your filters.</p>
+							<p className='text-muted-foreground'>No contact submissions match your filters.</p>
 							<div className='mt-4'>
 								<Button variant='outline' onClick={onClearFilters}>
 									Reset filters
@@ -292,28 +296,41 @@ export default function LeadsPage() {
 									<TableHead>Status</TableHead>
 									<TableHead>Lead</TableHead>
 									<TableHead>Category</TableHead>
+									<TableHead>Desired date</TableHead>
 									<TableHead>Created</TableHead>
 									<TableHead>Update</TableHead>
 									<TableHead className='text-right'>Actions</TableHead>
 								</TableRow>
 							</TableHeader>
 							<TableBody>
-								{leads.map((lead) => (
-									<TableRow key={lead.id}>
+								{submissions.map((submission) => (
+									<TableRow key={submission.id}>
 										<TableCell>
-											<StatusBadge status={lead.status} />
+											<ContactStatusBadge status={submission.status} />
 										</TableCell>
 										<TableCell>
-											<div className='font-medium'>{lead.name}</div>
-											<div className='text-sm text-muted-foreground'>{lead.email}</div>
-											{lead.company && <div className='text-xs text-muted-foreground'>{lead.company}</div>}
+											<div className='font-medium'>{submission.full_name}</div>
+											<div className='text-sm text-muted-foreground'>{submission.work_email}</div>
+											<div className='text-xs text-muted-foreground'>{submission.company}</div>
 										</TableCell>
-										<TableCell className='text-sm text-muted-foreground'>{lead.category}</TableCell>
-										<TableCell className='text-sm text-muted-foreground'>{formatDate(lead.created_at)}</TableCell>
+										<TableCell className='text-sm text-muted-foreground'>
+											{submission.service_category}
+										</TableCell>
+										<TableCell className='text-sm text-muted-foreground'>
+											{formatDate(submission.desired_date)}
+										</TableCell>
+										<TableCell className='text-sm text-muted-foreground'>
+											{formatDate(submission.created_at)}
+										</TableCell>
 										<TableCell>
 											<Select
-												value={lead.status}
-												onValueChange={(value) => updateStatus.mutate({ leadId: lead.id, status: value as LeadStatus })}
+												value={submission.status}
+												onValueChange={(value) =>
+													updateStatus.mutate({
+														id: submission.id,
+														status: value as ContactSubmissionStatus,
+													})
+												}
 												disabled={updateStatus.isPending}>
 												<SelectTrigger className='w-full'>
 													<SelectValue />
@@ -331,8 +348,8 @@ export default function LeadsPage() {
 											<Button
 												variant='ghost'
 												size='sm'
-												onClick={() => setSelectedLeadId(lead.id)}
-												aria-label={`View details for ${lead.name}`}>
+												onClick={() => setSelectedSubmissionId(submission.id)}
+												aria-label={`View details for ${submission.full_name}`}>
 												<Eye className='size-4' />
 												<span className='hidden sm:inline'>View</span>
 											</Button>
@@ -409,10 +426,10 @@ export default function LeadsPage() {
 				</CardContent>
 			</Card>
 
-			<LeadDetailSheet
-				leadId={selectedLeadId}
+			<ContactSubmissionDetailSheet
+				submissionId={selectedSubmissionId}
 				onOpenChange={(open) => {
-					if (!open) setSelectedLeadId(null);
+					if (!open) setSelectedSubmissionId(null);
 				}}
 			/>
 		</div>

@@ -10,11 +10,7 @@ import { Input } from '@workspace/ui/components/input';
 import { Badge } from '@/components/ui/badge';
 import Loading from '@/components/common/loading';
 import { API_CONFIG } from '@/config/api.config';
-import {
-	blogUpdateSchema,
-	type BlogUpdateInput,
-	getPublishReadiness,
-} from '@/schemas/blog.schema';
+import { blogUpdateSchema, type BlogUpdateInput, getPublishReadiness } from '@/schemas/blog.schema';
 import {
 	useBlog,
 	useBlogBlocks,
@@ -83,7 +79,7 @@ export default function BlogEditPage() {
 
 	const activeBlock = useMemo(
 		() => blocks.find((block) => block.id === activeBlockId) ?? null,
-		[blocks, activeBlockId]
+		[blocks, activeBlockId],
 	);
 
 	const formValues = form.watch();
@@ -96,7 +92,7 @@ export default function BlogEditPage() {
 				cover_image_url: formValues.cover_image_url,
 				blockCount: blocks.length,
 			}),
-		[formValues, blocks.length]
+		[formValues, blocks.length],
 	);
 
 	const handleUploadImage = async (file: File) => {
@@ -183,9 +179,7 @@ export default function BlogEditPage() {
 
 	const handleReorder = (orderedIds: string[]) => {
 		const previous = blocks;
-		const next = orderedIds
-			.map((id) => previous.find((block) => block.id === id))
-			.filter(Boolean) as BlogBlock[];
+		const next = orderedIds.map((id) => previous.find((block) => block.id === id)).filter(Boolean) as BlogBlock[];
 		setBlocks(next);
 		reorderBlocks.mutate(orderedIds, {
 			onError: () => {
@@ -234,7 +228,7 @@ export default function BlogEditPage() {
 		}
 		const previewPath = API_CONFIG.ENDPOINTS.WEB.BLOG_PREVIEW_PATH(blog.slug);
 		const previewUrl = `${API_CONFIG.WEB_BASE_URL}${API_CONFIG.ENDPOINTS.WEB.DRAFT_ENABLE}?secret=${encodeURIComponent(
-			API_CONFIG.DRAFT_MODE_SECRET
+			API_CONFIG.DRAFT_MODE_SECRET,
 		)}&redirect=${encodeURIComponent(previewPath)}`;
 		console.log('Preview Path:', previewPath);
 		console.log('Preview URL:', previewUrl);
@@ -264,20 +258,19 @@ export default function BlogEditPage() {
 					<Button variant='outline' onClick={handlePreview}>
 						Preview
 					</Button>
-					{blog.status === 'published' ? (
+					{blog.status === 'published' ?
 						<Button variant='secondary' onClick={handleUnpublish}>
 							Unpublish
 						</Button>
-					) : (
-						<Button onClick={handlePublish} disabled={!publishReadiness.canPublish}>
+					:	<Button onClick={handlePublish} disabled={!publishReadiness.canPublish}>
 							Publish
 						</Button>
-					)}
+					}
 					<Badge variant={blog.status === 'published' ? 'default' : 'outline'}>{blog.status}</Badge>
 				</div>
 			</div>
 
-			<Card>
+			<Card className='p-4'>
 				<CardHeader>
 					<CardTitle>Metadata</CardTitle>
 					<CardDescription>Keep titles and SEO fields accurate before publishing.</CardDescription>
@@ -394,21 +387,20 @@ export default function BlogEditPage() {
 				</CardContent>
 			</Card>
 
-			<Card>
+			<Card className='p-4'>
 				<CardHeader>
 					<CardTitle>Publish readiness</CardTitle>
 					<CardDescription>Resolve blocking items before publishing.</CardDescription>
 				</CardHeader>
 				<CardContent className='space-y-2 text-sm'>
-					{publishReadiness.blockingReasons.length === 0 ? (
+					{publishReadiness.blockingReasons.length === 0 ?
 						<div className='text-sm text-muted-foreground'>All required fields are complete.</div>
-					) : (
-						<ul className='list-disc space-y-1 pl-4 text-destructive'>
+					:	<ul className='list-disc space-y-1 pl-4 text-destructive'>
 							{publishReadiness.blockingReasons.map((reason) => (
 								<li key={reason}>{reason}</li>
 							))}
 						</ul>
-					)}
+					}
 					{publishReadiness.warnings.length > 0 && (
 						<ul className='list-disc space-y-1 pl-4 text-muted-foreground'>
 							{publishReadiness.warnings.map((warning) => (
@@ -420,7 +412,7 @@ export default function BlogEditPage() {
 			</Card>
 
 			<div className='grid gap-6 lg:grid-cols-[320px_1fr]'>
-				<Card>
+				<Card className='p-4'>
 					<CardHeader>
 						<CardTitle>Blocks</CardTitle>
 						<CardDescription>Order blocks to match the story flow.</CardDescription>
@@ -439,15 +431,14 @@ export default function BlogEditPage() {
 					</CardContent>
 				</Card>
 
-				{activeBlock ? (
+				{activeBlock ?
 					<BlockEditorPanel
 						key={activeBlock.id}
 						block={activeBlock}
 						onSave={handleSaveBlock}
 						onUploadImage={handleUploadImage}
 					/>
-				) : (
-					<Card>
+				:	<Card>
 						<CardHeader>
 							<CardTitle>Select a block</CardTitle>
 							<CardDescription>Select a block to edit its content.</CardDescription>
@@ -456,7 +447,7 @@ export default function BlogEditPage() {
 							Add a block from the list to start editing.
 						</CardContent>
 					</Card>
-				)}
+				}
 			</div>
 
 			{isBlockUploading && <div className='text-xs text-muted-foreground'>Uploading image…</div>}

@@ -4,8 +4,6 @@ import { ContactMultiStepForm } from '@/components/sections/contact/ContactMulti
 import { ContactWorldMapSection } from '@/components/sections/contact/ContactWorldMapSection';
 import { CONTACT_REASSURANCE_ITEMS } from '@/components/sections/contact/contact-data';
 
-export const revalidate = 3600;
-
 export const metadata: Metadata = {
 	title: 'Contact Us | CoreCloser',
 	description:
@@ -43,8 +41,8 @@ export default function ContactPage() {
 							Everything is Built for Clear Next Steps
 						</h2>
 						<p className='mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base'>
-							Most inquiries fail because the first call lacks context. This page is designed to prevent that and
-							make your first meeting outcome-driven.
+							Most inquiries fail because the first call lacks context. This page is designed to prevent that and make
+							your first meeting outcome-driven.
 						</p>
 					</div>
 

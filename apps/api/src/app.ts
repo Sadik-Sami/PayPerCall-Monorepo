@@ -9,6 +9,10 @@ import { userRouter } from './modules/users/user.routes';
 import { adminBlogsRouter, publicBlogsRouter } from './modules/blogs/blogs.routes';
 import { adminBlocksRouter } from './modules/blocks/blocks.routes';
 import { adminLeadsRouter, publicLeadsRouter } from './modules/leads/leads.routes';
+import {
+	adminContactSubmissionsRouter,
+	publicContactSubmissionsRouter,
+} from './modules/contact-submissions/contact-submissions.routes';
 import { uploadsRouter } from './modules/uploads/uploads.routes';
 import cookieParser from 'cookie-parser';
 import { loggingMiddleware } from './middlewares/logging.middleware';
@@ -64,6 +68,8 @@ app.use('/api/admin/blogs', adminBlogsRouter);
 app.use('/api/admin/blocks', adminBlocksRouter);
 app.use('/api/leads', publicLeadsRouter);
 app.use('/api/admin/leads', adminLeadsRouter);
+app.use('/api/contact-submissions', publicContactSubmissionsRouter);
+app.use('/api/admin/contact-submissions', adminContactSubmissionsRouter);
 app.use('/api/admin/uploads', uploadsRouter);
 
 // Error Handling Middlewares

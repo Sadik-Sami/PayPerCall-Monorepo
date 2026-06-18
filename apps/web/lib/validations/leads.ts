@@ -4,7 +4,7 @@ export const leadStatusSchema = z.enum(['pending', 'processing', 'replied', 'won
 
 export const leadCreateSchema = z.object({
 	name: z.string().min(1, 'Full name is required'),
-	email: z.string().email('Please enter a valid email'),
+	email: z.email('Please enter a valid email'),
 	company: z.string().optional(),
 	projectType: z.string().optional(),
 	projectSummary: z.string().optional(),
@@ -26,5 +26,3 @@ export function requireProjectSummary(val: { projectSummary?: string }, formVari
 	}
 	return { ok: true as const };
 }
-
-

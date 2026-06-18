@@ -5,8 +5,8 @@ import { ROUTES } from '@/utils/constants';
 import type { Blog, BlogStatus } from '@/types/blog.types';
 import { useBlogs, useDeleteBlog } from '@/hooks/use-blogs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/components/card';
-import { Button } from '@workspace/ui/components/button';
-import { Input } from '@workspace/ui/components/input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Loader2, Plus, RefreshCw, Trash2, Pencil } from 'lucide-react';
 
@@ -80,16 +80,16 @@ export default function BlogsPage() {
 						:	<RefreshCw className='h-4 w-4' />}
 						Refresh
 					</Button>
-					<Button asChild>
-						<Link to={ROUTES.DASHBOARD_BLOG_CREATE}>
+					<Link to={ROUTES.DASHBOARD_BLOG_CREATE}>
+						<Button>
 							<Plus className='h-4 w-4' />
 							New blog
-						</Link>
-					</Button>
+						</Button>
+					</Link>
 				</div>
 			</div>
 
-			<Card>
+			<Card className='px-4 pt-4'>
 				<CardHeader className='space-y-2'>
 					<div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
 						<div>
@@ -151,7 +151,7 @@ export default function BlogsPage() {
 							<Loader2 className='h-4 w-4 animate-spin' />
 							Loading blogs…
 						</div>
-					:	filtered.length === 0 ?
+					: filtered.length === 0 ?
 						<div className='rounded-lg border bg-card p-8 text-center'>
 							<p className='text-muted-foreground'>No blogs match your filters.</p>
 							<div className='mt-4'>
@@ -192,12 +192,12 @@ export default function BlogsPage() {
 											</td>
 											<td className='border-b px-3 py-3 align-middle'>
 												<div className='flex items-center justify-end gap-2'>
-													<Button asChild size='sm' variant='outline'>
-														<Link to={ROUTES.DASHBOARD_BLOG_EDIT(b.id)}>
+													<Link to={ROUTES.DASHBOARD_BLOG_EDIT(b.id)}>
+														<Button size='sm' variant='outline'>
 															<Pencil className='h-4 w-4' />
 															Edit
-														</Link>
-													</Button>
+														</Button>
+													</Link>
 													<Button
 														size='sm'
 														variant='destructive'
@@ -212,7 +212,8 @@ export default function BlogsPage() {
 									))}
 								</tbody>
 							</table>
-						</div>}
+						</div>
+					}
 				</CardContent>
 			</Card>
 		</div>

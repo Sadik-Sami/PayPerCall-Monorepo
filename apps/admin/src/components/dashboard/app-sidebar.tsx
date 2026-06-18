@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { LayoutDashboard, FileText, Users, User, LogOut, Shield, ChevronUp } from 'lucide-react';
+import { LayoutDashboard, FileText, Users, MessageSquare, User, LogOut, Shield, ChevronUp } from 'lucide-react';
 import { ROUTES } from '@/utils/constants';
 import { useAuth } from '@/hooks/use-auth';
 import {
@@ -15,7 +15,6 @@ import {
 	SidebarMenuItem,
 	SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/avatar';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -23,6 +22,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@workspace/ui/components/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const navigationItems = [
 	{
@@ -40,6 +40,11 @@ const navigationItems = [
 		href: ROUTES.DASHBOARD_LEADS,
 		icon: Users,
 	},
+	{
+		title: 'Contact Submissions',
+		href: ROUTES.DASHBOARD_CONTACT_SUBMISSIONS,
+		icon: MessageSquare,
+	},
 ];
 
 export default function AppSidebar() {
@@ -48,8 +53,7 @@ export default function AppSidebar() {
 
 	const isActiveHref = (href: string) => {
 		if (location.pathname === href) return true;
-		// Keep parent items active for nested routes, e.g. /dashboard/blogs/new
-		return location.pathname.startsWith(`${href}/`);
+		// return location.pathname.startsWith(`${href}/`);
 	};
 
 	const getInitials = (name: string) => {
@@ -67,14 +71,14 @@ export default function AppSidebar() {
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<SidebarMenuButton size='lg' asChild>
-							<Link to={ROUTES.DASHBOARD}>
-								<div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground'>
-									<Shield className='size-4' />
+						<SidebarMenuButton size='lg'>
+							<Link className='flex flex-row items-center gap-2' to={ROUTES.DASHBOARD}>
+								<div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-600 text-primary-foreground'>
+									<Shield className='size-4 text-primary-foreground' />
 								</div>
-								<div className='grid flex-1 text-left text-sm leading-tight'>
-									<span className='truncate font-semibold'>Admin Panel</span>
-									<span className='truncate text-xs text-muted-foreground'>Dashboard</span>
+								<div className='flex flex-col'>
+									<span className='truncate font-semibold'>Core Closer</span>
+									<span className='text-xs text-muted-foreground'>Admin Panel</span>
 								</div>
 							</Link>
 						</SidebarMenuButton>
@@ -91,14 +95,14 @@ export default function AppSidebar() {
 							{navigationItems.map((item) => {
 								const isActive = isActiveHref(item.href);
 								return (
-									<SidebarMenuItem key={item.href}>
-										<SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
-											<Link to={item.href}>
+									<Link to={item.href}>
+										<SidebarMenuItem key={item.href}>
+											<SidebarMenuButton variant='outline' isActive={isActive} tooltip={item.title}>
 												<item.icon className='size-4' />
 												<span>{item.title}</span>
-											</Link>
-										</SidebarMenuButton>
-									</SidebarMenuItem>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+									</Link>
 								);
 							})}
 						</SidebarMenu>

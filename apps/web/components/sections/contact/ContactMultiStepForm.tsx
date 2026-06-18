@@ -41,6 +41,7 @@ import {
 	contactStepTwoSchema,
 	type ContactFormValues,
 } from '@/lib/validations/contact';
+import { submitContactSubmission } from '@/lib/api/contact-submissions';
 import {
 	CONTACT_BUDGET_OPTIONS,
 	CONTACT_COMPANY_SIZE_OPTIONS,
@@ -224,9 +225,17 @@ export function ContactMultiStepForm() {
 			...meetingValues,
 		};
 
+		try {
+			await submitContactSubmission(merged);
+		} catch (error) {
+			const message =
+				error instanceof Error ? error.message : 'Could not send your request. Please try again.';
+			toast.error(message);
+			return;
+		}
+
 		setShowSuccessState(true);
 		toast.success('Consultation request sent. Our team will follow up within 24 business hours.');
-		console.log('Contact inquiry payload:', merged);
 
 		contactForm.reset(CONTACT_DEFAULTS);
 		servicesForm.reset(SERVICES_DEFAULTS);
@@ -727,8 +736,11 @@ export function ContactMultiStepForm() {
 											<ArrowLeft className='h-4 w-4' />
 											Previous
 										</Button>
-										<Button type='submit' className='gap-2'>
-											Submit Contact Request
+										<Button
+											type='submit'
+											className='gap-2'
+											disabled={meetingForm.formState.isSubmitting}>
+											{meetingForm.formState.isSubmitting ? 'Sending…' : 'Submit Contact Request'}
 											<BadgeCheck className='h-4 w-4' />
 										</Button>
 									</div>

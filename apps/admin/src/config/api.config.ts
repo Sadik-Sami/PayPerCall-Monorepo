@@ -24,6 +24,9 @@ export const API_CONFIG = {
 			LEADS: '/api/admin/leads',
 			LEAD_BY_ID: (id: string) => `/api/admin/leads/${id}`,
 			LEAD_STATUS: (id: string) => `/api/admin/leads/${id}/status`,
+			CONTACT_SUBMISSIONS: '/api/admin/contact-submissions',
+			CONTACT_SUBMISSION_BY_ID: (id: string) => `/api/admin/contact-submissions/${id}`,
+			CONTACT_SUBMISSION_STATUS: (id: string) => `/api/admin/contact-submissions/${id}/status`,
 		},
 		UPLOADS: {
 			CLOUDINARY_SIGNATURE: '/api/admin/uploads/cloudinary-signature',

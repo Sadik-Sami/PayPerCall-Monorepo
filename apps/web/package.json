@@ -12,7 +12,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@hookform/resolvers": "^5.2.2",
+		"@hookform/resolvers": "^5.4.0",
 		"@vercel/speed-insights": "^2.0.0",
 		"@workspace/ui": "workspace:*",
 		"axios": "^1.14.0",
