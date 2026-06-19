@@ -1,5 +1,6 @@
 export * from './shared/types';
 export * from './shared/ServiceHero';
+export * from './shared/ServiceShowcaseHero';
 export * from './shared/ProcessSteps';
 export * from './shared/CaseStudyStrip';
 export * from './shared/FAQSection';

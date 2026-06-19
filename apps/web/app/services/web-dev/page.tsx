@@ -5,6 +5,7 @@ import {
 	ConsultationCTA,
 	ProcessSteps,
 	ServiceCapabilitiesGateway,
+	ServiceShowcaseHero,
 	TrustBanner,
 	ResultsShowcase,
 	TestimonialsSection,
@@ -16,11 +17,26 @@ import {
 	buildGatewayCards,
 } from '@/lib/data/service-navigation';
 import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
-import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import { PremiumServicesGrid } from '@/components/sections/blocks/PremiumServicesGrid';
 import { IndustryExpertiseSection } from '@/components/sections/blocks/IndustryExpertiseSection';
-import { WebDevHero } from './_components';
 import { StickyCTA } from '@/components/sections/shared/StickyCTA';
+import webHero from '@/public/images/slider/web-hero.png';
+import type { ServiceShowcaseHeroProps } from '@/types/services';
+
+const HERO_CONTENT: ServiceShowcaseHeroProps = {
+	pill: 'Web Development',
+	title: 'High-performance web apps, engineered for growth.',
+	subtitle:
+		'React and Next.js experiences built to convert — fast, measurable, and scalable from first visit to closed deal.',
+	primaryCta: { label: 'Book a Free Consultation', href: '/contact' },
+	secondaryCta: { label: 'View Recent Work', href: '/portfolio' },
+	image: {
+		src: webHero,
+		alt: 'Web development dashboard preview',
+		width: 1256,
+		height: 882,
+	},
+};
 
 const PROCESS_STEPS = [
 	{
@@ -75,7 +91,7 @@ export default async function WebDevOverviewPage() {
 	const caseStudies = await getCaseStudiesByCategory('web-dev');
 	return (
 		<main className='flex flex-col'>
-			<WebDevHero />
+			<ServiceShowcaseHero {...HERO_CONTENT} />
 			<TrustBanner className={cn('bg-muted/30', SECTION_PADDING)} />
 			<PremiumServicesGrid className={cn('bg-background', SECTION_PADDING)} />
 			<IndustryExpertiseSection className={cn('bg-muted/30', SECTION_PADDING)} />

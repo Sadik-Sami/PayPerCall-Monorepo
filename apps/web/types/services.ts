@@ -100,6 +100,21 @@ export interface CaseStudyStripProps {
   className?: string;
 }
 
+export interface ServiceShowcaseHeroProps {
+  pill: string;
+  title: string;
+  subtitle: string;
+  primaryCta: ServiceCta;
+  secondaryCta?: ServiceCta;
+  image: {
+    src: StaticImageData | string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  className?: string;
+}
+
 
 export interface PricingPlan {
   name: string;

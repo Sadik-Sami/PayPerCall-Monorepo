@@ -1,7 +1,7 @@
 import {
 	CaseStudyStrip,
 	FAQSection,
-	ServiceHero,
+	ServiceShowcaseHero,
 	ConsultationCTA,
 	ProcessSteps,
 	ServiceCapabilitiesGateway,
@@ -10,10 +10,9 @@ import {
 	TestimonialsSection,
 	IntegrationLogos,
 } from '@/components/sections/services';
-import heroImage1 from '@/public/images/slider/slider-1.webp';
-import { ShieldCheck, Lock, Cloud } from 'lucide-react';
+import cmsHero from '@/public/images/slider/cms-hero.png';
 import type { Metadata } from 'next';
-import type { ProcessStep, FaqItem } from '@/types/services';
+import type { ProcessStep, FaqItem, ServiceShowcaseHeroProps } from '@/types/services';
 import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { CMS_SERVICE_NAV, CMS_GATEWAY_CONFIG, buildGatewayCards } from '@/lib/data/service-navigation';
 import { StickyCTA } from '@/components/sections/shared/StickyCTA';
@@ -57,23 +56,19 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-const HERO_CONTENT = {
+const HERO_CONTENT: ServiceShowcaseHeroProps = {
 	pill: 'CMS Development',
-	eyebrow: 'Services',
-	title: 'Content systems built for editorial teams and growth',
+	title: 'Content systems built for editorial teams and growth.',
 	subtitle:
-		'We deliver WordPress, Drupal, and headless CMS solutions that stay fast, secure, and easy to update. Start with a free platform assessment.',
-	features: ['Multi-platform expertise', 'Security-first', 'Editor-friendly'],
-	stat: { value: '30 minutes', label: 'Platform assessment · free consultation' },
+		'WordPress, Drupal, and headless CMS solutions that stay fast, secure, and easy to update — without sacrificing developer velocity.',
 	primaryCta: { label: 'Book Platform Assessment', href: '/contact' },
 	secondaryCta: { label: 'View CMS Case Studies', href: '/portfolio' },
-	footnote: 'No commitment required—we assess fit before recommending a platform.',
-	media: {
-		src: heroImage1,
-		alt: 'CMS development dashboard visualization',
-		caption: 'Every assessment includes platform recommendations and migration estimates.',
+	image: {
+		src: cmsHero,
+		alt: 'Headless CMS editing interface',
+		width: 1920,
+		height: 1123,
 	},
-	variant: 'asymmetric' as const,
 };
 
 const PROCESS_STEPS: ProcessStep[] = [
@@ -146,7 +141,7 @@ export default async function CMSOverviewPage() {
 	const caseStudies = await getCaseStudiesByCategory('cms');
 	return (
 		<main className='space-y-12'>
-			<ServiceHero className='section-container' {...HERO_CONTENT} />
+			<ServiceShowcaseHero {...HERO_CONTENT} />
 			<TrustBanner />
 			<ResultsShowcase className='section-container' variant='split' />
 			<ServiceCapabilitiesGateway

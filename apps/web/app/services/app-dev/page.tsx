@@ -1,7 +1,7 @@
 import {
 	CaseStudyStrip,
 	FAQSection,
-	ServiceHero,
+	ServiceShowcaseHero,
 	ConsultationCTA,
 	ProcessSteps,
 	ServiceCapabilitiesGateway,
@@ -15,10 +15,9 @@ import {
 	APP_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
 } from '@/lib/data/service-navigation';
-import heroImage1 from '@/public/images/slider/slider-1.webp';
-import { Smartphone, Tablet, Code2 } from 'lucide-react';
+import appHero from '@/public/images/slider/app-hero.png';
 import type { Metadata } from 'next';
-import type { ProcessStep, FaqItem } from '@/types/services';
+import type { ProcessStep, FaqItem, ServiceShowcaseHeroProps } from '@/types/services';
 import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 import FAQ from '@/components/sections/shared/FAQ';
@@ -62,23 +61,19 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-const HERO_CONTENT = {
+const HERO_CONTENT: ServiceShowcaseHeroProps = {
 	pill: 'App Development',
-	eyebrow: 'Services',
-	title: 'Mobile apps built for user engagement and business growth',
+	title: 'Mobile apps built for engagement and business growth.',
 	subtitle:
-		'We deliver native iOS, Android, and cross-platform apps that stay performant, scalable, and aligned with your business goals. Start with a free strategy consultation.',
-	features: ['Native & cross-platform', 'App Store optimization', 'Backend integration'],
-	stat: { value: '30 minutes', label: 'Strategy session · free consultation' },
+		'Native iOS, Android, and cross-platform apps engineered to be performant, scalable, and aligned with your business goals.',
 	primaryCta: { label: 'Book a Free Consultation', href: '/contact' },
 	secondaryCta: { label: 'View App Portfolio', href: '/portfolio' },
-	footnote: 'No commitment required—we assess fit and provide roadmap before you commit.',
-	media: {
-		src: heroImage1,
-		alt: 'Mobile app development visualization',
-		caption: 'Our strategy sessions end with a written technical roadmap and budget ranges.',
+	image: {
+		src: appHero,
+		alt: 'Mobile app interface preview',
+		width: 879,
+		height: 654,
 	},
-	variant: 'asymmetric' as const,
 };
 
 const PROCESS_STEPS: ProcessStep[] = [
@@ -192,7 +187,7 @@ export default async function AppDevOverviewPage() {
 	return (
 		<main className='space-y-12'>
 			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-			<ServiceHero className='max-w-7xl mx-auto' {...HERO_CONTENT} />
+			<ServiceShowcaseHero {...HERO_CONTENT} />
 			<TrustBanner />
 			<ResultsShowcase className='max-w-7xl mx-auto' variant='split' />
 			<ServiceCapabilitiesGateway
