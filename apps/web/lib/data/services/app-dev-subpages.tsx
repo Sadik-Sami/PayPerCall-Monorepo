@@ -97,32 +97,6 @@ export const IOS_DATA = {
 		{ name: 'HealthKit', category: 'Health & Fitness' },
 		{ name: 'ARKit', category: 'Augmented Reality' },
 	],
-	CASE_STUDIES: [
-		{
-			client: 'WellnessTracker iOS',
-			industry: 'Healthcare',
-			problem: 'Healthcare startup needed native iOS app with HealthKit integration and HIPAA-compliant data handling.',
-			solution: 'Built SwiftUI app with HealthKit integration, encrypted Core Data storage, and Face ID authentication.',
-			outcome: 'Launched in 9 weeks with 4.9-star rating and 15k downloads in first month.',
-			icon: <Smartphone className='h-5 w-5' />,
-			metrics: [
-				{ label: 'Rating', value: '4.9★' },
-				{ label: 'Downloads', value: '15k' },
-			],
-		},
-		{
-			client: 'FinanceHub iOS',
-			industry: 'Financial Services',
-			problem: 'Financial services firm required secure iOS app with Apple Pay and real-time transaction processing.',
-			solution: 'Developed SwiftUI app with Apple Pay, biometric auth, encrypted data storage, and real-time APIs.',
-			outcome: 'Processed $1.8M in transactions in Q1 with 99.9% uptime.',
-			icon: <AppWindow className='h-5 w-5' />,
-			metrics: [
-				{ label: 'Processed', value: '$1.8M' },
-				{ label: 'Uptime', value: '99.9%' },
-			],
-		},
-	],
 	FAQ_ITEMS: [
 		{
 			question: 'How much does it cost to develop an iOS app?',
@@ -243,32 +217,6 @@ export const ANDROID_DATA = {
 		{ name: 'Room', category: 'Data Storage' },
 		{ name: 'Google Maps', category: 'Location Services' },
 	],
-	CASE_STUDIES: [
-		{
-			client: 'DeliveryPro Android',
-			industry: 'Logistics',
-			problem: 'Logistics company needed Android app with real-time tracking, offline capabilities, and Google Maps.',
-			solution: 'Built Kotlin app with Google Maps SDK, Room database for offline mode, and Firebase real-time sync.',
-			outcome: 'Launched with 4.8-star rating and 25k downloads in the first month.',
-			icon: <Tablet className='h-5 w-5' />,
-			metrics: [
-				{ label: 'Rating', value: '4.8★' },
-				{ label: 'Downloads', value: '25k' },
-			],
-		},
-		{
-			client: 'RetailFlow Android',
-			industry: 'Retail',
-			problem: 'Retailer needed Android app with offline shopping cart, inventory sync, and multi-screen support.',
-			solution: 'Built with Jetpack Compose, Room database, responsive layouts, and Firebase sync.',
-			outcome: '95% device compatibility and 80% user retention after 30 days.',
-			icon: <Shield className='h-5 w-5' />,
-			metrics: [
-				{ label: 'Compatibility', value: '95%' },
-				{ label: 'Retention', value: '80%' },
-			],
-		},
-	],
 	FAQ_ITEMS: [
 		{
 			question: 'What programming languages are used for native Android development?',
@@ -388,32 +336,6 @@ export const CROSS_PLATFORM_DATA = {
 		{ name: 'Firebase', category: 'Unified Backend' },
 		{ name: 'SQLite', category: 'Data Storage' },
 		{ name: 'GraphQL', category: 'Backend APIs' },
-	],
-	CASE_STUDIES: [
-		{
-			client: 'RetailFlow Cross-Platform',
-			industry: 'Retail',
-			problem: 'Needed to reach iOS and Android users quickly with a shared codebase to beat market competition.',
-			solution: 'Developed React Native app with native payment modules, push notifications, and deep linking.',
-			outcome: 'Launched simultaneously, saving 40% dev time with 85% code reuse.',
-			icon: <Code2 className='h-5 w-5' />,
-			metrics: [
-				{ label: 'Time Saved', value: '40%' },
-				{ label: 'Code Reuse', value: '85%' },
-			],
-		},
-		{
-			client: 'HealthTrack Cross-Platform',
-			industry: 'Healthcare',
-			problem: 'HIPAA-compliant apps required for both iOS and Android with real-time sync and offline support.',
-			solution: 'Built Flutter app with native encryption modules and offline-first architecture.',
-			outcome: 'Launched on both stores in 11 weeks with 4.8-star ratings.',
-			icon: <Smartphone className='h-5 w-5' />,
-			metrics: [
-				{ label: 'Launch', value: '11 weeks' },
-				{ label: 'Rating', value: '4.8★' },
-			],
-		},
 	],
 	FAQ_ITEMS: [
 		{

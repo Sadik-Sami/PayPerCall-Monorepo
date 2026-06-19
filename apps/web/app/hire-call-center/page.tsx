@@ -19,7 +19,6 @@ import { faqs } from './_data/faq';
 import {
 	AFTER_ITEMS,
 	BEFORE_ITEMS,
-	CASE_STUDY_ITEMS,
 	HIRE_SERVICE_CARDS,
 	SECTION_PADDING,
 	TRANSFORMATION_PAIRS,
@@ -28,6 +27,7 @@ import {
 	jsonLd,
 } from './_data/page-content';
 import Testimonials from '@/components/sections/landing/Testimonials';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 
 export const metadata: Metadata = {
 	title: 'Hire a Call Center | Professional BPO & Outsourcing Services',
@@ -63,7 +63,8 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function HireCallCenterPage() {
+export default async function HireCallCenterPage() {
+	const caseStudies = await getCaseStudiesByCategory('hire-call-center');
 	return (
 		<>
 			{/* JSON-LD Schema */}
@@ -172,7 +173,7 @@ export default function HireCallCenterPage() {
 						className={SECTION_PADDING}
 						title='What conversion-focused call operations deliver'
 						description='Examples from insurance, home services, and legal programs where response speed and qualified conversations directly impacted growth.'
-						items={CASE_STUDY_ITEMS}
+						items={caseStudies}
 						cta={{ text: 'Start My Pilot Program', href: '/contact' }}
 					/>
 				</div>

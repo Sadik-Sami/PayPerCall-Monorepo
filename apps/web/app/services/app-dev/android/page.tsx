@@ -4,7 +4,7 @@ import {
 	ConsultationCTA,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '@/app/services/web-dev/_components';
 import { PastelIntegrationsGrid } from '@workspace/ui/components/ui/pastel-integrations-grid';
 import { ANDROID_DATA } from '@/lib/data/services/app-dev-subpages';
@@ -25,11 +25,12 @@ export const metadata: Metadata = {
 
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function AndroidAppDevPage() {
+export default async function AndroidAppDevPage() {
+	const caseStudies = await getCaseStudiesByCategory('app-dev');
 	return (
 		<main className='space-y-0'>
 			<PastelFunnelHero {...ANDROID_DATA.HERO} />
-			
+
 			<div className={cn("w-full bg-background pt-8 pb-16")}>
 				<ClientsMarqueeStrip />
 			</div>
@@ -64,7 +65,7 @@ export default function AndroidAppDevPage() {
 
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<div className="section-container">
-					<Timeline 
+					<Timeline
 						title="Android development workflow"
 						description="From OS strategy to Play Store publishing."
 						data={ANDROID_DATA.PROCESS_STEPS.map((step, idx) => ({
@@ -77,17 +78,17 @@ export default function AndroidAppDevPage() {
 									</p>
 								</div>
 							)
-						}))} 
+						}))}
 					/>
 				</div>
 			</div>
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<div className="section-container">
-					<PastelIntegrationsGrid 
+					<PastelIntegrationsGrid
 						title="Android frameworks and services we work with"
 						description="From Kotlin to Google Pay, we integrate your Android app deeply into the Google ecosystem."
-						integrations={ANDROID_DATA.INTEGRATIONS} 
+						integrations={ANDROID_DATA.INTEGRATIONS}
 					/>
 				</div>
 			</div>
@@ -95,7 +96,7 @@ export default function AndroidAppDevPage() {
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<div className="section-container">
 					<CaseStudyStrip
-						items={ANDROID_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+						items={caseStudies}
 						title='Representative Android engagements'
 						description='Every Android build delivers measurable improvements in Google Play ratings, user engagement, and device compatibility.'
 					/>
@@ -104,8 +105,8 @@ export default function AndroidAppDevPage() {
 
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<div className="section-container">
-					<FAQ 
-						items={ANDROID_DATA.FAQ_ITEMS} 
+					<FAQ
+						items={ANDROID_DATA.FAQ_ITEMS}
 						variant="pastel"
 						badge="Android App FAQ"
 					/>

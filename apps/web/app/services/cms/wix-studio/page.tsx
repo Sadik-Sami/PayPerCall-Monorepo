@@ -6,7 +6,7 @@ import {
 	TrendingUp,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '../../web-dev/_components';
 import { WIX_STUDIO_DATA } from '@/lib/data/services/cms-subpages';
 import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
@@ -53,7 +53,8 @@ export const metadata: Metadata = {
 
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function WixStudioPage() {
+export default async function WixStudioPage() {
+	const caseStudies = await getCaseStudiesByCategory('cms');
 	return (
 		<main className='space-y-0'>
 			<PastelFunnelHero {...WIX_STUDIO_DATA.HERO} />
@@ -131,7 +132,7 @@ export default function WixStudioPage() {
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
 					className="section-container"
-					items={WIX_STUDIO_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					items={caseStudies}
 					title='Wix Studio success stories'
 					description='Brands launching fast with professional, animated Wix sites.'
 				/>

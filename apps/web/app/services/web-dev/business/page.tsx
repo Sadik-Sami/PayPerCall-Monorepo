@@ -6,7 +6,7 @@ import {
 	TrendingUp,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '../_components';
 import { BUSINESS_DATA } from '@/lib/data/services/web-dev-subpages';
 import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
@@ -32,7 +32,8 @@ export const metadata: Metadata = {
 };
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function BusinessWebsitesPage() {
+export default async function BusinessWebsitesPage() {
+	const caseStudies = await getCaseStudiesByCategory('web-dev');
 	return (
 		<main className='space-y-0'>
 			<PastelFunnelHero {...BUSINESS_DATA.HERO} />
@@ -90,7 +91,7 @@ export default function BusinessWebsitesPage() {
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<CaseStudyStrip
 					className="section-container"
-					items={BUSINESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					items={caseStudies}
 					title='Case studies focused on outcomes executives value'
 				/>
 			</div>

@@ -4,7 +4,7 @@ import {
 	ConsultationCTA,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '@/app/services/web-dev/_components';
 import { PastelIntegrationsGrid } from '@workspace/ui/components/ui/pastel-integrations-grid';
 import { CROSS_PLATFORM_DATA } from '@/lib/data/services/app-dev-subpages';
@@ -25,7 +25,8 @@ export const metadata: Metadata = {
 
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function CrossPlatformAppDevPage() {
+export default async function CrossPlatformAppDevPage() {
+	const caseStudies = await getCaseStudiesByCategory('app-dev');
 	return (
 		<main className='space-y-0'>
 			<PastelFunnelHero {...CROSS_PLATFORM_DATA.HERO} />
@@ -95,7 +96,7 @@ export default function CrossPlatformAppDevPage() {
 			<div className={cn("w-full bg-background", SECTION_PADDING)}>
 				<div className="section-container">
 					<CaseStudyStrip
-						items={CROSS_PLATFORM_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+						items={caseStudies}
 						title='Representative cross-platform engagements'
 						description='Every cross-platform build delivers measurable improvements in development efficiency, time-to-market, and business scalability.'
 					/>

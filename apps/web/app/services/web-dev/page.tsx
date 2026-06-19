@@ -15,7 +15,7 @@ import {
 	WEB_DEV_GATEWAY_CONFIG,
 	buildGatewayCards,
 } from '@/lib/data/service-navigation';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { ShieldCheck, Factory, Activity } from 'lucide-react';
 import { PremiumServicesGrid } from '@/components/sections/blocks/PremiumServicesGrid';
 import { IndustryExpertiseSection } from '@/components/sections/blocks/IndustryExpertiseSection';
@@ -45,45 +45,6 @@ const PROCESS_STEPS = [
 	},
 ];
 
-const CASE_STUDIES = [
-	{
-		client: 'Regional Insurance Platform',
-		industry: 'Insurance',
-		problem: 'Legacy marketing site could not keep up with new product launches or SEO requirements.',
-		solution: 'Migrated to a headless Next.js stack with modular CMS entries and ISR for rapid content updates.',
-		outcome: '+37% qualified inbound calls in 90 days with <2s median LCP across all core pages.',
-		icon: <ShieldCheck className='size-5' />,
-		metrics: [
-			{ label: 'Page load', value: '1.7s' },
-			{ label: 'Lead lift', value: '+37%' },
-		],
-	},
-	{
-		client: 'Northwind Energy',
-		industry: 'Energy',
-		problem: 'Corporate site failed security reviews and had inconsistent lead capture.',
-		solution: 'Rebuilt site with strict access controls, encrypted forms, and CRM-integrated qualification routing.',
-		outcome: 'Lead-to-opportunity rate improved by 29% while reducing manual review steps.',
-		icon: <Factory className='size-5' />,
-		metrics: [
-			{ label: 'Security findings', value: '0' },
-			{ label: 'SQL growth', value: '+29%' },
-		],
-	},
-	{
-		client: 'Cedar Labs',
-		industry: 'SaaS',
-		problem: 'Outdated product pages did not reflect the new platform narrative or pricing.',
-		solution:
-			'Designed modular product stories, data visualizations, and pricing scenarios tailored to enterprise buyers.',
-		outcome: 'Time on page doubled and demo requests grew 46% in the first quarter post launch.',
-		icon: <Activity className='size-5' />,
-		metrics: [
-			{ label: 'Time on page', value: '2x' },
-			{ label: 'Demo lift', value: '+46%' },
-		],
-	},
-];
 
 const FAQ_ITEMS = [
 	{
@@ -110,7 +71,8 @@ const FAQ_ITEMS = [
 
 const SECTION_PADDING = 'py-12 sm:py-16 md:py-20 lg:py-24';
 
-export default function WebDevOverviewPage() {
+export default async function WebDevOverviewPage() {
+	const caseStudies = await getCaseStudiesByCategory('web-dev');
 	return (
 		<main className='flex flex-col'>
 			<WebDevHero />
@@ -141,7 +103,7 @@ export default function WebDevOverviewPage() {
 			/>
 			<IntegrationLogos className={cn('w-full bg-background', SECTION_PADDING)} />
 			<CaseStudyStrip
-				items={CASE_STUDIES.map(mapCaseStudyToCard)}
+				items={caseStudies}
 				title='Results grounded in performance data'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
 				cta={{ text: 'Book a Free Consultation', href: '/contact' }}

@@ -6,7 +6,7 @@ import {
 	TrendingUp,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '../../web-dev/_components';
 import { WORDPRESS_DATA } from '@/lib/data/services/cms-subpages';
 import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
@@ -53,7 +53,8 @@ export const metadata: Metadata = {
 
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function WordPressPage() {
+export default async function WordPressPage() {
+	const caseStudies = await getCaseStudiesByCategory('cms');
 	return (
 		<main className='space-y-0'>
 			<PastelFunnelHero {...WORDPRESS_DATA.HERO} />
@@ -131,7 +132,7 @@ export default function WordPressPage() {
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
 					className="section-container"
-					items={WORDPRESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					items={caseStudies}
 					title='WordPress development success stories'
 					description='Brands achieving scale and speed with our custom themes and security hardening.'
 				/>

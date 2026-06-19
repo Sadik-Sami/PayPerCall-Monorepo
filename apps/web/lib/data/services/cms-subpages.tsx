@@ -100,20 +100,6 @@ export const HEADLESS_DATA = {
 		{ name: 'Next.js', category: 'Frontend', description: 'React framework for the web.', icon: <Code className="w-6 h-6"/> },
 		{ name: 'GraphQL', category: 'API', description: 'Precise, type-safe data fetching.', icon: <Zap className="w-6 h-6"/> },
 	],
-	CASE_STUDIES: [
-		{
-			client: 'Omni Retail Corp',
-			industry: 'Retail',
-			problem: 'Managing separate content for web, mobile app, and in-store kiosks was inefficient.',
-			solution: 'Implemented Contentful headless CMS with GraphQL API feeding Next.js and React Native.',
-			outcome: 'Unified content across 3 channels with 70% reduction in publishing time.',
-			icon: <Cloud className="h-5 w-5" />,
-			metrics: [
-				{ label: 'Channels unified', value: '3' },
-				{ label: 'Publishing time', value: '-70%' },
-			],
-		},
-	],
 	FAQ_ITEMS: [
 		{
 			question: 'What is the difference between headless CMS and traditional WordPress/Drupal?',
@@ -233,20 +219,6 @@ export const DRUPAL_DATA = {
 		{ name: 'Next.js', category: 'Frontend', description: 'Headless rendering for lightning-fast UX.', icon: <Layers className="w-6 h-6"/> },
 		{ name: 'SAML/SSO', category: 'Security', description: 'Enterprise identity management.', icon: <Shield className="w-6 h-6"/> },
 	],
-	CASE_STUDIES: [
-		{
-			client: 'State University Portal',
-			industry: 'Education',
-			problem: 'Fragmented websites across 50 departments.',
-			solution: 'Unified Drupal multi-site architecture with centralized auth.',
-			outcome: 'Reduced IT maintenance overhead by 60%.',
-			icon: <ShieldCheck className="h-5 w-5" />,
-			metrics: [
-				{ label: 'Sites Unified', value: '50+' },
-				{ label: 'Cost Savings', value: '60%' },
-			],
-		},
-	],
 	FAQ_ITEMS: [
 		{
 			question: 'Is Drupal the right choice for my business?',
@@ -360,20 +332,6 @@ export const WIX_STUDIO_DATA = {
 		{ name: 'Wix Bookings', category: 'Scheduling', description: 'Integrated scheduling and calendar sync.', icon: <Activity className="w-6 h-6"/> },
 		{ name: 'Velo APIs', category: 'Custom Data', description: 'Connect to any REST API instantly.', icon: <Code className="w-6 h-6"/> },
 		{ name: 'Wix Stores', category: 'Ecommerce', description: 'Native, fast checkout flows.', icon: <LayoutTemplate className="w-6 h-6"/> },
-	],
-	CASE_STUDIES: [
-		{
-			client: 'Boutique Creative Agency',
-			industry: 'Design',
-			problem: 'Needed a highly animated portfolio site within 3 weeks.',
-			solution: 'Designed and built entirely in Wix Studio with custom scroll effects.',
-			outcome: 'Delivered on time with flawless mobile performance.',
-			icon: <PenTool className="h-5 w-5" />,
-			metrics: [
-				{ label: 'Time to Market', value: '3 wks' },
-				{ label: 'Design Fidelity', value: '100%' },
-			],
-		},
 	],
 	FAQ_ITEMS: [
 		{
@@ -489,20 +447,6 @@ export const WORDPRESS_DATA = {
 		{ name: 'ACF Pro', category: 'Data', description: 'Complex content schemas made simple.', icon: <Database className="w-6 h-6"/> },
 		{ name: 'Yoast / RankMath', category: 'SEO', description: 'Industry-leading search optimization suites.', icon: <Search className="w-6 h-6"/> },
 		{ name: 'WP Rocket', category: 'Performance', description: 'Advanced caching and optimization engine.', icon: <Zap className="w-6 h-6"/> },
-	],
-	CASE_STUDIES: [
-		{
-			client: 'Cascade Marketing Group',
-			industry: 'Marketing',
-			problem: 'Outdated WordPress site with slow load times and vulnerabilities.',
-			solution: 'Rebuilt with custom theme, strict caching, and security hardening.',
-			outcome: 'Page load time reduced to 1.6s and passed all security audits.',
-			icon: <ShieldCheck className="h-5 w-5" />,
-			metrics: [
-				{ label: 'Page Speed', value: '1.6s' },
-				{ label: 'Security Score', value: 'A+' },
-			],
-		},
 	],
 	FAQ_ITEMS: [
 		{

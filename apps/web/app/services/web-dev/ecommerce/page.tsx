@@ -5,7 +5,7 @@ import {
 } from '@/components/sections/services';
 import { Timeline } from '@workspace/ui/components/ui/timeline';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '../_components';
 import { ECOMMERCE_DATA } from '@/lib/data/services/web-dev-subpages';
 import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
@@ -44,7 +44,8 @@ export const metadata: Metadata = {
 
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function EcommerceWebDevPage() {
+export default async function EcommerceWebDevPage() {
+	const caseStudies = await getCaseStudiesByCategory('web-dev');
 	return (
 		<>
 			<script
@@ -138,7 +139,7 @@ export default function EcommerceWebDevPage() {
 				
 				<CaseStudyStrip
 					className={cn("w-full bg-background", SECTION_PADDING)}
-					items={ECOMMERCE_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					items={caseStudies}
 					title='Commerce case studies anchored in revenue'
 				/>
 				

@@ -13,8 +13,8 @@ import {
 import heroImage1 from '@/public/images/slider/slider-1.webp';
 import { ShieldCheck, Lock, Cloud } from 'lucide-react';
 import type { Metadata } from 'next';
-import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import type { ProcessStep, FaqItem } from '@/types/services';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { CMS_SERVICE_NAV, CMS_GATEWAY_CONFIG, buildGatewayCards } from '@/lib/data/service-navigation';
 import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 
@@ -113,47 +113,6 @@ const CMS_INTEGRATIONS = [
 	{ name: 'Pantheon', category: 'Drupal Hosting' },
 ];
 
-const CASE_STUDIES: CaseStudyItem[] = [
-	{
-		client: 'Midwest Health Network',
-		industry: 'Healthcare',
-		problem: 'Legacy WordPress site had security vulnerabilities and could not handle multi-site needs.',
-		solution:
-			'Migrated to WordPress Multisite with custom security hardening, HIPAA-aligned controls, and centralized content management.',
-		outcome: '0 security incidents in 18 months and 60% reduction in content publishing time across 12 regional sites.',
-		icon: <ShieldCheck className='size-5' />,
-		metrics: [
-			{ label: 'Security incidents', value: '0' },
-			{ label: 'Publishing time', value: '-60%' },
-		],
-	},
-	{
-		client: 'Summit Financial Services',
-		industry: 'Financial Services',
-		problem: 'Needed enterprise-grade Drupal platform for complex compliance workflows and multi-language support.',
-		solution:
-			'Built custom Drupal 10 platform with role-based publishing, audit logging, and GDPR compliance features.',
-		outcome: 'Passed SOC 2 audit on first attempt and reduced compliance review cycles from 14 days to 3 days.',
-		icon: <Lock className='size-5' />,
-		metrics: [
-			{ label: 'Review cycle', value: '-79%' },
-			{ label: 'SOC 2', value: 'Passed' },
-		],
-	},
-	{
-		client: 'Zenith Retail Group',
-		industry: 'Retail',
-		problem: 'Wanted headless CMS to power web, mobile app, and in-store kiosks from single content source.',
-		solution:
-			'Implemented Contentful headless CMS with GraphQL APIs feeding Next.js web, React Native app, and kiosk interfaces.',
-		outcome: 'Content updates propagate to all channels in real-time, reducing publishing overhead by 70%.',
-		icon: <Cloud className='size-5' />,
-		metrics: [
-			{ label: 'Channels', value: '3+' },
-			{ label: 'Update time', value: 'Real-time' },
-		],
-	},
-];
 
 const FAQ_ITEMS: FaqItem[] = [
 	{
@@ -183,7 +142,8 @@ const FAQ_ITEMS: FaqItem[] = [
 	},
 ];
 
-export default function CMSOverviewPage() {
+export default async function CMSOverviewPage() {
+	const caseStudies = await getCaseStudiesByCategory('cms');
 	return (
 		<main className='space-y-12'>
 			<ServiceHero className='section-container' {...HERO_CONTENT} />
@@ -211,7 +171,7 @@ export default function CMSOverviewPage() {
 				variant='cards'
 			/>
 			<CaseStudyStrip
-				items={CASE_STUDIES.map(mapCaseStudyToCard)}
+				items={caseStudies}
 				title='CMS transformations grounded in measurable outcomes'
 				description='Every case study highlights the security, efficiency, and editorial improvements that matter.'
 				className='section-container'

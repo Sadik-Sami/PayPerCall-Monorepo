@@ -4,7 +4,7 @@ import {
 	ConsultationCTA,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '../_components';
 import { LANDING_PAGE_DATA } from '@/lib/data/services/web-dev-subpages';
 import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
@@ -24,7 +24,8 @@ export const metadata: Metadata = {
 
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function LandingPageWebDevPage() {
+export default async function LandingPageWebDevPage() {
+	const caseStudies = await getCaseStudiesByCategory('web-dev');
 	return (
 		<main className='space-y-0'>
 			<PastelFunnelHero {...LANDING_PAGE_DATA.HERO} />
@@ -84,7 +85,7 @@ export default function LandingPageWebDevPage() {
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
 					className="section-container"
-					items={LANDING_PAGE_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					items={caseStudies}
 					title='Conversion lifts backed by data'
 				/>
 			</div>

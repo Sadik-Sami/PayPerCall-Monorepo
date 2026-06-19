@@ -6,7 +6,7 @@ import {
 	TrendingUp,
 } from '@/components/sections/services';
 import type { Metadata } from 'next';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { PastelFunnelHero, PastelBentoGrid } from '../../web-dev/_components';
 import { HEADLESS_DATA } from '@/lib/data/services/cms-subpages';
 import { ClientsMarqueeStrip } from '@/app/about/clients/_components/ClientsMarqueeStrip';
@@ -54,7 +54,8 @@ export const metadata: Metadata = {
 
 const SECTION_PADDING = 'py-12 md:py-16';
 
-export default function ContentHubPage() {
+export default async function ContentHubPage() {
+	const caseStudies = await getCaseStudiesByCategory('cms');
 	return (
 		<main className='space-y-0'>
 			<PastelFunnelHero {...HEADLESS_DATA.HERO} />
@@ -132,7 +133,7 @@ export default function ContentHubPage() {
 			<div className={cn("w-full bg-muted/30", SECTION_PADDING)}>
 				<CaseStudyStrip
 					className="section-container"
-					items={HEADLESS_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					items={caseStudies}
 					title='Headless CMS transformations'
 					description='Omnichannel content delivery with API-first architecture.'
 				/>

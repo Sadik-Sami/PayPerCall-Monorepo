@@ -118,44 +118,6 @@ export const FULL_STACK_DATA = {
 			],
 		},
 	],
-	CASE_STUDIES: [
-		{
-			client: 'Regional Insurance Platform',
-			industry: 'Insurance',
-			problem: 'Legacy marketing site could not keep up with new product launches.',
-			solution: 'Migrated to a headless Next.js stack with modular CMS entries and ISR.',
-			outcome: '+37% qualified inbound calls in 90 days with <2s median LCP.',
-			icon: <ShieldCheck className="h-5 w-5" />,
-			metrics: [
-				{ label: 'Page load', value: '1.7s' },
-				{ label: 'Lead lift', value: '+37%' },
-			],
-		},
-		{
-			client: 'Northwind Energy',
-			industry: 'Energy',
-			problem: 'Corporate site failed security reviews and had inconsistent lead capture.',
-			solution: 'Rebuilt with strict access controls, encrypted forms, and CRM routing.',
-			outcome: 'Lead-to-opportunity rate improved by 29%.',
-			icon: <Factory className="h-5 w-5" />,
-			metrics: [
-				{ label: 'Security findings', value: '0' },
-				{ label: 'SQL growth', value: '+29%' },
-			],
-		},
-		{
-			client: 'Cedar Labs',
-			industry: 'SaaS',
-			problem: 'Outdated product pages did not reflect the new platform narrative.',
-			solution: 'Designed modular product stories and pricing scenarios for enterprise buyers.',
-			outcome: 'Time on page doubled and demo requests grew 46%.',
-			icon: <Activity className="h-5 w-5" />,
-			metrics: [
-				{ label: 'Time on page', value: '2x' },
-				{ label: 'Demo lift', value: '+46%' },
-			],
-		},
-	],
 	FAQ_ITEMS: [
 		{
 			question: 'How do you keep timelines predictable with complex integrations?',
@@ -323,45 +285,6 @@ export const ECOMMERCE_DATA = {
 			context: 'Better product discovery, related items, and bundling.',
 		},
 	],
-	CASE_STUDIES: [
-		{
-			client: 'Westward Goods',
-			industry: 'Retail',
-			problem: 'Peak-season traffic brought the monolithic store down and created order sync issues.',
-			solution: 'Rebuilt the storefront with ISR, edge caching, and resilient order webhooks tied into ERP.',
-			outcome: '0 downtime events during holiday rush and +21% checkout rate.',
-			icon: <ShoppingBag className="size-5" />,
-			metrics: [
-				{ label: 'Checkout rate', value: '+21%' },
-				{ label: 'Peak downtime', value: '0 min' },
-			],
-		},
-		{
-			client: 'Boreal Outdoor',
-			industry: 'DTC',
-			problem: 'Hard to merchandise bundles and accessories with their existing platform.',
-			solution: 'Introduced dynamic bundle builder, structured product metadata, and guided selling UX.',
-			outcome: 'Average order value increased 18% while support tickets dropped by half.',
-			icon: <CreditCard className="size-5" />,
-			metrics: [
-				{ label: 'AOV lift', value: '+18%' },
-				{ label: 'Tickets', value: '-50%' },
-			],
-		},
-		{
-			client: 'Harbor Supply',
-			industry: 'B2B ecommerce',
-			problem: 'Needed customer-specific pricing, punchout integrations, and account workflows.',
-			solution:
-				'Deployed a headless commerce stack with contract pricing, account approvals, and procurement integrations.',
-			outcome: 'Digital revenue surpassed in-person orders within six months.',
-			icon: <Truck className="size-5" />,
-			metrics: [
-				{ label: 'Digital revenue', value: '>50%' },
-				{ label: 'Implementation', value: '6 mo' },
-			],
-		},
-	],
 	FAQ_ITEMS: [
 		{
 			question: "We're worried about losing sales during a platform migration.",
@@ -504,44 +427,6 @@ export const BUSINESS_DATA = {
 			context: 'After implementing dynamic CTA routing and better funnel visibility.',
 		},
 	],
-	CASE_STUDIES: [
-		{
-			client: 'Meridian Legal',
-			industry: 'Legal',
-			problem: 'Practice areas were buried and not mapped to regional search intent.',
-			solution: 'Re-architected site navigation, added localized schema, and introduced evidence-driven testimonials.',
-			outcome: 'Qualified consultation requests increased 52% with consistent first-response SLAs.',
-			icon: <Briefcase className="size-5" />,
-			metrics: [
-				{ label: 'Consultations', value: '+52%' },
-				{ label: 'First response', value: '<2 hrs' },
-			],
-		},
-		{
-			client: 'Waypoint Logistics',
-			industry: 'Supply Chain',
-			problem: 'Site failed to articulate service tiers and lacked conversion tracking.',
-			solution: 'Built a modular services catalog, ROI snapshots, and integrated HubSpot workflows.',
-			outcome: 'Sales accepted opportunities rose 34%, and marketing gained full-funnel attribution.',
-			icon: <Building className="size-5" />,
-			metrics: [
-				{ label: 'SAOs', value: '+34%' },
-				{ label: 'Attribution', value: 'Full-funnel' },
-			],
-		},
-		{
-			client: 'Everest Advisory',
-			industry: 'Finance',
-			problem: 'Needed a modern site that satisfied compliance reviews without sacrificing messaging.',
-			solution: 'Established a compliant component library, audit-ready change logs, and encrypted form routing.',
-			outcome: 'Passed regulatory review on the first attempt and doubled inbound RFP volume.',
-			icon: <Target className="size-5" />,
-			metrics: [
-				{ label: 'RFP volume', value: '2x' },
-				{ label: 'Audit issues', value: '0' },
-			],
-		},
-	],
 	FAQ_ITEMS: [
 		{
 			question: 'Our internal team changes content frequently—how do we manage that without developer help?',
@@ -663,41 +548,6 @@ export const LANDING_PAGE_DATA = {
 			after: '38%',
 			improvement: '+111%',
 			context: 'Added agenda visibility, speaker bios, and social proof.',
-		},
-	],
-	CASE_STUDIES: [
-		{
-			client: 'Peak Software',
-			problem: 'Paid search campaigns were constrained by legacy landing templates.',
-			solution: 'Introduced modular hero, proof, and pricing blocks with targeted messaging for each vertical.',
-			outcome: 'Lowered cost per qualified lead by 33% within 45 days.',
-			icon: <Megaphone className="size-5" />,
-			metrics: [
-				{ label: 'CPL', value: '-33%' },
-				{ label: 'Time to launch', value: '45 days' },
-			],
-		},
-		{
-			client: 'Atlas Risk',
-			problem: 'Enterprise risk offering needed long-form education without hurting speed.',
-			solution: 'Crafted a narrative-driven page with expandable sections and structured schema.',
-			outcome: 'Sales accepted leads improved 41% with sub-1.5s LCP.',
-			icon: <BarChart3 className="size-5" />,
-			metrics: [
-				{ label: 'SQL lift', value: '+41%' },
-				{ label: 'LCP', value: '1.5s' },
-			],
-		},
-		{
-			client: 'Lumen Healthcare',
-			problem: 'Webinar registrations stalled due to unclear agenda and proof.',
-			solution: 'Developed a repeatable webinar page system with agenda builder, speaker bios, and reminders.',
-			outcome: 'Registration rate climbed to 48% of unique visitors.',
-			icon: <MousePointer className="size-5" />,
-			metrics: [
-				{ label: 'Registrations', value: '48%' },
-				{ label: 'Reminder opt-in', value: '+63%' },
-			],
 		},
 	],
 	FAQ_ITEMS: [

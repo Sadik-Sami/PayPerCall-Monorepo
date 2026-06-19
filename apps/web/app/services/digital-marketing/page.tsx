@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import Image from 'next/image';
 import { BarChart3, ShieldCheck, Zap } from 'lucide-react';
 import { HeroSection } from '@/components/sections/blocks/HeroSection';
@@ -23,7 +24,6 @@ import {
 	buildGatewayCards,
 } from '@/lib/data/service-navigation';
 import {
-	CASE_STUDIES,
 	CONSULTATION_FEATURES,
 	FAQS,
 	GROWTH_SPRINT_STEPS,
@@ -51,7 +51,8 @@ export const metadata: Metadata = {
 	robots: { index: true, follow: true },
 };
 
-export default function DigitalMarketingPage() {
+export default async function DigitalMarketingPage() {
+	const caseStudies = await getCaseStudiesByCategory('digital-marketing');
 	return (
 		<main className='min-h-screen'>
 			<HeroSection
@@ -208,7 +209,7 @@ export default function DigitalMarketingPage() {
 
 			<div id='case-studies' className='w-full bg-muted/30'>
 				<CaseStudyStrip
-					items={CASE_STUDIES}
+					items={caseStudies}
 					title='Digital Marketing Success Stories'
 					description='See how the sprint model translates into predictable lift across pipeline quality, CAC efficiency, and revenue velocity.'
 					cta={{ text: 'Get a Free Consultation', href: '#contact' }}

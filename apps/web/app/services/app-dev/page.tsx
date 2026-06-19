@@ -18,8 +18,8 @@ import {
 import heroImage1 from '@/public/images/slider/slider-1.webp';
 import { Smartphone, Tablet, Code2 } from 'lucide-react';
 import type { Metadata } from 'next';
-import type { ProcessStep, CaseStudyItem, FaqItem } from '@/types/services';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import type { ProcessStep, FaqItem } from '@/types/services';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { StickyCTA } from '@/components/sections/shared/StickyCTA';
 
 export const metadata: Metadata = {
@@ -103,47 +103,6 @@ const PROCESS_STEPS: ProcessStep[] = [
 	},
 ];
 
-const CASE_STUDIES: CaseStudyItem[] = [
-	{
-		client: 'HealthTrack Pro',
-		industry: 'Healthcare',
-		problem: 'Healthcare provider needed HIPAA-compliant iOS and Android apps for patient data management with real-time sync.',
-		solution:
-			'Built native iOS (SwiftUI) and Android (Kotlin) apps with encrypted data storage, secure API integration, and offline-first architecture.',
-		outcome: 'Launched on both stores in 10 weeks with 4.8-star ratings and zero security incidents in 12 months.',
-		icon: <Smartphone className='size-5' />,
-		metrics: [
-			{ label: 'App Store rating', value: '4.8★' },
-			{ label: 'Security incidents', value: '0' },
-		],
-	},
-	{
-		client: 'RetailFlow Mobile',
-		industry: 'Retail',
-		problem: 'E-commerce company needed cross-platform app to reach iOS and Android users with shared codebase and faster time-to-market.',
-		solution:
-			'Developed React Native app with native payment modules, push notifications, and deep linking. Integrated with existing e-commerce backend.',
-		outcome: 'Launched on both platforms simultaneously, reducing development time by 40% and achieving 85% code reuse.',
-		icon: <Tablet className='size-5' />,
-		metrics: [
-			{ label: 'Code reuse', value: '85%' },
-			{ label: 'Time saved', value: '40%' },
-		],
-	},
-	{
-		client: 'FinanceHub Mobile',
-		industry: 'Financial Services',
-		problem: 'Financial services firm required secure Android app with biometric authentication and real-time transaction processing.',
-		solution:
-			'Built native Android app with Jetpack Compose, biometric authentication, encrypted local storage, and real-time API integration.',
-		outcome: 'Processed $2.3M in transactions in first quarter with 99.9% uptime and 4.7-star Play Store rating.',
-		icon: <Code2 className='size-5' />,
-		metrics: [
-			{ label: 'Q1 transactions', value: '$2.3M' },
-			{ label: 'Uptime', value: '99.9%' },
-		],
-	},
-];
 
 const FAQ_ITEMS: FaqItem[] = [
 	{
@@ -203,7 +162,8 @@ const APP_INTEGRATIONS = [
 	{ name: 'Biometric Auth', category: 'Security' },
 ];
 
-export default function AppDevOverviewPage() {
+export default async function AppDevOverviewPage() {
+	const caseStudies = await getCaseStudiesByCategory('app-dev');
 	const structuredData = {
 		'@context': 'https://schema.org',
 		'@type': 'Service',
@@ -256,7 +216,7 @@ export default function AppDevOverviewPage() {
 				variant='cards'
 			/>
 			<CaseStudyStrip
-				items={CASE_STUDIES.map(mapCaseStudyToCard)}
+				items={caseStudies}
 				title='Results grounded in performance data'
 				description='Every case study highlights the measurable outcomes stakeholders care about.'
 			/>

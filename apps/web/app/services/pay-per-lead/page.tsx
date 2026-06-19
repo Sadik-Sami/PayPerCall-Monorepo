@@ -26,11 +26,11 @@ import {
 	AFTER_ITEMS,
 	STATS,
 	BLUEPRINT_STEPS,
-	CASE_STUDIES,
 	FAQS,
 	CONSULTATION_FEATURES,
 } from '@/components/sections/services/pay-per-lead';
 import type { Metadata } from 'next';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 
 export const metadata: Metadata = {
 	title: 'Pay Per Lead Services | Exclusive, Shared & Real-Time Leads | PayPerCall',
@@ -40,7 +40,8 @@ export const metadata: Metadata = {
 	robots: { index: true, follow: true },
 };
 
-export default function PayPerLeadPage() {
+export default async function PayPerLeadPage() {
+	const caseStudies = await getCaseStudiesByCategory('pay-per-lead');
 	return (
 		<main className="min-h-screen">
 			<HeroSection
@@ -170,7 +171,7 @@ export default function PayPerLeadPage() {
 			</div>
 			<div className="w-full bg-background">
 				<CaseStudyStrip
-					items={CASE_STUDIES}
+					items={caseStudies}
 					title="Success Stories"
 					description="See how we've helped businesses scale their lead pipelines with exclusive, shared, and real-time delivery."
 					cta={{ text: 'Get a Free Consultation', href: '/contact' }}

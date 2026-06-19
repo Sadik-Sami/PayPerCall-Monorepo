@@ -1,5 +1,5 @@
 import { CaseStudyStrip, ConsultationCTA, SECTION_PADDING } from '@/components/sections/services';
-import { mapCaseStudyToCard } from '@/lib/utils/case-study-mapper';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import FAQ from '@/components/sections/shared/FAQ';
 import { PastelFunnelHero, PastelBentoGrid } from '../_components';
 import { FULL_STACK_DATA } from '@/lib/data/services/web-dev-subpages';
@@ -27,7 +27,8 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function FullStackWebDevPage() {
+export default async function FullStackWebDevPage() {
+	const caseStudies = await getCaseStudiesByCategory('web-dev');
 	return (
 		<main className='flex flex-col'>
 			<PastelFunnelHero {...FULL_STACK_DATA.HERO} />
@@ -95,7 +96,7 @@ export default function FullStackWebDevPage() {
 			<div className={cn('w-full bg-muted/30', SECTION_PADDING)}>
 				<CaseStudyStrip
 					className='section-container'
-					items={FULL_STACK_DATA.CASE_STUDIES.map(mapCaseStudyToCard)}
+					items={caseStudies}
 					title='Representative full-stack engagements'
 					description='Every case study highlights the measurable outcomes stakeholders care about.'
 				/>

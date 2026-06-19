@@ -19,27 +19,8 @@ import {
 } from '@/lib/data/service-navigation';
 import Industries from '@/components/sections/shared/Industries';
 import { ImageContentSplit } from '@/components/sections/services/shared/ImageContentSplit';
+import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 
-const PAY_PER_CALL_CASE_STUDIES: CaseStudyCardItem[] = [
-	{
-		title: 'Solar Growth',
-		description:
-			'A comprehensive call-based acquisition strategy for a leading solar provider, resulting in a 300% increase in qualified inbound calls within the first quarter.',
-		accentColor: 'pastel-peach',
-	},
-	{
-		title: 'Legal Scale',
-		description:
-			'Custom call routing and intake funnel designed for a premium law firm, optimizing their client intake process and significantly reducing cost-per-acquisition.',
-		accentColor: 'pastel-lilac',
-	},
-	{
-		title: 'Tech Innovate',
-		description:
-			'End-to-end call attribution and routing strategy that helped a mid-size SaaS company streamline their sales operations and boost conversion from calls by 45%.',
-		accentColor: 'pastel-lime',
-	},
-];
 
 const PAY_PER_CALL_FAQS: FaqItem[] = [
 	{
@@ -76,7 +57,8 @@ const PAY_PER_CALL_FAQS: FaqItem[] = [
 
 const SECTION_PADDING = 'max-w-7xl mx-auto py-20 md:py-24';
 
-export default function PayPerCallPage() {
+export default async function PayPerCallPage() {
+	const caseStudies = await getCaseStudiesByCategory('pay-per-call');
 	return (
 		<main className='min-h-screen'>
 			<HeroSection
@@ -178,7 +160,7 @@ export default function PayPerCallPage() {
 			</div>
 			<div className='w-full bg-background'>
 				<CaseStudyStrip
-					items={PAY_PER_CALL_CASE_STUDIES}
+					items={caseStudies}
 					title='Success Stories'
 					description="See how we've helped businesses scale their operations and achieve unprecedented growth with our strategic blueprint."
 					cta={{ text: 'Get a Free Consultation', href: '/contact' }}
