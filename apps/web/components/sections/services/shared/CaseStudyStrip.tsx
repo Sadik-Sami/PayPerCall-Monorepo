@@ -1,17 +1,19 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { cn } from '@workspace/ui/lib/utils';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@workspace/ui/components/button';
+import { cn } from '@workspace/ui/lib/utils';
 import type {
 	CaseStudyStripProps,
 	CaseStudyCardItem,
 	CaseStudyCardAccentColor,
 } from '@/types/services';
+import { CaseStudyModal } from './CaseStudyModal';
 
-const ACCENT_CLASSES: Record<CaseStudyCardAccentColor, string> = {
+const ACCENT_BG: Record<CaseStudyCardAccentColor, string> = {
 	'pastel-peach': 'bg-pastel-peach',
 	'pastel-lilac': 'bg-pastel-lilac',
 	'pastel-lime': 'bg-pastel-lime',
@@ -20,70 +22,85 @@ const ACCENT_CLASSES: Record<CaseStudyCardAccentColor, string> = {
 	'pastel-blush': 'bg-pastel-blush',
 };
 
-const DEFAULT_ACCENT = 'pastel-peach' satisfies CaseStudyCardAccentColor;
+const ACCENT_ROTATION: CaseStudyCardAccentColor[] = [
+	'pastel-peach',
+	'pastel-lilac',
+	'pastel-lime',
+	'pastel-mint',
+	'pastel-sky',
+	'pastel-blush',
+];
+
+const DESCRIPTION_CHAR_LIMIT = 140;
+
+function truncate(text: string, max = DESCRIPTION_CHAR_LIMIT): string {
+	if (text.length <= max) return text;
+	return text.slice(0, max).trimEnd() + '…';
+}
+
+function resolveAccent(item: CaseStudyCardItem, index: number): CaseStudyCardAccentColor {
+	return item.accentColor ?? ACCENT_ROTATION[index % ACCENT_ROTATION.length] ?? 'pastel-peach';
+}
 
 function CaseStudyCard({
 	item,
 	index,
+	priority,
 	cardRef,
+	onReadMore,
 }: {
 	item: CaseStudyCardItem;
 	index: number;
+	priority: boolean;
 	cardRef?: (el: HTMLDivElement | null) => void;
+	onReadMore: () => void;
 }) {
-	const accent: CaseStudyCardAccentColor =
-		item.accentColor ??
-		(['pastel-peach', 'pastel-lilac', 'pastel-lime'] as const)[index % 3] ??
-		DEFAULT_ACCENT;
-	const bgClass = ACCENT_CLASSES[accent];
+	const accent = resolveAccent(item, index);
+	const accentBg = ACCENT_BG[accent];
 
 	return (
 		<div
 			ref={cardRef}
 			className={cn(
-				'shrink-0 w-[320px] min-w-[320px] sm:w-87.5 sm:min-w-87.5 md:w-100 md:min-w-100',
-				'flex flex-col justify-between rounded-3xl p-8 shadow-lg',
-				bgClass,
-				'text-foreground'
+				'shrink-0 w-[300px] min-w-[300px] sm:w-[340px] sm:min-w-[340px] md:w-[360px] md:min-w-[360px]',
+				'flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm',
+				'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl',
 			)}
 		>
-			<div>
-				<h3 className="mb-3 text-2xl font-bold">{item.title}</h3>
-				<p className="text-sm leading-relaxed text-muted-foreground mb-8">
-					{item.description}
-				</p>
-			</div>
-			<div className="relative mt-auto">
+			<div className={cn('relative w-full aspect-[4/3] overflow-hidden', accentBg)}>
 				{item.image ? (
-					<>
-						<div
-							className="absolute inset-0 rounded-xl bg-black/5 -translate-x-0.5 -translate-y-0.5"
-							aria-hidden
-						/>
-						<Image
-							src={item.image.src}
-							alt={item.image.alt}
-							width={400}
-							height={192}
-							className="relative rounded-xl border border-white/20 object-cover w-full h-48 shadow-xl"
-							unoptimized={item.image.src.startsWith('http')}
-						/>
-					</>
-				) : (
-					<div
-						className="relative rounded-xl border border-white/20 w-full h-48 shadow-xl overflow-hidden bg-linear-to-br from-primary/5 to-primary/10"
-						aria-hidden
+					<Image
+						src={item.image.src}
+						alt={item.image.alt}
+						fill
+						priority={priority}
+						sizes="(max-width: 640px) 300px, (max-width: 768px) 340px, 360px"
+						className="object-contain p-5"
+						unoptimized={item.image.src.startsWith('http')}
 					/>
+				) : (
+					<div className="absolute inset-0 flex items-center justify-center text-sm text-foreground/40">
+						No image
+					</div>
 				)}
 			</div>
-			{item.link && (
-				<a
-					href={item.link}
-					className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline"
+
+			<div className="flex flex-1 flex-col gap-3 p-6">
+				<h3 className="font-heading text-xl font-semibold text-foreground line-clamp-2 min-h-[3.5rem]">
+					{item.title}
+				</h3>
+				<p className="text-sm leading-relaxed text-muted-foreground min-h-[4.5rem]">
+					{truncate(item.description)}
+				</p>
+				<button
+					type="button"
+					onClick={onReadMore}
+					className="mt-auto inline-flex items-center gap-1 self-start text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
 				>
-					View full case study
-				</a>
-			)}
+					Read more
+					<ArrowRight className="h-3.5 w-3.5" aria-hidden />
+				</button>
+			</div>
 		</div>
 	);
 }
@@ -96,15 +113,14 @@ export function CaseStudyStrip({
 	autoScrollInterval = 5000,
 	className,
 }: CaseStudyStripProps) {
-	if (!items.length) return null;
-
 	const [activeIndex, setActiveIndex] = useState(0);
+	const [openIndex, setOpenIndex] = useState<number | null>(null);
 	const trackRef = useRef<HTMLDivElement>(null);
 	const cardRef = useRef<HTMLDivElement | null>(null);
-	const [stepPx, setStepPx] = useState(344);
+	const [stepPx, setStepPx] = useState(384);
 
 	const nextSlide = useCallback(() => {
-		setActiveIndex((prev) => (prev + 1) % items.length);
+		setActiveIndex((prev) => (prev + 1) % Math.max(items.length, 1));
 	}, [items.length]);
 
 	const goToSlide = useCallback((index: number) => {
@@ -123,13 +139,25 @@ export function CaseStudyStrip({
 	}, [items.length]);
 
 	useEffect(() => {
+		if (openIndex !== null) return;
+		if (items.length <= 1) return;
 		const id = setInterval(nextSlide, autoScrollInterval);
 		return () => clearInterval(id);
-	}, [nextSlide, autoScrollInterval]);
+	}, [nextSlide, autoScrollInterval, openIndex, items.length]);
 
 	const maxIndex = Math.max(0, items.length - 1);
 	const clampedIndex = Math.min(activeIndex, maxIndex);
 	const translateX = -clampedIndex * stepPx;
+
+	const activeItem = openIndex !== null ? items[openIndex] ?? null : null;
+	const activeAccent = useMemo<CaseStudyCardAccentColor>(() => {
+		if (openIndex === null) return 'pastel-peach';
+		const target = items[openIndex];
+		if (!target) return 'pastel-peach';
+		return resolveAccent(target, openIndex);
+	}, [openIndex, items]);
+
+	if (!items.length) return null;
 
 	return (
 		<section className={cn('w-full', className)}>
@@ -142,9 +170,7 @@ export function CaseStudyStrip({
 							</h2>
 						)}
 						{description && (
-							<p className="text-muted-foreground max-w-2xl mx-auto">
-								{description}
-							</p>
+							<p className="text-muted-foreground max-w-2xl mx-auto">{description}</p>
 						)}
 					</div>
 				)}
@@ -152,7 +178,7 @@ export function CaseStudyStrip({
 				<div className="relative overflow-hidden mb-12">
 					<motion.div
 						ref={trackRef}
-						className="flex gap-6 pb-8"
+						className="flex gap-6 pb-8 items-stretch"
 						animate={{ x: translateX }}
 						transition={{
 							type: 'spring',
@@ -165,29 +191,34 @@ export function CaseStudyStrip({
 								key={`${item.title}-${index}`}
 								item={item}
 								index={index}
+								priority={index < 3}
 								cardRef={index === 0 ? (el) => { cardRef.current = el; } : undefined}
+								onReadMore={() => setOpenIndex(index)}
 							/>
 						))}
 					</motion.div>
 				</div>
 
 				<div className="flex flex-col items-center justify-center space-y-8">
-					<div className="flex gap-3">
-						{items.map((_, i) => (
-							<button
-								key={i}
-								onClick={() => goToSlide(i)}
-								aria-current={i === clampedIndex}
-								aria-label={`Go to slide ${i + 1}`}
-								className={cn(
-									'h-3 w-3 rounded-full transition-colors duration-300',
-									i === clampedIndex
-										? 'bg-primary w-6'
-										: 'bg-muted-foreground/30 hover:bg-muted-foreground/50 w-3'
-								)}
-							/>
-						))}
-					</div>
+					{items.length > 1 && (
+						<div className="flex gap-3">
+							{items.map((_, i) => (
+								<button
+									key={i}
+									onClick={() => goToSlide(i)}
+									aria-current={i === clampedIndex}
+									aria-label={`Go to slide ${i + 1}`}
+									className={cn(
+										'h-3 rounded-full transition-all duration-300',
+										i === clampedIndex
+											? 'bg-primary w-6'
+											: 'bg-muted-foreground/30 hover:bg-muted-foreground/50 w-3',
+									)}
+								/>
+							))}
+						</div>
+					)}
+
 					{cta && (
 						<Button
 							asChild
@@ -199,6 +230,13 @@ export function CaseStudyStrip({
 					)}
 				</div>
 			</div>
+
+			<CaseStudyModal
+				open={openIndex !== null}
+				onOpenChange={(o) => !o && setOpenIndex(null)}
+				item={activeItem}
+				accentColor={activeAccent}
+			/>
 		</section>
 	);
 }

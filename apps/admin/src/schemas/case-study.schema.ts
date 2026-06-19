@@ -14,7 +14,6 @@ export const caseStudyClientSchema = z.object({
 		.enum(['pastel-peach', 'pastel-lilac', 'pastel-lime', 'pastel-mint', 'pastel-sky', 'pastel-blush'])
 		.optional()
 		.nullable(),
-	link: z.url({ error: 'Must be a valid URL' }).optional().or(z.literal('')),
 	displayOrder: z.coerce.number().default(0),
 	status: z.enum(['draft', 'published', 'archived']).default('draft'),
 });

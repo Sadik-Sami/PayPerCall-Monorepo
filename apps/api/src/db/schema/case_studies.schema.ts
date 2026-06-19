@@ -38,7 +38,6 @@ export const caseStudiesTable = pgTable(
 		image_url: varchar('image_url', { length: 2048 }),
 		image_alt: varchar('image_alt', { length: 255 }),
 		accent_color: caseStudyAccentEnum('accent_color'),
-		link: varchar('link', { length: 2048 }),
 
 		category: caseStudyCategoryEnum('category').notNull(),
 		status: caseStudyStatusEnum('status').default('draft').notNull(),

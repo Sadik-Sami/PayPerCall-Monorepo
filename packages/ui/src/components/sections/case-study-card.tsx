@@ -49,7 +49,7 @@ export function CaseStudyCard({ caseStudy, className }: CaseStudyCardProps) {
 				</div>
 
 				{/* Problem & Solution */}
-				<div className='space-y-4 mb-6 flex-grow'>
+				<div className='space-y-4 mb-6 grow'>
 					<div>
 						<p className='text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1'>
 							Challenge

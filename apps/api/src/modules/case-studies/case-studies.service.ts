@@ -54,7 +54,6 @@ export const caseStudyServices = {
 			image_url: data.imageUrl ? data.imageUrl : null,
 			image_alt: data.imageAlt ? data.imageAlt : null,
 			accent_color: data.accentColor ?? null,
-			link: data.link ? data.link : null,
 			status: data.status ?? 'draft',
 			display_order: data.displayOrder ?? 0,
 			published_at: data.status === 'published' ? new Date() : null,
@@ -85,7 +84,6 @@ export const caseStudyServices = {
 		if (data.imageUrl !== undefined) updates.image_url = data.imageUrl === '' ? null : data.imageUrl;
 		if (data.imageAlt !== undefined) updates.image_alt = data.imageAlt === '' ? null : data.imageAlt;
 		if (data.accentColor !== undefined) updates.accent_color = data.accentColor;
-		if (data.link !== undefined) updates.link = data.link === '' ? null : data.link;
 		if (data.category !== undefined) updates.category = data.category;
 		if (data.displayOrder !== undefined) updates.display_order = data.displayOrder;
 

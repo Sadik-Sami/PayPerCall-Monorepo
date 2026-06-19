@@ -11,7 +11,6 @@ interface ApiCaseStudy {
   image_url: string | null;
   image_alt: string | null;
   accent_color: CaseStudyCardItem['accentColor'] | null;
-  link: string | null;
 }
 
 interface PublicListResponse {
@@ -42,6 +41,5 @@ function toCard(record: ApiCaseStudy): CaseStudyCardItem {
     description: record.description,
     image: record.image_url ? { src: record.image_url, alt: record.image_alt ?? record.title } : undefined,
     accentColor: record.accent_color ?? undefined,
-    link: record.link ?? undefined,
   };
 }

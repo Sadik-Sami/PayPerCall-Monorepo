@@ -21,6 +21,7 @@ import type { Metadata } from 'next';
 import type { ProcessStep, FaqItem } from '@/types/services';
 import { getCaseStudiesByCategory } from '@/lib/api/case-studies';
 import { StickyCTA } from '@/components/sections/shared/StickyCTA';
+import FAQ from '@/components/sections/shared/FAQ';
 
 export const metadata: Metadata = {
 	title: 'Mobile App Development Services | iOS, Android & Cross-Platform | PayPerCall',
@@ -230,7 +231,7 @@ export default async function AppDevOverviewPage() {
 				ctaLabel='Discuss integration requirements'
 				ctaHref='/contact'
 			/>
-			<FAQSection className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
+			<FAQ description='Everything you need to know about mobile app development' variant='pastel' className='max-w-7xl mx-auto' items={FAQ_ITEMS} />
 			<div className='section-container pb-16 max-w-7xl mx-auto'>
 				<ConsultationCTA
 					category='app-dev'

@@ -34,7 +34,6 @@ export default function CaseStudyEditPage() {
 					imageUrl: values.imageUrl || undefined,
 					imageAlt: values.imageAlt || undefined,
 					accentColor: values.accentColor || undefined,
-					link: values.link || undefined,
 					displayOrder: values.displayOrder,
 					status: values.status,
 				},
@@ -102,7 +101,6 @@ export default function CaseStudyEditPage() {
 							imageUrl: caseStudy.image_url || '',
 							imageAlt: caseStudy.image_alt || '',
 							accentColor: caseStudy.accent_color,
-							link: caseStudy.link || '',
 							displayOrder: caseStudy.display_order,
 							status: caseStudy.status,
 						}}

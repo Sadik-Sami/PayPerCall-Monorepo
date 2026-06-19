@@ -72,7 +72,6 @@ export function CaseStudyForm({
 			imageUrl: '',
 			imageAlt: '',
 			accentColor: null,
-			link: '',
 			displayOrder: 0,
 			status: 'draft',
 			...defaultValues,
@@ -150,20 +149,6 @@ export function CaseStudyForm({
 										))}
 									</SelectContent>
 								</Select>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="link"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>External Link</FormLabel>
-								<FormControl>
-									<Input placeholder="https://example.com" {...field} />
-								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}

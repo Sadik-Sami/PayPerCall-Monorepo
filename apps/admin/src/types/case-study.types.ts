@@ -25,7 +25,6 @@ export interface CaseStudy {
 	image_url: string | null;
 	image_alt: string | null;
 	accent_color: CaseStudyAccent | null;
-	link: string | null;
 	category: CaseStudyCategory;
 	status: CaseStudyStatus;
 	display_order: number;
@@ -59,7 +58,6 @@ export interface CaseStudyCreatePayload {
 	imageUrl?: string;
 	imageAlt?: string;
 	accentColor?: CaseStudyAccent;
-	link?: string;
 	category: CaseStudyCategory;
 	status?: CaseStudyStatus;
 	displayOrder?: number;

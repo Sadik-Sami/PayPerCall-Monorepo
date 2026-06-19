@@ -30,7 +30,6 @@ export const caseStudyCreateSchema = z.object({
 	imageUrl: optionalUrl,
 	imageAlt: z.union([z.string().trim().max(255), z.literal('')]).optional(),
 	accentColor: caseStudyAccentSchema.optional(),
-	link: optionalUrl,
 	category: caseStudyCategorySchema,
 	status: caseStudyStatusSchema.optional(), // default 'draft' on the server
 	displayOrder: z.coerce.number().int().min(0).optional(),

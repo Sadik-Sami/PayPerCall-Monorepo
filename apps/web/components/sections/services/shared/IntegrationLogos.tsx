@@ -51,10 +51,13 @@ const LOGO_MAP: Record<string, string> = {
   MongoDB: 'MongoDB',
   MySQL: 'MySQL',
   Redis: 'Redis',
+  'Apple Pay': 'Apple',
+  'Google Pay': 'Google',
   SQLite: 'SQLite',
   Firebase: 'Firebase',
   Vercel: 'Vercel',
   AWS: 'AWS',
+  'AWS Amplify': 'AWS',
   Cloudflare: 'Cloudflare',
   'Google Cloud': 'Google-Cloud',
   Heroku: 'Heroku',
@@ -109,6 +112,7 @@ const LOGO_MAP: Record<string, string> = {
   WooCommerce: 'WooCommerce',
   WordPress: 'WordPress',
   Xcode: 'Xcode',
+  
 };
 
 function logoFor(item: IntegrationItem): string | null {

@@ -20,7 +20,6 @@ export default function CaseStudyCreatePage() {
 				imageUrl: values.imageUrl || undefined,
 				imageAlt: values.imageAlt || undefined,
 				accentColor: values.accentColor || undefined,
-				link: values.link || undefined,
 				displayOrder: values.displayOrder,
 				status: 'draft',
 			});

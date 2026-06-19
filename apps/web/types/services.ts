@@ -68,7 +68,6 @@ export interface CaseStudyItem {
   problem: string;
   solution: string;
   outcome: string;
-  link?: string;
   icon?: ReactNode;
   metrics?: {
     label: string;
@@ -90,7 +89,6 @@ export interface CaseStudyCardItem {
   description: string;
   image?: { src: string; alt: string };
   accentColor?: CaseStudyCardAccentColor;
-  link?: string;
 }
 
 export interface CaseStudyStripProps {
